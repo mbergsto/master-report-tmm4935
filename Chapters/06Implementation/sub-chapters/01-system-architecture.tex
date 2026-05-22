@@ -39,12 +39,13 @@ Google Colab, which are used to upload and open generated notebooks.
 
 MLguide follows a layered architecture, in which each layer only depends 
 on the layer immediately beneath it 
-\parencite[158]{sommerville2011software_engineering}. This keeps concerns 
+\parencite[157--158]{sommerville2011software_engineering}. This keeps concerns 
 separated across the system, so that individual layers can be modified or 
 replaced without affecting the rest of the application. The layered 
-approach also supports incremental development 
-\parencite[158]{sommerville2011software_engineering}, which is consistent 
-with the development process described in 
+approach also supports incremental development, because each layer can be 
+made available as it is completed without waiting for the full system to 
+be built \parencite[157--158]{sommerville2011software_engineering}. This is 
+consistent with the development process described in 
 Section~\ref{sec:incremental-and-iterative-development}.
 
 Figure~\ref{fig:mlguide-layered-architecture} shows the internal layer 
@@ -54,10 +55,12 @@ handles incoming API requests and passes them to the service layer, which
 contains the application logic. The persistence layer is responsible for 
 all database access and isolates data retrieval from the rest of the 
 application. In the frontend, the presentation layer handles rendering 
-and user interaction. An integrations layer wraps calls to the backend 
-API and external services, keeping these concerns separate from the 
-application logic.
-
+and user interaction. The application logic layer coordinates calls to 
+the backend and external services. Because the frontend is a Streamlit 
+application that delegates most logic to the backend, the majority of 
+modules in this layer are thin wrappers around the integrations layer. 
+The clearest exceptions are the notebook template services, which contain local 
+logic for selecting and rendering starter notebooks.
 
 \begin{figure}[H]
     \centering
@@ -69,14 +72,16 @@ application logic.
 Figure~\ref{fig:package-diagram-full} shows the full package structure 
 of both the frontend and backend, including the main modules within each 
 layer. In addition to the recommendation logic, the system handles two 
-other concerns that run through most layers. User services covers 
-authentication and saved searches, allowing users to store and reload 
-previous searches with problem descriptions. Feedback handling allows users to rate recommended 
-methods, with ratings stored in PostgreSQL and used to adjust method 
-ranking over time. Both concerns follow the same layered structure as 
-the recommendation logic, with separate modules in the router, service, 
-and persistence layers of the backend, and corresponding wrappers in 
-the frontend integrations layer.
+other concerns that run through most layers. User services is a 
+lightweight feature covering authentication and saved searches, allowing 
+users to store and reload previous searches with problem descriptions. 
+Feedback handling allows users to rate recommended methods, with ratings 
+stored in PostgreSQL and used to adjust method ranking over time. Both 
+concerns follow the same layered structure as the recommendation logic, 
+with separate modules in the router, service, and persistence layers of 
+the backend, and corresponding wrappers in the frontend application logic 
+layer. The feedback logic is further described as part of the 
+recommendation process in Section~\ref{sec:recommendation-process}.
 
 \begin{figure}[H]
     \centering

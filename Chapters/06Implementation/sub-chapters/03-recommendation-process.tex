@@ -12,7 +12,7 @@ boost is applied as a final adjustment to the ranking.
 Figure~\ref{fig:recommendation-sequence} shows the sequence of 
 steps in the recommendation process, covering ontology-based 
 candidate retrieval and semantic similarity ranking. Feedback is 
-not included in the diagram, as it is described separately in 
+not included in detail in the diagram. It is described separately in 
 Section~\ref{subsec:feedback-boost}.
 
 \begin{figure}[H]
@@ -30,7 +30,7 @@ Section~\ref{subsec:feedback-boost}.
 
 The first step is to retrieve candidate methods from the knowledge 
 graph using a SPARQL query against GraphDB. The query traverses 
-the graph from articles to methods to approaches: it finds articles 
+the graph from articles to methods to approaches. It finds articles 
 tagged with the selected ML area, follows the 
 \texttt{mentionsMethod} relation to \texttt{mla:Method} instances, 
 and then follows \texttt{skos:exactMatch} to the corresponding 
@@ -79,7 +79,7 @@ described in Section~\ref{subsec:feedback-boost}.
 When a problem description is provided, articles in the database 
 are ranked by their semantic similarity to the query, using the 
 two-stage retrieval pipeline described in 
-Section~\ref{subsec:cross-encoder-reranking}. Similarity is 
+Section~\ref{sec:cross-encoder-reranking}. Similarity is 
 measured using cosine similarity as described in 
 Section~\ref{text-embeddings-semantic-similarity}, which compares 
 the angle between two vectors regardless of their magnitude 
