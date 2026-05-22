@@ -9,16 +9,17 @@ database, which stores article abstracts and vector embeddings used
 for semantic retrieval.
 
 \subsection{ML Ontology Extension}
+\label{sec:ml-ontology-extension}
 
 ML Ontology was selected as the knowledge base for MLguide because it 
 provides the broadest coverage of ML concepts among the ontologies 
-reviewed in Section~\ref{subsection:ml-ontology}, and because its 
+reviewed in Section~\ref{sec:ml-ontology-structure-and-content}, and because its 
 structure directly supports the kind of structured method retrieval 
 that MLguide requires. It is open source and published under an MIT 
 licence \parencite{humm2026industry_ready_machine_learning_ontology}, 
 which allows for use and modification as needed.
 The limitations identified in 
-Section~\ref{subsection:ml-ontology}, including the absence of 
+Section~\ref{sec:ml-ontology-structure-and-content}, including the absence of 
 reinforcement learning instances and incomplete coverage of 
 \texttt{ML\_approach}, required extension before the ontology could 
 be used in MLguide. Some extensions were also made to support better
@@ -108,7 +109,7 @@ via \texttt{belongs\_to}, and \texttt{has\_family} links it to the
 \end{figure}
 
 New \texttt{ML\_approach} instances were added to address the 
-coverage gaps identified in Section~\ref{subsection:ml-ontology}. 
+coverage gaps identified in Section~\ref{sec:ml-ontology-structure-and-content}. 
 A first set was derived from the method extraction results of the 
 pre-master project \parencite{bergsto2026mlselection}, where ML 
 methods were identified from article abstracts in the literature 
@@ -171,7 +172,7 @@ ontology. For example, \texttt{deep\_q\_network} was linked as
 broader to \texttt{q\_learning}, and 
 \texttt{proximal\_policy\_optimization} to \texttt{policy\_gradient}. 
 After adding new instances, the inheritance rule described in 
-Section~\ref{subsection:ml-ontology} was applied to propagate 
+Section~\ref{sec:ml-ontology-structure-and-content} was applied to propagate 
 \texttt{used\_for} and \texttt{belongs\_to} relations to the new 
 instances through their \texttt{skos:broader} hierarchies.
 
@@ -208,14 +209,14 @@ ontology extension and inference rule application.}
 \textbf{Property} & \textbf{Coverage} \\
 \midrule
 \texttt{skos:prefLabel}        & 187/187 (100\%) \\
-\texttt{:used\_for}            & 131/187 (70\%)  \\
+\texttt{used\_for}            & 131/187 (70\%)  \\
 \texttt{rdfs:comment}          & 130/187 (70\%)  \\
 \texttt{rdfs:seeAlso}          & 90/187 (48\%)   \\
 \texttt{skos:altLabel}         & 66/187 (35\%)   \\
 \texttt{skos:broader}          & 57/187 (30\%)   \\
-\texttt{:performance}          & 50/187 (27\%)   \\
-\texttt{:possible\_if}         & 28/187 (15\%)   \\
-\texttt{:not\_recommended\_if} & 5/187 (3\%)     \\
+\texttt{performance}          & 50/187 (27\%)   \\
+\texttt{possible\_if}         & 28/187 (15\%)   \\
+\texttt{not\_recommended\_if} & 5/187 (3\%)     \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -290,6 +291,7 @@ tracking\_\allowbreak family
 \end{table}
 
 \subsection{Database Structure}
+\label{sec:database-structure}
 
 Article data is stored across several tables in PostgreSQL, shown in 
 Figure~\ref{fig:psql-er-diagram}. The \texttt{article\_abstracts} 

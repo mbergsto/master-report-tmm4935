@@ -93,3 +93,39 @@ From \parencite{olivetti2020data_driven_materials_research_enabled_natural_langu
 
 "The manual task of mining information from documents by editors is not practical, given the amount of data that are needed."
 "The significant quantity of existing and new published literature limits what one individual can draw relationships between varied concepts, topics, and domains."
+
+Om 2-stage retrieval pipelines:
+
+From \parencite{dorkin2025tartunlp_subject_tagging_two_stage_ir} :
+"We leverage two types of encoder models to build a two-stage information retrieval system — a bi-encoder for coarse-grained candidate extraction at the first stage, and a cross-encoder for fine-grained re-ranking at the second stage."
+"This approach proved effective, demonstrating significant improvements in recall compared to single-stage methods."
+"A bi-encoder processes documents and queries independently to produce their vector representations. [...] Bi-encoder allows for efficient retrieval in large document collections as the document representations can be pre-computed. The downside, however, is that it is impossible to capture token-level similarities between documents and queries with this approach."
+"a cross-encoder processes document and query pairs simultaneously, capturing such similarities and producing more fine-grained similarity scores. The computational cost of using a cross-encoder is significantly larger compared to that of a bi-encoder, making it generally unsuitable for large document collections."
+"we combine both in a single two-stage system to produce the optimal result"
+"Adding the second stage nearly doubles the recall across various cutoff points k, significantly improving performance over using only the Stage 1 bi-encoder retrieval."
+"The primary computational bottleneck lies in applying the cross-encoder to re-rank all N candidates for each document. This step is significantly more computationally demanding than Stage 1."
+
+From \parencite{verma2025beyond_retrieval_ensembling_cross_encoders}:
+"For the retrieval task, we generated dense embeddings from biomedical articles for initial retrieval, and applied an ensemble of finetuned cross-encoders and large language models (LLMs) for re-ranking to identify top relevant documents."
+"In our systems, we retrieve top-1k documents and then apply a re-ranking step to select the final top-10 documents."
+"Bi-encoders embed question and document independently and compute similarity based on their embeddings which is the secret to their efficiency but also doesn't allow them to exploit the interaction between the question and the document."
+"This is addressed by using cross-encoders which jointly process the question and candidate document pairs."
+"the two-stage hybrid approach of bi-encoders to maximize recall with top-1k retrieval followed by cross-encoders to maximize MAP@10 in the final top-10 documents is the optimal approach balancing accuracy, performance, and computational cost"
+"retrieving 1k followed by re-ranking via finetuned cross encoder achieves an MAP@10 of 0.4337 (more than doubled)"
+"Bi-encoders are the most efficient, seamlessly searching through millions of documents to get us an initial 1k candidates. Cross-encoders jointly look at query and candidate pair making them slow albeit more accurate, which is why they are applied on only the smaller pool of retrieved 1k documents."
+
+From \parencite{humeau2020poly_encoders_transformer_architectures}:
+
+"We perform a detailed comparison of all three approaches, including what pre-training and fine-tuning strategies work best."
+"We show our models achieve state-of-the-art results on four tasks; that Poly-encoders are faster than Cross-encoders and more accurate than Bi-encoders"
+"Cross-encoders performing full self-attention over the pair [...] often performs better, but is too slow for practical use."
+"Cross-encoders must recompute the encoding for each input and label; as a result, they are prohibitively slow at test time."
+"Bi-encoders encoding the pair separately [...] As the representations are separate, Bi-encoders are able to cache the encoded candidates, and reuse these representations for each input resulting in fast prediction times."
+"The Cross-encoder, however, is 2 orders of magnitude slower than the Bi-encoder and Poly-encoder, rendering it intractable for real-time inference"
+"performance in such tasks has to be measured via two axes: prediction quality and prediction speed, as scoring many candidates can be prohibitively slow"
+
+From \parencite{thakur2021beir_heterogenous_benchmark_zero_shot_evaluation_ir_models}:
+"we introduce Benchmarking-IR (BEIR), a robust and heterogeneous evaluation benchmark for information retrieval. We leverage a careful selection of 18 publicly available datasets from diverse text retrieval tasks and domains and evaluate 10 state-of-the-art retrieval systems including lexical, sparse, dense, late-interaction and re-ranking architectures on the BEIR benchmark."
+"Neural re-ranking approaches use the output of a first-stage retrieval system, often BM25, and re-ranks the documents to create a better comparison of the retrieved documents. Significant improvement in performance was achieved with the cross-attention mechanism of BERT. However, at a disadvantage of a high computational overhead."
+"Re-ranking and Late-Interaction models generalize well to out-of-distribution data. The cross-attentional re-ranking model (BM25+CE) performs the best and is able to outperform BM25 on almost all (16/18) datasets."
+"computationally expensive models, like re-ranking models and late interaction model perform the best. More efficient approaches e.g. based on dense or sparse embeddings can substantially underperform traditional lexical models like BM25."

@@ -1,4 +1,5 @@
 \section{Semantic Retrieval and Text Similarity}
+\label{sec:semantic-retrieval-and-text-similarity}
 
 Ontologies provide structured, explicit representations of domain knowledge, 
 but they depend on manually defined concepts and relations. 
@@ -11,7 +12,7 @@ how similarity between texts can be measured in that representation,
 and how these techniques support ranking and matching against a corpus of scientific literature.
 
 \subsection{Text Embeddings and Semantic Similarity}
-\label{text-embeddings-semantic-similarity}
+\label{sec:text-embeddings-and-semantic-similarity}
 
 In vector semantics, text is represented as a numerical vector, 
 a point in a high-dimensional space referred to as the embedding 
@@ -101,6 +102,9 @@ based on this approach for encoding text into fixed-size
 vectors \parencite{sbert_docs}.
 
 \subsection{Semantic Retrieval}
+\label{sec:semantic-retrieval}
+
+\textbf{Flere kilder her!}
 
 Information retrieval (IR) is the task of identifying and ranking 
 documents from a collection according to their relevance to a 
@@ -160,7 +164,7 @@ accurate than bi-encoders, but since no independent representations
 are computed, every query-document pair must be processed from 
 scratch at query time, making cross-encoders impractical for 
 retrieval over large document collections 
-\parencite{thakur2021augmented_sbert_data_augmentation_method_improving_bi_encoders_pairwise_sentence_scoring_tasks}.
+\parencite{humeau2020poly_encoders_transformer_architectures, thakur2021augmented_sbert_data_augmentation_method_improving_bi_encoders_pairwise_sentence_scoring_tasks}.
 
 Figure~\ref{fig:bi-vs-cross-encoder} illustrates the architectural 
 difference between the two approaches.
@@ -180,15 +184,34 @@ difference between the two approaches.
 A common approach to combining the strengths of both architectures 
 is a two-stage retrieval pipeline 
 \parencite{nogueira2019passage_re_ranking_with_bert}. In the first 
-stage, a bi-encoder retrieves a set of candidate documents from 
-the full corpus based on embedding similarity. In the second stage, 
-a cross-encoder reranks these candidates by scoring each document 
-against the query directly, producing a more precise relevance 
-ranking \parencite{nogueira2019passage_re_ranking_with_bert}. This 
-approach preserves the scalability of bi-encoder retrieval while 
-benefiting from the higher accuracy of cross-encoder scoring.
+stage, a retrieval system narrows the full document collection down 
+to a smaller set of candidates. In the second stage, a cross-encoder 
+reranks these candidates by scoring each one against the query 
+directly, producing a more precise relevance ranking. 
+Bi-encoders are well suited for the first stage for the same 
+reason described above: document embeddings can be precomputed, 
+making large-scale candidate retrieval efficient 
+\parencite{thakur2021augmented_sbert_data_augmentation_method_improving_bi_encoders_pairwise_sentence_scoring_tasks,
+dorkin2025tartunlp_subject_tagging_two_stage_ir,
+verma2025beyond_retrieval_ensembling_cross_encoders}.
 
+This pipeline has been applied across diverse retrieval tasks, 
+including ranking text passages by relevance 
+\parencite{nogueira2019passage_re_ranking_with_bert}, biomedical 
+question answering 
+\parencite{verma2025beyond_retrieval_ensembling_cross_encoders}, 
+and subject tagging 
+\parencite{dorkin2025tartunlp_subject_tagging_two_stage_ir}. 
+Cross-attentional reranking has been shown to generalise well 
+across diverse retrieval tasks 
+\parencite{thakur2021beir_heterogenous_benchmark_zero_shot_evaluation_ir_models}, 
+and in several settings the two-stage pipeline has shown 
+substantially better retrieval performance than using a bi-encoder 
+alone 
+\parencite{dorkin2025tartunlp_subject_tagging_two_stage_ir,
+verma2025beyond_retrieval_ensembling_cross_encoders}.
 \subsection{Scientific Literature as a Knowledge Source}
+\label{sec:scientific-literature-as-a-knowledge-source}
 
 Scientific articles document how machine learning methods have 
 been applied across a wide range of problems and contexts. In 
