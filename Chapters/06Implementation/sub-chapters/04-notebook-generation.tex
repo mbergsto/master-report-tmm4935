@@ -1,8 +1,145 @@
 \section{Notebook Generation}
 \label{sec:notebook-generation}
+
+Jupyter notebooks \parencite{kluyver2016jupyter_notebooks} are widely used in ML development because 
+they allow code, explanatory text, and visual output to be combined 
+in a single document, making them well suited for 
+experimentation and exploration. Providing a pre-structured notebook for a 
+recommended method gives users a concrete starting point 
+without having to write boilerplate code from scratch. 
+A template-based approach makes it possible to generate 
+such notebooks automatically, with content tailored to 
+the selected method and the user's problem description. 
+
+MLguide have the possibility to generate a starter notebook for recommended ML 
+methods. This relies on the existence of a pre-written template 
+that defines the notebook structure and code.
+When a user opens a method details page, by clicking on one of the 
+recommended methods, 
+a notebook is generated automatically from a template and 
+displayed as a code preview. The user can then download the 
+notebook or open it directly in Google Colab. This section 
+describes how templates are structured, how notebooks are 
+generated, and how they are made available to the user.
+
+Notebook generation relies on the following tools:
+
+\begin{itemize}
+    \item \textbf{Jinja2} \parencite{jinja2}: A Python 
+    templating engine used to render notebook templates 
+    with method-specific and user-provided content.
+    \item \textbf{jupytext} \parencite{Wouts_Jupytext}: 
+    Tool for converting Python code into the 
+    \texttt{.ipynb} format used by Jupyter and Google Colab.
+    \item \textbf{Google Colab}: A cloud-based notebook 
+    environment that allows users to run the generated 
+    notebook directly in the browser without local setup.
+    \item \textbf{GitHub API}: Used to upload the generated 
+    notebook so that Google Colab can load it from a 
+    publicly accessible URL.
+\end{itemize}
+
+Much of the notebook generation approach, including the use of 
+Jinja2 templates and 
+the GitHub-based Open in Colab mechanism, is inspired by 
+Traingenerator \parencite{rieke2021traingenerator}, which 
+is described in Section~\ref{sec:template-based-code-generation}. 
+Unlike Traingenerator, where the user selects task, 
+framework and more parameters manually, MLguide just selects the template 
+automatically based on the recommended method that is chosen by the user. 
+
+\subsection{Template Resolution and Rendering}
+\label{sec:template-resolution}
+
+The generation process has three steps. First, the 
+template resolver maps the selected method to a Jinja2 
+template file. Templates are organised by task family 
+and method key, following the path structure: \\
+\texttt{templates/notebooks/\{family\}/\{method\_key\}.py.jinja}.
+
+Second, the template is rendered with user-specific 
+context, including the problem description, method title, 
+and task family. This produces a Python source file 
+personalised to the user's input.
+
+Third, the rendered Python source is converted to 
+\texttt{.ipynb} format using jupytext. Colab-compatible 
+metadata is added at this stage, including kernel 
+specification and notebook name, so the file can be 
+opened in Google Colab without additional configuration.
+
+\subsection{Colab Export}
+\label{sec:colab-export}
+
+The user can open the generated notebook directly in 
+Google Colab. The notebook is uploaded to a configured 
+GitHub repository via the GitHub API, and a Colab URL 
+is constructed from the repository name, branch, and 
+file path. The browser opens this URL in a new tab, 
+where Colab loads the notebook directly from GitHub.
+
+The whole process of generating the notebook and opening it in Colab is 
+described in the sequence diagram in Figure~\ref{fig:notebook-generation-sequence}.
+
+\begin{landscape}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Figures/06-implementation/notebook-generation-sequence.png}
+    \includegraphics[width=\linewidth, height=\textheight, keepaspectratio]{Figures/06-implementation/notebook-generation-sequence.png}
     \caption[Notebook generation sequence]{Sequence diagram of the notebook generation process in MLguide.}
     \label{fig:notebook-generation-sequence}  
 \end{figure}
+\end{landscape}
+
+\subsection{Template Structure and Extensibility}
+
+The template folder structure matches the 
+\texttt{mla:ML\_task\_family} classes defined in the 
+ontology extension described in 
+Section~\ref{sec:ml-ontology-extension} and listed in 
+Table~\ref{tab:ml-task-families}. Template files are 
+named after the method's ontology IRI
+(the unique identifier used in the knowledge graph), 
+which gives accurate mapping between the ontology and the file system.
+
+Many ML methods can be applied to more than one type of 
+task, as described in 
+Section~\ref{sec:machine-learning-methods} and 
+Section~\ref{sec:neural-networks-and-deep-learning}. 
+Such methods have a separate template in each relevant 
+family folder, since different task types require 
+different code structure. The correct template is selected 
+by inspecting the task chosen in the users problem description. 
+Table~\ref{tab:template-structure} shows examples of 
+how methods are distributed across family folders.
+
+\begin{table}[H]
+\centering
+\caption[Template folder structure]{Example of template 
+organisation by task family and method key.}
+\label{tab:template-structure}
+\begin{tabular}{ll}
+\toprule
+\textbf{Family / Template file} & \textbf{Method} \\
+\midrule
+\multicolumn{2}{l}{\texttt{classification/}} \\
+\quad\texttt{artificial\_neural\_network.py.jinja} & Artificial neural network \\
+\quad\texttt{random\_forest.py.jinja} & Random forest \\
+\quad\texttt{support\_vector\_machine.py.jinja} & Support vector machine \\
+\quad\texttt{logistic\_regression.py.jinja} & Logistic regression \\
+\midrule
+\multicolumn{2}{l}{\texttt{regression/}} \\
+\quad\texttt{artificial\_neural\_network.py.jinja} & Artificial neural network \\
+\quad\texttt{random\_forest.py.jinja} & Random forest \\
+\quad\texttt{support\_vector\_regression.py.jinja} & Support vector regression \\
+\quad\texttt{linear\_regression.py.jinja} & Linear regression \\
+\midrule
+\multicolumn{2}{l}{\texttt{clustering\_unsupervised\_discovery/}} \\
+\quad\texttt{k\_means.py.jinja} & K-means \\
+\bottomrule
+\end{tabular}
+\end{table}
+Templates are written manually and therefore follow a simple 
+structure. Adding a template for a new method only requires 
+creating a template file with the correct method 
+name in the appropriate family folder. This makes the 
+template system straightforward to extend.
