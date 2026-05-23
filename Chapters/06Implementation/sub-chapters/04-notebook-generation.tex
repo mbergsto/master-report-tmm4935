@@ -119,32 +119,25 @@ organisation by task family and method key.}
 \label{tab:template-structure}
 \begin{tabular}{ll}
 \toprule
-\textbf{Path} & \textbf{Method} \\
+\textbf{Family / Template file} & \textbf{Method} \\
 \midrule
-\texttt{classification/artificial\_neural\_network.py.jinja} 
-    & Artificial neural network \\
-\texttt{classification/random\_forest.py.jinja} 
-    & Random forest \\
-\texttt{classification/support\_vector\_machine.py.jinja} 
-    & Support vector machine \\
-\texttt{classification/logistic\_regression.py.jinja} 
-    & Logistic regression \\
+\multicolumn{2}{l}{\texttt{classification/}} \\
+\quad\texttt{artificial\_neural\_network.py.jinja} & Artificial neural network \\
+\quad\texttt{random\_forest.py.jinja} & Random forest \\
+\quad\texttt{support\_vector\_machine.py.jinja} & Support vector machine \\
+\quad\texttt{logistic\_regression.py.jinja} & Logistic regression \\
 \midrule
-\texttt{regression/artificial\_neural\_network.py.jinja} 
-    & Artificial neural network \\
-\texttt{regression/random\_forest.py.jinja} 
-    & Random forest \\
-\texttt{regression/support\_vector\_regression.py.jinja} 
-    & Support vector regression \\
-\texttt{regression/linear\_regression.py.jinja} 
-    & Linear regression \\
+\multicolumn{2}{l}{\texttt{regression/}} \\
+\quad\texttt{artificial\_neural\_network.py.jinja} & Artificial neural network \\
+\quad\texttt{random\_forest.py.jinja} & Random forest \\
+\quad\texttt{support\_vector\_regression.py.jinja} & Support vector regression \\
+\quad\texttt{linear\_regression.py.jinja} & Linear regression \\
 \midrule
-\texttt{clustering\_unsupervised\_discovery/k\_means.py.jinja} 
-    & K-means \\
+\multicolumn{2}{l}{\texttt{clustering\_unsupervised\_discovery/}} \\
+\quad\texttt{k\_means.py.jinja} & K-means \\
 \bottomrule
 \end{tabular}
 \end{table}
-
 Templates are written manually and therefore follow a simple 
 structure. Adding a template for a new method only requires 
 creating a template file with the correct method 
