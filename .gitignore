@@ -36,7 +36,10 @@
 *.code-workspace
 
 ## Optional: exclude final output
-*.pdf
+# *.pdf
 
 ## Optional: exclude pictures
 *.png
+
+# Exclude figures
+Figures/*

@@ -1,0 +1,4 @@
+
+# Handling of merge conflicts for generated PDF files
+# When merging into the main branch, always keep the version from the current branch (theirs)
+main.pdf merge=theirs
