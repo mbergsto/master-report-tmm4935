@@ -34,7 +34,7 @@ Section~\ref{sec:feedback-boost}.
 The first step is to retrieve candidate methods from the knowledge 
 graph using a SPARQL query against GraphDB. The query goes through 
 the graph from articles to methods to approaches. It finds articles 
-tagged with the selected ML area, follows the 
+related to the selected ML area, follows the 
 \texttt{mentionsMethod} relation to \texttt{mla:Method} instances, 
 and then follows \texttt{skos:exactMatch} to the corresponding 
 \texttt{ML\_approach} instances. A candidate approach is only 
@@ -46,7 +46,7 @@ The properties used to filter and rank candidates are listed in
 Table~\ref{tab:retrieval-properties}. They were selected because 
 they describe characteristics of an ML method that can be matched 
 against the user's problem context. ML area is the only hard 
-filter, since all articles in the knowledge graph are tagged with 
+filter, since all articles in the knowledge graph are related to 
 an ML area, restricting to the selected area does not risk 
 excluding relevant candidates. The remaining properties have 
 incomplete coverage, as shown in 
@@ -105,11 +105,7 @@ Table~\ref{tab:ml-approach-coverage-extended}. Therefore
 using them for filtering at this would risk 
 excluding valid candidates.
 
-A filter is also applied to remove overly general methods. 
-This means that if a specific neural 
-network variant is already present in the candidate set from the 
-same article, the generic \texttt{neural\_network} method is 
-removed not counted to reduce noise. In the end, candidates are sorted by how well they 
+In the end, candidates are sorted by how well they 
 match the user's filters, with the number of supporting articles 
 as a tiebreaker. If no problem description is provided, this 
 ordered list is returned directly, only adjusted for feedback as 

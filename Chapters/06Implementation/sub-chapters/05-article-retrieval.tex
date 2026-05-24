@@ -1,4 +1,5 @@
 \section{Article Retrieval and Knowledge Extraction}
+\label{sec:article-retrieval-and-knowledge-extraction}
 
 The recommendation process in MLguide depends on a database of 
 research articles, where problem descriptions are matched 
@@ -56,12 +57,14 @@ that are already present in the database, to avoid duplicates.
 \label{sec:adaptations-for-mlguide}
 
 The pre-master project classified each article along four
-dimensions: ML paradigm, product lifecycle (PLC) phase,
-application area, and the ML methods mentioned in the abstract.
-The pipeline in MLguide keeps only ML paradigm and ML methods,
-as these are the dimensions used in the recommendation process.
-ML paradigm is used as the ML area filter, and ML methods link
-each article to methods in the knowledge graph.
+dimensions: ML area, product lifecycle (PLC) phase,
+application area, and the ML methods mentioned in the abstract,
+as described in Section~\ref{sec:pre-master-findings}.
+In MLguide, 
+only ML area and ML methods are retained, as these are 
+the dimensions used in the recommendation process. ML area 
+is used as the ML area filter, and ML methods link each 
+article to methods in the knowledge graph.
 
 PLC phase and application area were removed because they were
 not reliable enough to act as filters. As discussed in the
@@ -79,7 +82,7 @@ Section~\ref{sec:recommendation-process}.
 
 After articles are retrieved, two types of information are
 extracted from each abstract: the ML methods mentioned in the
-text, and the ML paradigm the article belongs to. Both steps work
+text, and the ML area the article belongs to. Both steps work
 on a cleaned version of the abstract, where copyright statements,
 URLs, and similar noise are removed so that matching is more
 reliable.
@@ -88,18 +91,25 @@ ML methods are extracted using a dictionary of known methods. Each
 method is linked to a set of common phrasings, and the cleaned
 abstract is searched for these phrasings using word-boundary
 matching. A method is recorded for an article if any of its
-phrasings is found. When a specific neural network variant is
-already detected, the generic term \texttt{neural network} is
-removed, so that articles are linked to the most specific method
-mentioned.
+phrasings is found. One case needs extra handling, since the phrase for
+a specific neural network often contains the general term "neural
+network". 
+For example, "convolutional neural network" also contains "neural
+network", so the matching detects both. When a specific variant is
+found, the general method \texttt{neural network} is therefore
+removed, so that the article is linked only to the variant
+actually mentioned.
 
-ML paradigm is assigned with a keyword-based approach. Separate
+ML area is assigned with a keyword-based approach. Separate
 keyword lists are defined for supervised, unsupervised, and
 reinforcement learning, and the abstract is matched against each
-list. An article can be assigned more than one paradigm if terms
+list. An article can be assigned more than one area if terms
 from several lists are found. Articles with no matches are labelled
-as unknown. This keyword approach is used because it is simple to
-run for every batch and does not depend on a trained model.
+as unknown. The keyword approach is used because it is simple and fast to run
+for every batch. A model-based approach would need reliable
+ground-truth labels for training and validation, which are not
+available for this dataset, so a keyword approach is more
+appropriate here.
 
 \subsection{Database Upload}
 \label{sec:article-retrieval-database-upload}
@@ -110,23 +120,37 @@ and the links between articles and ML methods are uploaded to
 GraphDB.
 
 For PostgreSQL, each new article is stored with its cleaned
-abstract, and embeddings are computed for both the title and the
-abstract. The embeddings are produced with the
+abstract, together with embeddings for the title and the abstract.
+Before the embeddings are computed, each article is checked
+against the database, and articles that are already present are
+skipped. This check is done first because embedding generation is
+the expensive part of the step, and it should not run for articles
+that will not be added. The embeddings are produced with the
 \texttt{all-mpnet-base-v2} sentence-transformer model, which maps
 text to 768-dimensional vectors. The same model is used in the
 recommendation process, so that problem descriptions and stored
-articles are placed in the same embedding space. Articles already
-present in the database are skipped, so only new articles are
-added.
+articles are placed in the same embedding space, as described in
+Section~\ref{sec:article-similarity-scoring}.
 
-For GraphDB, the extracted methods and paradigms are converted to
+For GraphDB, the extracted methods and areas are converted to
 RDF triples in Turtle format and uploaded to the knowledge graph.
-Each article is linked to the ML methods it mentions and tagged
-with its ML area. These links allow the recommendation process to
+Each article is linked to the ML methods it mentions and to the ML area it belongs to. 
+These links allow the recommendation process to
 move from articles to methods when retrieving candidates, as
 described in Section~\ref{sec:recommendation-process}.
+\subsection{Pipeline Flow and Database Updates}
+\label{sec:article-retrieval-pipeline-flow}
 
-\label{sec:article-retrieval-and-knowledge-extraction}
+\subsection{Flowchart and Database Updates}
+\label{sec:article-retrieval-flowchart}
+
+
+Figure~\ref{fig:article-retrieval-flow} shows the flow of the
+article retrieval process described in the previous sections.
+Intermediate results are stored as artifacts along the way, so that each step
+has the data it needs from the previous step, and so that the
+output can be inspected manually when needed.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/06-implementation/article-retrieval-flow.pdf}
@@ -134,6 +158,50 @@ described in Section~\ref{sec:recommendation-process}.
     \label{fig:article-retrieval-flow}
 \end{figure}
 
+For MLguide to stay up to date with current research, the article
+retrieval pipeline should run periodically to add new articles to the
+database. The numbered marks in Figure~\ref{fig:article-retrieval-flow}
+indicate steps that were added to the pipeline after the first run, 
+to support these updates:
 
-\textbf{Bruke figuren mer aktivt}
-\textbf{Nevne på slutten antall artikler som kom initielt og at det ble lagt til artikler i en til runde på en bestemt dato.}
+\begin{itemize}
+\item \textbf{(1)} When fetching articles from Scopus, the process
+checks the \texttt{skipped\_articles} table in the article database
+(see Section~\ref{sec:database-structure}). This table holds
+articles that were skipped in earlier runs, so they can be skipped
+again without further processing, which speeds up the pipeline.
+\item \textbf{(2)} During method extraction, an article with no
+detected methods is not added to the database. Its metadata is
+instead stored in the \texttt{skipped\_articles} table, so it can
+be recognised and skipped in future runs.
+\end{itemize}
+
+Table~\ref{tab:article-counts} summarises how the number of
+articles changes through the pipeline. These numbers come from the
+first run of the pipeline, which collected the articles for the
+MLguide databases. Articles without an extracted method or without
+an ML area are not added, since both are needed in the
+recommendation process. This left 15\,205 articles after the first
+run. A later update run on 25 March 2026 added 2\,715 new articles,
+giving a total of 17\,920 articles in the database.
+
+\begin{table}[H]
+\centering
+\caption[Article counts at each stage]{Number of articles after
+each stage of the article retrieval and knowledge extraction
+process.}
+\label{tab:article-counts}
+\begin{tabularx}{0.8\textwidth}{Xr}
+\toprule
+\textbf{Stage} & \textbf{Articles} \\
+\midrule
+Collected from Scopus & 52\,290 \\
+After deduplication and removal of articles without an abstract & 33\,130 \\
+After removal of articles without an extracted method & 17\,479 \\
+After removal of articles without an ML area & 15\,205 \\
+Added in the update run of 25 March 2026 & +2\,715 \\
+\midrule
+\textbf{Total articles in the database} & \textbf{17\,920} \\
+\bottomrule
+\end{tabularx}
+\end{table}
