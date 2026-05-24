@@ -1,0 +1,80 @@
+\chapter{Scopus Search Queries}
+\label{app:queries}
+
+Table~\ref{tab:scopus-queries} lists the complete set of Scopus
+queries used by the article retrieval pipeline. Each query is
+defined in a YAML configuration file with an identifier, a short
+description, and a Scopus search string. All queries use the
+\texttt{TITLE-ABS-KEY} operator, which matches against article
+titles, abstracts, and keywords.
+
+\begin{longtable}{p{\textwidth}}
+\caption[Scopus search queries]{Scopus search queries used by the
+article retrieval pipeline.}
+\label{tab:scopus-queries} \\
+\toprule
+\textbf{Search string} \\
+\midrule
+\endfirsthead
+
+\multicolumn{1}{c}{\tablename\ \thetable\ -- Continued from previous page} \\
+\toprule
+\textbf{Search string} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{1}{r}{Continued on next page} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\texttt{TITLE-ABS-KEY("machine learning" AND "in-service")} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND remanufacturing)} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND "disassembly")} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND "end-of-life" AND product)} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND recycling AND manufacturing)} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND sustainability AND product)} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND manufacturing)} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND "product development")} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND planning AND production)} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND "product design")} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND manufacturing AND optimization)} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND production AND optimization)} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND "predictive maintenance")} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND "anomaly detection" AND production)} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND "process control")} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND "process modeling")} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND (RUL OR "remaining useful life"))} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND "defect detection" AND manufacturing)} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND (PLM OR "product lifecycle management"))} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND "quality control" AND manufacturing)} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND "process optimization" AND manufacturing)} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND "supply chain" AND production)} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND automation AND manufacturing)} \\
+\addlinespace
+\texttt{TITLE-ABS-KEY("machine learning" AND robotics AND production)} \\
+\end{longtable}

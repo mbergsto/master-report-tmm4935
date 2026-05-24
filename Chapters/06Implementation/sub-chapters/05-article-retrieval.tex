@@ -1,7 +1,131 @@
 \section{Article Retrieval and Knowledge Extraction}
 
-Article retrieval is adapted from \textcite{bergsto2026mlselection}
-    
+The recommendation process in MLguide depends on a database of 
+research articles, where problem descriptions are matched 
+through semantic retrieval. This article base is built and 
+maintained by a separate article retrieval pipeline, which is the 
+subject of this section.
+
+Article abstracts are used as the textual basis for each article. 
+Text mining of scientific literature has mostly been carried out on 
+abstracts, both because they are widely available and because they 
+consist of short sentences presenting only the main findings of a 
+study \parencite{westergaard2018comprehensive_quantitative_comparison_text_mining_15_million_full_text_articles_versus_corresponding_abstracts}. 
+Full-text articles contain richer information, but also include 
+tables, references, and discussion sections that make them less 
+consistent as a basis for comparison across a large corpus 
+\parencite{westergaard2018comprehensive_quantitative_comparison_text_mining_15_million_full_text_articles_versus_corresponding_abstracts}. 
+Abstracts therefore provide a consistently available representation 
+of each article's core content.
+
+Scopus was selected as the source of research articles. Scopus and 
+Web of Science are the two main databases for citation data 
+\parencite{mongeon2016journal_coverage_web_science_scopus}, and of the two, 
+Scopus has the broader journal coverage 
+\parencite{mongeon2016journal_coverage_web_science_scopus}. Scopus also 
+provides an API \parencite{scopus_api}, which allows article metadata and abstracts to be 
+retrieved automatically. This makes it possible to collect articles 
+in a repeatable way and to expand the article database over time.
+
+
+\subsection{Data Collection}
+\label{sec:article-retrieval-data-collection}
+ 
+The article retrieval pipeline builds on the data collection and
+classification work from the pre-master project
+\parencite{bergsto2026mlselection}. The same query-based search
+strategy is reused here, and the pipeline is adapted so that new
+articles can be added to the MLguide databases over time.
+ 
+Articles are collected from Scopus through a set of queries, each
+targeting machine learning applications in a specific domain or
+application area. Each query is defined in a YAML configuration
+file with an identifier and a Scopus search string. The full set
+of queries is listed in Appendix~\ref{app:queries}, and the search
+strategy behind them is described in detail in the pre-master project
+\parencite{bergsto2026mlselection}. When the pipeline runs, each
+query is sent to the Scopus API \parencite{scopus_api} through the
+Python package pybliometrics \parencite{pybliometrics_rose_kitchin_2019}, which
+provides a stable interface for retrieving data from Scopus. For
+each article, the DOI, Scopus EID, title, and abstract are stored,
+together with the identifier of the query that retrieved it. The
+DOI and EID are used to identify articles and to skip articles
+that are already present in the database, to avoid duplicates.
+
+\subsection{Adaptations for MLguide}
+\label{sec:adaptations-for-mlguide}
+
+The pre-master project classified each article along four
+dimensions: ML paradigm, product lifecycle (PLC) phase,
+application area, and the ML methods mentioned in the abstract.
+The pipeline in MLguide keeps only ML paradigm and ML methods,
+as these are the dimensions used in the recommendation process.
+ML paradigm is used as the ML area filter, and ML methods link
+each article to methods in the knowledge graph.
+
+PLC phase and application area were removed because they were
+not reliable enough to act as filters. As discussed in the
+pre-master project \parencite{bergsto2026mlselection}, single-phase
+PLC labels are only an approximation, since many studies span
+several lifecycle phases, and the application areas, represented by clusters, 
+did show limited natural separation. Using either as a filter would risk excluding
+relevant articles on uncertain grounds. Instead, the system relies
+on semantic similarity between the problem description and the
+article abstracts, as described in
+Section~\ref{sec:recommendation-process}.
+
+\subsection{Knowledge Extraction}
+\label{sec:article-retrieval-knowledge-extraction}
+
+After articles are retrieved, two types of information are
+extracted from each abstract: the ML methods mentioned in the
+text, and the ML paradigm the article belongs to. Both steps work
+on a cleaned version of the abstract, where copyright statements,
+URLs, and similar noise are removed so that matching is more
+reliable.
+
+ML methods are extracted using a dictionary of known methods. Each
+method is linked to a set of common phrasings, and the cleaned
+abstract is searched for these phrasings using word-boundary
+matching. A method is recorded for an article if any of its
+phrasings is found. When a specific neural network variant is
+already detected, the generic term \texttt{neural network} is
+removed, so that articles are linked to the most specific method
+mentioned.
+
+ML paradigm is assigned with a keyword-based approach. Separate
+keyword lists are defined for supervised, unsupervised, and
+reinforcement learning, and the abstract is matched against each
+list. An article can be assigned more than one paradigm if terms
+from several lists are found. Articles with no matches are labelled
+as unknown. This keyword approach is used because it is simple to
+run for every batch and does not depend on a trained model.
+
+\subsection{Database Upload}
+\label{sec:article-retrieval-database-upload}
+
+The final step stores the processed articles in the two MLguide
+databases. Abstracts and embeddings are uploaded to PostgreSQL,
+and the links between articles and ML methods are uploaded to
+GraphDB.
+
+For PostgreSQL, each new article is stored with its cleaned
+abstract, and embeddings are computed for both the title and the
+abstract. The embeddings are produced with the
+\texttt{all-mpnet-base-v2} sentence-transformer model, which maps
+text to 768-dimensional vectors. The same model is used in the
+recommendation process, so that problem descriptions and stored
+articles are placed in the same embedding space. Articles already
+present in the database are skipped, so only new articles are
+added.
+
+For GraphDB, the extracted methods and paradigms are converted to
+RDF triples in Turtle format and uploaded to the knowledge graph.
+Each article is linked to the ML methods it mentions and tagged
+with its ML area. These links allow the recommendation process to
+move from articles to methods when retrieving candidates, as
+described in Section~\ref{sec:recommendation-process}.
+
 \label{sec:article-retrieval-and-knowledge-extraction}
 \begin{figure}[H]
     \centering
@@ -9,3 +133,7 @@ Article retrieval is adapted from \textcite{bergsto2026mlselection}
     \caption[Article retrieval flow]{Flowchart of the article retrieval and knowledge extraction process in MLguide.}
     \label{fig:article-retrieval-flow}
 \end{figure}
+
+
+\textbf{Bruke figuren mer aktivt}
+\textbf{Nevne på slutten antall artikler som kom initielt og at det ble lagt til artikler i en til runde på en bestemt dato.}
