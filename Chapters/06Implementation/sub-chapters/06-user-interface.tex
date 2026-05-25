@@ -1,10 +1,116 @@
 \section{User Interface}
 \label{sec:user-interface}
 
+This section describes the user interface of MLguide and the
+main steps a user follows when interacting with the system. 
+The interface is built
+as a Streamlit application, as described in
+Section~\ref{sec:system-architecture}, and consists of two pages.
+The home page contains the input form, where the problem is
+described, and the recommendation table, with 10 possible machine learning methods, which appears below the
+form once recommendations have been requested. The method details
+page, for a specific method, is opened when a method is clicked on in the recommendation table.
+
+
+\subsection{Input Form}
+\label{sec:ui-input-form}
+
+The input form, shown in
+Figure~\ref{fig:user-interface-home-page}, is where the user
+describes the problem to be solved. The problem is entered as a
+short free-text description (1). All fields are optional, but
+each one can be used to narrow the recommendations.
+
+The ML area is selected next (2). It covers
+supervised, unsupervised, and reinforcement learning. The ML area
+is the main filter and the only hard filter applied during
+recommendation, as detailed in
+Section~\ref{sec:recommendation-process}. The remaining filters are
+task, dataset type, and performance preferences (3). 
+The selected ML area impacts which tasks are
+listed, since tasks with no relation to the chosen area in the
+knowledge graph are not relevant to display. In the example
+shown, supervised learning is selected, with a regression task, a
+tabular dataset type, and three performance preferences. Several
+performance preferences can be selected at the same time.
+
+Once the problem has been described, the recommendations are
+requested using the "Get recommendations" button (4). A separate
+"Give feedback" button (5) allows the user to submit feedback on
+the system, as specified in \ref{sec:user-testing}.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Figures/06-implementation/user-interface/home-page.pdf}
-    \caption[Home page UI]{Home page UI}
+    \caption[Input form interface]{The input form on the home
+    page, with an example problem description and a set of
+    selected filters.}
     \label{fig:user-interface-home-page}
 \end{figure}
 
+
+Once recommendations have been requested, the candidate methods
+are presented in the recommendation table, which appears below
+the input form on the home page. The table is shown in
+Figure~\ref{fig:user-interface-recommendation-table}. The methods
+are ranked according to the recommendation process specified in
+Section~\ref{sec:recommendation-process}.
+
+Each row corresponds to one method (1). The Performance, Task,
+and Dataset columns are shown only when the corresponding filter
+has been selected in the input form (2). The Performance column
+lists the performance preferences that the method matches, while
+the Task and Dataset columns indicate whether the method fits the
+selected task and dataset type, according to the knowledge graph. 
+The Article count column reports
+how many articles in the dataset are associated with the method,
+counted within the selected ML area when one has been chosen (3).
+The Note column displays the \texttt{possible\_if} and
+\texttt{not\_recommended\_if} properties from the ontology. These
+are shown as informational notes only and are not used for
+filtering or ranking (see
+Section~\ref{sec:ontology-candidate-retrieval} for the reasoning behind
+this) (4). Each method name is a button, and selecting it opens
+the method details page for that method (5).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/06-implementation/user-interface/recommendation-table.pdf}
+    \caption[Recommendation table interface]{The recommendation
+    table, listing the candidate methods for the described
+    problem.}
+    \label{fig:user-interface-recommendation-table}
+\end{figure}
+
+When a method is selected from the recommendation table, the
+method details page is opened. The page is shown for the Random
+Forest method in
+Figure~\ref{fig:user-interface-method-details-page}.
+
+For supported methods and task families, the page provides a
+starter notebook (1). The
+notebook can be downloaded as an \texttt{.ipynb} file, and opened directly in Google Colab
+(2). A list of up to ten relevant articles is also shown, ranked
+by their similarity to the problem description. Each article is shown with a clickable DOI link and can be
+searched by title or DOI (3).
+
+The user can rate how useful the method was for the described
+problem and submit this rating as feedback (4). The rating can be
+used to adjust method ranking over time, as outlined in
+Section~\ref{sec:feedback-boost}. An information panel presents
+data about the method from the knowledge graph (5). This includes
+a short description from the \texttt{rdfs:comment} property and a
+link to an external reference. The other data is just for the user to have context 
+available from the input form.
+
+\begin{landscape}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth, height=\textheight, keepaspectratio]{Figures/06-implementation/user-interface/method-details-page.pdf}
+    \caption[Method details page interface]{The method details
+    page for the Random Forest method, showing the generated
+    notebook, relevant articles, feedback option, and method
+    information.}
+    \label{fig:user-interface-method-details-page}
+\end{figure}
+\end{landscape}
