@@ -187,16 +187,25 @@ reviewed manually before being added.
 
 Table~\ref{tab:ml-approach-coverage-extended} shows the resulting 
 coverage across all 187 \texttt{ML\_approach} instances after the 
-extension and applying the inference rule. For reference, 
-the original coverage across 122 instances is shown in 
-Table~\ref{tab:ml-approach-coverage}. 
-Coverage remains incomplete for several properties. Populating 
-properties requires a lot of manual work for each 
-instance, both for existing instances that lacked them and for 
-all newly added ones. Effort on this was therefore prioritised towards 
-reinforcement learning, which had no instances at all in the 
-original ontology, and less towards filling gaps in the 
-remaining properties. 
+extension and applying the inference rule. Coverage here means the 
+share of \texttt{ML\_approach} instances that have a value for a 
+given property. For reference, the original coverage across 122 
+instances is shown in Table~\ref{tab:ml-approach-coverage}.
+
+Populating instances with properties requires manual work, and gathering 
+the knowledge to do so takes effort. 
+The knowledge used in this work with updating the graph,
+was based on the established ML sources and textbooks also used in 
+Section~\ref{sec:machine-learning}. When updating the knowledge, new instances were prioritised, since 
+they had no properties at all. Reinforcement learning is one 
+example, as it had no instances in the original ontology. Clear 
+gaps found during testing of the recommendation process, or 
+through user testing feedback, were also prioritised. Among the properties, \texttt{used\_for} and 
+\texttt{performance} were prioritised, as these are central to the 
+candidate retrieval and ranking described in 
+Section~\ref{subsec:ontology-candidate-retrieval}. As a result, 
+coverage is improved but remains incomplete for several of the remaining 
+properties, as Table~\ref{tab:ml-approach-coverage-extended} shows.
 
 \begin{table}[H]
 \centering
@@ -209,16 +218,22 @@ ontology extension and inference rule application.}
 \textbf{Property} & \textbf{Coverage} \\
 \midrule
 \texttt{skos:prefLabel}        & 187/187 (100\%) \\
-\texttt{used\_for}            & 131/187 (70\%)  \\
+\texttt{used\_for}            & 180/187 (96\%)  \\
 \texttt{rdfs:comment}          & 130/187 (70\%)  \\
+\texttt{performance}          & 95/187 (51\%)   \\
 \texttt{rdfs:seeAlso}          & 90/187 (48\%)   \\
 \texttt{skos:altLabel}         & 66/187 (35\%)   \\
-\texttt{skos:broader}          & 57/187 (30\%)   \\
-\texttt{performance}          & 50/187 (27\%)   \\
+\texttt{rdfs:broader}          & 57/187 (30\%)   \\
 \texttt{possible\_if}         & 28/187 (15\%)   \\
 \texttt{not\_recommended\_if} & 5/187 (3\%)     \\
 \bottomrule
 \end{tabular}
+
+\par\vspace{0.5em}
+{\footnotesize Note: \texttt{has\_dataset\_type}, which relates to 
+\texttt{ML\_approach} indirectly through \texttt{ML\_task}, is 
+populated for 29 of the 43 \texttt{ML\_task} instances that exist 
+after the extension.}
 \end{table}
 
 \texttt{mla:ML\_task\_family} instances were also added to group related 
@@ -248,44 +263,45 @@ assigned tasks.
 \textbf{ML\_task\_family} & \textbf{Assigned ML\_task instances} & \textbf{n} \\
 \midrule
 classification\_\allowbreak family
-  & classification, binary\_classification, multiclass\_classification,
+& classification, binary\_classification, multiclass\_classification,
     tabular\_classification, text\_classification, image\_classification,
     audio\_classification, time\_series\_classification, video\_classification,
     vertex\_classification & 10 \\
 \midrule
 regression\_\allowbreak family
-  & regression, tabular\_regression, text\_regression, image\_regression,
+& regression, tabular\_regression, text\_regression, image\_regression,
     audio\_regression, video\_regression & 6 \\
 \midrule
 clustering\_\allowbreak unsupervised\_\allowbreak discovery\_\allowbreak family
-  & clustering, tabular\_clustering, association\_rule\_learning,
+& clustering, tabular\_clustering, association\_rule\_learning,
     community\_detection, topic\_modeling & 5 \\
 \midrule
 detection\_\allowbreak localization\_\allowbreak family
-  & object\_detection, anomaly\_detection, action\_recognition & 3 \\
+& object\_detection, anomaly\_detection, action\_recognition & 3 \\
 \midrule
 feature\_\allowbreak engineering\_\allowbreak family
-  & feature\_extraction, feature\_reduction, feature\_selection & 3 \\
+& feature\_extraction, feature\_reduction, feature\_selection & 3 \\
 \midrule
 structured\_\allowbreak prediction\_\allowbreak family
-  & image\_segmentation, named\_entity\_recognition, translation & 3 \\
+& image\_segmentation, named\_entity\_recognition, translation & 3 \\
 \midrule
 graph\_tasks\_\allowbreak family
-  & graph\_matching, link\_prediction, vertex\_classification & 3 \\
+& graph\_matching, link\_prediction, vertex\_classification & 3 \\
 \midrule
 nlp\_analysis\_\allowbreak family
-  & sentiment\_analysis, text\_analytics & 2 \\
+& sentiment\_analysis, text\_analytics & 2 \\
 \midrule
 ranking\_\allowbreak recommendation\_\allowbreak similarity\_\allowbreak family
-  & ranking, recommendation, sentence\_similarity & 3 \\
+& ranking, recommendation, sentence\_similarity & 3 \\
 \midrule
 time\_series\_\allowbreak family
-  & time\_series\_analysis, time\_series\_forecasting, time\_series\_classification & 3 \\
+& time\_series\_analysis, time\_series\_forecasting, time\_series\_classification & 3 \\
+\midrule
+reinforcement\_\allowbreak learning\_\allowbreak family
+& policy\_learning, value\_estimation, policy\_optimization & 3 \\
 \midrule
 tracking\_\allowbreak family
-  & video\_object\_tracking & 1 \\
-\midrule
-\textbf{Total} & \footnotesize{Note: some tasks appear in multiple families} & \textbf{42} \\
+& video\_object\_tracking & 1 \\
 \bottomrule
 \end{tabularx}
 \end{table}
