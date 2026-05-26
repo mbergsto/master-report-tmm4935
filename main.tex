@@ -36,6 +36,7 @@
 \usepackage{afterpage} %to customize page commands such as below
 \usepackage{booktabs} %to make better tables
 \usepackage{longtable} %to make tables that span multiple pages
+\usepackage{xltabular} 
 \newcommand\myemptypage{
     \null
     \thispagestyle{empty}
@@ -194,6 +195,8 @@ Department of Mechanical and Industrial Engineering \\
 %\setcounter{page}{1}
 \addcontentsline{toc}{chapter}{\protect\numberline{}Appendices:}
 \appendix
+\counterwithin{table}{chapter}
+\counterwithin{figure}{chapter}
 \input{Chapters/10Appendix}
 
 

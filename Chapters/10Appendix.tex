@@ -78,3 +78,221 @@ article retrieval pipeline.}
 \addlinespace
 \texttt{TITLE-ABS-KEY("machine learning" AND robotics AND production)} \\
 \end{longtable}
+
+\chapter{Machine Learning Method Dictionary}
+\label{app:ml-methods}
+
+Table~\ref{tab:ml-methods} lists the dictionary of machine learning
+methods used for method extraction in the article retrieval
+pipeline, as described in
+Section~\ref{sec:article-retrieval-knowledge-extraction}. The
+dictionary was built in the pre-master project
+\parencite{bergsto2026mlselection} and is reused unchanged in
+MLguide. Each method is linked to a set of phrasings, and a method
+is recorded for an article when any of its phrasings is found in the
+cleaned abstract using word-boundary matching.
+ 
+\begin{xltabular}{\textwidth}{lX}
+\caption[Machine learning method dictionary]{Machine learning
+method dictionary used for method extraction, listing each method
+and the phrasings matched against article abstracts.}
+\label{tab:ml-methods} \\
+\toprule
+\textbf{Method} & \textbf{Phrasings} \\
+\midrule
+\endfirsthead
+ 
+\multicolumn{2}{c}{\tablename\ \thetable\ -- Continued from previous page} \\
+\toprule
+\textbf{Method} & \textbf{Phrasings} \\
+\midrule
+\endhead
+ 
+\midrule
+\multicolumn{2}{r}{Continued on next page} \\
+\endfoot
+ 
+\bottomrule
+\endlastfoot
+ 
+Principal Component Analysis & principal component analysis, pca \\
+Hotelling T2 & hotelling's t2, hotelling t2 \\
+Squared Prediction Error & squared prediction error, spe \\
+Independent Component Analysis & independent component analysis, ica \\
+Partial Least Squares & partial least squares, pls, pls regression \\
+\addlinespace
+Linear Regression & linear regression, lr \\
+Logistic Regression & logistic regression \\
+Naive Bayes & naive bayes, nb \\
+Linear Discriminant Analysis & linear discriminant analysis, lda \\
+Quadratic Discriminant Analysis & quadratic discriminant analysis, qda \\
+Elastic Net & elastic net \\
+Ridge Regression & ridge regression \\
+Lasso Regression & lasso regression, lasso \\
+Bayesian Method & bayesian, bayesian inference, bayesian network, bayesian networks \\
+Robust Regression & robust regression, huber regression, theil sen \\
+\addlinespace
+Support Vector Machine & support vector machine, support vector machines, svm \\
+Support Vector Regression & support vector regression, svr \\
+Random Forest & random forest, random forests, rf \\
+Extra Trees & extra trees, extremely randomized trees, extra trees classifier, extra trees regressor \\
+Decision Tree & decision tree, decision trees, dt \\
+K-Nearest Neighbors & k-nearest neighbors, knn, k nn, k-nn \\
+Gaussian Process Regression & gaussian process regression, gpr \\
+Gaussian Mixture Model & gaussian mixture model, gmm \\
+Gradient Boosting & gradient boosting, gb \\
+XGBoost & xgboost, xgb \\
+AdaBoost & adaboost \\
+LightGBM & lightgbm, lgbm \\
+CatBoost & catboost \\
+Bagging & bagging classifier, bagging regressor \\
+\addlinespace
+Neural Network & neural network, neural networks, artificial neural network, ann \\
+Deep Neural Network & deep neural network, dnn \\
+Residual Network & residual network, resnet \\
+Convolutional Neural Network & convolutional neural network, cnn \\
+UNet & unet \\
+Recurrent Neural Network & recurrent neural network, rnn \\
+Gated Recurrent Unit & gated recurrent unit, gru \\
+LSTM & lstm \\
+Temporal Convolutional Network & temporal convolutional network, tcn \\
+Multi-Layer Perceptron & multi layer perceptron, mlp \\
+Transformers & transformer, transformers \\
+Transformer Encoder & transformer encoder \\
+Attention Mechanism & attention mechanism, attention model \\
+Graph Neural Network & graph neural network, gnn \\
+Graph Convolutional Network & graph convolutional network, gcn \\
+Graph Attention Network & graph attention network, gat \\
+GraphSAGE & graphsage \\
+\addlinespace
+Autoencoder & autoencoder, auto encoders \\
+Variational Autoencoder & variational autoencoder, vae \\
+Normalizing Flow & normalizing flow, flow-based model \\
+Diffusion Model & diffusion model, ddpm, ddim \\
+Generative Adversarial Network & generative adversarial network, gan, gans \\
+\addlinespace
+K-Means & k-means, k means, kmeans \\
+K-Medoids & k-medoids, k medoids, pam \\
+Hierarchical Clustering & hierarchical clustering, agglomerative clustering \\
+DBSCAN & dbscan \\
+OPTICS & optics clustering, optics \\
+Mean Shift & mean shift \\
+Gaussian Mixture Model Clustering & gmm clustering, gaussian mixture clustering \\
+t-SNE & t-sne, tsne \\
+UMAP & umap \\
+\addlinespace
+ARIMA & arima \\
+SARIMA & sarima \\
+SARIMAX & sarimax \\
+Holt-Winters & holt winters, holt-winters exponential smoothing \\
+Prophet & prophet \\
+Kalman Filter & kalman filter, kalman filtering \\
+State Space Model & state space model \\
+VAR & vector autoregression, var model \\
+N-BEATS & nbeats, n-beats \\
+DeepAR & deepar \\
+\addlinespace
+Deep Reinforcement Learning & deep reinforcement learning, drl \\
+Q-Learning & q learning, q-learning, qlearning \\
+REINFORCE & reinforce \\
+Deep Q-Network & deep q network, deep q-network, dqn \\
+Policy Gradient & policy gradient, policy-gradient \\
+Actor-Critic & actor critic, actor-critic \\
+A3C & a3c, asynchronous advantage actor critic \\
+Proximal Policy Optimization & proximal policy optimization, ppo \\
+Deep Deterministic Policy Gradient & deep deterministic policy gradient \\
+Twin Delayed DDPG & twin delayed ddpg, td3 \\
+Soft Actor-Critic & soft actor critic, soft actor-critic, sac \\
+\addlinespace
+Isolation Forest & isolation forest \\
+Local Outlier Factor & local outlier factor, lof \\
+One-Class SVM & one-class svm, one class svm \\
+Elliptic Envelope & elliptic envelope \\
+HBOS & hbos, histogram based outlier score \\
+Minimum Covariance Determinant & minimum covariance determinant \\
+Matrix Profile & matrix profile \\
+\addlinespace
+Genetic Algorithm & genetic algorithm, ga \\
+Particle Swarm Optimization & particle swarm optimization, pso \\
+Simulated Annealing & simulated annealing \\
+Differential Evolution & differential evolution \\
+Ant Colony Optimization & ant colony optimization \\
+Evolutionary Strategy & evolutionary strategy \\
+CMA-ES & cma es, covariance matrix adaptation evolution strategy \\
+Firefly Algorithm & firefly algorithm \\
+Harmony Search & harmony search \\
+\addlinespace
+SHAP & shap \\
+Explainable AI & xai, explainable ai \\
+\addlinespace
+Granger Causality & granger causality, granger-test \\
+DoWhy & dowhy \\
+Causal Forest & causal forest \\
+Causal Impact & causal impact \\
+Invariant Causal Prediction & invariant causal prediction \\
+\end{xltabular}
+
+
+
+\chapter{ML Area Keyword Lists}
+\label{app:ml-area-keywords}
+
+Table~\ref{tab:ml-area-keywords} lists the keyword lists used to
+assign an ML area to each article, as described in
+Section~\ref{sec:article-retrieval-knowledge-extraction}. Separate
+lists are defined for supervised, unsupervised, and reinforcement
+learning. 
+
+\begin{table}[H]
+\centering
+\caption[ML area keyword lists]{Keyword lists used to assign an ML
+area to each article, with one list per ML area.}
+\label{tab:ml-area-keywords}
+\begin{tabularx}{\textwidth}{XXX}
+\toprule
+\textbf{Supervised} & \textbf{Unsupervised} & \textbf{Reinforcement} \\
+\midrule
+classification & unsupervised & reinforcement learning \\
+regression & clustering & rl \\
+supervised & cluster & agent \\
+labeled data & kmeans & policy \\
+ground truth & k-means & reward \\
+random forest & hierarchical clustering & q-learning \\
+xgboost & pca & q learning \\
+gradient boosting & principal component analysis & dqn \\
+svm & ica & deep q network \\
+support vector machine & autoencoder & actor-critic \\
+decision tree & auto-encoder & markov decision process \\
+logistic regression & gmm & mdp \\
+knn & gaussian mixture & environment interaction \\
+k-nearest neighbors & dimensionality reduction & policy optimization \\
+naive bayes & anomaly detection & policy gradient \\
+classification model & outlier detection & ppo \\
+regression model & self-organizing map & proximal policy optimization \\
+predictive model & som & a2c \\
+classifier & dbscan & advantage actor-critic \\
+regressor & density-based clustering & sarsa \\
+labelled dataset & spectral clustering & temporal-difference learning \\
+annotated dataset & t-sne & td-learning \\
+supervised training & umap & value iteration \\
+supervised classifier & latent variable model & policy iteration \\
+linear regression & latent representation & credit assignment \\
+ridge regression & representation learning & exploration exploitation \\
+lasso regression & embedding space & exploration-exploitation \\
+ensemble learning & autoencoding & epsilon-greedy \\
+bagging & variational autoencoder & multi-armed bandit \\
+boosting & vae & contextual bandit \\
+gbm & deep clustering & rl agent \\
+svc & deep embedding clustering & reward function \\
+decision forest & subspace clustering & action-value function \\
+random-forest & topic modeling & state-value function \\
+mlp classifier & lda topic model & state-action space \\
+multilayer perceptron & latent dirichlet allocation & decision process \\
+training labels & & sequential decision making \\
+target variable & & online decision making \\
+supervised feature selection & & \\
+cross-entropy loss & & \\
+classification accuracy & & \\
+\bottomrule
+\end{tabularx}
+\end{table}
