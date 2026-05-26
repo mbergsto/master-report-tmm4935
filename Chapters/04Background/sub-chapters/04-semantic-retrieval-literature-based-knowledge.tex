@@ -79,6 +79,8 @@ Sentence-BERT (SBERT) addresses this by fine-tuning BERT
 using a siamese network structure, producing fixed-size sentence 
 embeddings that can be compared efficiently using cosine 
 similarity \parencite{reimers2019sentence_bert_sentence_embeddings_using_siamese_bert_networks}. 
+Figure~\ref{fig:sbert-architecture} shows this architecture at
+inference time.
 The key property is that semantically similar sentences are 
 placed close together in the resulting embedding space, making 
 SBERT suitable for tasks where embeddings for a large corpus 

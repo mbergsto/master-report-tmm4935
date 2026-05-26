@@ -1,6 +1,15 @@
 \section{Ontologies and Knowledge Representation}
 \label{sec:ontologies-and-knowledge-representation}
 
+This section presents the background on ontologies and knowledge
+representation that the system in this thesis builds on. It first
+describes what an ontology is and how one is structured, then
+explains why the ML domain is suited to ontological
+representation. It then introduces the Semantic Web standards used
+to implement ontologies, and reviews existing ML ontologies. The
+last part examines ML Ontology in more detail, since it is used as
+a starting point for the work in this thesis.
+
 \subsection{Ontology Description}
 \label{sec:ontology-description}
 
@@ -145,7 +154,6 @@ in the ML and data mining domain, each with a different scope
 and purpose. The following is a selection of openly available
 ontologies identified within the ML domain.
 
-
 ML-Schema \parencite{publio2018ml_schema_exposing_semantics_machine_learning_schemas_ontologies},
 developed by the W3C Machine Learning Schema Community Group,
 is a top-level schema for representing and exchanging metadata
@@ -173,7 +181,7 @@ It has been applied in areas such as bioinformatics and drug
 discovery, and serves as a mid-level ontology for Exposé
 \parencite{vanschoren2012experiment_databases}, an ontology
 for ML experiments used in OpenML.
-With 760 classes and detailed taxonomies of tasks and
+With 856 classes and detailed taxonomies of tasks and
 algorithms, it provides high structural granularity, but
 contains few populated instances and does not cover named ML
 methods, metrics, or libraries.
@@ -191,15 +199,17 @@ Preprocessing semantics, model internals, and named ML methods
 are outside its scope.
 
 ML Ontology \parencite{humm2026industry_ready_machine_learning_ontology}
-is the most comprehensive of the four in terms of ML content.
-It covers ML areas, tasks, approaches, preprocessing methods,
-metrics, libraries, AutoML solutions, and configuration
-parameters, with around 700 individuals and 5000 RDF triples.
-Unlike the other ontologies, it is not designed for experiment
-annotation but for integrating different ML tools and frameworks
-through a shared vocabulary.
-It supports forward-chaining inference via SPARQL and includes
-built-in quality assurance checks.
+is an ontology for representing ML content. It covers ML areas,
+tasks, approaches, preprocessing methods, metrics, libraries,
+AutoML solutions, and configuration parameters, with around 700
+individuals and 5000 RDF triples. Unlike the other ontologies, it
+is not designed for experiment annotation but for integrating
+different ML tools and frameworks through a shared vocabulary. It
+supports optional forward-chaining inference via SPARQL and
+includes built-in quality assurance checks.
+
+Figure~\ref{fig:ml_ontologies_table} compares the four
+ontologies across scope, size, and intended use.
 
 \begin{landscape}
 \begin{figure}[H]
@@ -210,16 +220,14 @@ built-in quality assurance checks.
 \end{figure}
 \end{landscape}
 
-Across these ontologies, a distinction emerges between
-those more focused on experiment metadata and process structure
-(ML-Schema, OntoDM-core, MEX) and those focused on ML content
-and ML method knowledge (ML Ontology).
-The former are well suited for annotating and reproducing
-experiments, but provide little support for reasoning about
-which methods are applicable to a given problem.
-ML Ontology addresses this gap by representing the
-relationships between tasks, methods, and metrics in a form
-that can be queried and reasoned over.
+As Figure~\ref{fig:ml_ontologies_table} shows, these ontologies
+have different aims. ML-Schema and MEX are built for annotating and
+exchanging experiment metadata. OntoDM-core is a broader reference
+ontology for data mining entities such as datasets, tasks, and
+algorithms. None of the provide support for reasoning about
+which methods fit a given ML problem. ML Ontology differs in this
+respect, since it links tasks, methods, and metrics in a form that
+can be queried and reasoned over.
 
 \subsection{ML Ontology Structure and Content}
 \label{sec:ml-ontology-structure-and-content}
