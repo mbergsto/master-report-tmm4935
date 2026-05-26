@@ -21,6 +21,15 @@ describes the problem to be solved. The problem is entered as a
 short free-text description (1). All fields are optional, but
 each one can be used to narrow the recommendations.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/06-implementation/user-interface/home-page.pdf}
+    \caption[Input form interface]{The input form on the home
+    page, with an example problem description and a set of
+    selected filters.}
+    \label{fig:user-interface-home-page}
+\end{figure}
+
 The ML area is selected next (2). It covers
 supervised, unsupervised, and reinforcement learning. The ML area
 is the main filter and the only hard filter applied during
@@ -39,22 +48,24 @@ requested using the "Get recommendations" button (4). A separate
 "Give feedback" button (5) allows the user to submit feedback on
 the system, as specified in \ref{sec:user-testing}.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{Figures/06-implementation/user-interface/home-page.pdf}
-    \caption[Input form interface]{The input form on the home
-    page, with an example problem description and a set of
-    selected filters.}
-    \label{fig:user-interface-home-page}
-\end{figure}
+\subsection{Recommendation Table}
+\label{sec:ui-recommendation-table}
 
-
-Once recommendations have been requested, the candidate methods
+Once recommendations have been requested, the methods
 are presented in the recommendation table, which appears below
 the input form on the home page. The table is shown in
 Figure~\ref{fig:user-interface-recommendation-table}. The methods
 are ranked according to the recommendation process specified in
 Section~\ref{sec:recommendation-process}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/06-implementation/user-interface/recommendation-table.pdf}
+    \caption[Recommendation table interface]{The recommendation
+    table, listing the candidate methods for the described
+    problem.}
+    \label{fig:user-interface-recommendation-table}
+\end{figure}
 
 Each row corresponds to one method (1). The Performance, Task,
 and Dataset columns are shown only when the corresponding filter
@@ -73,19 +84,25 @@ Section~\ref{sec:ontology-candidate-retrieval} for the reasoning behind
 this) (4). Each method name is a button, and selecting it opens
 the method details page for that method (5).
 
+\subsection{Method Details Page}
+\label{sec:ui-method-details-page}
+
+As mentioned above, when a method is clicked from the recommendation table, the
+method details page is opened for that specific method. The page is shown for Random
+Forest in
+Figure~\ref{fig:user-interface-method-details-page}.
+
+\begin{landscape}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Figures/06-implementation/user-interface/recommendation-table.pdf}
-    \caption[Recommendation table interface]{The recommendation
-    table, listing the candidate methods for the described
-    problem.}
-    \label{fig:user-interface-recommendation-table}
+    \includegraphics[width=\linewidth, height=\textheight, keepaspectratio]{Figures/06-implementation/user-interface/method-details-page.pdf}
+    \caption[Method details page interface]{The method details
+    page for the Random Forest method, showing the generated
+    notebook, relevant articles, feedback option, and method
+    information.}
+    \label{fig:user-interface-method-details-page}
 \end{figure}
-
-When a method is selected from the recommendation table, the
-method details page is opened. The page is shown for the Random
-Forest method in
-Figure~\ref{fig:user-interface-method-details-page}.
+\end{landscape}
 
 For supported methods and task families, the page provides a
 starter notebook (1). The
@@ -103,14 +120,3 @@ a short description from the \texttt{rdfs:comment} property and a
 link to an external reference. The other data is just for the user to have context 
 available from the input form.
 
-\begin{landscape}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth, height=\textheight, keepaspectratio]{Figures/06-implementation/user-interface/method-details-page.pdf}
-    \caption[Method details page interface]{The method details
-    page for the Random Forest method, showing the generated
-    notebook, relevant articles, feedback option, and method
-    information.}
-    \label{fig:user-interface-method-details-page}
-\end{figure}
-\end{landscape}

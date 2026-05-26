@@ -1,53 +1,145 @@
 \label{ch:results}
+
+This chapter presents the results of the evaluation of MLguide.
+As described in Section~\ref{sec:evaluation}, MLguide was
+evaluated in two ways: through user testing with students from
+the course TMM4128 Machine Learning for Engineers, and through an
+example-based evaluation using a set of constructed problem
+cases.
+
+Sections~\ref{sec:project-1} and~\ref{sec:project-2} present the
+results from the two user testing projects. 
+Section~\ref{sec:results-example-based-evaluation} presents the results
+of the example-based evaluation.
+
+Although MLguide includes a feedback form, it produced too few
+responses to serve as a usable basis for evaluation. The user
+testing results reported here are therefore only from the
+students' project reports. Since the reports
+were not written to a fixed structure, these results were
+obtained by interpreting each group's description of its use of MLguide.
+
 \section{Project 1 (P1): Unsupervised Learning and Anomaly Detection for Time Series Data}
 \label{sec:project-1}
+
+In the first project, the groups worked on detecting anomalies in
+time series data using unsupervised learning. As part of the
+assignment, the groups were instructed to try MLguide for their
+selected problem, and to assess the
+relevance and usefulness of the results in their project reports.
+The results below are based on these reports.
+
+Of the 17 groups in the project, 13 used MLguide and 4 did not,
+as shown in Figure~\ref{fig:participation-count-p1}. 
+The results that follow are based on the 13 groups that used the system.
+
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/07-results/project-1/participation-count.png}
-    \caption[P1 group participation]{Number of groups participating.}
+     \caption[P1 group participation]{Number of groups in Project 1
+    that used MLguide and number that did not.}
     \label{fig:participation-count-p1}
 \end{figure}
+
+The reports also indicated when in the project MLguide was used.
+Figure~\ref{fig:timing-p1} shows the result. Seven groups used
+the system late, after they had already chosen methods, and six
+used it early, before choosing methods.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/07-results/project-1/timing.png}
-    \caption[P1 timing of MLguide use]{When in the project groups used MLguide, before or after choosing methods.}
+    \caption[P1 timing of MLguide use]{Number of groups that used
+    MLguide early, before choosing methods, and late, after
+    choosing methods.}
     \label{fig:timing-p1}
 \end{figure}
+
+For each group, the methods recommended by MLguide were compared
+with the methods the group used. The overlap was measured as the
+share of the group's chosen methods that MLguide also recommended,
+and classified as high (at least 50\%), medium (33--50\%), or low
+(below 33\%). Figure~\ref{fig:recommendation-overlap-p1} shows the
+distribution. Of the twelve groups that could be assessed, six had
+high overlap, five had medium overlap, and one had low overlap.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/07-results/project-1/recommendation-overlap.png}
-    \caption[P1 recommendation overlap]{Overlap of recommended methods with the methods chosen by the groups.}
+    \caption[P1 recommendation overlap]{Distribution of the
+    overlap between the methods recommended by MLguide and the
+    methods used by the groups, classified as high
+    ($\geq$50\%), medium (33--50\%), and low ($<$33\%).}
     \label{fig:recommendation-overlap-p1}
 \end{figure}
+
+Figure~\ref{fig:overlap-by-timing-p1} combines the overlap level
+with the timing of use. Among the groups that used MLguide early,
+three had high overlap, two had medium overlap, and one had low
+overlap. Among the groups that used it late, three had high
+overlap and three had medium overlap.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/07-results/project-1/overlap-by-timing.png}
-    \caption[P1 timing and overlap]{Timing and overlap of recommendations with chosen methods combined.}
+    \caption[P1 timing and overlap]{Overlap level between
+    recommended and used methods, split by whether the group used
+    MLguide early or late.}
     \label{fig:overlap-by-timing-p1}
 \end{figure}
+
+Figure~\ref{fig:recommended-vs-used-p1} compares, for each
+method, the number of groups that were recommended the method
+with the number of groups that used it. Some methods were
+recommended more often than they were used, such as Neural
+Network, PCA and LSTM. Others were used more often than they were
+recommended, most clearly Isolation Forest and GMM. GMM, One-Class
+SVM, and DBSCAN were used by several groups without being
+recommended to any of them.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/07-results/project-1/recommended-vs-used.png}
-    \caption[P1 recommended vs.\ used]{Recommended vs. Used Methods.}
+    \caption[P1 recommended vs.\ used]{Number of groups recommended
+    each method by MLguide compared with the number of groups that
+    used it.}
     \label{fig:recommended-vs-used-p1}
 \end{figure}
+
+The reports were also examined for benefits and issues that the
+groups raised when describing their use of MLguide. The points
+were sorted into themes, and each theme was counted by the number
+of groups that raised it. Figure~\ref{fig:benefits-p1} shows the
+reported benefits. The most common were method shortlisting and
+early orientation, and validation or confirmation of method
+choices, each raised by seven groups. Code templates and
+implementation hints, and a narrowed search space, were each
+raised by two groups.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/07-results/project-1/benefits.png}
-    \caption[P1 reported benefits]{Reported benefits of using MLguide.}
+     \caption[P1 reported benefits]{Benefits of using MLguide
+    reported in the project reports, counted by the number of
+    groups that raised each theme.}
     \label{fig:benefits-p1}
 \end{figure}
+
+Figure~\ref{fig:issues-p1} shows the reported issues. The most
+common was that MLguide was used too late to influence method
+decisions, raised by six groups. Five groups reported that GMM
+was missing from the recommendations. Three groups each reported
+that One-Class SVM was missing, that the recommendations were too
+generic or lacked ranking, and that the performance preferences
+were not useful in practice.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/07-results/project-1/issues.png}
-    \caption[P1 reported issues]{Reported issues of using MLguide.}
+    \caption[P1 reported issues]{Issues with MLguide reported in
+    the project reports, counted by the number of groups that
+    raised each theme.}
     \label{fig:issues-p1}
 \end{figure}
 
@@ -82,3 +174,6 @@
     \caption[P2 methods vs.\ recommended]{Methods Used vs. Recommended.}
     \label{fig:methods-used-vs-recommended-p2}
 \end{figure}
+
+\section{Example-Based Evaluation}
+\label{sec:results-example-based-evaluation}
