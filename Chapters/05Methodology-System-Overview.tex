@@ -124,15 +124,6 @@ activities, producing successive versions of the system.
 Throughout development, individual features and the overall system output 
 were continuously tested to check that behaviour was correct and results were useful.
 
-The development also had an iterative character. Feedback from the thesis 
-supervisor informed adjustments to the system design and priorities throughout 
-the development period. 
-In addition, two rounds of user testing were conducted, 
-and the findings were used to evaluate and adjust the system. 
-This iterative cycle is consistent with the DSR process described by 
-\textcite{peffers2007design_science_research_methodology}, where evaluation 
-results inform a return to design and development. The user testing setup and evaluationm method is described in the following section.
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/04-system-design-development/incremental-development.pdf}
@@ -140,6 +131,16 @@ results inform a return to design and development. The user testing setup and ev
     \textcite[33]{sommerville2011software_engineering}.}
     \label{fig:incremental-development}
 \end{figure}
+
+The development also had an iterative character. Feedback from the thesis 
+supervisor informed adjustments to the system design and priorities throughout 
+the development period. 
+In addition, two rounds of user testing were conducted, 
+and the findings were used to evaluate and adjust the system. 
+This iterative cycle is consistent with the DSR process described by 
+\textcite{peffers2007design_science_research_methodology}, where evaluation 
+results inform a return to design and development. 
+The user testing and evaluation method is described in the following section.
 
 \section{Evaluation}
 \label{sec:evaluation}
@@ -205,7 +206,7 @@ feedback form, available on the home page, where
 users can rate their overall satisfaction, report any technical
 problems, and note what worked well and what should be improved.
 
-\textbf{Endre tense her til past?}
+% \textbf{Endre tense her til past?}
 
 The analysis of feedback has two distinct parts, one quantitative and
 one qualitative. The quantitative part looks at numbers regarding
@@ -218,15 +219,6 @@ the form text answers and the report free text. Comments about the usefulness
 of the system, and about any problems or criticism, are sorted
 into themes, so that points raised by one or more groups can be collected and
 compared systematically.
-
-A simple overview of the development timeline, including the user testing sessions, is illustrated in Figure~\ref{fig:development-timeline}.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{Figures/04-system-design-development/development_timeline.pdf}
-    \caption[Development timeline]{Development timeline of MLguide.}
-    \label{fig:development-timeline}
-\end{figure}
 
 \subsection{Example-Based Evaluation}
 \label{sec:example-based-evaluation}
@@ -245,3 +237,25 @@ the examples were both written and assessed as part of this work,
 this evaluation is a structured review of the system's behaviour
 rather than an independent test, and it is used to complement the user
 testing.
+
+\subsection{Development Timeline}
+\label{sec:development-timeline}
+
+Figure~\ref{fig:development-timeline} summarises the development of
+MLguide. It marks the two user tests and the example-based
+evaluation, and divides the development into three system versions.
+Version A is the version used in the first user test, version B the
+version used in the second, and version C the current and latest version 
+used in the example-based evaluation. 
+The technical differences between the versions are described in
+Section~\ref{sec:development-iterations-and-system-versions} 
+in the Implementation chapter.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figures/04-system-design-development/development_timeline_with_versions.pdf}
+    \caption[Development timeline]{Development timeline of MLguide,
+    showing the three system versions, the two user tests, and the
+    example-based evaluation.}
+    \label{fig:development-timeline}
+\end{figure}
