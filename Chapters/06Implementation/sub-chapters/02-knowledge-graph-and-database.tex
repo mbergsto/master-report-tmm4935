@@ -210,7 +210,7 @@ ontology extension and inference rule application.}
 \texttt{performance}          & 95/187 (51\%)   \\
 \texttt{rdfs:seeAlso}          & 90/187 (48\%)   \\
 \texttt{skos:altLabel}         & 66/187 (35\%)   \\
-\texttt{rdfs:broader}          & 57/187 (30\%)   \\
+\texttt{skos:broader}          & 57/187 (30\%)   \\
 \texttt{possible\_if}         & 28/187 (15\%)   \\
 \texttt{not\_recommended\_if} & 5/187 (3\%)     \\
 \bottomrule
@@ -323,7 +323,9 @@ login. The \texttt{saved\_searches} table stores previously saved searches
 with problem descriptions, allowing users to reload them without 
 re-entering their inputs. The \texttt{method\_feedback} table stores
 user feedback on recommended methods, capturing all context related to 
-the user's problem description and the specific method.
+the user's problem description and the specific method. The \texttt{skipped\_articles}
+table used in the process retrieving new articles for the knowledge graph and article database. 
+It is further explained in Section~\ref{sec:article-retrieval-flowchart}.
 
 \begin{figure}[H]
     \centering

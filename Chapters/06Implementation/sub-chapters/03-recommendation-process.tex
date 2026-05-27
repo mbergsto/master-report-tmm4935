@@ -99,10 +99,10 @@ via \texttt{used\_for}, as shown in the table.
 The other properties of \texttt{ML\_approach}: \texttt{possible\_if} and 
 \texttt{not\_recommended\_if} are retrieved and returned 
 alongside each method as informational notes, but are not used 
-for filtering or ranking. This due to the low coverage of 
+for filtering or ranking. This is due to the low coverage of 
 these properties shown in 
 Table~\ref{tab:ml-approach-coverage-extended}. Therefore
-using them for filtering at this would risk 
+using them for filtering would risk 
 excluding valid candidates.
 
 In the end, candidates are sorted by how well they 
@@ -154,7 +154,7 @@ but can be adjusted. The top $k = 50$ articles are retained
 for the reranking step.
 
 In the second stage, the top-$k$ articles are reranked using 
-\texttt{ms-marco-MiniLM-L6-v2} \parencite{sbert_ce_msmarco}, a 
+\texttt{ms-marco-MiniLM-L6-v2} \parencite{sbert_crossencoder_msmarco}, a 
 cross-encoder fine-tuned on the MS MARCO passage ranking dataset \parencite{bajaj2018ms_marco_machine_reading_comprehension_dataset}.
 The model was chosen because it achieves strong 
 ranking performance while being lightweight enough for query-time 
