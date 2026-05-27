@@ -1,2 +1,77 @@
-\section{Development Iterations and System Versions}
-\label{sec:development-iterations-and-system-versions}
+\section{Changes Across System Versions}
+\label{sec:changes-across-system-versions}
+
+The development of MLguide was incremental and iterative, as
+described in Section~\ref{sec:incremental-and-iterative-development}.
+This form of development
+naturally produced different versions of the system at different
+points in time, as shown by the development timeline in Section~\ref{sec:development-timeline}. 
+This section summarises the central differences
+between the three versions that were evaluated. These differences
+are needed to interpret the results and discussion chapters, since
+the two user tests and the example-based evaluation were carried
+out on different versions of the system.
+
+As the development timeline in
+Figure~\ref{fig:development-timeline} shows, the user testing took
+place some way into the development period. By the time of the
+first user test, all main functionality was in place: the
+input form, the recommendation output, the generated starter notebooks 
+for the methods these are
+available for, the display of relevant articles to a specific method, and the
+"give feedback" button. Having this functionality running was a priority
+in order to reach the first user test. The differences between the
+three versions therefore lie mainly in the content of the
+knowledge graph and in smaller user interface details, rather than
+in the core functionality.
+
+Version A, as described above, had the core functionality in place. 
+It also incldued the extension of classes and concepts in the
+ontology, described in Section~\ref{sec:ml-ontology-extension}. 
+The ML methods (\texttt{ML\_approach} instances) used in article
+retrieval that were missing from the original ontology were
+added for version A. But at this point, neither the new
+nor the existing methods had their properties updated. 
+The added methods carried little beyond an article link, and the existing methods
+had the properties of the original ontology, summarised by the property coverage in
+Table~\ref{tab:ml-approach-coverage}.
+Version A had the same user interface as the final
+version, as described in Section~\ref{sec:user-interface}, with only
+minor parts not yet implemented.
+
+Version B added the reinforcement learning methods and tasks, with properties, 
+since reinforcement learning was entirely absent from the original ontology. It also simplified the input form and recommendation process
+by removing the filters for task, data type, and performance preferences, leaving
+only the problem text input and the ML area filter. 
+
+Version C populated multiple methods with properties, 
+adding 116 triples with performance attributes to ML
+approaches, and 248 \texttt{used\_for} links between approaches and
+tasks, thereby updating the knowledge available to the system. This
+resulted in the coverage shown in
+Table~\ref{tab:ml-approach-coverage-extended}. Version C also
+reintroduced the filters that had been removed from the input form in Version B, and added the
+feedback rating option on individual methods, 
+as shown in Figure~\ref{fig:user-interface-method-details-page}. 
+The feedback can affect recommendations, as described in Section~\ref{sec:feedback-boost}.
+
+
+\begin{table}[H]
+\centering
+\caption[Differences between system versions]{Summary of what was
+added or changed in each evaluated version of MLguide.}
+\label{tab:system-versions}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Version} & \textbf{Added or changed} \\
+\midrule
+Version A & Core functionality in place. Ontology extended with new classes and concepts. Many methods still without properties beyond an article link. \\
+\addlinespace[8pt]
+Version B & Reinforcement learning knowledge added. Input form simplified to include problem description text and ML area filter only. \\
+\addlinespace[8pt]
+Version C & Several performance attributes and \texttt{used\_for} links added to methods, improving the system knowledge. Task, data type and performance filters reintroduced in input form. Method-level feedback added. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
