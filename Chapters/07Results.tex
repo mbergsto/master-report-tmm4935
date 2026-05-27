@@ -3,9 +3,17 @@
 This chapter presents the results of the evaluation of MLguide.
 As described in Section~\ref{sec:evaluation}, MLguide was
 evaluated in two ways: through user testing with students from
-the course TMM4128 Machine Learning for Engineers, and through an
+the course TMM4128 Machine Learning for Engineers, referred to as Project 1 and Project 2,
+and through an
 example-based evaluation using a set of constructed problem
 cases.
+
+Because MLguide was developed iteratively, the three evaluations
+were carried out on different versions of the system, as shown in Section~\ref{sec:development-timeline}.
+Project 1 used version A, Project 2 used version B, and the example-based
+evaluation used version C, the final version. The differences
+between the versions are summarised in
+Section~\ref{sec:changes-across-system-versions}.
 
 Sections~\ref{sec:project-1} and~\ref{sec:project-2} present the
 results from the two user testing projects. 
@@ -146,27 +154,66 @@ were not useful in practice.
 \section{Project 2 (P2): Reinforcement Learning Across Product Lifecycle}
 \label{sec:project-2}
 
+The second project asked the groups to analyse applications of
+reinforcement learning across four product lifecycle phases, and to
+implement a simulated RL environment with a sustainability agent. 
+The groups were asked to assess the
+applicability of MLguide to their project work and to report on it.
+The results below are based on the project reports.
+
+Of the 19 groups in the project, 9 used MLguide and 10 did not. The
+results that follow are based on the 9 groups that used the system.
+Figure~\ref{fig:participation-count-p2} shows the participation in
+Project 2 alongside Project 1, where a larger share of the groups
+used the system.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/07-results/project-2/participation-p1-p2.png}
-    \caption[P2 group participation]{Number of groups participating.}
+    \caption[P2 group participation]{Number of groups that used
+    MLguide and number that did not, in Project 1 and Project 2.}
     \label{fig:participation-count-p2}
 \end{figure}
+
+The reports were examined for how the groups used MLguide.
+Figure~\ref{fig:how-groups-used-mlguide-p2} shows the result. Five
+groups used only the recommended methods, three used both the
+methods and the supporting articles, and for one group the use
+was not specified.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/07-results/project-2/how-groups-used-mlguide.png}
-    \caption[P2 how groups used MLguide]{How groups used MLguide.}
+    \caption[P2 how groups used MLguide]{How the groups used
+    MLguide, counted by the number of groups.}
     \label{fig:how-groups-used-mlguide-p2}
 \end{figure}
 
+The reports were also examined for benefits that the groups raised
+when describing their use of MLguide. The points were sorted into
+themes, and each theme was counted by the number of groups that
+raised it. Figure~\ref{fig:key-benefits-p2} shows the result. The
+most common benefit was a good overview of relevant RL methods,
+raised by five groups. Confirmation that the tool was applicable
+to the problem, agreement between the recommendations and the
+literature, and help with finding or confirming relevant articles
+were each raised by three groups. One group reported that MLguide
+was sufficient for standard single-algorithm RL.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{Figures/07-results/project-2/key-benefits.png}
+    \includegraphics[width=0.9\textwidth]{Figures/07-results/project-2/key-benefits.png}
     \caption[P2 key benefits]{Key benefits reported by groups.}
     \label{fig:key-benefits-p2}
 \end{figure}
+
+Figure~\ref{fig:methods-used-vs-recommended-p2} compares, for each
+method, the number of groups that were recommended the method with
+the number of groups that used it. DQN, PPO, and Q-learning were
+the most frequently used methods, and were also among the most
+frequently recommended. Deep RL and Neural Network were
+recommended without being used by any group. PI-QT-Opt and
+NSGA-III were used by one group each without being recommended.
 
 \begin{figure}[H]
     \centering
@@ -177,3 +224,4 @@ were not useful in practice.
 
 \section{Example-Based Evaluation}
 \label{sec:results-example-based-evaluation}
+
