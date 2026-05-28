@@ -226,3 +226,112 @@ global landscape of AI tasks and tracking progress over time,
 rather than helping a user select a method for a problem. ITO is 
 published openly on Zenodo, GitHub, and BioPortal under a 
 CC-BY-SA licence.
+
+
+From \parencite{schopf2024nlp} :
+
+% Context note for Schopf & Matthes (2024), NLP-KG
+% Related on the retrieval side: knowledge graph + hybrid semantic search
+% over scientific literature. Exploratory search tool, not method selection.
+
+Schopf and Matthes (2024) present NLP-KG, a system for 
+exploratory search of NLP research literature. It is built 
+around a knowledge graph linking Fields of Study, publications, 
+authors, and venues, with a semi-automatically constructed 
+hierarchy of Fields of Study. The structural knowledge graph is 
+stored in Neo4j, while the publication embeddings are held in a 
+separate vector database (Weaviate) outside the graph, so the 
+graph handles relations and the vector database handles semantic 
+similarity search. This mirrors the separation in MLguide 
+between the ontology and the article embeddings used for 
+retrieval. For retrieval, NLP-KG uses a hybrid approach that 
+combines sparse (BM25) and dense (SPECTER2 embedding) 
+representations, merged with Reciprocal Rank Fusion, followed by 
+a reranking step that uses metadata such as citation count and 
+publication date. It also offers a retrieval-augmented 
+conversational search feature and an "Ask This Paper" feature. 
+The system is aimed at researchers exploring an unfamiliar 
+field, not at selecting a method for a problem.
+
+% Note on RRF comparison:
+% Both systems use Reciprocal Rank Fusion, but at different points.
+% NLP-KG uses RRF to merge two parallel retrievers (BM25 and
+% SPECTER2) when ranking articles. MLguide applies the RRF
+% principle one level up, in method scoring: the bi-encoder and
+% cross-encoder rankings of the retrieved articles are combined
+% through RRF-style rank terms when aggregating article ranks into
+% a method score. Same principle (rank-based fusion to avoid
+% scale differences between sources), different stage in the pipeline.
+
+From \parencite{berenguer2024retrieve_data_from_research} :
+
+\textcite{berenguer2024retrieve_data_from_research} retrieve relevant data tables from 
+scientific publications based on a research problem stated as 
+an abstract. The abstract serves as a representation of the 
+research problem, and word embeddings are used to compute the 
+semantic similarity between the abstract and the indexed tables, 
+returning a ranked list of the most relevant tables. Each table 
+is represented by separate embeddings for its headers and its 
+column content, combined with a weighting parameter, and the 
+paper keywords are optionally added as context. Embeddings are 
+stored and searched with the Faiss library. The authors compare 
+nine language models and find that contextual models clearly 
+outperform non-contextual ones, that models pre-trained on 
+scientific text (SciBERT) perform best, and that contextual 
+information is crucial for good results. The domain is medical 
+literature, and the system is an experimental study rather than 
+a deployed tool.
+
+% How it relates to MLguide:
+% - Shared core idea: a free-text problem description is matched
+%   against scientific content via embedding similarity, the same
+%   query-by-abstract principle MLguide uses.
+% - Supports a design choice: the authors argue that a rich
+%   natural-language problem formulation gives better retrieval
+%   than isolated keywords, which backs MLguide's free-text input.
+% - Also supports the model choice: contextual, science-pretrained
+%   sentence embeddings outperformed non-contextual models.
+% Differences:
+% - Output: it retrieves data tables; MLguide retrieves methods via
+%   the articles that mention them.
+% - Retrieval: single-stage cosine similarity with a header/content
+%   weight; MLguide uses a two-stage bi-encoder + cross-encoder
+%   pipeline.
+% - No knowledge graph or ontology; MLguide combines retrieval with
+%   an ontology of methods.
+% - Domain: medical literature vs ML methods for product development.
+
+From \parencite{ostendorff2022_aspect_based_embeddings} :
+
+\textcite{ostendorff2022_aspect_based_embeddings} propose aspect-based document 
+similarity for recommending machine learning research papers. 
+The domain is the Papers with Code corpus (157,606 ML papers), 
+chosen because each paper is labelled with three things: its 
+task, its method, and its dataset. These three labels are used 
+as the aspects in which two papers can be similar.
+
+The core idea is that representing a paper with a single 
+generic embedding gives only one notion of similarity, which 
+hides the fact that two papers can be alike in different ways. 
+Instead, they represent each paper with several specialised 
+embeddings, one per aspect, building a separate embedding space 
+for task, method, and dataset. The embeddings are computed from 
+the title and abstract, and are trained on pairs of papers: two 
+papers count as similar in an aspect if they share the same 
+label for that aspect. Similar papers are then retrieved with a 
+nearest-neighbour search using cosine similarity within the 
+chosen aspect's embedding space, so a user can ask for papers 
+similar in method, or similar in dataset, and get different 
+results.
+
+They compare generic embeddings (FastText, SciBERT, SPECTER) 
+against specialised ones produced by retrofitting, Transformer 
+fine-tuning, and a Siamese network. A fine-tuned Siamese SciBERT 
+performs best across all three aspects. They also find that 
+generic embeddings are biased: they capture dataset similarity 
+well but method similarity poorly, because titles and abstracts 
+foreground tasks and datasets while methodological detail is 
+mentioned only marginally. The specialised embeddings make this 
+bias explicit and correct for it, supporting more diverse and 
+explainable recommendations. The work is a recommendation study 
+rather than a deployed system.

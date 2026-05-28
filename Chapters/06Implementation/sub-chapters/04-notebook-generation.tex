@@ -43,7 +43,7 @@ Much of the notebook generation approach, including the use of
 Jinja2 templates and 
 the GitHub-based Open in Colab mechanism, is inspired by 
 Traingenerator \parencite{rieke2021traingenerator}, which 
-is described in Section~\ref{sec:template-based-code-generation}. 
+is described in Section~\ref{sec:tools-and-platforms}. 
 Unlike Traingenerator, where the user selects task, 
 framework and more parameters manually, MLguide selects the template 
 automatically based on the recommended method that is chosen by the user. 
@@ -115,7 +115,8 @@ shows a shortened version of the base template for the
 classification family, where the general cells are reduced
 to comments and the three method-specific blocks are marked.
 
-\begin{lstlisting}[caption={[Base notebook template]Base notebook template for the classification task family.}, label={lst:base-template}]
+\begin{lstlisting}[caption={[Base notebook template]Base notebook template for the classification task family.}, label={lst:base-template},
+  keepspaces=true]
 # %% [markdown]
 # {{ method_title }}
 
@@ -164,7 +165,8 @@ notes blocks. Adding a new method requires only a small
 template of this kind, since the shared structure is
 inherited from the base template.
 
-\begin{lstlisting}[caption={[Method template]The random forest template for classification, which extends the base template and overrides its blocks.}, label={lst:method-template}]
+\begin{lstlisting}[caption={[Method template]The random forest template for classification, which extends the base template and overrides its blocks.}, 
+  label={lst:method-template}, keepspaces=true]
 {% extends "classification/base.py.jinja" %}
 
 {% block model_import %}

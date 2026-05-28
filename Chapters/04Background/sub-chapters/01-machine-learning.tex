@@ -3,10 +3,8 @@
 
 This section introduces the machine learning concepts that the rest of 
 the thesis builds on. It first describes the main learning paradigms and 
-the tasks associated with them, then presents a selection of common 
-methods and some attributes that distinguish them. Neural networks and 
-deep learning are treated separately. The section closes with a review 
-of existing approaches to method selection.
+tasks associated with them, then presents a selection of common 
+methods with emphasis on attributes that distinguish them. 
 
 \subsection{Machine Learning Paradigms and Tasks}
 \label{sec:machine-learning-paradigms-and-tasks}
@@ -44,7 +42,7 @@ Anomaly detection identifies observations that deviate significantly from the
 expected distribution, and is used in applications such as 
 fault monitoring 
 \parencite[Chapter~5]{Goodfellow-et-al-2016}.
-It is worth noting that the boundary between supervised and unsupervised learning 
+The boundary between supervised and unsupervised learning 
 is not always well-defined, and many methods can be applied across both types 
 of problems \parencite[Chapter~5]{Goodfellow-et-al-2016}.
 
@@ -371,76 +369,3 @@ zhang2020taxonomy_reinforcement_learning_algorithms}.
 % \end{itemize}
 
 
-\subsection{Approaches to Method Selection}
-\label{sec:approaches-to-method-selection}
-
-Selecting an appropriate machine learning method is not straightforward. 
-As discussed in Section~\ref{sec:motivation}, the large number of
-available algorithms, each with distinct strengths and limitations, creates 
-a real challenge for practitioners. This challenge is formally described by 
-the Algorithm Selection Problem \parencite{smith_miles2009algorithm_selection}, 
-which asks which algorithm is likely to perform best for a given problem. 
-The No Free Lunch theorems provide a theoretical basis for this difficulty, 
-showing that no single algorithm performs best across all problems and that 
-good selection requires understanding the characteristics of the problem at 
-hand \parencite{wolpert1997no_free_lunch}.
-
-Several practical tools have been developed to help with method selection. 
-Scikit-learn provides a publicly available decision flowchart that guides 
-users through questions about data size and task type to suggest candidate 
-algorithms \parencite{sklearn_algorithm_cheatsheet}, and Microsoft Azure 
-offers a similar cheat sheet for its machine learning platform 
-\parencite{azure_algorithm_cheatsheet}. While these tools are accessible 
-and widely used, they have clear limitations. 
-The selection criteria used in both tools are mainly accuracy and prediction 
-speed, something that can in practice lead to poor results \parencite{sala2018selecting_ml_algorithm}. 
-Factors such as interpretability, data characteristics, and domain context 
-are not considered, nor do they offer any guidance on how the problem 
-itself should be formulated \parencite{chen2023ml_manufacturing_industry4}.
-
-More structured frameworks have been proposed in the academic literature. 
-\textcite{sala2018selecting_ml_algorithm} present a two-layer selection 
-framework that incorporates algorithm characteristics such as scalability 
-and robustness to outliers, in addition to learning type and response type. 
-Domain-specific frameworks have also been proposed, such as that of 
-\textcite{arena2024conceptual_framework_ml_algorithm_selection_predictive_maintenance}, 
-who develop a structured set of decision variables for algorithm selection 
-in predictive maintenance. The authors note that the algorithm is often chosen by comparing 
-candidates only on predictive and computational performance, which 
-can lead to results that are poor or too generic for the problem at 
-hand, and that no tool relates algorithmic choices to the 
-application domain.
-
-A related class of approaches is automated machine learning (AutoML), 
-which seeks to automatically select, compose, and parametrise machine 
-learning models to achieve optimal performance on a given task or dataset 
-\parencite{waring2020automated_machine_learning_review_state_of_the_art_opportunities_healthcare}. 
-AutoML systems automate parts of the machine learning pipeline, including 
-data preparation, feature engineering, hyperparameter optimisation, and 
-model generation, with the goal of reducing the demand for expert knowledge 
-and making machine learning more accessible to domain experts 
-\parencite{he2021automl_survey_state_of_the_art}. 
-Within AutoML, the algorithm selection problem is typically treated as an
-optimisation task, where dataset characteristics are used to predict which 
-algorithm is likely to perform best 
-\parencite{barbudo2023eight_years_automl_categorisation_review_trends}.
-
-However, AutoML approaches have notable limitations in the context of 
-decision support for non-experts. Most systems treat the selection and 
-configuration process as a black box, providing little explanation of why 
-a particular configuration was chosen 
-\parencite{barbudo2023eight_years_automl_categorisation_review_trends}. 
-This lack of transparency is a significant barrier to adoption, as users 
-who do not understand or trust the output of a system are unlikely to apply 
-it in practice 
-\parencite{waring2020automated_machine_learning_review_state_of_the_art_opportunities_healthcare}. 
-Furthermore, AutoML primarily addresses the later stages of the machine 
-learning pipeline, and the phases considered inherently human, such as 
-problem formulation and interpretation of results, have received little 
-attention \parencite{barbudo2023eight_years_automl_categorisation_review_trends}. 
-This means that AutoML does not address the earlier challenge of helping 
-practitioners understand which type of problem they have and which general 
-approach is appropriate. This gap motivates the 
-work in this thesis.
-
-\textbf{Burde siste setning om "this gap" stå her? Eller ta med noe lignende i motivasjon? Eller ingen av delene?}

@@ -49,7 +49,16 @@
 \usepackage{parskip} % to add space between paragraphs and remove indentation. Can still set the spacing manually with setlength{\parskip}{1em}
 \raggedbottom % prevent vertical stretching to fill pages
 
-
+% For listings
+\lstset{
+    basicstyle=\ttfamily\small,
+    columns=flexible,        % ikke fixed-bredde
+    keepspaces=true,         % bevar mellomrom som de er
+    upquote=true,            % ' blir ikke til ´
+    literate={--}{{-{}-}}2   % ikke konverter -- til en lang strek
+             {-}{{-}}1
+}
+\captionsetup[lstlisting]{singlelinecheck=false}
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -95,7 +104,7 @@ Department of Mechanical and Industrial Engineering \\
 %\end{comment}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\onehalfspacing % set line spacing to one and a half
+\singlespacing  % set line spacing to single
 
 % The pre-chapters
 \chapter*{Abstract} %pre-chapters should not be numbered, hence the "*"
@@ -108,12 +117,18 @@ Department of Mechanical and Industrial Engineering \\
 \addcontentsline{toc}{chapter}{\protect\numberline{}Preface} 
 \input{Chapters/01Preface}
 
-\tableofcontents
+\cleardoublepage
+\phantomsection
 \addcontentsline{toc}{chapter}{\protect\numberline{}Contents}
+\tableofcontents
 
-%add to table of contents list of figures and tables, and insert list of figures and tables
+\cleardoublepage
+\phantomsection
 \addcontentsline{toc}{chapter}{\protect\numberline{}\listfigurename}
 \listoffigures
+
+\cleardoublepage
+\phantomsection
 \addcontentsline{toc}{chapter}{\protect\numberline{}\listtablename}
 \listoftables
 
