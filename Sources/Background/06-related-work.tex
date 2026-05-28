@@ -1,0 +1,228 @@
+From \parencite{riesener2020} :
+
+Hva de lager / formålet:
+"The paper presents an evaluation method, which helps to identify specific strengths and weaknesses of selected algorithms"
+"give users without in-depth knowledge of Machine Learning algorithms an applicable possibility to choose a potential algorithm"
+Mest sammenlignbart med ditt system (problembeskrivelse matchet mot metoder):
+"An algorithm of the evaluation matrix can be chosen with the aid of a problem description."
+"The similarity between the problem description and a possible algorithm can be determined with distance metrics, in this case the Euclidean Distance is used"
+"By determining the minimal distance between the problem description and the algorithm evaluation, the best-fitting algorithm is identified."
+Hvilke kriterier de bruker (sammenlign med dine method-properties):
+"the term performance describes the accuracy, the duration of the training, the computational effort, the tolerance to erroneous values, the tolerance to irrelevant values, the online capability and the transparency"
+"The first restriction to choose an algorithm is done by the learning task, which can be regression, clustering, classification or association."
+Forskningsgapet de identifiserer (nyttig for å posisjonere mot, og mot ditt eget):
+"There is no procedure to evaluate ML algorithms for product development tasks based on a generic problem description"
+Begrensninger grunnet at metoder er funnet fra litteraturen:
+"The relevance of algorithms is determined based on the number of literature found in relation to these algorithms."
+"relatively new algorithms do have a disadvantage and might not be considered"
+
+Oppsummering:
+\textcite{riesener2020} present an evaluation method for 
+selecting an ML method in product development, aimed at 
+users without in-depth ML knowledge. From 144 methods 
+found in the literature, they selected the eleven most 
+frequently described and manually rated each one on nine 
+criteria (learning task, form of learning, and seven 
+performance properties such as accuracy, training duration, 
+computational effort, and transparency), based on literature 
+and an expert survey. The result is a matrix of the methods' 
+strengths and weaknesses. The user describes their problem 
+in the same criteria, and the method with the smallest 
+Euclidean distance to the problem description is suggested 
+as the best fit. It is a formalised, rule-based procedure 
+rather than a running software system.
+
+From \parencite{gerschutz2021semantic_web_approach} :
+
+\textcite{gerschutz2021semantic_web_approach} present a semantic knowledge base 
+for data-driven methods in product development, built to 
+help SMEs that lack ML expertise. The knowledge is 
+structured in a class model with four classes (category, 
+concept, method, and tool), where each method is described 
+by semantic properties such as its potentials, limits, 
+algorithm, product development use cases, and the tool that 
+implements it. The model is realised as a demonstrator in 
+Semantic MediaWiki, where method knowledge is captured 
+through semantic links and can be retrieved through queries. 
+The user finds a suitable method by querying the wiki, for 
+example for a method that can perform a requirements 
+analysis. The system is a proof-of-concept demonstrator 
+rather than a finished tool.
+
+Problemet de adresserer (likt ditt: ikke-eksperter mangler metodekunnskap):
+"most SMEs lack that knowledge, since no specialist employees are available"
+"the knowledge is only provided separated, without contextual information to product development"
+Formål / hva de lager:
+"an easily accessible, easy-to-understand platform to provide context-sensitive knowledge about data-driven methods"
+Hvorfor semantisk web / mot statisk katalog (relevant for å begrunne ontologi):
+"To avoid building a 'dead method catalogue', the usage of semantic web technology seems a good idea."
+"only the semantic information ... gives the connection a meaning and converts the stored information into knowledge"
+Hvordan metoder karakteriseres (sammenlign direkte med dine method-properties):
+"the property algorithm is used for a description of the relevant algorithm used by the method"
+"In the use_case property, potential use cases in product development and design are linked."
+Method-klassens egenskaper, fra Table 3 (parafraser dette, ikke siter): has_potential, has_limit, used_in (use case), uses_algorithm, is_implemented_by. Dette er det tetteste sammenligningspunktet mot din ontologi.
+Hvordan matchingen skjer (sammenlign med din semantiske gjenfinning):
+"knowledge extraction based on queries"
+"we want to find a method, which can perform a requirements analysis and can help to classify given requirements"
+Hvor identifikasjonen av kunnskap kommer fra (sammenlign med din litteraturkobling):
+"The identification is done by literature review and industrial use-cases."
+Future work (de vil utvikle semantikken til en ontologi, verdt å nevne):
+"it is planned to develop the semantics into an ontology"
+
+
+
+From \parencite{sonntag2023pattern_ml_product_development}:
+
+\textcite{sonntag2023pattern_ml_product_development} propose a pattern language approach to 
+help non-experts in product development identify a suitable 
+ML method for a given problem. Each method is characterised 
+through a pattern with defined attributes (problem, input 
+data, training data, traceability, and references to related 
+methods), and the user's problem is formalised using the same 
+attributes, so that the two can be matched to identify the 
+most suitable method. The patterns were derived manually from 
+ten research papers, and the concept was demonstrated for two 
+methods, decision trees and artificial neural networks. A 
+study with seven engineers without ML knowledge tested whether 
+they could formalise a problem and identify the correct method 
+from the patterns; the correct method was identified in 64\% 
+of the cases. The approach is a manually derived proof of 
+concept rather than an implemented system.
+
+Formål og motivasjon. De peker på at bedrifter, særlig SMB-er, i liten grad tar i bruk ML i produktutvikling, og at en hovedårsak er manglende kunnskap og erfaring med å velge riktig metode. Målet deres er å gjøre denne kunnskapen tilgjengelig for ikke-eksperter, slik at den optimale metoden for et gitt problem kan identifiseres uten en ekspert.
+Forskningsgapet de identifiserer. De gjennomgår eksisterende tilnærminger (AutoML, Riesener, Lickert, Gerschütz, Hashimi) og konkluderer med at ingen av dem lar en bruker velge metode ut fra en veldefinert problembeskrivelse. To mangler går igjen: karakteriseringen av selve problemet (hvilken type problem en metode passer for) er ikke adressert, og muligheten til å beskrive et problem slik at det kan sammenlignes med en metode mangler. Sammenligningen krever ekspertkunnskap.
+Pattern language som tilnærming. De låner pattern language fra programvareutvikling, der det brukes til å dokumentere kjente løsninger på tilbakevendende problemer på en strukturert måte slik at ikke-eksperter kan bruke dem. Et pattern har attributter som problem, input data, training data, traceability og referanser til andre metoder. Det avgjørende grepet er at de innfører faste "element modules" for hvert attributt i stedet for fritekst, slik at problem og metode kan matches entydig.
+Matchingen. Brukeren formaliserer problemet sitt med de samme attributtene og element-modulene som metodene er karakterisert med, og sammenligner så de to for å finne den best passende metoden. Den eksakte formuleringen er verdt å sitere fordi den fanger kjernen: "the problem definition has to be formalized in the same way and with the same elements as the characterization of the algorithms".
+Avgrensning til to metoder. De demonstrerer konseptet på decision trees og artificial neural networks, valgt fordi tidligere forskning peker på disse som de mest brukte i tidlig produktutvikling. De påpeker selv at de to løser tydelig adskilte oppgaver, og at de generelle betingelsene blir viktigere først når metoder løser lignende oppgaver.
+Brukerstudien. Sju ingeniører med mastergrad, men uten ML-kunnskap, fikk fire problemformuleringer hentet fra forskningsartikler. De skulle formalisere problemet med patternenes attributter og så velge metode. Funnet var at feil metodevalg stammet fra feil i problemkarakteriseringen, ikke fra selve matchingen, og at attributtene problem, data value og traceability var vanskeligst å bestemme. Riktig metode ble valgt i 64 % av tilfellene. Dette støtter ditt designvalg om fritekst, fordi det viser at å kreve manuell formalisering av problemet er en feilkilde i seg selv.
+Begrensninger og videre arbeid. De er åpne om at den manuelle analysen gjør prosessen subjektiv og vanskelig å skalere til flere metoder, og at element-modulene for problem-attributtet må forbedres. Videre arbeid skal utvide til flere metoder og utvikle en automatisert måte å analysere artiklene på for å sikre konsistens.
+
+\parencite{lickert2021_ml_selection_reverse_logistics}:
+
+\textcite{lickert2021_ml_selection_reverse_logistics} introduce a set of criteria for 
+preselecting supervised ML methods, aimed at users without ML 
+experience. Seven common supervised methods are described 
+against criteria grouped into input (number of observations, 
+number of features, data type), implementation (sensitivity to 
+outliers, training speed, prediction speed, model stability), 
+and output (interpretability), and the methods and criteria 
+are matched in a single overview table. The user characterises 
+their problem in the same criteria and uses the table to rule 
+out unsuitable methods and narrow down to a preselection for 
+later testing. The approach is demonstrated on one example 
+case from reverse logistics. It deliberately excludes choosing 
+an optimal method, since the criteria support preselection 
+before testing rather than final selection. The concept is a 
+criteria table applied to a worked example, not an implemented 
+system.
+
+Formål og målgruppe:
+"support a preselection of ML algorithms"
+"The criteria must be understandable for an unexperienced user or decision maker"
+Avgrensning (preselection, ikke optimalt valg, og bare supervised):
+"The goal excludes the selection of an optimum algorithm"
+Begrunnelse for hvorfor man trenger struktur (no free lunch):
+"there is no best algorithm for a certain data, already known in advance"
+Hvordan matchingen skjer (sammenlign med din):
+The criteria and methods are matched in order of significance, formal criteria first (datatype must fit before a method can apply). Dette er parafrasert fra case study-delen.
+Begrensning, fremtidig arbeid (de hadde ikke kjørt brukerstudie ennå):
+"It is planned to test the concept in a comparative study"
+
+From \parencite{sonntag2024_mcda_framework} :
+
+\textcite{sonntag2023pattern_ml_product_development} propose a multi-criteria decision 
+analysis (MCDA) framework for selecting an ML method in the 
+early phase of product development, for users without ML 
+expertise. The concept has three phases. First, a reference 
+process maps a design task to the class of ML methods that can 
+address it (classification, regression, association rules, or 
+clustering), narrowing the solution space. Second, the 
+remaining methods are evaluated against nine qualitative 
+criteria (such as data flexibility, parameter complexity, 
+scalability, robustness, and understandability) using the 
+PROMETHEE outranking method, weighted by the user's 
+preferences. Third, the result is examined through diagrams 
+and sensitivity analysis to make the decision process 
+transparent. The criteria deliberately exclude performance 
+measures such as accuracy. The framework is demonstrated on 
+one example task and is a conceptual approach rather than an 
+implemented system.
+
+Forskningsspørsmål / målgruppe:
+"How can individuals who lack experience be aided in identifying an appropriate ML algorithm for their particular task"
+Kjernebegrunnelse (trial-and-error er subjektivt):
+"the process of identifying suitable ML algorithms ... is characterised by a lengthy trial-and-error process"
+Hvorfor de utelater performance-mål (sammenlign med dine performance-attributter):
+"performance measures like accuracy or precision are not considered"
+Phase 1, oppgave til metodeklasse (sammenlign med din ML-area/task-filtrering):
+"identify suitable ML algorithms capable of handling the core activity underlying the domain-specific problem"
+Slik plasserer den seg mot MLguide, og hvorfor den er nyttig:
+Likheter: beslutningsstøtte for metodevalg i product development, for ikke-eksperter, og en totrinns innsnevring (først oppgaveklasse, så evaluering på kvalitative kriterier) som ligner din task/ML-area-filtrering etterfulgt av egenskaper.
+Forskjeller du kan trekke fram: deres er et konseptuelt rammeverk demonstrert på ett eksempel, ikke et implementert system, og det krever at brukeren uttrykker preferanser og vekter kriterier manuelt (via SIMOS-kort) og kjører PROMETHEE. Din løsning bygger på en fritekst problembeskrivelse matchet mot litteratur, uten at brukeren må vekte kriterier. De utelater også litteraturbasert evidens helt; deres kriterier er manuelt fastsatte vurderinger, mens ditt system kobler metoder til faktiske artikler.
+Et poeng for diskusjonen: de har en eksplisitt kravtabell (R1 til R6) med hvilke tilnærminger som oppfyller hva. Du kan låne den tankegangen, sette opp hvilke krav MLguide oppfyller, og vise hvor systemet ditt plasserer seg i forhold til de fire kategoriene.
+
+% Note: Relationship between the two Gerschütz works
+
+% The two Gerschütz works form one development line, where the
+% 2023 ontology builds on and formalises the 2021 semantic wiki.
+
+% Gerschütz et al. (2021) - semantic wiki:
+% A Semantic MediaWiki representing ML methods, characterised by
+% potentials, limits, algorithm, use cases, and implementing tool.
+% Not a formal ontology. The authors stated that developing the
+% semantics into an ontology was the planned next step.
+
+% Gerschütz et al. (2023), AI4PD - OWL ontology:
+% Realises that next step. An OWL 2 DL ontology in Protégé linking
+% data-driven methods to product development processes. AI4PD
+% explicitly refers to the 2021 wiki as its earlier work and as
+% "the first semantic web application" for structuring data-driven
+% methods, and states that it combines this preliminary work to
+% link the two domains.
+
+% Not a pure extension: the class model is rebuilt. The 2021 wiki
+% had four method-centred classes (category, concept, method, tool).
+% AI4PD has four different main concepts (People, Process, Method,
+% Application) plus task clusters to link methods to the product
+% development process. The focus shifts from characterising methods
+% to linking methods to processes and use cases.
+
+% For related work: treat the two Gerschütz works as one development
+% line (semantic wiki -> OWL ontology). This contrasts with the two
+% Sonntag works (2023 pattern language, 2024 MCDA), which only share
+% a starting point and do not build on each other's mechanism.
+
+From \parencite{blagec2022_benchmark_knowledge_graph}:
+
+
+\textcite{blagec2022_benchmark_knowledge_graph} present the Intelligence Task Ontology and 
+Knowledge Graph (ITO), a large, manually curated, ontology-based 
+knowledge graph of AI tasks, benchmark results, and performance 
+metrics. It is built on RDF and OWL and queried with SPARQL, and 
+in its current version contains around 685,000 edges, 9,000 
+classes, and 50,000 individuals. The structure is centred on the 
+"AI process" class, a polyhierarchy of about 1,100 task classes 
+(such as natural language processing or image classification) 
+that allows multiple inheritance for cross-modal tasks. Models 
+and datasets are not richly characterised in their own right: a 
+model (such as BERT) is an instance of a Software branch, and a 
+dataset sits under a Data branch. A method is therefore described 
+only indirectly, through the benchmark results it achieved. Each 
+benchmark result is an instance of a benchmark class, linked to 
+its dataset via has_input, to the model that produced it, and to 
+performance values through a curated hierarchy of performance 
+measure properties (accuracy, F1, ROUGE, and so on).
+
+Articles are represented as a subclass of Data. Individual 
+benchmark results are linked to the research articles that 
+reported them via rdfs:seeAlso, and articles are linked to the 
+URLs where they can be retrieved via foaf:page. The article 
+link therefore connects a result to its source publication, 
+serving provenance and traceability of benchmark numbers.
+
+The data is drawn from Papers with Code and curated manually in 
+WebProtégé. The primary purpose is meta-research, analysing the 
+global landscape of AI tasks and tracking progress over time, 
+rather than helping a user select a method for a problem. ITO is 
+published openly on Zenodo, GitHub, and BioPortal under a 
+CC-BY-SA licence.

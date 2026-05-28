@@ -3,14 +3,15 @@
 This chapter introduces the purpose and overall direction 
 of the thesis. It presents the motivation for the study 
 and describes the main problem that is addressed. 
-The research questions are then defined to guide the work. 
+A hypothesis is then stated and broken down into research 
+questions that guide the work.
 Finally, the chapter provides an overview 
 of the structure of the thesis.
 
 \section{Motivation}
 \label{sec:motivation}
 
-Machine learning is widely applied in product development
+Machine learning (ML) is widely applied in product development
 and production, where it is used for tasks such as optimisation,
 process monitoring, quality control, and fault detection
 \parencite{wuest2016ml_manufacturing,
@@ -39,12 +40,12 @@ learning in practice \parencite{adekoya2022applications_ai_em}.
 Selecting an appropriate method is not straightforward. It
 requires balancing competing factors such as accuracy and
 interpretability \parencite{lee2020machine_learning_enterprises}.
+If the selection is not done carefully, the resulting model may
+therefore fail to provide useful results
+\parencite{ali2017accurate_multi_criteria_decision_making_methodology_recommending_machine_learning_algorithm}.
 In practice, simpler and more interpretable models are often
 preferred, even when more complex models could offer higher
 accuracy \parencite{paleyes2022challenges_deploying_ml_survey_case_studies}.
-And if the selection is not done carefully, the resulting model may
-fail to provide useful results
-\parencite{ali2017accurate_multi_criteria_decision_making_methodology_recommending_machine_learning_algorithm}.
 
 Method selection is further complicated by a lack of knowledge
 and experience when adopting machine learning
@@ -70,20 +71,20 @@ learning more accessible.
 
 Despite the growing adoption of machine learning, practitioners
 often lack adequate support when selecting methods for their
-specific problems. There is currently no guidance or standard for
+specific problems. There is no guidance or standard for
 developing machine learning solutions from ideation to
 deployment, and it remains difficult for non-experts to begin
 developing solutions for their own problems
 \parencite{chen2023ml_manufacturing_industry4}.
-In practice, method selection is often based on trial and error,
-which is time-consuming and depends on prior experience that many
-practitioners do not have
+Identifying a suitable algorithm from the large number of
+available options requires a certain amount of experience, and
+the procedure is often based on trial and error, which is
+laborious \parencite{sonntag2023pattern_ml_product_development}.
+Many practitioners lack this experience, and no solution
+currently allows for an informed selection of methods based on a
+well-defined problem within the product development process
 \parencite{sonntag2023pattern_ml_product_development}.
 
-A central limitation is that no solution currently exists for
-making an informed selection of methods based on a well-defined
-problem within the product development process
-\parencite{sonntag2023pattern_ml_product_development}.
 Existing frameworks tend to use accuracy or prediction speed as
 the primary selection criteria, which are often too general and
 can lead to unsuitable methods being chosen
@@ -93,28 +94,31 @@ models, while less attention is given to what conditions lead to
 selecting one method over another in a specific context
 \parencite{arena2024conceptual_framework_ml_algorithm_selection_predictive_maintenance}.
 
-Another barrier is interpretability. Many machine learning
+A further barrier is interpretability. Many machine learning
 models act as black boxes that do not make clear why they
 produce a given output, and this is a key obstacle to their
 adoption in practice
 \parencite{presciuttini2024ml_iot_manufacturing_operations}.
 The relevant knowledge is also distributed across a large and
-fragmented body of literature. This breadth creates extensive
-knowledge on the topic, but can also cause disorientation when
-selecting an approach \parencite{sala2018selecting_ml_algorithm}.
-The literature is spread across many journals and research
-communities, which makes it difficult to apply systematically
-during method selection
-\parencite{adekoya2022applications_ai_em}.
+fragmented body of literature, spread across many journals and
+research communities \parencite{adekoya2022applications_ai_em}.
+This breadth creates extensive knowledge on the topic, but can
+also cause disorientation when selecting an approach
+\parencite{sala2018selecting_ml_algorithm}.
 
 Two needs follow from the challenges described above.
 The first is a structured representation of machine learning
 methods and their characteristics, so that method selection can
 be guided by more than accuracy alone and the basis for a
 recommendation can be made explicit.
-The second is a way to connect a given problem to the research
-that is relevant to it, without requiring the manual search that
-the fragmented state of the literature makes impractical.
+The second is a way to draw on the knowledge held in the
+scientific literature, so that recommendations can be grounded in
+prior research rather than in experience alone. Because this
+knowledge is spread across many sources, a way of connecting a
+given problem to the research relevant to it is needed, without
+the manual search that the fragmented literature makes
+impractical.
+
 This thesis investigates whether an ontology-based representation
 of machine learning knowledge, combined with semantic retrieval
 from scientific literature, can provide such support.
@@ -122,8 +126,8 @@ The aim is to offer interpretable method recommendations that are
 grounded in prior research, alongside guidance for early-stage
 implementation.
 
-\section{Research Questions}
-\label{sec:research-questions}
+\section{Hypothesis and Research Questions}
+\label{sec:hypothesis-research-questions}
 
 This thesis approaches the challenges outlined above by proposing a single
 system that addresses them together. Whether such a system can
@@ -149,11 +153,13 @@ been chosen.
 The hypothesis is examined through the following research questions:
 
 \begin{itemize}
-    \item How can ontology-based knowledge improve machine learning method selection?
-    \item How can semantic similarity between problem descriptions and literature support recommendations?
-    \item How can literature-based evidence support and justify 
-machine learning method recommendations?
-    \item To what extent can such a system support early-stage machine learning implementation?
+    \item How can ontology-based knowledge representation 
+    support the selection of machine learning methods?
+    \item How can semantic retrieval from scientific literature 
+    support and justify the recommended methods?
+    \item To what extent can such a system support users with 
+    limited machine learning expertise in the early stages of 
+    implementation?
 \end{itemize}
 
 \section{Thesis Structure}
@@ -162,13 +168,13 @@ machine learning method recommendations?
 The thesis is structured as follows:
 
 \begin{itemize}
-    \item Chapter 1 introduces the motivation, problem description, and research questions
-    \item Chapter 2 presents background and related work
-    \item Chapter 3 presents the methodology and system overview
-    \item Chapter 4 presents the system implementation
-    \item Chapter 5 presents the results
-    \item Chapter 6 discusses the findings and limitations
-    \item Chapter 7 concludes the thesis and suggests future work
+    \item Chapter 1 introduces the motivation, problem description, and research questions.
+    \item Chapter 2 presents background and related work.
+    \item Chapter 3 presents the methodology and system overview.
+    \item Chapter 4 presents the system implementation.
+    \item Chapter 5 presents the results.
+    \item Chapter 6 discusses the findings and limitations.
+    \item Chapter 7 concludes the thesis and suggests future work.
 \end{itemize}
 
 

@@ -18,26 +18,22 @@ Such algorithms can be broadly categorized according to the type of
 supervision they receive during that experience, also called training. 
 There are three main paradigms commonly distinguished in the literature: 
 supervised learning, unsupervised learning, and reinforcement learning 
-\parencite{bishop2006pattern_recognition_machine_learning}
-\parencite[Chapter~5]{Goodfellow-et-al-2016}
-\parencite{sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
-The following sections outline each paradigm and introduce some common 
+\parencites{bishop2006pattern_recognition_machine_learning}[Chapter~5]{Goodfellow-et-al-2016}{sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
+The following sections outline each paradigm and introduce some common
 tasks.
 
 In supervised learning, the training data consists of input vectors paired 
 with corresponding target values. The two most common supervised tasks are 
 classification, where the goal is to assign an input to one of a finite number 
 of discrete categories, and regression, where the goal is to predict a continuous 
-numerical value 
-\parencite{bishop2006pattern_recognition_machine_learning}
-\parencite[Chapter~5]{Goodfellow-et-al-2016}.
+numerical value
+\parencites{bishop2006pattern_recognition_machine_learning}[Chapter~5]{Goodfellow-et-al-2016}.
 
 In unsupervised learning, no target values are provided. The algorithm must 
 instead identify structure in the data directly 
 \parencite{bishop2006pattern_recognition_machine_learning}. 
-Common tasks include clustering, dimensionality reduction, and anomaly detection 
-\parencite{sarker2021machine_learning_algorithms_real_world_applications_research_directions}
-\parencite[Chapter~5]{Goodfellow-et-al-2016}.
+Common tasks include clustering, dimensionality reduction, and anomaly detection
+\parencites{sarker2021machine_learning_algorithms_real_world_applications_research_directions}[Chapter~5]{Goodfellow-et-al-2016}.
 Clustering groups data points such that objects within the same group are more 
 similar to each other than to those in other groups 
 \parencite{sarker2021machine_learning_algorithms_real_world_applications_research_directions}. 
@@ -45,27 +41,22 @@ Dimensionality reduction simplifies data by reducing the number of features,
 which leads to better human interpretations and lower computational costs
 \parencite{sarker2021machine_learning_algorithms_real_world_applications_research_directions}. 
 Anomaly detection identifies observations that deviate significantly from the 
-expected distribution, and is used in applications such as fraud detection and 
+expected distribution, and is used in applications such as 
 fault monitoring 
 \parencite[Chapter~5]{Goodfellow-et-al-2016}.
-Semi-supervised learning occupies a middle ground, operating on both labeled 
-and unlabeled data, which is useful in contexts where labeled examples are scarce 
-\parencite{sarker2021machine_learning_algorithms_real_world_applications_research_directions}. 
 It is worth noting that the boundary between supervised and unsupervised learning 
 is not always well-defined, and many methods can be applied across both types 
 of problems \parencite[Chapter~5]{Goodfellow-et-al-2016}.
 
 Reinforcement learning differs fundamentally from the other paradigms. Rather 
 than learning from a fixed dataset, an agent interacts with an environment and 
-learns through trial and error, receiving rewards or penalties based on its actions 
-\parencite{bishop2006pattern_recognition_machine_learning}
-\parencite{sarker2021machine_learning_algorithms_real_world_applications_research_directions}. 
+learns through trial and error, receiving rewards or penalties based on its actions
+\parencite{bishop2006pattern_recognition_machine_learning, sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
 Within reinforcement learning, methods can be broadly divided according to what 
 they learn. In value-based methods, a value function is learned from which the 
 policy is derived either explicitly or implicitly, whereas in policy-based methods 
-the policy is learned directly without the need for a value function 
-\parencite{sewak2019policy_based_reinforcement_learning_approaches}
-\parencite[Chapter~11]{sutton2018reinforcement_learning}. 
+the policy is learned directly without the need for a value function
+\parencites{sewak2019policy_based_reinforcement_learning_approaches}[Chapter~11]{sutton2018reinforcement_learning}.
 A third class, actor-critic methods, combines both approaches by maintaining 
 a separate policy structure and value function simultaneously 
 \parencite[Chapter~11]{sutton2018reinforcement_learning}.
@@ -76,20 +67,21 @@ paradigms and common tasks associated with each.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Figures/02-background/ML-Paradigms.png}
-    \caption[ML paradigms]{Overview of machine learning paradigms with common tasks.}
+    \caption[Machine learning paradigms and tasks]{Overview of machine learning paradigms with common tasks.}
     \label{fig:ml_paradigms}
 \end{figure}
 
 \subsection{Machine Learning Methods}
 \label{sec:machine-learning-methods}
 
-The following sections introduce a selection of common and most established machine learning 
+The following sections introduce a selection of common and established machine learning 
 methods and place them within the paradigms and tasks described above. 
 The aim is not to provide a comprehensive description of each method or 
 to cover underlying mathematical details, but to give an overview of 
-common method types and what fundamentally distinguishes them. The section then gives a brief 
-overview of attributes that are relevant to consider when selecting 
-a method for a given problem.
+common method types and what fundamentally distinguishes them. 
+% The section then gives a brief 
+% overview of attributes that are relevant to consider when selecting 
+% a method for a given problem.
 
 \subsubsection*{Supervised methods}
 
@@ -98,9 +90,8 @@ according to feature values. A decision tree splits data into regions
 by asking a sequence of questions about the input features, assigning 
 each region a predicted output. They can be used for both 
 classification and regression tasks and require little data 
-preparation, such as feature scaling 
-\parencite[Chapter~6]{geron2019hands_on_machine_learning,
-sarker2021machine_learning_algorithms_real_world_applications_research_directions}. 
+preparation.
+\parencites[Chapter~6]{geron2019hands_on_machine_learning}{sarker2021machine_learning_algorithms_real_world_applications_research_directions}. 
 Their decisions are intuitive and easy to interpret, as the 
 classification rules they produce can even be applied manually 
 \parencite[Chapter~6]{geron2019hands_on_machine_learning}.
@@ -122,7 +113,7 @@ are among the most widely used methods for regression tasks
 \parencite{sarker2021machine_learning_algorithms_real_world_applications_research_directions}. 
 Regularised variants constrain the model weights to improve 
 generalisation. Ridge regression keeps weights small but never 
-eliminates them entirely, while LASSO regression tends to set some 
+eliminates them entirely, while Lasso regression tends to set some 
 weights exactly to zero, which effectively performs feature 
 selection and produces a sparse model 
 \parencite{tibshirani1996regression_lasso_ridge, 
@@ -131,8 +122,7 @@ Logistic regression estimates the probability of class membership
 using a linear combination of input features, and is commonly used 
 for classification tasks, particularly when a simple and 
 interpretable model is preferred 
-\parencite[Chapter~4]{geron2019hands_on_machine_learning,
-sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
+\parencites[Chapter~4]{geron2019hands_on_machine_learning}{sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
 
 Support vector machines find a decision boundary that maximises 
 the margin between classes 
@@ -140,8 +130,7 @@ the margin between classes
 By applying kernel functions, SVMs can model non-linear decision 
 boundaries and are effective in high-dimensional spaces. They can 
 be used for both classification and regression tasks 
-\parencite[Chapter~5]{geron2019hands_on_machine_learning,
-sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
+\parencites[Chapter~5]{geron2019hands_on_machine_learning}{sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
 
 K-nearest neighbours classifies a new data point based on the 
 majority class among its closest neighbours in the training data, 
@@ -176,8 +165,7 @@ principal components
 geron2019hands_on_machine_learning}. 
 This reduces computational cost and can aid visualisation while 
 preserving as much of the original variance as possible 
-\parencite[Chapter~8]{geron2019hands_on_machine_learning,
-sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
+\parencites[Chapter~8]{geron2019hands_on_machine_learning}{sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
 
 Anomaly detection methods identify observations that deviate 
 significantly from the expected distribution. Isolation Forest 
@@ -192,27 +180,36 @@ boundary as anomalies
 
 \subsubsection*{Reinforcement learning methods}
 
-Within reinforcement learning, methods differ primarily in what 
-they learn. Value-based methods such as Q-learning estimate the 
-expected return for each action in a given state and derive a 
-policy from these estimates 
-\parencite{watkins1992q_learning}. 
-Policy-based methods such as policy gradient algorithms optimise 
-the policy directly, which makes them better suited for problems 
-with continuous or high-dimensional action spaces 
+Within reinforcement learning, methods differ in what they learn. 
+Value-based methods such as Q-learning estimate the expected return 
+for each action in a given state, and the policy is derived by 
+selecting the action with the highest value 
+\parencites{watkins1992q_learning}{zhang2020taxonomy_reinforcement_learning_algorithms}. 
+This approach is oriented towards deterministic policies, and small 
+changes in the estimated values can cause sudden changes in the 
+selected action 
 \parencite{sutton1999policy_gradient_methods_reinforcement_learning}. 
-Actor-critic methods combine both approaches by maintaining 
-a separate policy and value function simultaneously 
+Policy-based methods such as policy gradient algorithms instead 
+represent the policy directly and update it along the gradient of 
+the expected reward 
+\parencite{sutton1999policy_gradient_methods_reinforcement_learning}. 
+This allows them to represent stochastic policies and makes them 
+better suited for continuous or high-dimensional action spaces 
+\parencite{zhang2020taxonomy_reinforcement_learning_algorithms}. 
+Actor-critic methods combine the two by learning a value function 
+and a policy at the same time, using the value function to guide the 
+policy updates. The basic form is the actor-critic (AC) algorithm, 
+with later variants such as soft actor-critic (SAC) 
 \parencite{zhang2020taxonomy_reinforcement_learning_algorithms}.
 
 Figure~\ref{fig:ml_paradigms_methods} (on the following page)
 extends the paradigm and task overview in
 Figure~\ref{fig:ml_paradigms} with a further level, organising
 common machine learning methods by paradigm and task. It includes
-the methods described in the sections above, as well as additional
+the methods described in this section, as well as additional
 commonly used methods not covered in detail here.
-The overview is based on a combination of taxonomies and categorisations described in the literature, 
-and specifically draws on the works of
+The overview combines taxonomies and categorisations from the 
+literature, drawing in particular on 
 \textcite{sarker2021machine_learning_algorithms_real_world_applications_research_directions}, 
 \textcite{geron2019hands_on_machine_learning}, and 
 \textcite{zhang2020taxonomy_reinforcement_learning_algorithms}.
@@ -362,16 +359,16 @@ for traditional RL methods
 \parencite{shrestha2019review_deep_learning_algorithms_architectures, 
 zhang2020taxonomy_reinforcement_learning_algorithms}.
 
-\subsection{Attributes Relevant for Method Selection (MISSING)}
-\label{sec:attributes-relevant-for-method-selection}
+% \subsection{Attributes Relevant for Method Selection (MISSING)}
+% \label{sec:attributes-relevant-for-method-selection}
 
-Attributes relevant for method selection include:
-\begin{itemize}
-    \item Data type: tabular, time series, image, text
-    \item Data availability: large vs. limited data requirements
-    \item Interpretability: interpretable vs. black-box methods
-    \item Performance preferences: accuracy, training time, computational cost, prediction speed
-\end{itemize}
+% Attributes relevant for method selection include:
+% \begin{itemize}
+%     \item Data type: tabular, time series, image, text
+%     \item Data availability: large vs. limited data requirements
+%     \item Interpretability: interpretable vs. black-box methods
+%     \item Performance preferences: accuracy, training time, computational cost, prediction speed
+% \end{itemize}
 
 
 \subsection{Approaches to Method Selection}
@@ -408,10 +405,11 @@ and robustness to outliers, in addition to learning type and response type.
 Domain-specific frameworks have also been proposed, such as that of 
 \textcite{arena2024conceptual_framework_ml_algorithm_selection_predictive_maintenance}, 
 who develop a structured set of decision variables for algorithm selection 
-in predictive maintenance. However, as the authors note, most existing 
-approaches focus narrowly on accuracy and computational requirements, 
-and none provides a tool that connects algorithmic choices to the broader 
-context of the application domain.
+in predictive maintenance. The authors note that the algorithm is often chosen by comparing 
+candidates only on predictive and computational performance, which 
+can lead to results that are poor or too generic for the problem at 
+hand, and that no tool relates algorithmic choices to the 
+application domain.
 
 A related class of approaches is automated machine learning (AutoML), 
 which seeks to automatically select, compose, and parametrise machine 

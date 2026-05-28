@@ -33,16 +33,18 @@ production planning, scheduling, and supply chain management
 Across reported applications in manufacturing and production, supervised learning 
 is the dominant paradigm, accounting for the large majority of studies in most 
 application areas \parencite{wuest2016ml_manufacturing, adekoya2022applications_ai_em}. 
-This reflects the nature of many industrial problems, where labeled data are available 
+This reflects the nature of many industrial problems, where labelled data are available 
 through quality inspections, sensor logs, and operator feedback, and where the goal 
 is typically to predict a known outcome such as product quality or equipment failure 
 \parencite{wuest2016ml_manufacturing, presciuttini2024ml_iot_manufacturing_operations}. 
 Unsupervised learning plays a smaller but important role, particularly in anomaly 
-detection and condition monitoring, where labeled examples of faults are scarce or 
+detection and condition monitoring, where labelled examples of faults are scarce or 
 costly to obtain \parencite{presciuttini2024ml_iot_manufacturing_operations}. 
-Reinforcement learning is less commonly reported in industrial settings, though it 
-has shown strong results in process control and scheduling problems, where decisions 
-must be made sequentially over time \parencite{panzer2022deep_reinforcement_learning_production_systems}. 
+Reinforcement learning is less commonly reported in industrial 
+settings \parencite{wuest2016ml_manufacturing}, though it has shown 
+strong results in process control and scheduling problems, where 
+decisions must be made sequentially over time 
+\parencite{panzer2022deep_reinforcement_learning_production_systems}.
 In practice, the choice of learning paradigm is often shaped by what data is available 
 rather than by the structure of the problem itself 
 \parencite{wuest2016ml_manufacturing}.
@@ -50,17 +52,20 @@ rather than by the structure of the problem itself
 \subsection{Pre-Master Findings}
 \label{sec:pre-master-findings}
 
-In a preceding specialisation project \parencite{bergsto2026mlselection}, a large-scale analysis of machine learning 
+In a preceding specialisation project \parencite{bergsto2026mlselection}, referred to as the pre-master 
+project, a large-scale analysis of machine learning 
 research in product development and production was conducted, classifying over 33,000 
 article abstracts across product lifecycle phase, application area, learning paradigm, 
 and reported ML methods. 
-The results show that the literature is strongly concentrated in the optimisation
+The results showed that the literature is strongly concentrated in the optimisation
 phase of the product lifecycle, while early phases such as planning and concept 
 development contain comparatively few studies. 
-Supervised learning dominates across all phases and application areas, accounting 
-for approximately 73--80\% of the articles in each lifecycle phase, 
-with neural networks, random forests, and support vector machines as the most 
-frequently reported methods. 
-Based on these findings, a roadmap was proposed that structures the literature 
-across lifecycle phase, application area, and learning paradigm to support 
-early-stage method selection.
+The analysis confirmed the paradigm distribution described in 
+Section~\ref{sec:learning-paradigms-in-industrial-applications}: 
+supervised learning dominated across all phases and application areas, 
+accounting for approximately 73--80\% of the articles in each lifecycle 
+phase, with neural networks, random forests, and support vector machines 
+as the most frequently reported methods. Unsupervised learning appeared 
+mainly in anomaly detection and predictive maintenance, while 
+reinforcement learning was the least frequent paradigm and was largely 
+limited to control and scheduling problems.
