@@ -15,7 +15,7 @@ at some task through experience
 Such algorithms can be broadly categorized according to the type of 
 supervision they receive during that experience, also called training. 
 There are three main paradigms commonly distinguished in the literature: 
-supervised learning, unsupervised learning, and reinforcement learning 
+supervised learning, unsupervised learning, and reinforcement learning (RL)
 \parencites{bishop2006pattern_recognition_machine_learning}[Chapter~5]{Goodfellow-et-al-2016}{sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
 The following sections outline each paradigm and introduce some common
 tasks.
@@ -122,7 +122,7 @@ for classification tasks, particularly when a simple and
 interpretable model is preferred 
 \parencites[Chapter~4]{geron2019hands_on_machine_learning}{sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
 
-Support vector machines find a decision boundary that maximises 
+Support vector machines (SVMs) find a decision boundary that maximises
 the margin between classes 
 \parencite{cortes1995support_vector_networks}. 
 By applying kernel functions, SVMs can model non-linear decision 
@@ -148,7 +148,7 @@ updating the centroids iteratively until convergence
 The number of clusters must be specified in advance, and the 
 algorithm is sensitive to the initial centroid placement 
 \parencite[Chapter~9]{geron2019hands_on_machine_learning}. 
-DBSCAN takes a different approach by defining clusters as dense 
+Density-Based Spatial Clustering of Applications with Noise (DBSCAN) takes a different approach by defining clusters as dense
 regions in the data space, which allows it to find clusters of 
 arbitrary shape and identify outliers as noise without requiring 
 the number of clusters to be specified in advance 
@@ -254,7 +254,7 @@ A practical limitation is that deep learning models generally require
 large amounts of training data to perform well 
 \parencite{alzubaidi2021review_deep_learning_concepts}.
 
-\subsubsection*{Feedforward networks and MLP}
+\subsubsection*{Feedforward networks and multilayer perceptrons}
 
 The simplest deep learning architecture is the multilayer perceptron (MLP), 
 also known as the feedforward neural network. In an MLP, information flows 
@@ -285,7 +285,7 @@ CNNs have achieved strong results in image recognition and computer vision,
 and are also applied to other data types such as audio and text 
 \parencite{lecun2015deep_learning, pouyanfar2018survey_deep_learning_algorithms}.
 
-\subsubsection*{Recurrent neural networks and LSTM}
+\subsubsection*{Recurrent neural networks and long short-term memory}
 
 Recurrent neural networks (RNNs) differ from feedforward networks in that 
 the processing units form a cycle, allowing the network to maintain a state 

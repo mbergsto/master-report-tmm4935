@@ -1,149 +1,7 @@
-% \section{Related Work and Existing Tools}
-% \label{sec:related-work-and-existing-tools}
-
-% Few existing tools directly address the combination of 
-% method selection, knowledge representation, and 
-% implementation support that this thesis investigates. 
-% Most related tools either focus on automating a specific 
-% part of the ML workflow or provide broad access to AI 
-% resources without guiding users through choosing a 
-% suitable method for their problem. The following sections 
-% review the most relevant examples found.
-
-% \subsection{Ontology-Based Meta AutoML}
-% \label{sec:ontology-based-meta-automl}
-
-% OMA-ML \parencite{zender2022ontology_based_meta_automl} 
-% is a system that combines multiple AutoML solutions 
-% through the ML Ontology, described in Section~\ref{sec:ml-ontology-structure-and-content}.
-% The ML Ontology is used to filter configuration 
-% options and select appropriate AutoML strategies, 
-% making the process more transparent than standard 
-% AutoML systems. It also supports a wider range of 
-% methods by integrating solutions across multiple 
-% ML libraries rather than being tied to a single one.
-% Like other AutoML tools, OMA-ML requires the user 
-% to provide a labelled dataset and define the ML task 
-% upfront. 
-
-% \subsection{Template-Based Code Generation}
-% \label{sec:template-based-code-generation}
-
-% Traingenerator \parencite{rieke2021traingenerator} 
-% is a web-based tool that generates template Python 
-% code and Jupyter notebooks for ML tasks. Users select 
-% a task and framework from a menu and receive a working 
-% code template covering common steps such as data 
-% loading, model setup, training, and evaluation. 
-% The generated code can be downloaded as a Python 
-% script or notebook, and optionally opened directly 
-% in Google Colab.
-
-% The tool assumes the user has already decided on a 
-% method and framework before use. As of May 2026,
-% the hosted version of Traingenerator 
-% produces a runtime error and does not render output 
-% correctly. The tool appeared to function as intended 
-% during the development period of this thesis. 
-% The tool can still be inspected through the GitHub 
-% repository.\footnote{\url{https://github.com/jrieke/traingenerator}}
-
-% \subsection{AI-on-Demand Platform}
-% \label{sec:ai-on-demand-platform}
-% The European AI-on-Demand Platform (AIoDP) and its 
-% DeployAI implementation offer a broad marketplace of 
-% pre-trained models, reusable AI modules, and 
-% domain-specific applications supported by cloud 
-% and HPC infrastructure 
-% \parencite{troumpoukis2025deployai_ai_on_demand_platform}. 
-% The platform targets SMEs, researchers, and public 
-% sector organisations and provides tools for building, 
-% training, and deploying AI solutions at scale. 
-% Users can browse and filter available solutions 
-% to narrow down options relevant to their domain 
-% or use case. The primary focus is on access and 
-% deployment of existing solutions rather than on 
-% guiding users through method selection for a 
-% new problem.
-
-% \subsection{Approaches to Method Selection}
-% \label{sec:approaches-to-method-selection}
-
-% Selecting an appropriate machine learning method is not straightforward. 
-% As discussed in Section~\ref{sec:motivation}, the large number of
-% available algorithms, each with distinct strengths and limitations, creates 
-% a real challenge for practitioners. This challenge is formally described by 
-% the Algorithm Selection Problem \parencite{smith_miles2009algorithm_selection}, 
-% which asks which algorithm is likely to perform best for a given problem. 
-% The No Free Lunch theorems provide a theoretical basis for this difficulty, 
-% showing that no single algorithm performs best across all problems and that 
-% good selection requires understanding the characteristics of the problem at 
-% hand \parencite{wolpert1997no_free_lunch}.
-
-% Several practical tools have been developed to help with method selection. 
-% Scikit-learn provides a publicly available decision flowchart that guides 
-% users through questions about data size and task type to suggest candidate 
-% algorithms \parencite{sklearn_algorithm_cheatsheet}, and Microsoft Azure 
-% offers a similar cheat sheet for its machine learning platform 
-% \parencite{azure_algorithm_cheatsheet}. While these tools are accessible 
-% and widely used, they have clear limitations. 
-% The selection criteria used in both tools are mainly accuracy and prediction 
-% speed, something that can in practice lead to poor results \parencite{sala2018selecting_ml_algorithm}. 
-% Factors such as interpretability, data characteristics, and domain context 
-% are not considered, nor do they offer any guidance on how the problem 
-% itself should be formulated \parencite{chen2023ml_manufacturing_industry4}.
-
-% More structured frameworks have been proposed in the academic literature. 
-% \textcite{sala2018selecting_ml_algorithm} present a two-layer selection 
-% framework that incorporates algorithm characteristics such as scalability 
-% and robustness to outliers, in addition to learning type and response type. 
-% Domain-specific frameworks have also been proposed, such as that of 
-% \textcite{arena2024conceptual_framework_ml_algorithm_selection_predictive_maintenance}, 
-% who develop a structured set of decision variables for algorithm selection 
-% in predictive maintenance. The authors note that the algorithm is often chosen by comparing 
-% candidates only on predictive and computational performance, which 
-% can lead to results that are poor or too generic for the problem at 
-% hand, and that no tool relates algorithmic choices to the 
-% application domain.
-
-% A related class of approaches is automated machine learning (AutoML), 
-% which seeks to automatically select, compose, and parametrise machine 
-% learning models to achieve optimal performance on a given task or dataset 
-% \parencite{waring2020automated_machine_learning_review_state_of_the_art_opportunities_healthcare}. 
-% AutoML systems automate parts of the machine learning pipeline, including 
-% data preparation, feature engineering, hyperparameter optimisation, and 
-% model generation, with the goal of reducing the demand for expert knowledge 
-% and making machine learning more accessible to domain experts 
-% \parencite{he2021automl_survey_state_of_the_art}. 
-% Within AutoML, the algorithm selection problem is typically treated as an
-% optimisation task, where dataset characteristics are used to predict which 
-% algorithm is likely to perform best 
-% \parencite{barbudo2023eight_years_automl_categorisation_review_trends}.
-
-% However, AutoML approaches have notable limitations in the context of 
-% decision support for non-experts. Most systems treat the selection and 
-% configuration process as a black box, providing little explanation of why 
-% a particular configuration was chosen 
-% \parencite{barbudo2023eight_years_automl_categorisation_review_trends}. 
-% This lack of transparency is a significant barrier to adoption, as users 
-% who do not understand or trust the output of a system are unlikely to apply 
-% it in practice 
-% \parencite{waring2020automated_machine_learning_review_state_of_the_art_opportunities_healthcare}. 
-% Furthermore, AutoML primarily addresses the later stages of the machine 
-% learning pipeline, and the phases considered inherently human, such as 
-% problem formulation and interpretation of results, have received little 
-% attention \parencite{barbudo2023eight_years_automl_categorisation_review_trends}. 
-% This means that AutoML does not address the earlier challenge of helping 
-% practitioners understand which type of problem they have and which general 
-% approach is appropriate. This gap motivates the 
-% work in this thesis.
-
 \section{Related Work and Existing Tools}
 \label{sec:related-work-and-existing-tools}
 
-Few existing tools or approaches address the combination of 
-method selection, knowledge representation, and implementation 
-support that this thesis investigates. The work reviewed here 
+The work reviewed in this section 
 falls into three groups. The first is 
 approaches to method selection: frameworks and knowledge 
 representations that help a user identify a suitable method for 
@@ -215,8 +73,7 @@ the remaining methods are then ranked against qualitative
 criteria using the PROMETHEE outranking method, weighted by 
 the user's stated preferences.
 
-A related class of approaches is automated machine learning
-(AutoML), which automatically selects, composes, and
+A related class of approaches is AutoML, which automatically selects, composes, and
 parametrises models for a given task or dataset
 \parencite{waring2020automated_machine_learning_review_state_of_the_art_opportunities_healthcare}.
 AutoML automates parts of the pipeline, including data
@@ -260,7 +117,7 @@ required is high.
 A related ontology with a different purpose is the 
 Intelligence Task Ontology and Knowledge Graph (ITO) 
 \parencite{blagec2022_benchmark_knowledge_graph}, a large 
-knowledge graph of AI tasks, benchmark results, and 
+knowledge graph of Artificial Intelligence (AI) tasks, benchmark results, and 
 performance metrics. It is built on RDF and OWL and queried 
 with SPARQL, and is structured around a hierarchy of around 
 1,100 task classes such as natural language processing or 
@@ -310,7 +167,7 @@ representations, merged using Reciprocal Rank Fusion and then
 reranked using metadata such as citation count. The system is 
 intended to help researchers explore an unfamiliar field.
 
-\textcite{park2025chain_of_retrieval} address the task of 
+\textcite{park2026chain_of_retrieval} address the task of 
 finding related research papers given a query paper, evaluated 
 on a benchmark of articles from the major machine learning and 
 NLP venues. They decompose the query paper into aspect-specific 
@@ -334,11 +191,10 @@ embeddings of titles and abstracts capture the dataset of a
 paper well but its method poorly, because methodological 
 detail is mentioned only marginally in titles and abstracts.
 
-
 \subsection{Tools and Platforms}
 \label{sec:tools-and-platforms}
 
-OMA-ML \parencite{zender2022ontology_based_meta_automl} combines
+Ontology-Based Meta AutoML (OMA-ML) \parencite{zender2022ontology_based_meta_automl} combines
 multiple AutoML solutions through the ML Ontology, described in
 Section~\ref{sec:ml-ontology-structure-and-content}. The ontology
 is used to filter configuration options and select AutoML
@@ -368,30 +224,24 @@ implementation offer a marketplace of pre-trained models,
 reusable AI modules, and domain-specific applications, 
 supported by cloud and high-performance computing infrastructure 
 \parencite{troumpoukis2025deployai_ai_on_demand_platform}. 
-The platform targets SMEs, researchers, and public sector 
+The platform targets Small and Medium-sized Enterprises (SMEs), researchers, and public sector 
 organisations, and provides tools for building, training, and 
 deploying AI solutions at scale. Available solutions can be 
 browsed and filtered by domain or use case.
 
-\subsection{Summary of Gaps}
-\label{sec:summary-of-gaps}
+\subsection{Reseach Gap}
+\label{sec:research-gap}
 
-Across the work reviewed here, several gaps remain. Decision 
-flowcharts and AutoML systems support method selection but 
-rely mainly on performance criteria, treat the process as a 
-black box, or assume that the task and a labelled dataset are 
-already defined, and so give little help with the earlier step 
-of understanding the problem and choosing a general approach. 
-The structured frameworks and knowledge representations 
-address this step more directly, by characterising methods and 
-matching them to a described problem, but they depend on 
-method knowledge that is populated manually, are demonstrated 
-on a small number of methods or a single use case, and require 
-the user to formalise the problem in a fixed structure. 
-Semantic retrieval from scientific literature offers a way to 
-match a free-text problem description against a large body of 
-methods without manual formalisation, but existing systems 
-apply it to exploratory search or to retrieving tables or 
-related papers, rather than to method selection. This thesis 
-addresses these gaps together, and the approach is described 
-in the following chapter.
+Across the work reviewed here, structured frameworks and 
+knowledge representations for method selection depend on 
+method knowledge populated manually and require the user to 
+formalise the problem in a fixed structure. Semantic retrieval from 
+scientific literature can match a free-text problem 
+description against a large body of methods without such 
+formalisation, but existing systems apply it to other tasks 
+than method selection. None of the reviewed approaches 
+combine an ontology of methods with semantic retrieval from 
+scientific literature to support method selection, and none 
+extend the selection into support for implementing the chosen 
+method. This thesis addresses these gaps together, and the 
+approach is described in the following chapter

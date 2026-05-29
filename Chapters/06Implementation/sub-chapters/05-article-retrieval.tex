@@ -40,7 +40,7 @@ articles can be added to the MLguide databases over time.
  
 Articles are collected from Scopus through a set of queries, each
 targeting machine learning applications in a specific domain or
-application area. Each query is defined in a YAML configuration
+application area. Each query is defined in a YAML Ain't Markup Language (YAML) configuration
 file with an identifier and a Scopus search string. The full set
 of queries is listed in Appendix~\ref{app:queries}, and the search
 strategy behind them is described in detail in the pre-master project
@@ -48,7 +48,7 @@ strategy behind them is described in detail in the pre-master project
 query is sent to the Scopus API \parencite{scopus_api} through the
 Python package pybliometrics \parencite{pybliometrics_rose_kitchin_2019}, which
 provides a stable interface for retrieving data from Scopus. For
-each article, the DOI, Scopus EID, title, and abstract are stored,
+each article, the DOI, Scopus Electronic Identifier (EID), title, and abstract are stored,
 together with the identifier of the query that retrieved it. The
 DOI and EID are used to identify articles and to skip articles
 that are already present in the database, to avoid duplicates.
@@ -57,7 +57,7 @@ that are already present in the database, to avoid duplicates.
 \label{sec:adaptations-for-mlguide}
 
 The pre-master project classified each article along four
-dimensions: ML area, product lifecycle (PLC) phase,
+dimensions: ML area, product lifecycle phase,
 application area, and the ML methods mentioned in the abstract,
 as described in Section~\ref{sec:pre-master-findings}.
 In MLguide, 

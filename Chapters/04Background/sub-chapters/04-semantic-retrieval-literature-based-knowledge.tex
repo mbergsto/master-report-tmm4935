@@ -66,7 +66,7 @@ approaches that assigned a fixed vector to each word regardless
 of context, transformer models produce representations that 
 reflect the meaning of a word given its surrounding text.
 
-However, standard transformer models such as BERT are not 
+However, standard transformer models such as Bidirectional Encoder Representations from Transformers (BERT) are not
 directly suited for computing sentence-level similarity. As 
 noted by \textcite{reimers2019sentence_bert_sentence_embeddings_using_siamese_bert_networks}, 
 comparing two sentences with BERT requires feeding both into 
@@ -112,8 +112,8 @@ Information retrieval (IR) is the task of identifying and ranking
 documents from a collection according to their relevance to a 
 user query \parencite[Chapter~11.1]{jurafsky_martin2026speech_language_processing}. 
 Traditional approaches represent both documents and queries as 
-sparse vectors of word counts, weighted by schemes such as tf-idf 
-or BM25, and compute similarity based on shared terms 
+sparse vectors of word counts, weighted by schemes such as term frequency-inverse document frequency (tf-idf)
+or Best Match 25 (BM25), and compute similarity based on shared terms
 \parencite[Chapter~11.1]{jurafsky_martin2026speech_language_processing}. While 
 effective for many tasks, this approach treats documents as bags 
 of words, meaning that word order and meaning are ignored, and 
