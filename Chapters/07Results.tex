@@ -223,5 +223,124 @@ NSGA-III were used by one group each without being recommended.
 \end{figure}
 
 \section{Example-Based Evaluation}
-\label{sec:results-example-based-evaluation}
+\label{sec:results-example-based-evaluation} 
 
+Three example problems were submitted to MLguide to examine 
+the recommendations produced under controlled inputs. The 
+examples cover different ML areas and tasks: a supervised 
+classification problem, an unsupervised anomaly detection 
+problem, and a reinforcement learning problem. 
+
+\subsection{Example 1: Supervised Classification}
+\label{sec:example-1}
+
+The first example concerns fault classification of a pump 
+based on sensor readings. The problem description was 
+submitted with ML area set to supervised learning, task set to 
+classification, dataset type set to tabular, and performance 
+preferences set to fast training and explainable.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-1-problem.pdf}
+    \caption[Example 1 problem]{Example 1 problem description}
+    \label{fig:results-example-1-problem}
+\end{figure}
+
+The recommendations are shown in 
+Figure~\ref{fig:recommendations-example-1-rec}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-1-rec.pdf}
+    \caption[Example 1 recommendations]{Example 1 recommendations}
+    \label{fig:recommendations-example-1-rec}
+\end{figure}
+
+The top recommendation, Random Forest, is supported by 3615 
+articles in the database. The articles displayed for this 
+method are shown in 
+Figure~\ref{fig:articles-example-1-rec}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-1-articles-rf.pdf}
+    \caption[Example 1 articles]{Example 1 articles for Random Forest}
+    \label{fig:articles-example-1-rec}
+\end{figure}
+
+\subsection{Example 2: Reinforcement Learning}
+\label{sec:example-2}
+
+The second example concerns sequencing decisions in a 
+manufacturing context. The problem description was submitted 
+with ML area set to reinforcement learning, and no further 
+filters.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-2-problem.pdf}
+    \caption[Example 2 problem]{Example 2 problem description}
+    \label{fig:results-example-2-problem}
+\end{figure}
+
+The recommendations are shown in 
+Figure~\ref{fig:recommendations-example-2-rec}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-2-rec.pdf}
+    \caption[Example 2 recommendations]{Example 2 recommendations}
+    \label{fig:recommendations-example-2-rec}
+\end{figure}
+
+The details page for one of the top recommendations, Q-Learning, is shown 
+in Figure~\ref{fig:articles-example-2-rec}. The page contains 
+the supporting articles retrieved, 
+together with a note indicating that no starter notebook is 
+available for Q-Learning.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-2-details-svm.pdf}
+    \caption[Example 2 details page]{Example 2 details page cropped}
+    \label{fig:articles-example-2-rec}
+\end{figure}
+
+\subsection{Example 3: Unsupervised Anomaly Detection}
+\label{sec:example-3}
+
+The third example concerns anomaly detection in manufacturing 
+log data. The problem description was submitted with task set 
+to anomaly detection and no ML area filter.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-3-problem.pdf}
+    \caption[Example 3 problem]{Example 3 problem description}
+    \label{fig:results-example-3-problem}
+\end{figure}
+
+
+The recommendations are shown in 
+Figure~\ref{fig:recommendations-example-3-rec}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-3-rec.pdf}
+    \caption[Example 3 recommendations]{Example 3 recommendations}
+    \label{fig:recommendations-example-3-rec}
+\end{figure}
+
+
+The articles retrieved for Support Vector Machine are shown in 
+Figure~\ref{fig:articles-example-3-rec}. 
+
+Skriv om at den referer trolig til OneClass SVM
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-3-articles-svm.pdf}
+    \caption[Example 3 articles]{Example 3 articles SVM}
+    \label{fig:articles-example-3-rec}
+\end{figure}
