@@ -114,8 +114,9 @@ iterative testing to remove overly generic terms
 The complete lists are given in
 Appendix~\ref{app:ml-area-keywords}. 
 An article can be assigned more than one area if terms
-from several lists are found. Articles with no matches are labelled
-as unknown. The pre-master project extended this keyword step with
+from several lists are found. 
+Articles with no matches are not linked to any ML area. 
+The pre-master project extended this keyword step with
 a model-based prediction step, but found that the weakly supervised
 training labels were noisy and that the reliability of the
 resulting model was difficult to assess
@@ -146,7 +147,8 @@ Section~\ref{sec:article-similarity-scoring}.
 
 For GraphDB, the extracted methods and areas are converted to
 RDF triples in Turtle format and uploaded to the knowledge graph.
-Each article is linked to the ML methods it mentions and to the ML area it belongs to. 
+Each article is linked to the ML methods it mentions, and, where an
+area was identified, to the ML area it belongs to.
 These links allow the recommendation process to
 move from articles to methods when retrieving candidates, as
 described in Section~\ref{sec:recommendation-process}.
@@ -185,13 +187,16 @@ instead stored in the \texttt{skipped\_articles} table, so it can
 be recognised and skipped in future runs.
 \end{itemize}
 
+\section{Resulting Database}
+
 Table~\ref{tab:article-counts} summarises how the number of
 articles changes through the pipeline. These numbers come from the
 first run of the pipeline, which collected the articles for the
-MLguide databases. Articles without an extracted method or without
-an ML area are not added, since both are needed in the
-recommendation process. This left 15\,205 articles after the first
-run. A later update run on 25 March 2026 added 2\,715 new articles,
+MLguide databases. Articles without an extracted method are not
+added, since a method is needed in the recommendation process.
+Articles without an ML area are kept, but receive no ML area link
+in the knowledge graph. This left 15\,651 articles after the first
+run. A later update run on 25 March 2026 added 2\,269 new articles,
 giving a total of 17\,920 articles in the database.
 
 \begin{table}[H]
@@ -206,11 +211,33 @@ process.}
 \midrule
 Collected from Scopus & 52\,290 \\
 After deduplication and removal of articles without an abstract & 33\,130 \\
-After removal of articles without an extracted method & 17\,479 \\
-After removal of articles without an ML area & 15\,205 \\
-Added in the update run of 25 March 2026 & +2\,715 \\
+After removal of articles without an extracted method & 15\,651 \\
+Added in the update run of 25 March 2026 & +2\,269 \\
 \midrule
 \textbf{Total articles in the database} & \textbf{17\,920} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Table~\ref{tab:ml-area-distribution} shows how the ML area labels
+are distributed across the database. An article can be assigned
+more than one ML area, so the labelled counts overlap and sum to
+more than the number of labelled articles. Articles where no area
+keyword was matched have no ML area link in the knowledge graph.
+
+\begin{table}[H]
+\centering
+\caption[ML area distribution]{Distribution of ML area labels
+across the articles in the database.}
+\label{tab:ml-area-distribution}
+\begin{tabularx}{0.8\textwidth}{Xr}
+\toprule
+\textbf{ML area} & \textbf{Articles} \\
+\midrule
+Supervised learning & 14\,185 \\
+Reinforcement learning & 1\,544 \\
+Unsupervised learning & 1\,505 \\
+No ML area & 1\,017 \\
 \bottomrule
 \end{tabularx}
 \end{table}

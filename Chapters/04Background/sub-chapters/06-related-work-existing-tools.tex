@@ -144,303 +144,254 @@
 Few existing tools or approaches address the combination of 
 method selection, knowledge representation, and implementation 
 support that this thesis investigates. The work reviewed here 
-falls into two broad groups. The first concerns method 
-selection: tools, frameworks, and knowledge representations 
-that help a user identify a suitable machine learning method 
-for a problem. The second concerns semantic retrieval from 
-scientific literature, which is central to how method selection 
-is approached in this thesis. The two groups are reviewed in 
+falls into three groups. The first is 
+approaches to method selection: frameworks and knowledge 
+representations that help a user identify a suitable method for 
+a problem. The second is semantic retrieval from scientific 
+literature, which is central to how method selection is 
+approached in this thesis. The third is existing tools and 
+platforms that provide access to machine learning methods or 
+automate parts of the workflow. The three groups are reviewed in 
 turn, followed by a summary of the gaps that motivate the work.
-
-\subsection{Tools and Platforms}
-\label{sec:tools-and-platforms}
-
-Several tools provide access to machine learning methods or 
-automate parts of the workflow without guiding the user through 
-the choice of a method.
-
-OMA-ML \parencite{zender2022ontology_based_meta_automl} combines 
-multiple AutoML solutions through the ML Ontology, described in 
-Section~\ref{sec:ml-ontology-structure-and-content}. The 
-ontology is used to filter configuration options and select 
-appropriate AutoML strategies, which makes the process more 
-transparent than standard AutoML systems, and it supports a 
-wider range of methods by integrating solutions across multiple 
-machine learning libraries rather than being tied to a single 
-one. Like other AutoML tools, OMA-ML requires the user to 
-provide a labelled dataset and to define the machine learning 
-task in advance.
-
-Traingenerator \parencite{rieke2021traingenerator} is a 
-web-based tool that generates template Python code and Jupyter 
-notebooks for machine learning tasks. A task and framework are 
-selected from a menu, and a working code template is produced 
-that covers common steps such as data loading, model setup, 
-training, and evaluation. The generated code can be downloaded 
-as a script or notebook, or opened directly in Google Colab. 
-The tool assumes that the method and framework have already 
-been chosen before use. As of May 2026, the hosted version 
-produces a runtime error and does not render output correctly, 
-although it appeared to function as intended during the 
-development period of this thesis, and it can still be inspected 
-through the GitHub 
-repository.\footnote{\url{https://github.com/jrieke/traingenerator}}
-
-The European AI-on-Demand Platform (AIoDP) and its DeployAI 
-implementation offer a broad marketplace of pre-trained models, 
-reusable AI modules, and domain-specific applications supported 
-by cloud and HPC infrastructure 
-\parencite{troumpoukis2025deployai_ai_on_demand_platform}. The 
-platform targets SMEs, researchers, and public sector 
-organisations, and provides tools for building, training, and 
-deploying AI solutions at scale. Available solutions can be 
-browsed and filtered to narrow down options relevant to a 
-domain or use case. The focus is on access to and deployment of 
-existing solutions rather than on guiding the user through 
-method selection for a new problem.
 
 \subsection{Approaches to Method Selection}
 \label{sec:approaches-to-method-selection}
 
-Selecting an appropriate machine learning method is not 
-straightforward. As discussed in Section~\ref{sec:motivation}, 
-the large number of available methods, each with distinct 
-strengths and limitations, creates a real challenge for 
-practitioners. This challenge is formally described by the 
-Algorithm Selection Problem 
-\parencite{smith_miles2009algorithm_selection}, which asks which 
-algorithm is likely to perform best for a given problem. The No 
-Free Lunch theorems provide a theoretical basis for the 
-difficulty, showing that no single algorithm performs best 
-across all problems and that good selection requires 
-understanding the characteristics of the problem at hand 
-\parencite{wolpert1997no_free_lunch}.
-
-The most accessible tools for method selection are decision 
-flowcharts. Scikit-learn provides a publicly available 
+Several simple and accessible decision flowcharts for method selection have
+been developed. Scikit-learn provides a publicly available 
 flowchart that guides users through questions about data size 
-and task type to suggest candidate algorithms 
+and task type to suggest candidate methods 
 \parencite{sklearn_algorithm_cheatsheet}, and Microsoft Azure 
 offers a similar cheat sheet for its machine learning platform 
-\parencite{azure_algorithm_cheatsheet}. While widely used, both 
-rely mainly on accuracy and prediction speed as selection 
-criteria, which can in practice lead to poor results 
-\parencite{sala2018selecting_ml_algorithm}. Factors such as 
-interpretability, data characteristics, and domain context are 
-not considered, and neither tool offers guidance on how the 
-problem itself should be formulated 
-\parencite{chen2023ml_manufacturing_industry4}.
+\parencite{azure_algorithm_cheatsheet}. Both rely mainly on 
+accuracy and prediction speed as selection criteria, and do 
+not consider factors such as interpretability, data 
+characteristics, or domain context 
+\parencite{sala2018selecting_ml_algorithm}.
 
 More structured frameworks characterise methods against a set 
 of criteria and match a described problem to them. 
 \textcite{riesener2020} present an evaluation method for 
-selecting a method in product development, aimed at users 
-without in-depth machine learning knowledge. From a large set 
-of methods found in the literature, the eleven most frequently 
-described were selected and each rated on nine criteria, 
+selecting a method in product development. From a large set of 
+methods found in the literature, the eleven most frequently 
+described were selected and each rated on nine criteria 
 covering the learning task, the form of learning, and seven 
 performance properties such as accuracy, training duration, 
 computational effort, and transparency. The result is a matrix 
-of method strengths and weaknesses; the user describes a 
+of method strengths and weaknesses. The user describes a 
 problem in the same criteria, and the method with the smallest 
 Euclidean distance to that description is suggested. 
 \textcite{lickert2021_ml_selection_reverse_logistics} take a 
 similar approach for supervised methods, describing seven 
 methods against criteria grouped into input, implementation, 
 and output, and matching a problem to them through a single 
-overview table. The approach deliberately supports a 
-preselection of candidate methods for later testing rather than 
-the choice of a single optimal method, and is demonstrated on a 
-case from reverse logistics. Both frameworks derive method 
-properties manually, and the criteria used overlap considerably 
-with the performance attributes represented in this thesis.
-
-Other frameworks focus on the structure of the matching process 
-itself. \textcite{sala2018selecting_ml_algorithm} propose a 
+overview table. The approach supports a preselection of 
+candidate methods for later testing rather than the choice of 
+a single optimal method, and is demonstrated on a case from 
+reverse logistics. 
+\textcite{sala2018selecting_ml_algorithm} propose a 
 two-layer selection framework that incorporates method 
 characteristics such as scalability and robustness to outliers 
 alongside learning type and response type. 
 \textcite{arena2024conceptual_framework_ml_algorithm_selection_predictive_maintenance} 
 develop a structured set of decision variables for method 
-selection in predictive maintenance, noting that methods are 
-often chosen by comparing candidates only on predictive and 
-computational performance, which can give results that are poor 
-or too generic, and that no tool relates the choice to the 
-application domain. A more elaborate matching mechanism is 
-proposed by \textcite{sonntag2023pattern_ml_product_development}, 
-who apply a pattern language to method selection in product 
-development. Each method is characterised through a pattern with 
-fixed attributes, and the user formalises a problem using the 
-same attributes, so that problem and method can be matched 
+selection in predictive maintenance.
+
+Other frameworks introduce more elaborate matching mechanisms. 
+\textcite{sonntag2023pattern_ml_product_development} apply a 
+pattern language to method selection in product development. 
+Each method is characterised through a pattern with fixed 
+attributes, and the user formalises a problem using the same 
+attributes, so that problem and method can be matched 
 directly. The concept was demonstrated for two methods and 
-tested with seven engineers without machine learning knowledge; 
-the correct method was identified in 64\% of cases, and the 
-errors arose mainly from incorrect formalisation of the problem 
-rather than from the matching itself. The same group later 
-proposed a multi-criteria decision analysis framework 
-\parencite{sonntag2024_mcda_framework}, in which a reference 
-process first maps a task to a class of methods, and the 
-remaining methods are then ranked against qualitative criteria 
-using the PROMETHEE outranking method, weighted by the user's 
-stated preferences.
+tested with seven engineers without machine learning 
+knowledge. The correct method was identified in 64\% of cases, 
+and the errors arose mainly from incorrect formalisation of 
+the problem rather than from the matching itself. 
+\textcite{sonntag2024_mcda_framework} later proposed a 
+multi-criteria decision analysis framework, in which a 
+reference process first maps a task to a class of methods, and 
+the remaining methods are then ranked against qualitative 
+criteria using the PROMETHEE outranking method, weighted by 
+the user's stated preferences.
 
-A related class of approaches is automated machine learning 
-(AutoML), which seeks to automatically select, compose, and 
-parametrise models to achieve good performance on a given task 
-or dataset 
-\parencite{waring2020automated_machine_learning_review_state_of_the_art_opportunities_healthcare}. 
-AutoML automates parts of the pipeline, including data 
-preparation, feature engineering, hyperparameter optimisation, 
-and model generation, with the goal of reducing the demand for 
-expert knowledge 
-\parencite{he2021automl_survey_state_of_the_art}. The selection 
-problem is typically treated as an optimisation task, where 
-dataset characteristics are used to predict which method is 
-likely to perform best 
-\parencite{barbudo2023eight_years_automl_categorisation_review_trends}. 
-For decision support aimed at non-experts, however, AutoML has 
-notable limitations. Most systems treat the selection and 
-configuration process as a black box, with little explanation 
-of why a particular configuration was chosen 
-\parencite{barbudo2023eight_years_automl_categorisation_review_trends}, 
-and this lack of transparency is a barrier to adoption, since 
-users who do not understand or trust the output are unlikely to 
-apply it 
-\parencite{waring2020automated_machine_learning_review_state_of_the_art_opportunities_healthcare}. 
-AutoML also addresses mainly the later stages of the pipeline, 
-while the phases that are inherently human, such as problem 
-formulation and interpretation of results, receive little 
-attention 
-\parencite{barbudo2023eight_years_automl_categorisation_review_trends}. 
-It therefore does not address the earlier difficulty of helping 
-a practitioner understand which kind of problem they have and 
-which general approach is appropriate.
-
-\subsection{Knowledge Representation for Method Selection}
-\label{sec:knowledge-representation-for-method-selection}
+A related class of approaches is automated machine learning
+(AutoML), which automatically selects, composes, and
+parametrises models for a given task or dataset
+\parencite{waring2020automated_machine_learning_review_state_of_the_art_opportunities_healthcare}.
+AutoML automates parts of the pipeline, including data
+preparation, feature engineering, hyperparameter
+optimisation, and model generation, by searching over
+candidate models and configurations and evaluating their
+performance
+\parencite{he2021automl_survey_state_of_the_art}. Most
+systems treat this process as a black box, with little
+explanation of why a particular configuration was chosen
+\parencite{barbudo2023eight_years_automl_categorisation_review_trends}.
+The technical phases of the pipeline are the main focus,
+while the the human-dependent phases, such as the interpretation of results
+receives little attention
+\parencite{barbudo2023eight_years_automl_categorisation_review_trends}.
 
 A separate line of work represents method knowledge in a 
-structured, queryable form rather than in a fixed table or 
-flowchart. \textcite{gerschutz2021semantic_web_approach} 
-present a semantic knowledge base for data-driven methods in 
-product development, aimed at SMEs that lack machine learning 
-expertise. Method knowledge is structured in a class model in 
-which each method is described by properties such as its 
-potentials, limits, algorithm, product development use cases, 
-and the tool that implements it. The model is realised as a 
-demonstrator in Semantic MediaWiki, where the knowledge is 
-captured through semantic links and retrieved through queries, 
-so that a user can query for a method that supports a given 
-activity such as requirements analysis. The method properties 
-are populated manually from literature review and industrial 
-use cases.
+structured, queryable form. 
+\textcite{gerschutz2021semantic_web_approach} present a 
+semantic knowledge base for data-driven methods in product 
+development. Each method is described by properties such as 
+its potentials, limits, algorithm, product development use 
+cases, and the tool that implements it, and the knowledge is 
+realised as a demonstrator in Semantic MediaWiki, where it can 
+be retrieved through queries. The method properties are 
+populated manually from literature review and industrial use 
+cases. This work was later developed into a formal ontology. 
+AI4PD \parencite{gerschutz2023_AI4DP} links data-driven methods 
+to product development processes through an OWL ontology, 
+modelled in Protégé and queried with SPARQL. It introduces 
+concepts for processes, methods, tools, and use cases, and 
+uses a task cluster concept to connect company-specific 
+processes to the methods that can support them. A problem is 
+described formally, in terms of the task, the available data, 
+and the hardware, and a SPARQL query returns the matching 
+methods and tools along with documented use cases. The 
+authors note that populating the ontology with method 
+knowledge and use cases is done manually and that the effort 
+required is high.
 
-This work was later developed into a formal ontology. AI4PD 
-\parencite{gerschutz2023_AI4DP} links data-driven methods to 
-product development processes through an OWL ontology, modelled 
-in Protégé and queried with SPARQL. It introduces concepts for 
-processes, methods, tools, and the people involved, and uses a 
-task cluster concept to connect company-specific processes to 
-the methods that can support them. A problem is described 
-formally, in terms of the task, the available data, and the 
-hardware, and a SPARQL query then returns the matching methods 
-and tools along with documented use cases. The authors note 
-that formulating such a query is difficult for inexperienced 
-users and suggest that a graphical interface would help, and 
-that the manual effort of populating the ontology with method 
-knowledge is high. Both observations are relevant to the design 
-of any ontology-based method knowledge base. The ontology 
-underlying AI4PD is the same ML Ontology family discussed in 
-Section~\ref{sec:ml-ontology-structure-and-content}, which this 
-thesis also builds on.
+A related ontology with a different purpose is the 
+Intelligence Task Ontology and Knowledge Graph (ITO) 
+\parencite{blagec2022_benchmark_knowledge_graph}, a large 
+knowledge graph of AI tasks, benchmark results, and 
+performance metrics. It is built on RDF and OWL and queried 
+with SPARQL, and is structured around a hierarchy of around 
+1,100 task classes such as natural language processing or 
+image classification. Models and datasets are not described 
+by their own properties, but through the benchmark results 
+they achieved on different tasks, and each result is linked 
+to the article that reported it. The data is imported 
+automatically from Papers with Code, while the task hierarchy 
+and the structure of performance metrics are manually curated. 
+The aim is to study the AI task landscape and track progress 
+over time.
+
 
 \subsection{Semantic Retrieval from Scientific Literature}
 \label{sec:semantic-retrieval-from-scientific-literature}
 
 The second group of related work concerns retrieving relevant 
 documents from scientific literature based on the meaning of a 
-query rather than on exact keywords. The underlying techniques, 
-text embeddings, cosine similarity, and the bi-encoder and 
-cross-encoder architectures, are described in 
-Section~\ref{sec:semantic-retrieval-and-text-similarity}. This 
-section reviews systems that apply these techniques to 
-scientific literature.
+query rather than on exact keywords. The underlying techniques 
+are described in 
+Section~\ref{sec:semantic-retrieval-and-text-similarity}.
 
 \textcite{berenguer2024retrieve_data_from_research} retrieve 
-data tables from publications based on a research problem stated 
-as an abstract. The abstract serves as a representation of the 
-research problem, and the semantic similarity between the 
-abstract and the indexed tables is computed from text 
-embeddings to return a ranked list of relevant tables. The work 
-argues that a rich natural-language formulation of a research 
-problem gives better retrieval than isolated keywords, and that 
-matching such a description against scientific content is 
-feasible using embeddings. A comparison of nine language models 
-finds that contextual models, and in particular models 
-pre-trained on scientific text, clearly outperform 
-non-contextual ones, and that surrounding context is important 
-for good results. The principle of using a free-text problem 
-description as a query, matched against scientific content 
-through embedding similarity, is the same principle that 
-underlies the retrieval approach in this thesis, although the 
-output there is data tables rather than methods.
+data tables from publications based on a research problem 
+stated as an abstract. The abstract serves as a representation 
+of the research problem, and the semantic similarity between 
+the abstract and the indexed tables is computed from text 
+embeddings to return a ranked list of relevant tables. The 
+authors argue that a rich natural-language formulation of a 
+research problem gives better retrieval than isolated 
+keywords. A comparison of nine language models finds that 
+contextual models, and in particular models pre-trained on 
+scientific text, clearly outperform non-contextual ones, and 
+that surrounding context is important for good results.
 
 \textcite{schopf2024nlp} present NLP-KG, a system for 
 exploratory search of natural language processing literature. 
 It is built around a knowledge graph that links fields of 
-study, publications, authors, and venues, with a 
-semi-automatically constructed hierarchy of fields of study. 
-The structural knowledge graph and the publication embeddings 
-are stored separately, the former in a graph database and the 
-latter in a vector database, so that the graph handles 
-relations and the vector database handles semantic similarity 
-search. Retrieval combines sparse and dense representations, 
-which are merged using Reciprocal Rank Fusion and then reranked 
-using metadata such as citation count. The same separation of a 
-structural knowledge store from a vector store for retrieval is 
-present in this thesis, and Reciprocal Rank Fusion is used here 
-as well, although for combining method-level rankings rather 
-than two document retrievers. NLP-KG is intended to help 
-researchers explore an unfamiliar field rather than to select a 
-method for a problem.
+study, publications, authors, and venues. The structural 
+knowledge graph and the publication embeddings are stored 
+separately, the former in a graph database and the latter in a 
+vector database, so that the graph handles relations and the 
+vector database handles semantic similarity search. The user 
+submits a text query, which is matched against the publications 
+through a retrieval pipeline that combines sparse and dense 
+representations, merged using Reciprocal Rank Fusion and then 
+reranked using metadata such as citation count. The system is 
+intended to help researchers explore an unfamiliar field.
 
-Two further approaches concern retrieval where the query is a 
-full paper rather than a problem description. 
-\textcite{park2025chain_of_retrieval} retrieve related papers 
-by decomposing a query paper into aspect-specific subqueries and 
-iteratively expanding the search, and report that relying only 
-on abstracts is suboptimal because abstracts offer only sparse, 
-high-level summaries of a paper. 
-\textcite{ostendorff2022_aspect_based_embeddings} recommend 
-related machine learning papers using separate embeddings for 
-the task, method, and dataset of each paper, and find that 
-generic embeddings of titles and abstracts capture the dataset 
-of a paper well but its method poorly, because methodological 
-detail is mentioned only marginally in titles and abstracts. 
-Both observations are relevant to a system that retrieves 
-methods through the abstracts of the articles that mention 
-them, and they are returned to in the discussion.
+\textcite{park2025chain_of_retrieval} address the task of 
+finding related research papers given a query paper, evaluated 
+on a benchmark of articles from the major machine learning and 
+NLP venues. They decompose the query paper into aspect-specific 
+subqueries covering its motivation, method, and experiments, 
+use each subquery to retrieve candidate papers, and expand the 
+search iteratively. They report that relying only on abstracts 
+is suboptimal, because abstracts offer only sparse, high-level 
+summaries of a paper, and that using the full content gives 
+better results.
+
+\textcite{ostendorff2022_aspect_based_embeddings} also work on 
+paper recommendation, but focus on the notion of similarity 
+itself. They argue that two papers can be alike in different 
+ways, by addressing the same task, using the same method, or 
+using the same dataset, and that a single embedding per paper 
+hides this distinction. They therefore represent each paper 
+with several embeddings, one for each aspect, computed from 
+the title and abstract and trained on the Papers with Code 
+corpus of machine learning publications. They find that 
+embeddings of titles and abstracts capture the dataset of a 
+paper well but its method poorly, because methodological 
+detail is mentioned only marginally in titles and abstracts.
+
+
+\subsection{Tools and Platforms}
+\label{sec:tools-and-platforms}
+
+OMA-ML \parencite{zender2022ontology_based_meta_automl} combines
+multiple AutoML solutions through the ML Ontology, described in
+Section~\ref{sec:ml-ontology-structure-and-content}. The ontology
+is used to filter configuration options and select AutoML
+strategies, and pipelines are generated across several machine
+learning libraries rather than a single one. The user uploads a
+dataset and starts training, either through a guided wizard for
+domain experts or detailed configuration for users with ML
+expertise. The generated models are shown in a leaderboard, where
+they are compared on prediction quality, prediction time and
+environmental impact, and a model is selected by the user.
+
+Traingenerator \parencite{rieke2021traingenerator} is a 
+web-based tool that generates template Python code and Jupyter 
+notebooks for machine learning tasks. A task and framework are 
+selected from a menu, and a code template is produced that 
+covers data loading, model setup, training, and evaluation. 
+The generated code can be downloaded as a script or notebook, 
+or opened directly in Google Colab. As of May 2026, the hosted 
+version produces a runtime error and does not render the output 
+correctly, although it appeared to function as intended during 
+the development period of this thesis, and the tool can still 
+be inspected through the GitHub 
+repository.\footnote{\url{https://github.com/jrieke/traingenerator}}
+
+The European AI-on-Demand Platform (AIoDP) and its DeployAI 
+implementation offer a marketplace of pre-trained models, 
+reusable AI modules, and domain-specific applications, 
+supported by cloud and high-performance computing infrastructure 
+\parencite{troumpoukis2025deployai_ai_on_demand_platform}. 
+The platform targets SMEs, researchers, and public sector 
+organisations, and provides tools for building, training, and 
+deploying AI solutions at scale. Available solutions can be 
+browsed and filtered by domain or use case.
 
 \subsection{Summary of Gaps}
 \label{sec:summary-of-gaps}
 
 Across the work reviewed here, several gaps remain. Decision 
-flowcharts and AutoML systems support method selection but rely 
-mainly on performance criteria, treat the process as a black 
-box, or assume that the task and a labelled dataset are already 
-defined, and so give little help with the earlier and 
-inherently human step of understanding the problem and choosing 
-a general approach. The structured frameworks and knowledge 
-representations address this step more directly, by 
-characterising methods and matching them to a described 
-problem, but they depend on method knowledge that is populated 
-manually, are demonstrated on a small number of methods or a 
-single use case, and require the user to formalise the problem 
-in a fixed structure, which has been shown to be a source of 
-error. Semantic retrieval from literature offers a way to match 
-a free-text problem description against a large body of methods 
-without manual formalisation, but existing systems apply it to 
-exploratory search or to retrieving tables or related papers, 
-rather than to selecting a method and supporting its 
-implementation. This thesis addresses these gaps together, and 
-the approach is described in the following chapter.
+flowcharts and AutoML systems support method selection but 
+rely mainly on performance criteria, treat the process as a 
+black box, or assume that the task and a labelled dataset are 
+already defined, and so give little help with the earlier step 
+of understanding the problem and choosing a general approach. 
+The structured frameworks and knowledge representations 
+address this step more directly, by characterising methods and 
+matching them to a described problem, but they depend on 
+method knowledge that is populated manually, are demonstrated 
+on a small number of methods or a single use case, and require 
+the user to formalise the problem in a fixed structure. 
+Semantic retrieval from scientific literature offers a way to 
+match a free-text problem description against a large body of 
+methods without manual formalisation, but existing systems 
+apply it to exploratory search or to retrieving tables or 
+related papers, rather than to method selection. This thesis 
+addresses these gaps together, and the approach is described 
+in the following chapter.
