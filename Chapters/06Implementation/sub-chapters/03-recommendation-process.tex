@@ -149,7 +149,7 @@ abstract and title embeddings:
 \end{equation}
 
 where $w_{\text{abs}} = 0.7$ and $w_{\text{title}} = 0.3$. The 
-higher weight on abstracts reflects that abstracts contain more 
+higher weight on abstracts reflect that abstracts contain more 
 information about the method and application context than titles. 
 These weights are set as defaults,
 but can be adjusted. The top $k = 50$ articles are retained
@@ -171,14 +171,14 @@ accurate relevance scores than the bi-encoder alone.
 \subsection{Method Scoring}
 \label{sec:method-scoring}
 
-After article reranking, each candidate method is scored based 
-on the articles that mention it. 
-Combining rank positions from both stages gives weight to both 
-broad semantic similarity from the bi-encoder and precise 
-relevance scoring from the cross-encoder. Using rank positions rather than 
-the raw similarity and relevance scores from each model also avoids 
-differences in scale between the two sources, consistent with 
-the principle behind Reciprocal Rank Fusion described in 
+After article reranking, each candidate method is scored from the 
+articles that mention it. Each such article among the top $k$ adds 
+to the method's score, and articles ranked higher add more. Using 
+rank positions rather than the raw scores from each model gives 
+weight to both broad semantic similarity from the bi-encoder and 
+precise relevance from the cross-encoder, and avoids differences 
+in scale between the two. This follows the principle behind 
+Reciprocal Rank Fusion described in 
 Section~\ref{sec:user-feedback-in-recommendation-systems}:
 
 \begin{equation}
@@ -190,18 +190,15 @@ Section~\ref{sec:user-feedback-in-recommendation-systems}:
 \label{eq:method-score}
 \end{equation}
 
-where $r_b(a)$ and $r_c(a)$ are the zero-based rank positions 
-of article $a$ in the bi-encoder ranking and cross-encoder 
-ranking respectively. The weights $w_b$ and $w_c$ are 
-normalised with $w_b + w_c = 1$, and both default to $0.5$. 
-The choice to combine both signals was made by manually 
-checking output for queries of different types and levels of 
-detail, since no ground-truth ranking data exists. 
-Using only the cross-encoder score is also possible, and was the initial approach. 
-Both the signal weights and this choice are 
-configurable. The score calculation ensures that articles ranked higher contribute more to the 
-method score, and the contribution decreases gradually for 
-lower-ranked articles.
+where $r_b(a)$ and $r_c(a)$ are the zero-based rank positions of 
+article $a$ in the bi-encoder ranking and cross-encoder ranking 
+respectively. The weights $w_b$ and $w_c$ are normalised with 
+$w_b + w_c = 1$, and both default to $0.5$. The choice to combine 
+both signals was made by manually checking output for queries of 
+different types and levels of detail, since no ground-truth 
+ranking data exists. Using only the cross-encoder score is also 
+possible, and was the initial approach. Both the signal weights 
+and this choice are configurable.
 
 \subsection{Feedback Boost}
 \label{sec:feedback-boost}
