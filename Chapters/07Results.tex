@@ -245,24 +245,33 @@ preferences set to fast training and explainable.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-1-problem.pdf}
-    \caption[Example 1 problem]{Example 1 problem description}
+    \caption[Example 1 problem]{Example 1 problem description and selected filters.}
     \label{fig:results-example-1-problem}
 \end{figure}
 
 The recommendations are shown in 
 Figure~\ref{fig:recommendations-example-1-rec}. Ten ranked methods are 
-returned, including Random Forest, Support Vector Machine, Gaussian Mixture Model,
-K-Nearest Neighbors, Principal Component Analysis,
-Gradient Boosting, Neural Network, Linear Regression, XGBoost, Decision Tree. 
+returned. Among them are common classification methods like Random Forest, 
+Support Vector Machine and K-Nearest Neighbors. 
+Neural Network is also represented with the highest amount of articles.
+Three methods that are marked as not suited for the task classification is also among the recommendations:
+Gaussian Mixture Model, Linear Regression, and Principal Component Analysis. 
+Methods indicated as not suited for the dataset are Principal Component Analysis and 
+Convolotuional Neural Network.
+
+including Random Forest, Gaussian Mixture Model, Support Vector Machine,
+K-Nearest Neighbors, Neural Network, Linear Regression, Gradient Boosting, 
+XGBoost, Principal Component Analysis, and Convolutional Neural Network. 
 The columns indicate which performance 
 preferences each method matches, whether it matches the 
 selected task and dataset type, the number of supporting 
-articles, and any notes attached to the method.
+articles, and any notes attached to the method. 
+
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-1-rec.pdf}
-    \caption[Example 1 recommendations]{Example 1 recommendations}
+    \caption[Example 1 recommendations]{Recommended methods for Example 1.}
     \label{fig:recommendations-example-1-rec}
 \end{figure}
 
@@ -274,7 +283,7 @@ Figure~\ref{fig:articles-example-1-rec}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-1-articles-rf.pdf}
-    \caption[Example 1 articles]{Example 1 articles for Random Forest}
+    \caption[Example 1 articles]{Top articles retrieved for Random Forest in Example 1.}
     \label{fig:articles-example-1-rec}
 \end{figure}
 
@@ -289,7 +298,7 @@ filters.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-2-problem.pdf}
-    \caption[Example 2 problem]{Example 2 problem description}
+    \caption[Example 2 problem]{Example 2 problem description and selected ML area.}
     \label{fig:results-example-2-problem}
 \end{figure}
 
@@ -299,7 +308,7 @@ Figure~\ref{fig:recommendations-example-2-rec}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-2-rec.pdf}
-    \caption[Example 2 recommendations]{Example 2 recommendations}
+    \caption[Example 2 recommendations]{Recommended methods for Example 2.}
     \label{fig:recommendations-example-2-rec}
 \end{figure}
 
@@ -312,7 +321,7 @@ available for Q-Learning.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-2-details-svm.pdf}
-    \caption[Example 2 details page]{Example 2 details page cropped}
+    \caption[Example 2 details page]{Cropped details page for Q-Learning in Example 2.}
     \label{fig:articles-example-2-rec}
 \end{figure}
 
@@ -326,7 +335,7 @@ to anomaly detection and no ML area filter.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-3-problem.pdf}
-    \caption[Example 3 problem]{Example 3 problem description}
+    \caption[Example 3 problem]{Example 3 problem description and selected task.}
     \label{fig:results-example-3-problem}
 \end{figure}
 
@@ -337,7 +346,7 @@ Figure~\ref{fig:recommendations-example-3-rec}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-3-rec.pdf}
-    \caption[Example 3 recommendations]{Example 3 recommendations}
+    \caption[Example 3 recommendations]{Recommended methods for Example 3.}
     \label{fig:recommendations-example-3-rec}
 \end{figure}
 
@@ -350,6 +359,6 @@ Skriv om at den referer trolig til OneClass SVM
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-3-articles-svm.pdf}
-    \caption[Example 3 articles]{Example 3 articles SVM}
+    \caption[Example 3 articles]{Top articles retrieved for Support Vector Machine in Example 3.}
     \label{fig:articles-example-3-rec}
 \end{figure}

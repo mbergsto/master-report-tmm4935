@@ -22,22 +22,14 @@ notebook or open it directly in Google Colab. This section
 describes how templates are structured, how notebooks are generated, 
 what the notebooks contain, and how they are made available to the user.
 
-Notebook generation relies on the following tools:
-
-\begin{itemize}
-    \item \textbf{Jinja2} \parencite{jinja2}: A Python 
-    templating engine used to render notebook templates 
-    with method-specific and user-provided content.
-    \item \textbf{jupytext} \parencite{Wouts_Jupytext}: 
-    Tool for converting Python code into the 
-    \texttt{.ipynb} format used by Jupyter and Google Colab.
-    \item \textbf{Google Colab}: A cloud-based notebook 
-    environment that allows users to run the generated 
-    notebook directly in the browser without local setup.
-    \item \textbf{GitHub API}: Used to upload the generated 
-    notebook so that Google Colab can load it from a 
-    publicly accessible URL.
-\end{itemize}
+The generation process relies on a small set of tools. Notebook
+templates are rendered with Jinja2 \parencite{jinja2}, a Python
+templating engine, using method-specific and user-provided content.
+The rendered Python code is converted to the \texttt{.ipynb} format
+with jupytext \parencite{Wouts_Jupytext}, the format used by Jupyter
+and Google Colab. The generated notebook is uploaded through the
+GitHub API so that Google Colab can load it from a publicly
+accessible URL.
 
 Much of the notebook generation approach, including the use of 
 Jinja2 templates and 

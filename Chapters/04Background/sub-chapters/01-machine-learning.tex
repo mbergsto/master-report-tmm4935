@@ -12,7 +12,7 @@ methods with emphasis on attributes that distinguish them.
 Machine learning refers to algorithms that improve their performance 
 at some task through experience 
 \parencite{mitchell1997machine_learning}. 
-Such algorithms can be broadly categorized according to the type of 
+Such algorithms can be broadly categorised according to the type of 
 supervision they receive during that experience, also called training. 
 There are three main paradigms commonly distinguished in the literature: 
 supervised learning, unsupervised learning, and reinforcement learning (RL)
@@ -68,6 +68,21 @@ paradigms and common tasks associated with each.
     \caption[Machine learning paradigms and tasks]{Overview of machine learning paradigms with common tasks.}
     \label{fig:ml_paradigms}
 \end{figure}
+
+This three-way division is the one most commonly used in the 
+literature, but not every method is captured by it. The boundary 
+between supervised and unsupervised learning is not always 
+well-defined. Semi-supervised learning, for example, is situated 
+between the two, as it uses both data with and without target values 
+\parencite{engelen2020semi_supervised}. Other methods do not fit this pattern. 
+Evolutionary algorithms such 
+as genetic algorithms are population-based metaheuristics used for 
+optimisation \parencite{corne2025_ea}. They are not learning 
+paradigms based on the type of supervision received during training, 
+so they do not fit naturally into this division. Instead, they are 
+often combined with the machine learning paradigms described above 
+\parencite{zhang2025_mh_ml}, for example as an approach to policy 
+search in reinforcement learning \parencite{moriarty1999_ea_rl}.
 
 \subsection{Machine Learning Methods}
 \label{sec:machine-learning-methods}

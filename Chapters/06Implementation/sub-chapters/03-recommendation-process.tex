@@ -3,8 +3,8 @@
 
 The recommendation process takes the user's input and produces a 
 ranked list of ML methods. The process has two main stages. In 
-the first stage, candidate methods are retrieved from the ontology 
-based on the parameters the user has selected. In the second stage, 
+the first stage, candidate methods are retrieved from the knowledge graph 
+based on the filter values the user has selected. In the second stage, 
 if a problem description is provided, the candidates are reranked 
 using semantic similarity to relevant research articles. A feedback 
 boost is applied as a final adjustment to the ranking.
@@ -42,24 +42,29 @@ included if at least one article in the knowledge graph mentions
 a method that maps to it, which grounds the candidate set in the 
 research literature.
 
-The properties used to filter and rank candidates are listed in 
+The properties used as filter options for the user are listed in 
 Table~\ref{tab:retrieval-properties}. They were selected because 
 they describe characteristics of an ML method that can be matched 
-against the user's problem context. ML area is the only hard 
-filter, since all articles in the knowledge graph are related to 
-an ML area, restricting to the selected area does not risk 
-excluding relevant candidates. The remaining properties have 
+against the user's problem context. ML area is the only hard filter. 
+Most articles in the knowledge 
+graph are assigned an ML area, as shown in 
+Section~\ref{sec:resulting-database}, so restricting to the selected area 
+removes few relevant candidates. Articles without an assigned ML 
+area are not retrieved when an area is selected, which is 
+accepted because the ML area is the most reliable of the available 
+properties. The remaining properties have 
 incomplete coverage, as shown in 
-Table~\ref{tab:ml-approach-coverage-extended}, and are therefore 
-used as soft signals that boost the ranking of matching methods 
-without excluding non-matching ones.
+Table~\ref{tab:ml-approach-coverage-extended}. They are therefore 
+not used as hard filters, since excluding methods on the basis of 
+incomplete properties would risk removing valid candidates and 
+produce a misleading ranking.
 
-\textbf{Referere til \ref{sec:machine-learning-methods} ? Og den manglende delen om attributter på metoder}
+% \textbf{Referere til \ref{sec:machine-learning-methods} ? Og den manglende delen om attributter på metoder}
 
 \begin{table}[H]
 \centering
-\caption[Ontology properties used in candidate retrieval]{Ontology 
-properties used for filtering and ranking in candidate retrieval.}
+\caption[Ontology properties used in candidate retrieval]
+{Ontology properties used as filter options in candidate retrieval.}
 \label{tab:retrieval-properties}
 \begin{tabularx}{\textwidth}{llX}
 \toprule
@@ -88,34 +93,32 @@ properties used for filtering and ranking in candidate retrieval.}
 \end{tabularx}
 \end{table}
 
-Task, performance, and dataset type filters are applied as 
-optional matches. For each candidate method, the query counts 
-how many of the user's selected values match the corresponding 
-ontology properties. These counts are used to sort candidates, 
-so methods that match more of the user's filters rank higher. 
-Dataset type is accessible indirectly through the tasks linked 
-via \texttt{used\_for}, as shown in the table.
+Task, performance, and dataset type are optional filters. 
+For each candidate method, the user's selected filter values 
+are matched against the method's property values.
+Dataset type is accessible indirectly through the tasks linked via 
+\texttt{used\_for}, as shown in Table~\ref{tab:retrieval-properties}. 
+When no problem description is given, the candidates are sorted by 
+the number of matches, with the number of supporting articles as a 
+tiebreaker, and the ordered list is returned directly, adjusted 
+only for feedback as described in Section~\ref{sec:feedback-boost}. 
+When a problem description is provided, the candidate set is passed on to 
+the similarity ranking, which determines the final order. The 
+filter matches are then returned as information about each method, 
+but do not affect the ranking.
 
-The other properties of \texttt{ML\_approach}: \texttt{possible\_if} and 
-\texttt{not\_recommended\_if} are retrieved and returned 
-alongside each method as informational notes, but are not used 
-for filtering or ranking. This is due to the low coverage of 
-these properties shown in 
-Table~\ref{tab:ml-approach-coverage-extended}. Therefore
-using them for filtering would risk 
-excluding valid candidates.
-
-In the end, candidates are sorted by how well they 
-match the user's filters, with the number of supporting articles 
-as a tiebreaker. If no problem description is provided, this 
-ordered list is returned directly, only adjusted for feedback as 
-described in Section~\ref{sec:feedback-boost}.
+The properties \texttt{possible\_if} and 
+\texttt{not\_recommended\_if} are always returned alongside each 
+method as informational notes only, and are never used for 
+sorting. Their coverage is too low 
+(Table~\ref{tab:ml-approach-coverage-extended}) to filter or rank 
+on without risking the exclusion of valid candidates.
 
 \subsection{Article Similarity Scoring}
 \label{sec:article-similarity-scoring}
 
 When a problem description is provided, articles in the database 
-are ranked by their semantic similarity to the query, using the 
+are ranked by their semantic similarity to a problem description query, using the 
 two-stage retrieval pipeline combining a bi-encoder and a cross-encoder, as described in 
 Section~\ref{sec:cross-encoder-reranking}. Similarity is 
 measured using cosine similarity, which is described as the most common metric in
@@ -130,8 +133,7 @@ sentence-transformer model based on MPNet
 project \parencite{bergsto2026mlselection} to compute the article 
 embeddings stored in the database, so the same model must be used 
 here to ensure the problem description is encoded in the 
-same embedding space. The model was also selected for its quality.
-It produces 768-dimensional embeddings and has been shown to 
+same embedding space. The model produces 768-dimensional embeddings and has been shown to 
 perform well on abstract-level semantic similarity tasks in 
 scientific literature 
 \parencite{galli2024performance_pre_trained_sentence_transformer_models, 
@@ -170,7 +172,8 @@ accurate relevance scores than the bi-encoder alone.
 \label{sec:method-scoring}
 
 After article reranking, each candidate method is scored based 
-on the articles that mention it. Combining rank positions from both stages gives weight to both 
+on the articles that mention it. 
+Combining rank positions from both stages gives weight to both 
 broad semantic similarity from the bi-encoder and precise 
 relevance scoring from the cross-encoder. Using rank positions rather than 
 the raw similarity and relevance scores from each model also avoids 
@@ -194,7 +197,7 @@ normalised with $w_b + w_c = 1$, and both default to $0.5$.
 The choice to combine both signals was made by manually 
 checking output for queries of different types and levels of 
 detail, since no ground-truth ranking data exists. 
-Using only the cross-encoder score directly was the initial approach and is a possibility. 
+Using only the cross-encoder score is also possible, and was the initial approach. 
 Both the signal weights and this choice are 
 configurable. The score calculation ensures that articles ranked higher contribute more to the 
 method score, and the contribution decreases gradually for 
