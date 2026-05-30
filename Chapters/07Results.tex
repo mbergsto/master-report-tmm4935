@@ -226,10 +226,12 @@ NSGA-III were used by one group each without being recommended.
 \label{sec:results-example-based-evaluation} 
 
 Three example problems were submitted to MLguide to examine 
-the recommendations produced under controlled inputs. The 
-examples cover different ML areas and tasks: a supervised 
-classification problem, an unsupervised anomaly detection 
-problem, and a reinforcement learning problem. 
+the output produced under controlled inputs. The examples cover 
+different ML areas and tasks: a supervised classification 
+problem, a reinforcement learning problem, and an unsupervised 
+anomaly detection problem. They also use different combinations 
+of filters, to see how the recommendations change with the level of detail 
+provided.
 
 \subsection{Example 1: Supervised Classification}
 \label{sec:example-1}
@@ -248,7 +250,14 @@ preferences set to fast training and explainable.
 \end{figure}
 
 The recommendations are shown in 
-Figure~\ref{fig:recommendations-example-1-rec}.
+Figure~\ref{fig:recommendations-example-1-rec}. Ten ranked methods are 
+returned, including Random Forest, Support Vector Machine, Gaussian Mixture Model,
+K-Nearest Neighbors, Principal Component Analysis,
+Gradient Boosting, Neural Network, Linear Regression, XGBoost, Decision Tree. 
+The columns indicate which performance 
+preferences each method matches, whether it matches the 
+selected task and dataset type, the number of supporting 
+articles, and any notes attached to the method.
 
 \begin{figure}[H]
     \centering
