@@ -49,10 +49,12 @@ The result ranges from 1, indicating identical direction and
 maximum similarity, to 0 for orthogonal vectors with no similarity 
 \parencite[Chapter~5.4]{jurafsky_martin2026speech_language_processing}. 
 Normalising for vector length ensures that the similarity score 
-reflects semantic content rather than vector magnitude. In 
-practice, cosine distance, defined as $1 - \cos(\mathbf{u}, 
-\mathbf{v})$, is often used when a distance metric is required, 
-where lower values indicate greater similarity.
+reflects semantic content rather than vector magnitude. 
+% In practice, cosine distance, defined as $1 - \cos(\mathbf{u}, 
+% \mathbf{v})$, is often used when a distance metric is required, 
+% where lower values indicate greater similarity.
+
+% Jeg bruker ikke cosine distance ?
 
 \subsection{Transformer-Based Sentence Embedding Models}
 \label{sec:transformer-based-sentence-embedding-models}
@@ -103,8 +105,8 @@ The sentence-transformers library provides pretrained models
 based on this approach for encoding text into fixed-size 
 vectors \parencite{sbert_docs}.
 
-\subsection{Semantic Retrieval}
-\label{sec:semantic-retrieval}
+\subsection{Dense Retrieval}
+\label{sec:dense-retrieval}
 
 % \textbf{Flere kilder her!}
 
@@ -119,7 +121,8 @@ effective for many tasks, this approach treats documents as bags
 of words, meaning that word order and meaning are ignored, and 
 only exact term matches contribute to the relevance score.
 
-Dense retrieval addresses this limitation by representing 
+Dense retrieval is a semantic retrieval mechanism that 
+addresses this limitation by representing 
 documents and queries as embeddings computed from language 
 models, rather than as word count vectors 
 \parencite[Chapter~11.1]{jurafsky_martin2026speech_language_processing}. Because 
@@ -130,7 +133,19 @@ dense retrieval more flexible than keyword-based approaches for
 tasks where the user's information need is expressed in natural 
 language rather than precise search terms.
 
-Figure~\ref{fig:keyword-vs-dense} illustrates the distinction with a constructed example. 
+These embeddings are produced by a bi-encoder, which encodes the
+query and each document independently into fixed-size vectors
+\parencite{reimers2019sentence_bert_sentence_embeddings_using_siamese_bert_networks}.
+The sentence embedding model described in
+Section~\ref{sec:transformer-based-sentence-embedding-models} is one
+such bi-encoder. The similarity between two vectors is then measured
+using cosine similarity. Because each text is encoded on its own, the
+document embeddings can be computed in advance and stored. This makes
+the bi-encoder efficient for retrieval over large document collections
+\parencite{thakur2021augmented_sbert_data_augmentation_method_improving_bi_encoders_pairwise_sentence_scoring_tasks}.
+
+Figure~\ref{fig:keyword-vs-dense} illustrates the distinction between
+keyword-based and dense retrieval, with a constructed example. 
 The same query returns only Document~A under keyword-based retrieval, 
 as it is the only document sharing exact terms with the query. 
 Dense retrieval ranks all three documents by semantic similarity, 
@@ -146,17 +161,9 @@ including Documents~B and~C despite the absence of exact term overlap in these d
 \subsection{Cross-Encoder Reranking}
 \label{sec:cross-encoder-reranking}
 
-The sentence embedding approach described in 
-Section~\ref{sec:transformer-based-sentence-embedding-models} is an example of a 
-bi-encoder, where query and document are encoded independently 
-into fixed-size vectors and similarity is measured using cosine 
-similarity \parencite{reimers2019sentence_bert_sentence_embeddings_using_siamese_bert_networks}. 
-Because the representations are computed independently, document 
-embeddings can be precomputed and stored, making bi-encoders 
-efficient for large-scale retrieval \parencite{thakur2021augmented_sbert_data_augmentation_method_improving_bi_encoders_pairwise_sentence_scoring_tasks}.
-
-A cross-encoder takes a different approach, concatenating query 
-and document into a single input and processing both jointly, 
+A cross-encoder takes a different approach compared to a bi-encoder, 
+by concatenating query 
+and document into a single input and processing both at the same time, 
 which allows the model to apply attention across both texts 
 simultaneously 
 \parencite{reimers2019sentence_bert_sentence_embeddings_using_siamese_bert_networks}. 

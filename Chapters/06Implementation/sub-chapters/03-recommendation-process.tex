@@ -128,8 +128,10 @@ the angle between two vectors regardless of their magnitude
 
 In the first stage, the problem description is encoded using 
 \texttt{all-mpnet-base-v2} \parencite{sbert_mpnet}, a 
-sentence-transformer model based on MPNet 
-\parencite{song2020mpnet}. This model was used in the pre-master 
+sentence-transformer model based on MPNet \parencite{song2020mpnet}. 
+The model applies the SBERT approach described in 
+Section~\ref{sec:transformer-based-sentence-embedding-models}, 
+producing sentence embeddings that can be compared using cosine similarity. This model was used in the pre-master 
 project \parencite{bergsto2026mlselection} to compute the article 
 embeddings stored in the database, so the same model must be used 
 here to ensure the problem description is encoded in the 

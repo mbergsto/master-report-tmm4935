@@ -1,5 +1,199 @@
 \label{ch:discussion}
 
+This chapter discusses the design, behaviour, and evaluation 
+of MLguide and considers what the findings say about the 
+hypothesis and research questions stated in 
+Chapter~\ref{ch:introduction}. The chapter is organised by 
+topic, with sections on each one. It closes by returning to 
+the research questions and the design goals, and by 
+summarising limitations and directions for future work.
+
+% Liste temaene i stedet for å si "topic"? Fjerne design goals?
+
+% Ta med overview of findings eller ikke?
+% Kan oppsummere key benefits og issues og tolke de? 
+
+% \section{Overview of Findings}
+% \label{sec:overview-of-findings}
+
+% The evaluation of MLguide combined user testing across two 
+% course projects with an example-based evaluation on three 
+% constructed problems. In the first project, 13 of 17 groups 
+% used MLguide, and the recommended methods overlapped with the 
+% methods the groups used at a high or medium level for most of 
+% them. Groups raised both benefits, such as method shortlisting 
+% and validation of method choices, and issues, such as missing 
+% methods and recommendations that were used too late to 
+% influence decisions. In the second project, 9 of 19 groups 
+% used the system. The reports highlighted overviews of 
+% reinforcement learning methods and confirmation of method 
+% choices as benefits, and unclear method ranking and an input 
+% form unable to express more complex configurations as issues.
+
+% The example-based evaluation showed that the system returned 
+% relevant methods for clearly specified problems, but also 
+% methods that were less directly tied to the task. The 
+% recommendations were shaped both by the ontology filters and 
+% by the literature-based retrieval, and the balance between 
+% these two knowledge sources had visible effects on what was 
+% returned. The same patterns appeared across the user tests and 
+% the examples: well-known methods such as Random Forest, Support 
+% Vector Machine, and Neural Network were recommended frequently, 
+% while more specialised methods relevant to the task were 
+% sometimes missing or ranked lower than expected.
+
+% The following sections discuss the main themes that follow from 
+% these observations: how literature-based retrieval shapes the 
+% recommendations, how the ontology coverage and structure affect 
+% the results, the role of filters and application context, the 
+% balance between the two knowledge sources, the starter notebook 
+% output, and the feedback mechanism. The chapter closes by 
+% returning to the research questions and the design goals, and 
+% by summarising limitations and directions for future work.
+
+\section{Method Recommendations and the Role of Articles}
+
+The method recommendations in MLguide are driven by the 
+semantic similarity between the user's problem description and 
+the titles and abstracts of articles in the database, as 
+described in Section~\ref{sec:recommendation-process}. The 
+articles retrieved are aggregated into method rankings, 
+so the methods that appear in articles closely matching the 
+problem are ranked highest. 
+
+\begin{comment}
+    
+Metodeanbefalinger i resultatene viser flere tendenser til at 
+"vanlige" metoder blir prioritert.  Altså metoder med høy "article count" som NN, SVM og RF.
+Vanlige metoder referer til høy article count, og at de kan brukes på flere tasks.
+ALle disse 3 metodene er nevnt i \ref{sec:machine-learning-methods} som brukt til classification og regression i supervised learning. 
+Og supervised learning er som nevnt i \ref{sec:ml-in-product-development-and-production} vanligst rapporterte ml area.
+Som også stemmer med fordelingen av artikler innenfor areas i \ref{sec:resulting-database}.
+
+I begge user testing prosjektene er Neural Network anbefalt en del men kun rapportert brukt en gang.
+Vi ser også at disse metodene dukker opp en del i anbefalinger i example based evaluation.
+RF, SVM og NN har gjennomgående høye article count. Og er tilstede en del. Det er ikke nødvendigvis feil, når de rapportert mye brukt.
+Men de kan dukke opp litt mye og mulig gjøre det vanskelig for andre nye eller mindre rapporterte og mer spesifike metoder. Ref \parencite{riesener2020} i
+\ref{sec:related-work-and-existing-tools}. Dette ser vi gjennom eksemplene i \ref{sec:example-based-evaluation}
+når neural netowrk topper RL problemet med høyest article count.
+RF er tilstede på anomaly detection problemet, uten task match. Alle 3 er mer naturlig høyt representert på
+supervised classification problem. Men de er rangert helt på topp og heller ikke slavisk etter article count. Så det 
+tyder på at de ikke dominerer helt. GMM har sneket seg inn høyt der, til tross for bare 33 artikler, og 
+det brukes 50 artikler i rangeringen. Og de 3 populære jeg har nevnt har flere tusen. Som indikerer det som er i ranking prosessen med at top 
+artikler vektes mest ?
+
+\end{comment}
+
+The recommendations across the evaluation show a tendency to 
+favour methods with a high article count, in particular Random 
+Forest, Support Vector Machine, and Neural Network. These three 
+methods are described in 
+Section~\ref{sec:machine-learning-methods} as applicable to 
+several tasks, including tasks in supervised learning, which 
+Section~\ref{sec:ml-in-product-development-and-production} 
+reports as the most frequently used ML area in product 
+development and production, with Random Forest, Support Vector 
+Machine, and Neural Network among the most frequently used 
+methods. This is also reflected in the article database, where 
+supervised learning is the dominant area, as shown in 
+Section~\ref{sec:resulting-database}. The dominance of these 
+methods in the recommendations is therefore not surprising. The 
+same methods appear prominently in the example-based 
+evaluation: Neural Network is the top recommendation in the 
+reinforcement learning example with the highest article count, 
+above several specific Reinforcement Learning based methods.
+Random Forest is returned in the anomaly detection example 
+despite not matching the task. In the user testing, Neural 
+Network was recommended to several groups in both projects, 
+although it was only used once. 
+
+This effect has been pointed out for literature-based selection 
+by \textcite{riesener2020}, who note that determining method 
+relevance from the number of articles in the literature can put 
+newer or less frequently reported methods at a disadvantage. 
+MLguide does not rank methods strictly by article count, but 
+methods that are mentioned in many articles are more likely to 
+appear among the top retrieved articles that drive the method 
+ranking, so a similar effect is present. At the same time, 
+methods with few articles are not excluded from the top of 
+the list. In the supervised classification example shown in 
+Figure~\ref{fig:recommendations-example-1-rec}, Gaussian 
+Mixture Model appears relatively high despite having only 33 
+articles, against several thousand for Random Forest, Support 
+Vector Machine, and Neural Network. The same effect is visible in the 
+anomaly detection example shown in 
+Figure~\ref{fig:recommendations-example-3-rec}, where Local 
+Outlier Factor is ranked second despite having only 48 articles. 
+This shows that a method with few articles can still rank high 
+if those articles match the problem description closely.
+
+\begin{comment}
+
+En anne case med artiklene er at vi bruker abstracts, kontra full tekst. 
+Det er praktisk naturligvis når man skal lagre ca. 17000 artikler, og 
+sammenligne de fortløpende med problemstilling. I tillegg er problemstilling mer 
+sammenlignbar i størrelse med en abstract enn full tekst. Og kan bruke samme sentence 
+embedding modeller. Men som flere kilder peker på i \ref{sec:semantic-retrieval-from-scientific-literature}.
+Det nevnes der at abstract er en oppsummering. Noe som kan føre til oppramsing av metoder brukt, 
+og så nevne at en var best f.eks.. Om en metode blir nevnt som dårligst til en task merkes ikke av 
+retrieval systemet her. Siden metoder bare hentes hvis den nevnes. Lignende problem kan gjelde i 
+klassifisering av ml area basert på keywords. Og en abstract kan presentere
+at en approach har blitt gjort unsupervised men vi skal teste supervised. Da vil begge ml areas få treff.
+\end{comment}
+
+Another aspect of the article-based recommendation is that 
+MLguide uses article titles and abstracts as the text input for 
+retrieval, not full article content. The motivation for this 
+choice is described in 
+Section~\ref{sec:article-retrieval-and-knowledge-extraction}: 
+abstracts provide a consistent representation of each article's 
+core content, while full texts include sections that make them 
+less comparable across a corpus, and storing and matching around 
+17000 full texts would also be costly. Abstracts are also more 
+comparable in length to a problem description, which suits the 
+same sentence embedding model. However, several works reviewed in 
+Section~\ref{sec:semantic-retrieval-from-scientific-literature} 
+point to the limitations of this approach. 
+\textcite{park2026chain_of_retrieval} report that relying only 
+on abstracts is suboptimal because abstracts offer only sparse, 
+high-level summaries of a paper, and 
+\textcite{ostendorff2022_aspect_based_embeddings} find that 
+embeddings of titles and abstracts capture the dataset of a 
+paper well but its method poorly, because methodological detail 
+is mentioned only marginally in titles and abstracts.
+
+The summary character of abstracts, pointed out by 
+\textcite{park2026chain_of_retrieval} in the previous paragraph, 
+has visible consequences in MLguide. An abstract often lists 
+several methods used in a study, mentioning that one was the 
+best while others were tested as baselines, but the retrieval 
+system does not distinguish between them. All mentioned methods 
+are treated as relevant to the problem the article addresses. 
+The same applies to the classification of articles into ML 
+areas, which is based on keywords in titles and abstracts: an 
+article that presents an unsupervised approach while contrasting 
+it with a supervised baseline can match both ML areas. As a 
+result, methods that are mentioned but not recommended by the 
+original authors, or that belong to a different ML area than 
+the article's main contribution, can still appear in the 
+recommendations.
+
+\section{Ontology Coverage and Structure}
+
+\section{Filters and Application Context}
+
+\section{Balance Between Ontology and Literature Retrieval in Recommendations}
+
+\section{Starter Notebooks and Implementation Support}
+
+\section{Feedback and Use Over Time}
+
+\section{Reflection on the Evaluation Approach}
+
+\section{Answers to Research Questions}
+
+\section{Limitations and Future Work}
+
 
 
 % \subsection{Feedback and Limitations}
