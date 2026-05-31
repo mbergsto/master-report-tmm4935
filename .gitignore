@@ -42,4 +42,7 @@
 *.png
 
 # Exclude figures
-Figures/*
+Figures/
+
+#Exclude main.pdf
+main.pdf
