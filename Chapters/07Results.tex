@@ -189,16 +189,18 @@ was not specified.
     \label{fig:how-groups-used-mlguide-p2}
 \end{figure}
 
-The reports were also examined for benefits that the groups raised
-when describing their use of MLguide. The points were sorted into
-themes, and each theme was counted by the number of groups that
-raised it. Figure~\ref{fig:key-benefits-p2} shows the result. The
-most common benefit was a good overview of relevant RL methods,
-raised by five groups. Confirmation that the tool was applicable
-to the problem, agreement between the recommendations and the
-literature, and help with finding or confirming relevant articles
-were each raised by three groups. One group reported that MLguide
-was sufficient for standard single-algorithm RL.
+The reports were also examined for benefits that the groups 
+raised when describing their use of MLguide. The points were 
+sorted into themes, and each theme was counted by the number of 
+groups that raised it. Figure~\ref{fig:key-benefits-p2} shows 
+the result. Three benefits were each raised by three groups: 
+confirmation that the tool was applicable to the problem, help 
+with finding or confirming relevant articles, and a good 
+overview of relevant reinforcement learning methods. Two groups 
+reported that the recommendations were consistent with the 
+literature they reviewed for their lifecycle phase cases. One 
+group reported that MLguide was sufficient for standard 
+single-algorithm reinforcement learning.
 
 \begin{figure}[H]
     \centering
@@ -206,6 +208,15 @@ was sufficient for standard single-algorithm RL.
     \caption[P2 key benefits]{Key benefits reported by groups.}
     \label{fig:key-benefits-p2}
 \end{figure}
+
+The reports also raised a small number of issues. First, the 
+method ranking was unclear: it was not obvious which 
+recommendation to prioritise, and the top-ranked method was not 
+always the best fit. Second, a specific algorithm, REINFORCE, 
+was difficult to find. Third, the input form did not capture 
+hybrid architectures, non-standard states, or deployment 
+constraints, which limited the system to standard 
+single-algorithm reinforcement learning.
 
 Figure~\ref{fig:methods-used-vs-recommended-p2} compares, for each
 method, the number of groups that were recommended the method with
@@ -244,37 +255,47 @@ preferences set to fast training and explainable.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-1-problem.pdf}
-    \caption[Example 1 problem]{Example 1 problem description}
+    \includegraphics[width=0.8\textwidth]{Figures/07-results/example-based/ex-1-problem.pdf}
+    \caption[Example 1 problem]{Example 1 problem description and selected filters.}
     \label{fig:results-example-1-problem}
 \end{figure}
 
 The recommendations are shown in 
-Figure~\ref{fig:recommendations-example-1-rec}. Ten ranked methods are 
-returned, including Random Forest, Support Vector Machine, Gaussian Mixture Model,
-K-Nearest Neighbors, Principal Component Analysis,
-Gradient Boosting, Neural Network, Linear Regression, XGBoost, Decision Tree. 
-The columns indicate which performance 
-preferences each method matches, whether it matches the 
-selected task and dataset type, the number of supporting 
-articles, and any notes attached to the method.
+Figure~\ref{fig:recommendations-example-1-rec}. Ten ranked 
+methods are returned. The top recommendations include common 
+classification methods such as Random Forest, Support Vector 
+Machine, and K-Nearest Neighbors, as well as Neural Network, 
+which has the highest article count of the recommended methods. 
+Three methods are flagged as not suited for the task: Gaussian 
+Mixture Model, Linear Regression, and Principal Component 
+Analysis. Two methods are flagged as not suited for the dataset 
+type: Principal Component Analysis and Convolutional Neural 
+Network. Four methods carry additional conditions in the 
+Note column, such as being possible if numerical features are 
+available or not recommended for many features.
+Several methods match the performance preference of fast 
+training, fewer match the explainable preference, and several 
+have no performance preference match at all.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-1-rec.pdf}
-    \caption[Example 1 recommendations]{Example 1 recommendations}
+    \includegraphics[width=0.8\textwidth]{Figures/07-results/example-based/ex-1-rec.pdf}
+    \caption[Example 1 recommendations]{Recommended methods for Example 1.}
     \label{fig:recommendations-example-1-rec}
 \end{figure}
 
-The top recommendation, Random Forest, is supported by 3615 
-articles in the database. The articles displayed for this 
-method are shown in 
-Figure~\ref{fig:articles-example-1-rec}.
+The top recommendation, Random Forest, is mentioned in 3598 
+articles within the ML area supervised learning. The top-ranked
+articles retrieved for this method are shown in 
+Figure~\ref{fig:articles-example-1-rec}. Several of them 
+concern pump condition monitoring or fault classification. 
+The figure also includes a snippet of the generated notebook, 
+scrolled to the model configuration and training steps.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-1-articles-rf.pdf}
-    \caption[Example 1 articles]{Example 1 articles for Random Forest}
+    \includegraphics[width=0.8\textwidth]{Figures/07-results/example-based/ex-1-articles-rf.pdf}
+    \caption[Example 1 articles]{Top-ranked articles retrieved for Random Forest in Example 1.}
     \label{fig:articles-example-1-rec}
 \end{figure}
 
@@ -288,31 +309,44 @@ filters.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-2-problem.pdf}
-    \caption[Example 2 problem]{Example 2 problem description}
+    \includegraphics[width=0.8\textwidth]{Figures/07-results/example-based/ex-2-problem.pdf}
+    \caption[Example 2 problem]{Example 2 problem description and selected ML area.}
     \label{fig:results-example-2-problem}
 \end{figure}
 
 The recommendations are shown in 
-Figure~\ref{fig:recommendations-example-2-rec}
+Figure~\ref{fig:recommendations-example-2-rec}. Neural Network 
+appears at the top, again with the highest article count. 
+Several reinforcement learning methods are included: Q-Learning, 
+Deep Reinforcement Learning, Proximal Policy Optimization, and 
+Deep Q-Network. Two metaheuristic methods also appear, Genetic 
+Algorithm at third place and Particle Swarm Optimization further 
+down. The list also includes more general supervised methods 
+such as Decision Tree, Random Forest, and Gradient Boosting.
+Since no filters other than the ML area were applied, only the 
+article count and notes are shown for each method, and only 
+Neural Network carries a note.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-2-rec.pdf}
-    \caption[Example 2 recommendations]{Example 2 recommendations}
+    \includegraphics[width=0.8\textwidth]{Figures/07-results/example-based/ex-2-rec.pdf}
+    \caption[Example 2 recommendations]{Recommended methods for Example 2.}
     \label{fig:recommendations-example-2-rec}
 \end{figure}
 
-The details page for one of the top recommendations, Q-Learning, is shown 
-in Figure~\ref{fig:articles-example-2-rec}. The page contains 
-the supporting articles retrieved, 
-together with a note indicating that no starter notebook is 
-available for Q-Learning.
+A cropped view of the details page for Q-Learning, one of the 
+top reinforcement learning recommendations, is shown in 
+Figure~\ref{fig:articles-example-2-rec}. The page lists the 
+top-ranked articles retrieved for this method, several of which 
+concern scheduling and production control in manufacturing 
+systems. The page also displays a message indicating that no starter notebook 
+is available for Q-Learning, because no template has been added 
+for this method yet.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-2-details-svm.pdf}
-    \caption[Example 2 details page]{Example 2 details page cropped}
+    \includegraphics[width=0.7\textwidth]{Figures/07-results/example-based/ex-2-details-q-learning.pdf}
+    \caption[Example 2 details page]{Cropped view of details page for Q-Learning in Example 2.}
     \label{fig:articles-example-2-rec}
 \end{figure}
 
@@ -320,36 +354,48 @@ available for Q-Learning.
 \label{sec:example-3}
 
 The third example concerns anomaly detection in manufacturing 
-log data. The problem description was submitted with task set 
-to anomaly detection and no ML area filter.
+log data. A short problem description was submitted with task set 
+to anomaly detection and no ML area filter or other filters applied.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-3-problem.pdf}
-    \caption[Example 3 problem]{Example 3 problem description}
+    \includegraphics[width=0.8\textwidth]{Figures/07-results/example-based/ex-3-problem.pdf}
+    \caption[Example 3 problem]{Example 3 problem description and selected task.}
     \label{fig:results-example-3-problem}
 \end{figure}
 
 
 The recommendations are shown in 
-Figure~\ref{fig:recommendations-example-3-rec}.
+Figure~\ref{fig:recommendations-example-3-rec}. 
+The top of the list includes common anomaly 
+detection methods such as Local Outlier Factor, Isolation Forest, 
+One-Class SVM, and Autoencoder. Standard Support Vector Machine also 
+appears at the top, although it is 
+a supervised method for classification and regression, 
+and it is flagged as suited for the task. 
+Several general neural network 
+architectures are also returned: LSTM, Convolutional Neural 
+Network, Deep Neural Network, and Multi-Layer Perceptron. Random 
+Forest appears at the bottom, flagged as not suited for the task.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-3-rec.pdf}
-    \caption[Example 3 recommendations]{Example 3 recommendations}
+    \includegraphics[width=0.8\textwidth]{Figures/07-results/example-based/ex-3-rec.pdf}
+    \caption[Example 3 recommendations]{Recommended methods for Example 3.}
     \label{fig:recommendations-example-3-rec}
 \end{figure}
 
-
-The articles retrieved for Support Vector Machine are shown in 
-Figure~\ref{fig:articles-example-3-rec}. 
-
-Skriv om at den referer trolig til OneClass SVM
+The top-ranked articles for Support Vector Machine are shown in 
+Figure~\ref{fig:articles-example-3-rec}. The titles cover 
+anomaly detection in manufacturing and quality inspection. The 
+first article explicitly concerns a one-class model for anomaly 
+detection, which suggests that the some of the supporting literature for 
+Support Vector Machine in this context refers to One-Class SVM 
+rather than the standard form.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{Figures/07-results/example-based/ex-3-articles-svm.pdf}
-    \caption[Example 3 articles]{Example 3 articles SVM}
-    \label{fig:articles-example-3-rec}
+    \includegraphics[width=0.8\textwidth]{Figures/07-results/example-based/ex-3-articles-svm.pdf}
+    \caption[Example 3 articles]{Top-ranked articles for Support Vector Machine in Example 3.}
+\label{fig:articles-example-3-rec}
 \end{figure}
