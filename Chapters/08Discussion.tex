@@ -3,7 +3,7 @@
 This chapter discusses the design, behaviour, and evaluation 
 of MLguide and considers what the findings say about the 
 hypothesis and research questions stated in 
-Chapter~\ref{ch:introduction}. The chapter is organised by 
+Chapter~\ref{ch:introduction}. The Discussion is organised by 
 topic, with sections on each one. It closes by returning to 
 the research questions and the design goals, and by 
 summarising limitations and directions for future work.
@@ -158,43 +158,261 @@ point to the limitations of this approach.
 on abstracts is suboptimal because abstracts offer only sparse, 
 high-level summaries of a paper, and 
 \textcite{ostendorff2022_aspect_based_embeddings} find that 
-embeddings of titles and abstracts capture the dataset of a 
+embeddings of titles and abstracts capture the task and dataset of a 
 paper well but its method poorly, because methodological detail 
 is mentioned only marginally in titles and abstracts.
 
-The summary character of abstracts, pointed out by 
-\textcite{park2026chain_of_retrieval} in the previous paragraph, 
-has visible consequences in MLguide. An abstract often lists 
-several methods used in a study, mentioning that one was the 
-best while others were tested as baselines, but the retrieval 
-system does not distinguish between them. All mentioned methods 
-are treated as relevant to the problem the article addresses. 
-The same applies to the classification of articles into ML 
-areas, which is based on keywords in titles and abstracts: an 
-article that presents an unsupervised approach while contrasting 
-it with a supervised baseline can match both ML areas. As a 
+The summary character of abstracts has visible consequences for 
+MLguide. An abstract can list several methods used in a study, 
+for example mentioning that one was the best while others were 
+tested as baselines, but the method retrieval does not 
+distinguish between them. All mentioned methods are treated as 
+relevant to the problem the article addresses. The same applies 
+when a method is used as part of a pipeline rather than as the 
+main contribution, such as a dimensionality reduction step 
+applied before the main method. Principal Component Analysis, 
+described in Section~\ref{sec:machine-learning-methods} as a 
+dimensionality reduction method, appears among the 
+recommendations in the supervised classification example 
+(Section~\ref{sec:example-1}), likely for this reason. The same 
+issue applies to the classification of articles into ML areas, 
+which is based on keywords in titles and abstracts. An article 
+that presents an unsupervised approach while contrasting it 
+with a supervised baseline can match both ML areas. As a 
 result, methods that are mentioned but not recommended by the 
-original authors, or that belong to a different ML area than 
-the article's main contribution, can still appear in the 
-recommendations.
+original authors, that are used as preprocessing steps, or 
+that belong to a different ML area than the article's main 
+contribution, can still appear in the recommendations.
 
+
+\begin{comment}
+
+Videre kan jeg si at mine funn matcher på et vis på at "task and dataset" er bedre dekket.
+Siden resultatene alle 3 evaluation based examples (ref) viser at listen over top-articles 
+(relevant articles i UI) viser for det meste artikler som er god match til problemstillingen. I tillegg nevner P2 user test
+at MLguide var relevant for å finne artikler. 
+Og problemstillingen inneholder jo gjerne forsøk på å beskrive task og dataset, mer enn metode, siden metode er det man
+leter etter svar på. 
+
+\end{comment}
+
+
+The findings in this thesis are in line with the observation 
+that task and dataset are captured better than method details in abstracts. 
+Across the three example-based evaluations in 
+Section~\ref{sec:results-example-based-evaluation}, the 
+top-ranked articles for the recommended methods are generally 
+relevant to the problem at hand. In the user testing, three 
+groups in Project 2 also reported that MLguide was useful for 
+finding or confirming relevant articles 
+(Section~\ref{sec:project-2}). This reflects that a user's 
+problem description tends to describe the task and the data 
+more than the method, since the method is what the user is 
+looking for. The retrieval therefore appears to work well on 
+the topical side of the problem, while methodological match 
+is harder to assess from the matching alone.
+
+
+\begin{comment}
+
+Neste avsnitt kan ta opp en utfordring med å basere seg på uthenting av metodenavn, 
+er at man må håndtere caser som neural network er tilstede i ordet recurrent neural network f.eks. 
+Slike spesifike caser må håndteres spesifikt i dette systemet. Og i nåværende recommendation prosess
+er det tatt hensyn til med neural network som beskrevet i sec:article-retrieval-knowledge-extraction
+men dette er ikke tatt hensyn til for alle relevante caser tyder det på. Når SVM topper listen for
+anbefalte metoder i anomaly detection eksempelet, og første artikkel nevnt i top articles nevner spesifikt
+"One-Class". Og one-class svm er som nevnt i \ref{sec:machine-learning-methods} en anomaly detection metode.
+One class svm er litt lenger ned på anbefalingene med kun 34 artikler. Som tyder på at denne får bidrag fra
+noen relevante artikler, men svm får det fra de samme som oc-svm men havner høyere grunnet den generelt høye
+antall artikler den har, som diskutert tidligere i seksjonen. 
+
+\end{comment}
+
+A further challenge in extracting method names from text is 
+handling cases where one method name is contained in another, 
+such as Neural Network within Recurrent Neural Network. Each 
+such case has to be handled explicitly. The article retrieval 
+pipeline described in 
+Section~\ref{sec:article-retrieval-and-knowledge-extraction} 
+handles this for Neural Network, but the results suggest that 
+not all relevant cases are covered. In the anomaly detection 
+example, Support Vector Machine is at the top of the 
+recommendations, while One-Class SVM appears further down. 
+One-Class SVM is described in 
+Section~\ref{sec:machine-learning-methods} as an anomaly 
+detection method, and the top-ranked articles for Support 
+Vector Machine in this example include a paper that explicitly 
+concerns a one-class model. This indicates that articles about 
+One-Class SVM contribute to the article count of both methods, 
+but Support Vector Machine benefits from its much larger 
+overall article count and ranks higher as a result.
+
+A related point is that literature-based recommendations 
+reflect the methods that appear in published research, which 
+may differ from what is commonly used in practice or taught in 
+ML courses. In the user testing for the anomaly detection problem in 
+Project 1, several groups reported that neural network methods were 
+over-represented in the recommendations, and that Gaussian 
+Mixture Model and One-Class SVM were missing 
+(Section~\ref{sec:project-1}). These are classical methods for 
+anomaly detection specifically, while neural network methods 
+have a broader range of applications, as described in 
+Section~\ref{sec:neural-networks-and-deep-learning}. This 
+helps explain why neural network methods have higher article 
+counts in the database overall. 
+Another possible factor is that research literature tends to use more 
+advanced models than those that are typical starting points 
+for users new to machine learning, so recommendations grounded 
+in research can differ from what students or beginners would 
+expect based on their course material. This
+The supervised classification 
+example in Section~\ref{sec:example-1} shows a different 
+balance, where classical methods such as Linear Regression 
+and K-Nearest Neighbors also have high article counts. 
+Classical methods are therefore not under-represented as a 
+whole, but they can be under-represented within specific tasks 
+or areas. 
+
+In the supervised classification example 
+(Section~\ref{sec:example-1}), Gaussian Mixture Model is 
+ranked second despite being flagged as not suited for the 
+classification task. A likely reason is that the wording of 
+the problem description, which includes terms such as 
+"faulty", resembles how an unsupervised anomaly detection 
+problem might be described. The literature-based score for 
+Gaussian Mixture Model is therefore high enough to overcome 
+the task filter, which is treated as a soft signal rather 
+than a hard constraint. This shows that placing strong weight 
+on the problem description, without hard filtering on the 
+selected task, can lead to recommendations that are clearly 
+inconsistent with the user's stated intent.
+
+\begin{comment}
+
+GMM som metode nummer 2 på et supervised classification problem tyder på at 
+det å vekte problemstillingen teksten for mye, og ikke ha harde filtere
+på task f.eks., kan føre til grove feil. GMM er kanskje der pga "faulty"
+i problemstillingen og ordlyden generelt kan minne om en unsupervised anomaly 
+detection problem. 
+
+\end{comment}
 \section{Ontology Coverage and Structure}
 
+Hva ontologiens coverage og struktur betyr for recommendation.
+
+Hvordan kan den utvides?
+
+Manuelle oppdateringer er tidkrevende (related work).
+
+Dataset type gjennom used\_for.
+
+Tabular + regression = tabular regression.
+
+Mulig sammenligning: Blagec2022 (ITO) bruker automatisk import + manuell 
+kuratering. MLguide kunne utvidet på lignende måte med benchmark-data, 
+ikke bare attributter.
+
+ML Ontology er egentlig laget for AutoML, ikke for metodevalg, og dette 
+setter begrensninger for hva den naturlig kan uttrykke.
+
 \section{Filters and Application Context}
+
+Mangler domenespesifike filtre, belager seg for mye på artikler. 
+Akkurat nå kan MLguide bytte artikkeldatabase og være tilpasset et annet 
+domene.
+
+Application area og PLC-fase fungerer ikke som filtre, fordi 
+klassifiseringen av artikler var for svak (forklart i implementasjon).
+
+Ideelt sett: artikler filtrert på application area, og ontologien skulle 
+hatt metode -> used\_for -> domenerettede problemer (predictive 
+maintenance, quality control, etc.).
+
+Krever stor manuell gjennomgang per metode, og hvis kunnskapen ikke er 
+komplett, kan det være bedre å droppe enn å ha halvferdig.
+
+Konsekvens: domene-orientering er nå kun gjennom artiklene, ikke gjennom 
+strukturert kunnskap. Det fungerer delvis fordi artikkelgjenfinning 
+fanger topisk relevans, jf. Ostendorff.
+
+Sammenligne med Lickert (reverse logistics) og Sonntag (early product 
+development) som er smalere i scope og derfor lettere å bygge dyp 
+domenekunnskap for. MLguide dekker hele PLC, mer ambisiøst.
+
+Hvis dette hadde vært på plass, kunne ontologien i prinsippet gjort mer 
+av rangeringen alene.
 
 \section{Balance Between Ontology and Literature Retrieval in Recommendations}
 
 \section{Starter Notebooks and Implementation Support}
 
+Notebooks adresserer en av design goals: implementeringsstøtte.
+
+To grupper i P1 nevnte code templates som en fordel, men evidensgrunnlaget 
+er begrenset.
+
+Q-Learning manglet template i Example 2. Tegn på at notebook-dekning er 
+ufullstendig, samme manuelle-arbeid-problem som ontologien.
+
+Sammenligne med Traingenerator: kodegenerering uten metodevalg. MLguide 
+kombinerer de to, men templates er enkle nå. Kunne vært mer metode-spesifikke 
+eller mer avanserte (data loading, evaluering osv.).
+
+Hva dette betyr for RQ3: notebooks er konkret støtte til tidlig 
+implementering, men formen kan utvikles videre.
+
+Kan utvide til valg av parametere i sidebar, eller forslag til parametere.
+
+Og lett å skalere, trenger bare template i riktig mappe.
+
 \section{Feedback and Use Over Time}
 
+Feedback-mekanismen ble lite brukt (få responser), så den kunne ikke 
+evalueres som datakilde (cold start i background).
+
+Avhengig av brukermengde for å være nyttig: før systemet har mange brukere, 
+gir tilbakemeldinger lite signal.
+
+Lagrer info som kan brukes til content-based filtering (jf. Recommender 
+Systems Handbook). Kombinasjon ontologi + content-based er nevnt i 
+litteraturen som lovende, men ikke utforsket her.
+
+Future work: differensiere mellom ekspert og andre tilbakemeldinger, slik 
+at ekspertinnspill kan oppdatere kunnskapsbasen direkte. Vanlige brukere 
+kan påvirke rangeringen mer indirekte.
+
 \section{Reflection on the Evaluation Approach}
+
+To evalueringsmetoder: user testing og example-based. De utfyller hverandre 
+ved at den ene gir uavhengig bruk, den andre gir kontrollert input.
+
+Begrensninger ved user testing:
+
+Tolkning av rapportene var subjektiv siden de ikke fulgte fast struktur.
+
+Få grupper, særlig P2.
+
+Tilbakemeldingsformen ga for lite respons.
+
+Ulike versjoner testet.
+
+Begrensninger ved example-based:
+
+Eksempler konstruert av forfatteren, mulig bias.
+
+Tolkning av output er forfatterens egen, ikke uavhengig.
+
+Ingen sammenligning av embedding-modeller (SciBERT, SPECTER, mpnet osv.). 
+Pipeline valgt basert på research, ikke testet mot alternativer i dette 
+prosjektet.
 
 \section{Answers to Research Questions}
 
 \section{Limitations and Future Work}
 
+Samle begrensninger som er nevnt gjennom kapittelet.
 
+Og oppsummere potensiell og mest lovende future work-muligheter.
 
 % \subsection{Feedback and Limitations}
 % \label{sec:feedback-and-limitations}
