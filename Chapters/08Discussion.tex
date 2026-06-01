@@ -52,7 +52,7 @@ summarising limitations and directions for future work.
 % by summarising limitations and directions for future work.
 
 \section{Method Recommendations and the Role of Articles}
-\label{method-recommendations-and-role-of-articles}
+\label{sec:method-recommendations-and-role-of-articles}
 
 The method recommendations in MLguide are driven by the 
 semantic similarity between the user's problem description and 
@@ -412,7 +412,7 @@ manual-effort limitation more clearly.
 Some structural choices in the ontology are also worth 
 discussing. The dataset type of a method is not stored as a 
 property on the method itself, but is reached through the 
-used\_for relation to a task, as explained in 
+\texttt{used\_for} relation to a task, as explained in 
 Section~\ref{sec:ml-ontology-structure-and-content}. This means 
 a method only matches a dataset type if it is connected to a 
 task that has that dataset type defined. One result is that the 
@@ -437,10 +437,12 @@ to support the article-method links and the filters that
 MLguide depends on. Building on an existing ontology gives 
 MLguide a stable foundation and aligns it with a broader effort 
 in the field, but it also means that the structure was not 
-designed for the exact purpose at hand. On the positive side, 
-this leaves the door open for MLguide to be 
-extended with AutoML knowledge in the future, since the 
-underlying ontology already supports it.
+designed for the exact purpose at hand. The design nevertheless leaves room for MLguide to be 
+extended with AutoML knowledge in the future, similar to 
+how OMA-ML 
+\parencite{zender2022ontology_based_meta_automl} builds on 
+the same ML ontology to support AutoML 
+(Section~\ref{sec:tools-and-platforms}).
 
 The link between the ontology and the articles is one of the 
 strengths of MLguide compared with the structured frameworks presented
@@ -486,8 +488,103 @@ would reduce the manual effort required to keep the ontology
 up to date even more, and build on the article-ontology link that MLguide 
 already has.
 
-\section{Filters and Application Context}
+\section{Production Domain Knowledge}
+\label{sec:production-domain-knowledge}
 
+The previous section discussed how the article retrieval 
+pipeline could be extended to bring more structured knowledge 
+into the ontology automatically. One area where this would 
+matter is the representation of production domain knowledge in 
+the recommendations, which is the focus of this section.
+
+The ontology in MLguide represents general machine learning 
+knowledge, organised around ML areas, tasks, dataset types, 
+and performance preferences. It does not represent production domain knowledge, 
+that is, the kinds of problems found in product development and 
+production, such as predictive maintenance, quality 
+prediction, or fault diagnosis 
+(Section~\ref{sec:applications-of-machine-learning}). The two 
+dimensions from the pre-master project that would have brought 
+such knowledge into the system, product lifecycle phase and 
+application area, are not used in MLguide. As described in 
+Section~\ref{sec:adaptations-for-mlguide}, both were dropped 
+because the classification of articles along these dimensions 
+was not reliable enough to support filtering without risking 
+the exclusion of relevant articles.
+
+The consequence is that the production-domain orientation of 
+the recommendations comes only from the article retrieval, 
+not from structured knowledge. The semantic similarity between 
+the user's problem description and the article abstracts 
+pulls in articles that are topically related to the problem, 
+including its application context, even though no explicit 
+representation links methods to production domains. This works 
+in part, but the system has no way of guaranteeing that a 
+recommendation is appropriate for a specific application area.
+
+The frameworks reviewed in 
+Section~\ref{sec:approaches-to-method-selection} take the 
+opposite approach to scope. 
+\textcite{lickert2021_ml_selection_reverse_logistics} works 
+within reverse logistics, and 
+\textcite{sonntag2023pattern_ml_product_development} focuses 
+on early product development. The narrow scope makes it 
+feasible to characterise methods against a relevant set of 
+problems for that domain, but limits how widely the framework 
+can be applied. MLguide makes the opposite trade-off: broad 
+coverage across the full product lifecycle, but no domain 
+knowledge built into the ontology yet. Ideally, the ontology 
+would link methods to domain-specific problems and the 
+articles would be filtered or weighted by application area, 
+combining the strengths of both approaches.
+
+The reason this is left as future work is again the manual 
+effort. Characterising every method against a set of 
+production-domain problems is a substantial task, and the 
+article classification would have to be accurate enough to 
+support filtering. If domain knowledge is added but left 
+incomplete, partial coverage may give worse results than no 
+filter at all, because methods that should match a domain 
+would appear unmarked.
+
+Without explicit filters for the application context, the way 
+the user describes the problem becomes the main signal for what 
+the system should retrieve. MLguide uses free-text problem 
+descriptions as the main input, supported by an optional filter 
+for ML area.
+The pattern language of 
+\textcite{sonntag2023pattern_ml_product_development}, by 
+contrast, requires the user to formalise the entire problem 
+in a fixed set of attributes before matching. In their user 
+study the correct method was identified in \SI{64}{\percent} of 
+cases, and the errors arose mainly from incorrect manual 
+formalisation rather than from the matching itself. This 
+suggests that requiring users to fill in fixed attributes to 
+scope their problem can introduce errors. The free-text 
+approach in MLguide keeps the burden of formalisation away 
+from the user and lets the system interpret the description 
+through semantic similarity. The anomaly detection example in 
+Section~\ref{sec:example-3} shows that this can work without 
+the ML area filter applied. With only a free-text problem 
+description and a task selection, the top recommendations 
+were still relevant anomaly detection methods. This indicates 
+that the system is feasible without multiple filters
+for scoping the problem.
+
+An interesting and potentially positive effect of not having production 
+domain knowledge in the ontology 
+is that MLguide is relatively easy to adapt to a different 
+domain. The article base can be replaced with articles from 
+another field, and the recommendations will reflect that 
+field through the semantic retrieval. This flexibility comes 
+from the same design choice that limits the domain-specific 
+precision. Adding deeper production domain knowledge would therefore be a trade-off: 
+it could improve precision within product development and production, 
+but would make the system less flexible and portable.
+
+
+\begin{comment}
+    
 Mangler domenespesifike filtre, belager seg for mye på artikler. 
 Akkurat nå kan MLguide bytte artikkeldatabase og være tilpasset et annet 
 domene.
@@ -513,17 +610,90 @@ domenekunnskap for. MLguide dekker hele PLC, mer ambisiøst.
 Hvis dette hadde vært på plass, kunne ontologien i prinsippet gjort mer 
 av rangeringen alene.
 
-\section{Balance Between Ontology and Literature Retrieval in Recommendations}
+\end{comment}
 
 \section{Starter Notebooks and Implementation Support}
+\label{sec:starter-notebooks-and-implementation-support}
 
+Starter notebooks are one of three output types in MLguide. 
+They give the user a concrete starting point for implementing 
+a chosen method. Two groups in Project 1 reported code 
+templates and implementation hints as a benefit 
+(Section~\ref{sec:project-1}). The evidence base is limited, 
+but the observation indicates that the output type has a place 
+in how the system is used.
+
+A notebook is positioned as a starting point for the user, not 
+a replacement for implementation. This is different from 
+AutoML systems, which produce a trained model directly and 
+is known to treat the selection and configuration process as a black box 
+(Section~\ref{sec:approaches-to-method-selection}). MLguide 
+leaves the implementation to the user but provides a 
+structured starting point that lowers the barrier to begin. 
+This is also a more direct combination of method selection and 
+implementation support than what the reviewed work offers. The 
+frameworks for method selection in 
+Section~\ref{sec:approaches-to-method-selection} stop at the 
+method recommendation. Traingenerator 
+\parencite{rieke2021traingenerator} generates code templates 
+but assumes that the method has already been chosen. MLguide 
+combines the two: a recommended method and a notebook that 
+gives a starting point for implementing it.
+
+The current templates are simple, and the coverage is 
+incomplete. Adding 
+a template for each method is manual work, similar to the 
+manual effort that limits the ontology coverage. However, The 
+technical structure is straightforward, and a new 
+template only needs to be placed in the right folder with the right
+method file name
+to be picked up by the system, which makes it easy to extend over 
+time.
+
+Reinforcement learning methods are not covered by any 
+templates, as noted in 
+Section~\ref{sec:template-structure-and-extensibility}. This 
+showed in Example 2, where Q-Learning was recommended but no 
+template was available (Section~\ref{sec:example-2}). 
+Supporting reinforcement learning would require a different 
+approach. Options include providing templates for common 
+environment patterns, or leaving the environment definition 
+to the user while supplying a skeleton for the agent and the 
+training loop. Investigating these options is left as future 
+work.
+
+The templates could also be developed further beyond what 
+they contain today. The user could 
+be given options to choose or adjust parameters through the 
+interface before the notebook is generated, similar to the 
+sidebar interface in Traingenerator described in 
+Section~\ref{sec:tools-and-platforms}. However, parameter selection 
+can be difficult for users new to machine learning, 
+which is part of the target group for MLguide. A default 
+configuration should therefore remain available so that the 
+notebook works as a starting point even without further 
+input from the user. The underlying ontology already supports 
+this kind of extension. The \texttt{configuration\_item} 
+class from the ML Ontology, shown in 
+Section~\ref{sec:ml-ontology-structure-and-content}, gives a 
+structure for storing parameters and their values. Filling 
+this with reasonable defaults, possibly extracted from 
+articles where parameter choices are reported, would let 
+the system suggest defaults that go beyond a fixed template 
+while remaining useful to users who do not want to choose 
+themselves.
+
+\begin{comment}
+    
 Notebooks adresserer en av design goals: implementeringsstøtte.
 
 To grupper i P1 nevnte code templates som en fordel, men evidensgrunnlaget 
 er begrenset.
 
 Q-Learning manglet template i Example 2. Tegn på at notebook-dekning er 
-ufullstendig, samme manuelle-arbeid-problem som ontologien.
+ufullstendig, samme manuelle-arbeid-problem som ontologien. 
+
+Hvordan utvide til å inkludere RL?
 
 Sammenligne med Traingenerator: kodegenerering uten metodevalg. MLguide 
 kombinerer de to, men templates er enkle nå. Kunne vært mer metode-spesifikke 
@@ -551,8 +721,9 @@ litteraturen som lovende, men ikke utforsket her.
 Future work: differensiere mellom ekspert og andre tilbakemeldinger, slik 
 at ekspertinnspill kan oppdatere kunnskapsbasen direkte. Vanlige brukere 
 kan påvirke rangeringen mer indirekte.
+\end{comment}
 
-\section{Reflection on the Evaluation Approach}
+\section{Evaluation Approach}
 
 To evalueringsmetoder: user testing og example-based. De utfyller hverandre 
 ved at den ene gir uavhengig bruk, den andre gir kontrollert input.

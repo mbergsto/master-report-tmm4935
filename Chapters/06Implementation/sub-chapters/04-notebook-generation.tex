@@ -9,7 +9,7 @@ recommended method gives users a concrete starting point
 without having to write boilerplate code from scratch. 
 A template-based approach makes it possible to generate 
 such notebooks automatically, with content tailored to 
-the selected method and the user's problem description. 
+the selected method.
 
 MLguide has the possibility to generate a starter notebook for recommended ML 
 methods. This relies on the existence of a pre-written template 
@@ -31,14 +31,20 @@ and Google Colab. The generated notebook is uploaded through the
 GitHub API so that Google Colab can load it from a publicly
 accessible URL.
 
-Much of the notebook generation approach, including the use of 
-Jinja2 templates and 
-the GitHub-based Open in Colab mechanism, is inspired by 
-Traingenerator \parencite{rieke2021traingenerator}, which 
-is described in Section~\ref{sec:tools-and-platforms}. 
-Unlike Traingenerator, where the user selects task, 
-framework and more parameters manually, MLguide selects the template 
-automatically based on the recommended method that is chosen by the user. 
+The notebook generation in MLguide is inspired by 
+Traingenerator \parencite{rieke2021traingenerator}, described 
+in Section~\ref{sec:tools-and-platforms}, this includes 
+both the use of Jinja2 templates and the GitHub-based open in 
+Colab mechanism.
+A key difference from Traingenerator is how much the user 
+configures. In Traingenerator, the user selects a task and a 
+framework, and can then adjust a number of parameters that 
+shape the content of the generated template. In MLguide, the 
+template is selected automatically based on the method that 
+the user has chosen from the recommendations, and the user 
+has no further configuration step. The generated notebook is 
+a fixed starting point that the user can then modify in 
+Google Colab or locally.
 
 \subsection{Template Resolution and Rendering}
 \label{sec:template-resolution}
@@ -182,10 +188,10 @@ model = RandomForestClassifier(
 {% endblock %}
 \end{lstlisting}
 
-The template structure is inspired by Traingenerator 
-\parencite{rieke2021traingenerator} and covers the basic 
-steps needed to load a dataset, configure the method, 
-train it, and evaluate the result.
+The template structure follows the same idea as in 
+Traingenerator and covers the basic steps needed to load a 
+dataset, configure the method, train it, and evaluate the 
+result.
 
 \subsection{Template Folder Structure and Extensibility}
 \label{sec:template-structure-and-extensibility}
@@ -246,14 +252,12 @@ creating a template file with the correct method
 name in the appropriate family folder. This makes the 
 template system straightforward to extend.
 
-No templates were written for reinforcement learning methods. As
-described in Section~\ref{sec:machine-learning-paradigms-and-tasks},
-reinforcement learning involves an agent interacting with an
-environment, and the environment is typically specific to the
-problem. A generic template can provide much less of a working
-starting point in this case than for example for a classification or
-regression method. How reinforcement learning could best be
-supported would need to be explored separately, and is discussed
-further in Section~\ref{sec:...}.
-
-\textbf{Legg til riktig seksjon her!!}
+No templates were written for reinforcement learning methods. 
+Reinforcement learning involves an agent that learns by 
+interacting with an environment, as described in 
+Section~\ref{sec:machine-learning-paradigms-and-tasks}, and 
+the environment is typically specific to the problem at hand. 
+A generic template would therefore give less of a working 
+starting point than it does for classification or regression, 
+where the structure of the input data and the model is more 
+predictable. This is a known limitation of the current template set.

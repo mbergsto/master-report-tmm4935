@@ -212,15 +212,20 @@ environmental impact, and a model is selected by the user.
 Traingenerator \parencite{rieke2021traingenerator} is a 
 web-based tool that generates template Python code and Jupyter 
 notebooks for machine learning tasks. A task and framework are 
-selected from a menu, and a code template is produced that 
-covers data loading, model setup, training, and evaluation. 
-The generated code can be downloaded as a script or notebook, 
-or opened directly in Google Colab. As of May 2026, the hosted 
-version produces a runtime error and does not render the output 
+selected from a menu, and the user can then configure 
+parameters through a sidebar interface, which updates the 
+generated code in real time. The result covers data loading, 
+model setup, training, and evaluation, and can be downloaded 
+as a script or notebook, or opened directly in Google Colab. 
+Templates are organised in a folder structure that makes it 
+easy to add new ones without changing the application code. 
+As of May 2026, the hosted 
+version\footnote{\url{https://traingenerator.streamlit.app/}} 
+produces a runtime error and does not render the output 
 correctly, although it appeared to function as intended during 
-the development period of this thesis, and the tool can still 
-be inspected through the GitHub 
-repository.\footnote{\url{https://github.com/jrieke/traingenerator}}
+the development period of this thesis. The tool can still be 
+inspected through the GitHub repository 
+\parencite{rieke2021traingenerator}.
 
 The European AI-on-Demand Platform (AIoDP) and its DeployAI 
 implementation offer a marketplace of pre-trained models, 
