@@ -52,6 +52,7 @@ summarising limitations and directions for future work.
 % by summarising limitations and directions for future work.
 
 \section{Method Recommendations and the Role of Articles}
+\label{method-recommendations-and-role-of-articles}
 
 The method recommendations in MLguide are driven by the 
 semantic similarity between the user's problem description and 
@@ -60,6 +61,22 @@ described in Section~\ref{sec:recommendation-process}. The
 articles retrieved are aggregated into method rankings, 
 so the methods that appear in articles closely matching the 
 problem are ranked highest. 
+
+Across the evaluation, MLguide produced recommendations that 
+were largely relevant to the problems submitted. In the user 
+testing, most groups in Project 1 had high or medium overlap 
+between the recommended methods and the methods they used 
+(Section~\ref{sec:project-1}), and the groups in Project 2 
+generally reported that the recommended methods gave a useful 
+overview of relevant approaches 
+(Section~\ref{sec:project-2}). The example-based evaluation 
+showed that most of the top-ranked methods were closely 
+related to the problem in each case 
+(Section~\ref{sec:results-example-based-evaluation}). At the 
+same time, several observations point to systematic effects 
+in how the recommendations are shaped, which are discussed in 
+the rest of this section.
+
 
 \begin{comment}
     
@@ -296,8 +313,20 @@ detection problem.
 
 \end{comment}
 \section{Ontology Coverage and Structure}
+\label{sec:ontology-coverage-and-structure}
 
-Hva ontologiens coverage og struktur betyr for recommendation.
+\begin{comment}
+
+Ontologien strukturerer metode kunnskapen som et tillegg til den ustrukturerte kunnskapen
+spredt i artikkel databasen. Hierarkiet bidrar til at relaterte ML metoder kan dele kunnskap 
+som forklart i sec:ml-and-ontology. Dette gjør det lettere å utvide. 
+Hovedpoenget er at ontologien gir struktur, transparens og utvidbarhet.
+
+Mot Riesener/Lickert: ontologien er mer fleksibel og utvidbar enn en flat matrise. Egenskaper kan legges til uten å bygge om.
+Mot AutoML: ontologien gir transparens og forklarbarhet, det AutoML ofte mangler.
+Mot Gerschütz 2021 (Semantic MediaWiki): ontologien er en formell representasjon med inheritance og SPARQL-spørringer, mer kraftig enn semantiske lenker i wiki.
+
+Hva ontologiens coverage og struktur betyr for 'recommendations'.
 
 Hvordan kan den utvides?
 
@@ -307,12 +336,155 @@ Dataset type gjennom used\_for.
 
 Tabular + regression = tabular regression.
 
+Brukere i P1 rapporterte at performance preferences ikke var useful og task match var incorrect. 
+Dette var versjon A og bidro til at versjon B ble gjort uten filtere som task og performance preferences.
+Fordi de skulle bli utvidet kunnskapsmessig. I versjon C er det dermed mye høyere property coverage. Som forklart i
+sec:changes-across-system-versions.
+C er versjonen vi ser i example based evalutation. Vi ser mange metoder som har info rundt task, dataset type, performance preferences.
+Men spesielt få på note (possible_if, not_recommended_if), coverage er heller ikke full på de andre, ref tab:ml-approach-coverage-extended.
+Her kan jeg videre peke på tidkrevende manuelt arbeid. Som related work nevner.
+Også sammenligne med de som har mindre domener. 
+
 Mulig sammenligning: Blagec2022 (ITO) bruker automatisk import + manuell 
 kuratering. MLguide kunne utvidet på lignende måte med benchmark-data, 
 ikke bare attributter.
 
 ML Ontology er egentlig laget for AutoML, ikke for metodevalg, og dette 
-setter begrensninger for hva den naturlig kan uttrykke.
+betyr at det er mange klasser jeg ikke benytter meg av. Kan referere til oversikten over de jeg la til, 
+sammenlignet med oversikten over alle klassene som er der.
+Det betyr også at mlguide kan utvides til å inkludere automl kunnskap. 
+Måtte gjøre mange extensions som har bidratt til å få et fungerende system med artikkel-metode links. 
+Og mulighet for utvidelse av dette automatisk i en article-retrieval pipeline, men med
+en del extensions og kunnskapsoppdatering kan man argumentere for at jeg burde laget den selv. 
+
+\end{comment}
+
+The ontology in MLguide structures the method knowledge that 
+complements the unstructured knowledge spread across the article 
+database. It supports the filters in the user interface, gives 
+transparency in how the recommendations are presented, and is 
+designed to be extended over time. The hierarchy lets related 
+methods share properties through inheritance, as described in 
+Section~\ref{sec:ml-and-ontology}, which makes it easier to add 
+new methods without specifying every property from scratch. 
+This makes the ontology more flexible than a flat matrix as used 
+by \textcite{riesener2020} and 
+\textcite{lickert2021_ml_selection_reverse_logistics}, and more 
+formal than the semantic wiki of 
+\textcite{gerschutz2021semantic_web_approach}. It also gives 
+the kind of transparency that AutoML systems are often 
+criticised for lacking 
+\parencite{barbudo2023eight_years_automl_categorisation_review_trends}. 
+The ontology-based approach is comparable to AI4PD 
+\parencite{gerschutz2023_AI4DP}, which also uses an
+ontology to support method selection.
+
+The usefulness of the ontology depends on how completely its 
+properties are populated. In Project 1, several groups reported 
+that the performance preferences were not useful in practice 
+and that the task match was incorrect for some methods 
+(Section~\ref{sec:project-1}). This was system version A, and 
+the findings led to a temporary removal of these filters in 
+version B while the method knowledge was being extended, as 
+described in Section~\ref{sec:changes-across-system-versions}. 
+Version C, used in the example-based evaluation, has higher 
+property coverage. Most methods now have task and dataset type relations, 
+and many have performance preferences defined. While the note properties, 
+such as conditions for when a method is possible or not 
+recommended, are still sparsely populated. The overall coverage 
+is not complete, as shown in 
+Table~\ref{tab:ml-approach-coverage-extended}.
+
+The incomplete coverage reflects a wider challenge with 
+ontology-based method knowledge. Populating the properties 
+manually is time-consuming, and it is difficult to keep up with 
+a growing set of methods and tasks. Related work acknowledges 
+this. \textcite{gerschutz2023_AI4DP} report that populating 
+their ontology with method knowledge is done manually and that 
+the effort required is high. \textcite{sonntag2023pattern_ml_product_development} 
+and \textcite{lickert2021_ml_selection_reverse_logistics} 
+restrict their work to a much smaller number of methods, which keeps 
+the effort manageable but limits the scope. MLguide aims to 
+cover a broader range of methods across the full product 
+lifecycle, which is more ambitious in scope but exposes the 
+manual-effort limitation more clearly.
+
+Some structural choices in the ontology are also worth 
+discussing. The dataset type of a method is not stored as a 
+property on the method itself, but is reached through the 
+used\_for relation to a task, as explained in 
+Section~\ref{sec:ml-ontology-structure-and-content}. This means 
+a method only matches a dataset type if it is connected to a 
+task that has that dataset type defined. One result is that the 
+same information can be expressed in two ways. A task such as 
+"Tabular Regression" overlaps with the combination of the task
+"Regression" and a tabular dataset type. Another result is that 
+some matches can be missing in unexpected places. In the 
+supervised classification example 
+(Section~\ref{sec:example-1}), Principal Component Analysis is 
+not marked as matching the tabular dataset type. This follows 
+from the fact that the tasks PCA is linked to in the ontology 
+do not have tabular as a defined dataset type. A cleaner 
+separation, where dataset type is its own property of the 
+method, would avoid such cases and make the ontology easier to 
+query and reason over.
+
+The ML Ontology developed by \textcite{humm2026industry_ready_machine_learning_ontology} 
+was originally built to support AutoML rather 
+than method selection. As a result, several of its classes are 
+not used in MLguide, and a number of extensions had to be added 
+to support the article-method links and the filters that 
+MLguide depends on. Building on an existing ontology gives 
+MLguide a stable foundation and aligns it with a broader effort 
+in the field, but it also means that the structure was not 
+designed for the exact purpose at hand. On the positive side, 
+this leaves the door open for MLguide to be 
+extended with AutoML knowledge in the future, since the 
+underlying ontology already supports it.
+
+The link between the ontology and the articles is one of the 
+strengths of MLguide compared with the structured frameworks presented
+in Section~\ref{sec:approaches-to-method-selection}, which rely 
+entirely on manually populated method knowledge. In MLguide, 
+each article is automatically classified by ML area and linked 
+to the methods it mentions, as part of the article retrieval 
+pipeline 
+(Section~\ref{sec:article-retrieval-and-knowledge-extraction}). 
+This means the article-method connection grows as the article 
+base grows, without manual effort for each method. 
+Other ontology-based work reviewed in Section~\ref{sec:related-work-and-existing-tools} 
+also makes use of links from the 
+ontology to articles. NLP-KG \parencite{schopf2024nlp} links 
+publications to fields of study and uses the graph for 
+exploratory search, while ITO 
+\parencite{blagec2022_benchmark_knowledge_graph} imports 
+articles automatically from Papers with Code and links them 
+to benchmark results for provenance. These approaches show 
+that more can be extracted from the literature than what 
+MLguide currently uses, and that automated import can reduce 
+the manual effort required to keep an ontology up to date.
+
+A natural direction for further work is therefore to extend 
+the article retrieval pipeline to bring more structured 
+knowledge into the ontology automatically. Possible additions 
+include benchmark results, task or application area 
+information, and combinations of methods used together in a 
+pipeline or hybrid architecture. 
+The last point connects to two observations made earlier. 
+Section~\ref{sec:method-recommendations-and-role-of-articles} 
+discussed how methods used in a pipeline, such as 
+dimensionality reduction before a main method, can appear in 
+the recommendations because the retrieval does not distinguish 
+between them. Project 2 reports also noted that MLguide is 
+limited to single-algorithm recommendations and does not 
+capture hybrid architectures 
+(Section~\ref{sec:project-2}). Extracting method combinations 
+from the literature could turn this limitation into a feature, 
+by treating pipelines and hybrid architectures as recommendable 
+units in themselves. These extensions 
+would reduce the manual effort required to keep the ontology 
+up to date even more, and build on the article-ontology link that MLguide 
+already has.
 
 \section{Filters and Application Context}
 
