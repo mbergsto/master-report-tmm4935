@@ -99,7 +99,7 @@ supervised learning is the dominant area, as shown in
 Section~\ref{sec:resulting-database}. The dominance of these 
 methods in the recommendations is therefore not surprising. The 
 same methods appear prominently in the example-based 
-evaluation: Neural Network is the top recommendation in the 
+evaluation. Neural Network is the top recommendation in the 
 reinforcement learning example with the highest article count, 
 above several specific Reinforcement Learning based methods.
 Random Forest is returned in the anomaly detection example 
@@ -264,7 +264,7 @@ Another possible factor is that research literature tends to use more
 advanced models than those that are typical starting points 
 for users new to machine learning, so recommendations grounded 
 in research can differ from what students or beginners would 
-expect based on their course material. This
+expect based on their course material.
 The supervised classification 
 example in Section~\ref{sec:example-1} shows a different 
 balance, where classical methods such as Linear Regression 
@@ -279,13 +279,12 @@ ranked second despite being flagged as not suited for the
 classification task. A likely reason is that the wording of 
 the problem description, which includes terms such as 
 "faulty", resembles how an unsupervised anomaly detection 
-problem might be described. The literature-based score for 
-Gaussian Mixture Model is therefore high enough to overcome 
-the task filter, which is treated as a soft signal rather 
-than a hard constraint. This shows that placing strong weight 
-on the problem description, without hard filtering on the 
-selected task, can lead to recommendations that are clearly 
-inconsistent with the user's stated intent.
+problem might be described. The article-based score for Gaussian Mixture Model is 
+therefore high enough to rank it as the second recommendation. 
+This shows that placing strong 
+weight on the problem description, without filtering on attributes 
+such as selected task in the ranking itself, can lead to recommendations 
+that are clearly inconsistent with the user's stated intent.
 
 \begin{comment}
 
