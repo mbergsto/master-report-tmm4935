@@ -1,12 +1,13 @@
 \label{ch:discussion}
 
 This chapter discusses the design, behaviour, and evaluation 
-of MLguide and considers what the findings say about the 
+of MLguide and reflects on the findings in relation to the 
 hypothesis and research questions stated in 
-Chapter~\ref{ch:introduction}. The Discussion is organised by 
-topic, with sections on each one. It closes by returning to 
-the research questions and the design goals, and by 
-summarising limitations and directions for future work.
+Chapter~\ref{ch:introduction}. The discussion is organised 
+by topic, with sections on each one. Limitations and 
+directions for future work are addressed within each topic. 
+The chapter closes by returning to the research questions 
+and the design goals.
 
 % Liste temaene i stedet for å si "topic"? Fjerne design goals?
 
@@ -918,29 +919,50 @@ Tolkning av output er forfatterens egen, ikke uavhengig.
 \end{comment}
 
 \section{Answers to Research Questions}
+\label{sec:answers-to-research-questions}
 
-\section{Limitations and Future Work}
+The three research questions correspond to the main design 
+goals of MLguide described in Section~\ref{sec:design-goals}: 
+supporting method selection, grounding recommendations in 
+literature, and providing implementation support. The 
+feedback mechanism, which was a fourth direction from the 
+pre-master project, was implemented but could not be 
+meaningfully evaluated within the scope of this thesis 
+(Section~\ref{sec:method-feedback}).
 
-Samle begrensninger som er nevnt gjennom kapittelet.
+This section returns to the research questions stated in 
+Section~\ref{sec:hypothesis-research-questions} and 
+summarises what the work has shown for each one.
 
-Og oppsummere potensiell og mest lovende future work-muligheter.
+\subsection{RQ1: Ontology-Based Knowledge Representation}
 
-% \subsection{Feedback and Limitations}
-% \label{sec:feedback-and-limitations}
-% \textbf{Skrives om}
+Restate RQ1. Summarise the answer from the discussion: 
+ontology gives structure, filters, transparency, but coverage 
+is limited and structural choices have trade-offs. References 
+to Section~\ref{sec:ontology-coverage-and-structure} and 
+Section~\ref{sec:production-domain-knowledge}.
 
-% The feedback from both projects gave useful insight into the usability of 
-% MLguide and what could be improved. However, two limitations applied.
+\subsection{RQ2: Semantic Retrieval from Scientific Literature}
 
-% The first concerned the feedback format. Feedback was collected as part of
-% the students' project reports, which fit naturally within the course structure
-% and allowed students to reflect on MLguide in the context of their own problem
-% and data. Since each group worked on a different problem, an open format seemed
-% more suitable than a fixed set of questions. The trade-off was that responses
-% varied in detail and focus, making it more difficult to draw systematic conclusions.
+Restate RQ2. Summarise: literature retrieval drives ranking, 
+articles serve as visible support for recommendations, 
+methodological detail is captured less well than task and 
+dataset. References to 
+Section~\ref{sec:method-recommendations-and-role-of-articles}.
 
-% The second limitation was that the feedback arrived quite late in the development
-% period. This was probably unavoidable, as a working system had to be in place 
-% before it could be tested. The feedback led to some adjustments, but larger 
-% changes such as new features or structural redesigns were not feasible within 
-% the remaining time. These can instead be left as directions for future work.
+\subsection{RQ3: Support for Users in Early Implementation}
+
+Restate RQ3. Summarise: notebooks give concrete starting 
+points, target group reported them as useful, but coverage 
+is incomplete. Touches on design goal of implementation 
+support and free-text input. References to 
+Section~\ref{sec:starter-notebooks-and-implementation-support} 
+and parts of 
+Section~\ref{sec:production-domain-knowledge}.
+
+% \section{Limitations and Future Work}
+
+% Samle begrensninger som er nevnt gjennom kapittelet.
+
+% Og oppsummere potensiell og mest lovende future work-muligheter.
+
