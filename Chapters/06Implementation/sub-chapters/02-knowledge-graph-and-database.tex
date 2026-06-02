@@ -3,7 +3,7 @@
 \label{sec:knowledge-graph-and-database}
 
 This section describes the two data stores used in MLguide. The first 
-is the ML knowledge graph stored in GraphDB, which is based on ML 
+is the ontology-based ML knowledge graph stored in GraphDB, which is based on ML 
 Ontology and extended for use in MLguide. The second is the PostgreSQL 
 database, which stores article abstracts and vector embeddings used 
 for semantic retrieval.
@@ -71,7 +71,16 @@ separation could be removed by transferring the article relations
 directly to the corresponding \texttt{ML\_approach} instances.
 
 Figure~\ref{fig:ontology-uml-with-extension} shows the class structure 
-of the extended ontology. The upper part shows the classes from the 
+of the extended ontology. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/06-implementation/ontology-uml-with-extension.pdf}
+    \caption[ML Ontology UML diagram]{Unified Modeling Language (UML) class diagram of the ML Ontology, including added classes and properties for MLguide.}
+    \label{fig:ontology-uml-with-extension}
+\end{figure}
+
+The upper part shows the classes from the 
 original ML Ontology that are directly connected to the three new 
 \texttt{mla:} classes: \texttt{ML\_approach}, \texttt{ML\_task}, and 
 \texttt{ML\_area}. The lower part shows the new \texttt{mla:} classes 
@@ -82,15 +91,16 @@ and how they connect to these. \texttt{mla:Method} is linked to
 \texttt{has\_family}, and \texttt{mla:Article} is linked to 
 \texttt{ML\_area} via \texttt{has\_ml\_area}.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{Figures/06-implementation/ontology-uml-with-extension.pdf}
-    \caption[ML Ontology UML diagram]{Unified Modeling Language (UML) class diagram of the ML Ontology, including added classes and properties for MLguide.}
-    \label{fig:ontology-uml-with-extension}
-\end{figure}
-
 Figure~\ref{fig:ontology-article-instance} shows a concrete example 
 of how the extended ontology represents an article and its relations. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/06-implementation/ontology-article-instance.pdf}
+    \caption[Article instance example]{Example of an Article instance in the ML Ontology.}
+    \label{fig:ontology-article-instance}
+\end{figure}
+
 The \texttt{mla:Article} instance represents a research article 
 identified by its Digital Object Identifier (DOI) and title. It is linked to 
 \texttt{supervised\_learning} via \texttt{has\_ml\_area}, and to 
@@ -99,16 +109,10 @@ via \texttt{mentionsMethod}. The method instance is in turn linked to
 the \texttt{ML\_approach} instance \texttt{linear\_regression} via 
 \texttt{skos:exactMatch}, which carries the ontology relations: 
 \texttt{used\_for} links it to the \texttt{ML\_task} 
-\texttt{regression}, which belongs to \texttt{supervised\_learning} 
+\texttt{regression}, which belongs to \\ 
+\texttt{supervised\_learning} 
 via \texttt{belongs\_to}, and \texttt{has\_family} links it to the 
 \texttt{mla:ML\_task\_family} instance \texttt{regression\_family}.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{Figures/06-implementation/ontology-article-instance.pdf}
-    \caption[Article instance example]{Example of an Article instance in the ML Ontology.}
-    \label{fig:ontology-article-instance}
-\end{figure}
 
 New \texttt{ML\_approach} instances were added to address the 
 coverage gaps identified in Section~\ref{sec:ml-ontology-structure-and-content}. 
@@ -149,7 +153,7 @@ Time series
   & Kalman filter, temporal convolutional network, N-BEATS, seasonal ARIMA, state space model, VAR, Holt-Winters & 7 \\
 \midrule
 Explainability
-  & explainable AI, SHAP, Granger causality, DoWhy, CausalImpact, causal forest & 6 \\
+  & explainable AI, SHAP, Granger causality, DoWhy, Causal Impact, causal forest & 6 \\
 \midrule
 Probabilistic
   & Bayesian method, Gaussian process regression, partial least squares, elastic net, robust regression & 5 \\
@@ -225,7 +229,7 @@ after the extension.}
 
 Populating instances with properties requires manual work, and gathering 
 the knowledge to do so takes effort. 
-The knowledge used in this work with updating the graph,
+The knowledge used to update the knowledgegraph
 was based on the established ML sources and textbooks also used in 
 Section~\ref{sec:machine-learning}. When updating the knowledge, new instances were prioritised, since 
 they had no properties at all. Reinforcement learning is one 
@@ -324,12 +328,12 @@ with problem descriptions, allowing users to reload them without
 re-entering their inputs. The \texttt{method\_feedback} table stores
 user feedback on recommended methods, capturing all context related to 
 the user's problem description and the specific method. The \texttt{skipped\_articles}
-table used in the process retrieving new articles for the knowledge graph and article database. 
+table is used in the process retrieving new articles for the knowledge graph and article database. 
 It is further explained in Section~\ref{sec:article-retrieval-flowchart}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Figures/06-implementation/psql-er-diagram.pdf}
-    \caption[PostgreSQL ER diagram]{Entity-Relationship Diagram of the PostgreSQL database used in MLguide.}
+    \caption[PostgreSQL ER diagram]{Entity-relationship diagram of the PostgreSQL database used in MLguide.}
     \label{fig:psql-er-diagram}
 \end{figure}

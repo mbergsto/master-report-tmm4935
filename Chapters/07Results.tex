@@ -212,8 +212,7 @@ single-algorithm reinforcement learning.
 The reports also raised a small number of issues. First, the 
 method ranking was unclear: it was not obvious which 
 recommendation to prioritise, and the top-ranked method was not 
-always the best fit. Second, a specific algorithm, REINFORCE, 
-was difficult to find. Third, the input form did not capture 
+always the best fit. Second, the input form did not capture 
 hybrid architectures, non-standard states, or deployment 
 constraints, which limited the system to standard 
 single-algorithm reinforcement learning.
@@ -229,7 +228,9 @@ NSGA-III were used by one group each without being recommended.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/07-results/p2-plots/methods-used-vs-recommended.pdf}
-    \caption[P2 methods vs.\ recommended]{Methods Used vs. Recommended.}
+    \caption[P2 recommended vs.\ used]{Number of groups recommended
+    each method by MLguide compared with the number of groups that
+    used it.}
     \label{fig:methods-used-vs-recommended-p2}
 \end{figure}
 
@@ -369,10 +370,9 @@ The recommendations are shown in
 Figure~\ref{fig:recommendations-example-3-rec}. 
 The top of the list includes common anomaly 
 detection methods such as Local Outlier Factor, Isolation Forest, 
-One-Class SVM, and Autoencoder. Standard Support Vector Machine also 
-appears at the top, although it is 
-a supervised method for classification and regression, 
-and it is flagged as suited for the task. 
+One-Class SVM, and Autoencoder. Standard Support Vector Machine also
+appears at the top, flagged as suited for the task, although it is
+commonly used for classification and regression. 
 Several general neural network 
 architectures are also returned: LSTM, Convolutional Neural 
 Network, Deep Neural Network, and Multi-Layer Perceptron. Random 
@@ -389,7 +389,7 @@ The top-ranked articles for Support Vector Machine are shown in
 Figure~\ref{fig:articles-example-3-rec}. The titles cover 
 anomaly detection in manufacturing and quality inspection. The 
 first article explicitly concerns a one-class model for anomaly 
-detection, which suggests that the some of the supporting literature for 
+detection, which suggests that some of the supporting literature for 
 Support Vector Machine in this context refers to One-Class SVM 
 rather than the standard form.
 

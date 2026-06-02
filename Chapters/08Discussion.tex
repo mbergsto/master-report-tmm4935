@@ -65,13 +65,14 @@ problem are ranked highest.
 Across the evaluation, MLguide produced recommendations that 
 were largely relevant to the problems submitted. In the user 
 testing, most groups in Project 1 had high or medium overlap 
-between the recommended methods and the methods they used 
-(Section~\ref{sec:project-1}), and the groups in Project 2 
-generally reported that the recommended methods gave a useful 
-overview of relevant approaches 
-(Section~\ref{sec:project-2}). The example-based evaluation 
-showed that most of the top-ranked methods were closely 
-related to the problem in each case 
+between the recommended methods and the methods they used, 
+and several groups raised method shortlisting and early 
+orientation as a benefit 
+(Section~\ref{sec:project-1}). Groups in Project 2 reported 
+that the recommended methods gave a useful overview of 
+relevant approaches (Section~\ref{sec:project-2}). The 
+example-based evaluation showed that most of the top-ranked 
+methods were closely related to the problem in each case 
 (Section~\ref{sec:results-example-based-evaluation}). At the 
 same time, several observations point to systematic effects 
 in how the recommendations are shaped, which are discussed in 
@@ -312,6 +313,7 @@ i problemstillingen og ordlyden generelt kan minne om en unsupervised anomaly
 detection problem. 
 
 \end{comment}
+
 \section{Ontology Coverage and Structure}
 \label{sec:ontology-coverage-and-structure}
 
@@ -389,7 +391,7 @@ version B while the method knowledge was being extended, as
 described in Section~\ref{sec:changes-across-system-versions}. 
 Version C, used in the example-based evaluation, has higher 
 property coverage. Most methods now have task and dataset type relations, 
-and many have performance preferences defined. While the note properties, 
+and many have performance preferences defined, while the note properties, 
 such as conditions for when a method is possible or not 
 recommended, are still sparsely populated. The overall coverage 
 is not complete, as shown in 
@@ -428,6 +430,30 @@ do not have tabular as a defined dataset type. A cleaner
 separation, where dataset type is its own property of the 
 method, would avoid such cases and make the ontology easier to 
 query and reason over.
+
+The structure is more flexible in how methods relate to ML 
+areas. As shown in 
+Figure~\ref{fig:ontology-uml-with-extension}, methods are not 
+linked directly to ML areas. Instead, they are linked to tasks 
+through \texttt{used\_for}, and tasks belong to ML areas. A 
+method is also linked to the articles that mention it, and 
+each article is classified by ML area, so a method can be 
+associated with multiple areas through both tasks and 
+articles. A method that does not fit neatly into the three-way 
+division of supervised, unsupervised, and reinforcement 
+learning can therefore still be part of the ontology and 
+appear in recommendations. Example 2 
+(Section~\ref{sec:example-2}) illustrates this. Two 
+metaheuristic methods appear in the recommendations for a 
+reinforcement learning problem, Genetic Algorithm at third 
+place and Particle Swarm Optimization further down. Neither 
+is a reinforcement learning method, but the retrieved 
+articles connect them to similar scheduling problems. This is 
+consistent with the literature, where evolutionary algorithms 
+are often combined with the three common ML areas 
+(Section~\ref{sec:machine-learning-paradigms-and-tasks}). The 
+ontology accommodates this without forcing a classification 
+that would not be a good fit.
 
 The ML Ontology developed by \textcite{humm2026industry_ready_machine_learning_ontology} 
 was originally built to support AutoML rather 
@@ -643,7 +669,7 @@ gives a starting point for implementing it.
 The current templates are simple, and the coverage is 
 incomplete. Adding 
 a template for each method is manual work, similar to the 
-manual effort that limits the ontology coverage. However, The 
+manual effort that limits the ontology coverage. However, the 
 technical structure is straightforward, and a new 
 template only needs to be placed in the right folder with the right
 method file name
@@ -706,10 +732,56 @@ Kan utvide til valg av parametere i sidebar, eller forslag til parametere.
 
 Og lett å skalere, trenger bare template i riktig mappe.
 
-\section{Feedback and Use Over Time}
+\end{comment}
 
-Feedback-mekanismen ble lite brukt (få responser), så den kunne ikke 
-evalueres som datakilde (cold start i background).
+\section{Method Feedback}
+\label{sec:method-feedback}
+
+The method-specific feedback mechanism, given through the 
+rating widget on the method details page 
+(Section~\ref{sec:ui-method-details-page}), was introduced 
+in version C and was therefore not part of the user testing 
+in Project 1 or Project 2 
+(Section~\ref{sec:changes-across-system-versions}). Few 
+ratings have been submitted so far, and the mechanism could 
+not be evaluated as a data source. This is the cold start 
+problem discussed in 
+Section~\ref{sec:user-feedback-in-recommendation-systems}: 
+ratings only become useful when enough of them have been 
+collected. The Bayesian smoothing in the feedback boost 
+(Section~\ref{sec:feedback-boost}) is designed to handle a 
+small user base by pulling the estimate towards a neutral 
+prior when ratings are sparse. The combined ranking still 
+relies mostly on the similarity-based score. This is 
+a deliberate design choice for the current stage, but it 
+also means that feedback is unlikely to influence the 
+recommendations meaningfully until the user base grows.
+
+Each rating is stored together with the full problem 
+description and the rated method, as described in 
+Section~\ref{sec:database-structure}. This structure 
+supports content-based filtering 
+\parencite[Chapter~4]{ricci2010recommender_systems_handbook}, 
+where recommendations are based on similarity between items 
+that the users have rated before. Since each rating 
+in MLguide is tied to the problem description it was given 
+for, the similarity between a user's current problem and 
+problems that have been rated before could feed into the 
+ranking, giving more weight to methods that have been rated 
+highly for similar problems. In this way the system would 
+collect knowledge from 
+its users and use it directly in the recommendations, which 
+would reduce some of the manual-effort limitations discussed 
+in earlier sections by drawing on user input rather than only 
+on updates to the data sources. This is left as future work.
+
+\begin{comment}
+
+Feedback-mekanismen ble ikke testet / lite brukt (få responser),
+siden den kom i versjon C, altså ikke med i bruktertesting. 
+Så den kunne ikke 
+evalueres som datakilde (cold start diskutert background).
+Den er utviklet mtp lav brukermengde ref implementasjon og smoothing. 
 
 Avhengig av brukermengde for å være nyttig: før systemet har mange brukere, 
 gir tilbakemeldinger lite signal.
@@ -721,32 +793,129 @@ litteraturen som lovende, men ikke utforsket her.
 Future work: differensiere mellom ekspert og andre tilbakemeldinger, slik 
 at ekspertinnspill kan oppdatere kunnskapsbasen direkte. Vanlige brukere 
 kan påvirke rangeringen mer indirekte.
+
 \end{comment}
 
 \section{Evaluation Approach}
+\label{sec:evaluation-approach}
 
+The two evaluation methods used for MLguide are complementary, 
+but each has limitations that shape how the results should be 
+read.
+
+The user testing was carried out with engineering students 
+in a machine learning course, which matches the intended 
+user group of MLguide described in 
+Section~\ref{sec:design-goals}: engineers and students new 
+to machine learning. The two course projects had different 
+topics and gave the students real implementation tasks to 
+carry out (Section~\ref{sec:user-testing}). The students 
+also chose their own specific problems within the project 
+briefs, so the system was tested on a range of different 
+problems rather than on repeated variations of the same one.
+
+The user testing also has some constraints worth noting. 
+The two projects used different system versions, 
+as shown in the development timeline in 
+Section~\ref{sec:development-timeline}. This reflects the 
+iterative nature of the development, but it means that 
+findings from Project 1 and Project 2 are not directly 
+comparable. Neither project tested the final version C, which 
+was the version used in the example-based evaluation. 
+The number of groups using MLguide was also lower in Project 
+2 than in Project 1 (Figure~\ref{fig:participation-count-p2}). 
+Project 2 had a more open-ended task brief, while Project 1 
+asked the groups to explore a more defined problem. The 
+defined-problem setup matches better with the recommendation 
+process MLguide is designed around, where the user has a 
+specific problem and looks for a method. This may explain 
+why Project 1 generated more direct feedback on the method 
+recommendations, while Project 2 generated more feedback on 
+the article retrieval.
+
+None of the groups used the structured feedback 
+form available in the system, so all feedback came as free text in the 
+project reports without a fixed format. Interpreting the 
+reports involved subjective judgement on the part of the 
+author. A likely reason the feedback form was not used is 
+that it was an optional feature in MLguide, not a required 
+part of the course deliverable.
+
+The groups were also free to use MLguide at any point in 
+their project. In Project 1, about half the groups used the 
+system early, before choosing methods, and about half used 
+it after the methods had already been chosen 
+(Figure~\ref{fig:timing-p1}). The overlap between 
+recommendations and used methods was similar for both groups 
+(Figure~\ref{fig:overlap-by-timing-p1}), but the overlap 
+means different things in the two cases. For groups that 
+used MLguide early, the overlap indicates whether the system 
+influenced their choice of methods. For groups that used it 
+late, the overlap only indicates whether the recommendations 
+match methods that had already been chosen on a different 
+basis, likely from course material or online resources. 
+Several groups recognised this themselves, and the most 
+commonly reported issue in Project 1 was that MLguide was 
+used too late to influence method decisions 
+(Figure~\ref{fig:issues-p1}).
+
+The free use of the system also highlights an unintended 
+use case. Several groups that used MLguide late reported 
+that they used it to confirm or validate methods they had 
+already chosen (Figure~\ref{fig:benefits-p1}). MLguide 
+therefore appears to serve two roles, helping users choose 
+methods when used early, and providing a check on methods 
+chosen elsewhere when used late. The second was not an 
+intended function of the system, but it was reported as 
+useful by several groups.
+
+The example-based evaluation complements the user testing by 
+offering controlled input. This made it possible to examine 
+the recommendation behaviour in detail and to detect 
+patterns that would have been difficult to identify from open use 
+alone, such as the high occurrence of methods with high article counts.
+The trade-off is that the examples were constructed 
+by the author, and the output was interpreted by the author 
+as well. This introduces a risk of bias in both how the 
+problem descriptions were phrased and how the results were 
+read. The number of examples is also small and covers only a 
+limited part of the range of problems MLguide could be 
+applied to.
+
+The two evaluations together give a reasonable basis for 
+discussing how the system behaves and where its limitations 
+lie, but the findings should be understood within the scope 
+of this evaluation. A larger and more independent 
+evaluation, including industry users and a broader set of 
+examples, would give stronger conclusions.
+
+\begin{comment}
 To evalueringsmetoder: user testing og example-based. De utfyller hverandre 
 ved at den ene gir uavhengig bruk, den andre gir kontrollert input.
+Testet på en del av brukergruppen. De hadde et prosjekt som passet til systemet. 
+De sto fritt til å benytte seg av annen funksjonalitet enn å bare se på anbefalingene.
 
 Begrensninger ved user testing:
 
+Ingen brukte det strukturerte feedback-skjemaet, så tilbakemeldingene var alle i form av fritekst i rapportene.
+
 Tolkning av rapportene var subjektiv siden de ikke fulgte fast struktur.
 
-Få grupper, særlig P2.
+Få grupper, særlig P2. 
+P2 litt annerledes oppgavetekst. Og kanskje mindre egnet til en brukertest, men passende til å finne artikler kanskje.
 
-Tilbakemeldingsformen ga for lite respons.
+Ulike versjoner testet. Som er naturlig i en iterativ utviklingsprosess
 
-Ulike versjoner testet.
+Brukertesting feedback litt sent utviklingsperioden som vist i sec:development-timeline. 
+Men det gjorde det mulig å være ferdig med mye før den tid, som beskrevet i 
+sec:changes-across-system-versions. 
 
 Begrensninger ved example-based:
 
 Eksempler konstruert av forfatteren, mulig bias.
 
 Tolkning av output er forfatterens egen, ikke uavhengig.
-
-Ingen sammenligning av embedding-modeller (SciBERT, SPECTER, mpnet osv.). 
-Pipeline valgt basert på research, ikke testet mot alternativer i dette 
-prosjektet.
+\end{comment}
 
 \section{Answers to Research Questions}
 

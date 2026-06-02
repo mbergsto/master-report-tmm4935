@@ -116,7 +116,7 @@ and the phrasings matched against article abstracts.}
 \endlastfoot
  
 Principal Component Analysis & principal component analysis, pca \\
-Hotelling T2 & hotelling's t2, hotelling t2 \\
+Hotelling T\textsuperscript{2} & hotelling's t2, hotelling t2 \\
 Squared Prediction Error & squared prediction error, spe \\
 Independent Component Analysis & independent component analysis, ica \\
 Partial Least Squares & partial least squares, pls, pls regression \\
@@ -243,15 +243,29 @@ Section~\ref{sec:article-retrieval-knowledge-extraction}. Separate
 lists are defined for supervised, unsupervised, and reinforcement
 learning. 
 
-\begin{table}[H]
-\centering
+\begin{xltabular}{\textwidth}{XXX}
 \caption[ML area keyword lists]{Keyword lists used to assign an ML
 area to each article, with one list per ML area.}
-\label{tab:ml-area-keywords}
-\begin{tabularx}{\textwidth}{XXX}
+\label{tab:ml-area-keywords} \\
 \toprule
 \textbf{Supervised} & \textbf{Unsupervised} & \textbf{Reinforcement} \\
 \midrule
+\endfirsthead
+
+\multicolumn{3}{c}{\tablename\ \thetable\ -- Continued from previous page} \\
+\toprule
+\textbf{Supervised} & \textbf{Unsupervised} & \textbf{Reinforcement} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{3}{r}{Continued on next page} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\endlastfoot
 classification & unsupervised & reinforcement learning \\
 regression & clustering & rl \\
 supervised & cluster & agent \\
@@ -294,5 +308,4 @@ supervised feature selection & & \\
 cross-entropy loss & & \\
 classification accuracy & & \\
 \bottomrule
-\end{tabularx}
-\end{table}
+\end{xltabular}
