@@ -1,12 +1,11 @@
-\section{User Feedback in Recommendation Systems}
-\label{sec:user-feedback-in-recommendation-systems}
+\section{Rating-Based User Feedback}
+\label{sec:rating-based-user-feedback}
 
-Recommender systems collect information on user preferences, 
-either explicitly through numerical ratings, or implicitly 
-by monitoring user behaviour 
+User preferences can be captured explicitly through numerical ratings, or 
+implicitly by monitoring user behaviour 
 \parencite[Chapter~3.1]{bobadilla2013recommender_systems_survey}. 
 This feedback can be stored and used to improve recommendations 
-in subsequent interactions, so that the longer users engage 
+in later interactions, so that the longer users engage 
 with the system, the more the output can be refined to match 
 their preferences 
 \parencite[Chapter~1]{ricci2010recommender_systems_handbook}.
@@ -24,19 +23,6 @@ believed and what the data indicates
 As more data accumulates, the observed average comes to dominate 
 the estimate, since the data has overwhelmed the prior 
 \parencite[Chapter~3.3]{murphy2012machine_learning_probabilistic_perspective}.
-
-When a rating-based signal must be combined with a score from 
-a separate ranking process, the two may not be directly 
-comparable in scale. Reciprocal Rank Fusion addresses this by 
-converting rank positions into scores rather than using the 
-underlying score values directly. Highly-ranked items receive 
-higher scores, but the importance of lower-ranked items does 
-not vanish entirely, as it would with an exponential function 
-\parencite{cormack2009reciprocal_rank_fusion}. 
-This approach combines ranks without regard to the arbitrary 
-scores returned by particular ranking methods, making it 
-robust to differences in scale between sources 
-\parencite{cormack2009reciprocal_rank_fusion}.
 
 The effectiveness of explicit feedback depends on having 
 sufficient ratings. The cold start problem occurs when it is 

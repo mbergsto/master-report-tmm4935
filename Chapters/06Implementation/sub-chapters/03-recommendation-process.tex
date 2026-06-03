@@ -181,7 +181,7 @@ weight to both broad semantic similarity from the bi-encoder and
 precise relevance from the cross-encoder, and avoids differences 
 in scale between the two. This follows the principle behind 
 Reciprocal Rank Fusion described in 
-Section~\ref{sec:user-feedback-in-recommendation-systems}:
+Section~\ref{sec:rank-fusion}:
 
 \begin{equation}
     \text{score}_m = \sum_{\substack{a \,\in\, \text{top-}k \\ 
@@ -205,11 +205,11 @@ and this choice are configurable.
 \subsection{Feedback Boost}
 \label{sec:feedback-boost}
 
-After methods are ranked by similarity score, 
+After methods are ranked by their combined article-based score, 
 user feedback can adjust the final ordering. 
 When a user rates a method on a 1--5 scale, 
 the rating is stored and used in subsequent recommendations. 
-As discussed in Section~\ref{sec:user-feedback-in-recommendation-systems}, 
+As discussed in Section~\ref{sec:rating-based-user-feedback}, 
 rating estimates based on few observations are unreliable. 
 A smoothed score is therefore computed using Bayesian smoothing 
 towards a neutral prior 

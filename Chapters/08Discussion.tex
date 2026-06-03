@@ -4,7 +4,7 @@ This chapter discusses the design, behaviour, and evaluation
 of MLguide and reflects on the findings in relation to the 
 hypothesis and research questions stated in 
 Chapter~\ref{ch:introduction}. The discussion is organised 
-by topic, with sections on each one. Limitations and 
+by topic. Limitations and 
 directions for future work are addressed within each topic. 
 The chapter closes by returning to the research questions 
 and the design goals.
@@ -38,8 +38,8 @@ and the design goals.
 % by the literature-based retrieval, and the balance between 
 % these two knowledge sources had visible effects on what was 
 % returned. The same patterns appeared across the user tests and 
-% the examples: well-known methods such as Random Forest, Support 
-% Vector Machine, and Neural Network were recommended frequently, 
+% the examples: well-known methods such as random forest, Support 
+% Vector Machine, and neural network were recommended frequently, 
 % while more specialised methods relevant to the task were 
 % sometimes missing or ranked lower than expected.
 
@@ -89,7 +89,7 @@ ALle disse 3 metodene er nevnt i \ref{sec:machine-learning-methods} som brukt ti
 Og supervised learning er som nevnt i \ref{sec:ml-in-product-development-and-production} vanligst rapporterte ml area.
 Som også stemmer med fordelingen av artikler innenfor areas i \ref{sec:resulting-database}.
 
-I begge user testing prosjektene er Neural Network anbefalt en del men kun rapportert brukt en gang.
+I begge user testing prosjektene er neural network anbefalt en del men kun rapportert brukt en gang.
 Vi ser også at disse metodene dukker opp en del i anbefalinger i example based evaluation.
 RF, SVM og NN har gjennomgående høye article count. Og er tilstede en del. Det er ikke nødvendigvis feil, når de rapportert mye brukt.
 Men de kan dukke opp litt mye og mulig gjøre det vanskelig for andre nye eller mindre rapporterte og mer spesifike metoder. Ref \parencite{riesener2020} i
@@ -104,26 +104,26 @@ artikler vektes mest ?
 \end{comment}
 
 The recommendations across the evaluation show a tendency to 
-favour methods with a high article count, in particular Random 
-Forest, Support Vector Machine, and Neural Network. These three 
+favour methods with a high article count, in particular random 
+forest, support vector machine, and neural network. These three 
 methods are described in 
 Section~\ref{sec:machine-learning-methods} as applicable to 
 several tasks, including tasks in supervised learning, which 
 Section~\ref{sec:ml-in-product-development-and-production} 
 reports as the most frequently used ML area in product 
-development and production, with Random Forest, Support Vector 
-Machine, and Neural Network among the most frequently used 
+development and production, with random forest, support vector machine, 
+and neural network among the most frequently used 
 methods. This is also reflected in the article database, where 
 supervised learning is the dominant area, as shown in 
 Section~\ref{sec:resulting-database}. The dominance of these 
 methods in the recommendations is therefore not surprising. The 
 same methods appear prominently in the example-based 
-evaluation. Neural Network is the top recommendation in the 
+evaluation. Neural network is the top recommendation in the 
 reinforcement learning example with the highest article count, 
-above several specific Reinforcement Learning based methods.
-Random Forest is returned in the anomaly detection example 
-despite not matching the task. In the user testing, Neural 
-Network was recommended to several groups in both projects, 
+above several specific reinforcement learning methods.
+Random forest is returned in the anomaly detection example 
+despite not matching the task. In the user testing, neural 
+network was recommended to several groups in both projects, 
 although it was only used once. 
 
 This effect has been pointed out for literature-based selection 
@@ -136,13 +136,13 @@ appear among the top retrieved articles that drive the method
 ranking, so a similar effect is present. At the same time, 
 methods with few articles are not excluded from the top of 
 the list. In the supervised classification example shown in 
-Figure~\ref{fig:recommendations-example-1-rec}, Gaussian 
-Mixture Model appears relatively high despite having only 33 
-articles, against several thousand for Random Forest, Support 
-Vector Machine, and Neural Network. The same effect is visible in the 
+Figure~\ref{fig:recommendations-example-1-rec}, gaussian 
+mixture model appears relatively high despite having only 33 
+articles, against several thousand for random forest, support 
+vector machine, and neural network. The same effect is visible in the 
 anomaly detection example shown in 
-Figure~\ref{fig:recommendations-example-3-rec}, where Local 
-Outlier Factor is ranked second despite having only 48 articles. 
+Figure~\ref{fig:recommendations-example-3-rec}, where local 
+outlier factor is ranked second despite having only 48 articles. 
 This shows that a method with few articles can still rank high 
 if those articles match the problem description closely.
 
@@ -189,7 +189,7 @@ distinguish between them. All mentioned methods are treated as
 relevant to the problem the article addresses. The same applies 
 when a method is used as part of a pipeline rather than as the 
 main contribution, such as a dimensionality reduction step 
-applied before the main method. Principal Component Analysis, 
+applied before the main method. Principal component analysis, 
 described in Section~\ref{sec:machine-learning-methods} as a 
 dimensionality reduction method, appears among the 
 recommendations in the supervised classification example 
@@ -240,7 +240,7 @@ Slike spesifike caser må håndteres spesifikt i dette systemet. Og i nåværend
 er det tatt hensyn til med neural network som beskrevet i sec:article-retrieval-knowledge-extraction
 men dette er ikke tatt hensyn til for alle relevante caser tyder det på. Når SVM topper listen for
 anbefalte metoder i anomaly detection eksempelet, og første artikkel nevnt i top articles nevner spesifikt
-"One-Class". Og one-class svm er som nevnt i \ref{sec:machine-learning-methods} en anomaly detection metode.
+"one-class". Og one-class svm er som nevnt i \ref{sec:machine-learning-methods} en anomaly detection metode.
 One class svm er litt lenger ned på anbefalingene med kun 34 artikler. Som tyder på at denne får bidrag fra
 noen relevante artikler, men svm får det fra de samme som oc-svm men havner høyere grunnet den generelt høye
 antall artikler den har, som diskutert tidligere i seksjonen. 
@@ -249,21 +249,21 @@ antall artikler den har, som diskutert tidligere i seksjonen.
 
 A further challenge in extracting method names from text is 
 handling cases where one method name is contained in another, 
-such as Neural Network within Recurrent Neural Network. Each 
+such as neural network within recurrent neural network. Each 
 such case has to be handled explicitly. The article retrieval 
 pipeline described in 
 Section~\ref{sec:article-retrieval-and-knowledge-extraction} 
-handles this for Neural Network, but the results suggest that 
+handles this for neural network, but the results suggest that 
 not all relevant cases are covered. In the anomaly detection 
-example, Support Vector Machine is at the top of the 
-recommendations, while One-Class SVM appears further down. 
-One-Class SVM is described in 
+example, support vector machine is at the top of the 
+recommendations, while one-class SVM appears further down. 
+One-class SVM is described in 
 Section~\ref{sec:machine-learning-methods} as an anomaly 
-detection method, and the top-ranked articles for Support 
-Vector Machine in this example include a paper that explicitly 
+detection method, and the top-ranked articles for support 
+vector machine in this example include an article that explicitly 
 concerns a one-class model. This indicates that articles about 
-One-Class SVM contribute to the article count of both methods, 
-but Support Vector Machine benefits from its much larger 
+one-class SVM contribute to the article count of both methods, 
+but support vector machine benefits from its much larger 
 overall article count and ranks higher as a result.
 
 A related point is that literature-based recommendations 
@@ -271,8 +271,8 @@ reflect the methods that appear in published research, which
 may differ from what is commonly used in practice or taught in 
 ML courses. In the user testing for the anomaly detection problem in 
 Project 1, several groups reported that neural network methods were 
-over-represented in the recommendations, and that Gaussian 
-Mixture Model and One-Class SVM were missing 
+over-represented in the recommendations, and that gaussian 
+mixture model and one-class SVM were missing 
 (Section~\ref{sec:project-1}). These are classical methods for 
 anomaly detection specifically, while neural network methods 
 have a broader range of applications, as described in 
@@ -286,19 +286,19 @@ in research can differ from what students or beginners would
 expect based on their course material.
 The supervised classification 
 example in Section~\ref{sec:example-1} shows a different 
-balance, where classical methods such as Linear Regression 
-and K-Nearest Neighbors also have high article counts. 
+balance, where classical methods such as linear regression 
+and k-nearest neighbours also have high article counts. 
 Classical methods are therefore not under-represented as a 
 whole, but they can be under-represented within specific tasks 
 or areas. 
 
 In the supervised classification example 
-(Section~\ref{sec:example-1}), Gaussian Mixture Model is 
+(Section~\ref{sec:example-1}), gaussian mixture model is 
 ranked second despite being flagged as not suited for the 
 classification task. A likely reason is that the wording of 
 the problem description, which includes terms such as 
 "faulty", resembles how an unsupervised anomaly detection 
-problem might be described. The article-based score for Gaussian Mixture Model is 
+problem might be described. The article-based score for gaussian mixture model is 
 therefore high enough to rank it as the second recommendation. 
 This shows that placing strong 
 weight on the problem description, without filtering on attributes 
@@ -379,7 +379,7 @@ the kind of transparency that AutoML systems are often
 criticised for lacking 
 \parencite{barbudo2023eight_years_automl_categorisation_review_trends}. 
 The ontology-based approach is comparable to AI4PD 
-\parencite{gerschutz2023_AI4DP}, which also uses an
+\parencite{gerschutz2023_AI4PD}, which also uses an
 ontology to support method selection.
 
 The usefulness of the ontology depends on how completely its 
@@ -402,7 +402,7 @@ The incomplete coverage reflects a wider challenge with
 ontology-based method knowledge. Populating the properties 
 manually is time-consuming, and it is difficult to keep up with 
 a growing set of methods and tasks. Related work acknowledges 
-this. \textcite{gerschutz2023_AI4DP} report that populating 
+this. \textcite{gerschutz2023_AI4PD} report that populating 
 their ontology with method knowledge is done manually and that 
 the effort required is high. \textcite{sonntag2023pattern_ml_product_development} 
 and \textcite{lickert2021_ml_selection_reverse_logistics} 
@@ -420,11 +420,11 @@ Section~\ref{sec:ml-ontology-structure-and-content}. This means
 a method only matches a dataset type if it is connected to a 
 task that has that dataset type defined. One result is that the 
 same information can be expressed in two ways. A task such as 
-"Tabular Regression" overlaps with the combination of the task
-"Regression" and a tabular dataset type. Another result is that 
+"tabular regression" overlaps with the combination of the task
+"regression" and a tabular dataset type. Another result is that 
 some matches can be missing in unexpected places. In the 
 supervised classification example 
-(Section~\ref{sec:example-1}), Principal Component Analysis is 
+(Section~\ref{sec:example-1}), principal component analysis is 
 not marked as matching the tabular dataset type. This follows 
 from the fact that the tasks PCA is linked to in the ontology 
 do not have tabular as a defined dataset type. A cleaner 
@@ -446,8 +446,8 @@ learning can therefore still be part of the ontology and
 appear in recommendations. Example 2 
 (Section~\ref{sec:example-2}) illustrates this. Two 
 metaheuristic methods appear in the recommendations for a 
-reinforcement learning problem, Genetic Algorithm at third 
-place and Particle Swarm Optimization further down. Neither 
+reinforcement learning problem, genetic algorithm at third 
+place and particle swarm optimization further down. Neither 
 is a reinforcement learning method, but the retrieved 
 articles connect them to similar scheduling problems. This is 
 consistent with the literature, where evolutionary algorithms 
@@ -468,7 +468,7 @@ designed for the exact purpose at hand. The design nevertheless leaves room for 
 extended with AutoML knowledge in the future, similar to 
 how OMA-ML 
 \parencite{zender2022ontology_based_meta_automl} builds on 
-the same ML ontology to support AutoML 
+the same ML Ontology to support AutoML 
 (Section~\ref{sec:tools-and-platforms}).
 
 The link between the ontology and the articles is one of the 
@@ -511,8 +511,8 @@ capture hybrid architectures
 from the literature could turn this limitation into a feature, 
 by treating pipelines and hybrid architectures as recommendable 
 units in themselves. These extensions 
-would reduce the manual effort required to keep the ontology 
-up to date even more, and build on the article-ontology link that MLguide 
+would further reduce the manual effort required to keep the ontology 
+up to date, and build on the article-ontology link that MLguide 
 already has.
 
 \section{Production Domain Knowledge}
@@ -583,7 +583,7 @@ The pattern language of
 \textcite{sonntag2023pattern_ml_product_development}, by 
 contrast, requires the user to formalise the entire problem 
 in a fixed set of attributes before matching. In their user 
-study the correct method was identified in \SI{64}{\percent} of 
+study the correct method was identified in 64\% of 
 cases, and the errors arose mainly from incorrect manual 
 formalisation rather than from the matching itself. This 
 suggests that requiring users to fill in fixed attributes to 
@@ -652,8 +652,8 @@ in how the system is used.
 
 A notebook is positioned as a starting point for the user, not 
 a replacement for implementation. This is different from 
-AutoML systems, which produce a trained model directly and 
-is known to treat the selection and configuration process as a black box 
+AutoML systems, which produce a trained model directly and are often 
+described as treating the selection and configuration process as a black box
 (Section~\ref{sec:approaches-to-method-selection}). MLguide 
 leaves the implementation to the user but provides a 
 structured starting point that lowers the barrier to begin. 
@@ -680,7 +680,7 @@ time.
 Reinforcement learning methods are not covered by any 
 templates, as noted in 
 Section~\ref{sec:template-structure-and-extensibility}. This 
-showed in Example 2, where Q-Learning was recommended but no 
+showed in Example 2, where Q-learning was recommended but no 
 template was available (Section~\ref{sec:example-2}). 
 Supporting reinforcement learning would require a different 
 approach. Options include providing templates for common 
@@ -717,7 +717,7 @@ Notebooks adresserer en av design goals: implementeringsstøtte.
 To grupper i P1 nevnte code templates som en fordel, men evidensgrunnlaget 
 er begrenset.
 
-Q-Learning manglet template i Example 2. Tegn på at notebook-dekning er 
+Q-learning manglet template i Example 2. Tegn på at notebook-dekning er 
 ufullstendig, samme manuelle-arbeid-problem som ontologien. 
 
 Hvordan utvide til å inkludere RL?
@@ -747,7 +747,7 @@ in Project 1 or Project 2
 ratings have been submitted so far, and the mechanism could 
 not be evaluated as a data source. This is the cold start 
 problem discussed in 
-Section~\ref{sec:user-feedback-in-recommendation-systems}: 
+Section~\ref{sec:rating-based-user-feedback}: 
 ratings only become useful when enough of them have been 
 collected. The Bayesian smoothing in the feedback boost 
 (Section~\ref{sec:feedback-boost}) is designed to handle a 

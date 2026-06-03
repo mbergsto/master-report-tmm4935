@@ -101,7 +101,7 @@ them in milliseconds.
     \label{fig:sbert-architecture}
 \end{figure}
 
-The sentence-transformers library provides pretrained models 
+The sentence-transformers library provides pre-trained models 
 based on this approach for encoding text into fixed-size 
 vectors \parencite{sbert_docs}.
 
@@ -198,7 +198,7 @@ to a smaller set of candidates. In the second stage, a cross-encoder
 reranks these candidates by scoring each one against the query 
 directly, producing a more precise relevance ranking. 
 Bi-encoders are well suited for the first stage for the same 
-reason described above: document embeddings can be precomputed, 
+reason described above, document embeddings can be precomputed, 
 making large-scale candidate retrieval efficient 
 \parencite{thakur2021augmented_sbert_data_augmentation_method_improving_bi_encoders_pairwise_sentence_scoring_tasks,
 dorkin2025tartunlp_subject_tagging_two_stage_ir,
@@ -219,3 +219,17 @@ substantially better retrieval performance than using a bi-encoder
 alone 
 \parencite{dorkin2025tartunlp_subject_tagging_two_stage_ir,
 verma2025beyond_retrieval_ensembling_cross_encoders}.
+
+\subsection{Rank Fusion}
+\label{sec:rank-fusion}
+
+Retrieval can produce several rankings of the same documents, for example 
+one from a bi-encoder and one from a cross-encoder. Rank fusion combines 
+such rankings into a single ordering. Reciprocal Rank Fusion (RRF) does this 
+by converting each document's rank position into a score and summing these 
+scores across the rankings, rather than using the score values returned by 
+the individual methods. Highly ranked documents receive higher scores, but 
+the score decreases gradually with rank, so lower-ranked documents still 
+contribute. Because RRF works from rank positions alone, it can combine 
+rankings whose underlying scores are on different scales 
+\parencite{cormack2009reciprocal_rank_fusion}.

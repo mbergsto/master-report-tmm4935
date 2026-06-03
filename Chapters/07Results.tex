@@ -10,7 +10,7 @@ cases.
 
 Because MLguide was developed iteratively, the three evaluations
 were carried out on different versions of the system, as shown in Section~\ref{sec:development-timeline}.
-Project 1 used version A, Project 2 used version B, and the example-based
+Project 1 (P1) used version A, Project 2 (P2) used version B, and the example-based
 evaluation used version C, the final version. The differences
 between the versions are summarised in
 Section~\ref{sec:changes-across-system-versions}.
@@ -27,7 +27,7 @@ students' project reports. Since the reports
 were not written to a fixed structure, these results were
 obtained by interpreting each group's description of its use of MLguide.
 
-\section{Project 1 (P1): Unsupervised Learning and Anomaly Detection for Time Series Data}
+\section{Project 1: Unsupervised Learning and Anomaly Detection for Time Series Data}
 \label{sec:project-1}
 
 In the first project, the groups worked on detecting anomalies in
@@ -37,7 +37,7 @@ selected problem, and to assess the
 relevance and usefulness of the results in their project reports.
 The results below are based on these reports.
 
-Of the 17 groups in the project, 13 used MLguide and 4 did not,
+Of the 17 groups in the project, 13 used MLguide and four did not,
 as shown in Figure~\ref{fig:participation-count-p1}. 
 The results that follow are based on the 13 groups that used the system.
 
@@ -100,9 +100,9 @@ overlap and three had medium overlap.
 Figure~\ref{fig:recommended-vs-used-p1} compares, for each
 method, the number of groups that were recommended the method
 with the number of groups that used it. Some methods were
-recommended more often than they were used, such as Neural
-Network, PCA and LSTM. Others were used more often than they were
-recommended, most clearly Isolation Forest and Gaussian Mixture Model (GMM). GMM, One-Class
+recommended more often than they were used, such as neural
+network, PCA, and LSTM. Others were used more often than they were
+recommended, most clearly isolation forest and gaussian mixture model (GMM). GMM, one-class
 SVM, and DBSCAN were used by several groups without being
 recommended to any of them.
 
@@ -138,7 +138,7 @@ Figure~\ref{fig:issues-p1} shows the reported issues. The most
 common was that MLguide was used too late to influence method
 decisions, raised by six groups. Five groups reported that GMM
 was missing from the recommendations. Three groups each reported
-that One-Class SVM was missing, that the recommendations were too
+that one-class SVM was missing, that the recommendations were too
 generic or lacked ranking, and that the performance preferences
 were not useful in practice.
 
@@ -151,7 +151,7 @@ were not useful in practice.
     \label{fig:issues-p1}
 \end{figure}
 
-\section{Project 2 (P2): Reinforcement Learning Across Product Lifecycle}
+\section{Project 2: Reinforcement Learning Across Product Lifecycle}
 \label{sec:project-2}
 
 The second project asked the groups to analyse applications of
@@ -219,9 +219,9 @@ single-algorithm reinforcement learning.
 
 Figure~\ref{fig:methods-used-vs-recommended-p2} compares, for each
 method, the number of groups that were recommended the method with
-the number of groups that used it. DQN, Proximal Policy Optimization (PPO), and Q-learning were
+the number of groups that used it. DQN, proximal policy optimization (PPO), and Q-learning were
 the most frequently used methods, and were also among the most
-frequently recommended. Deep RL and Neural Network were
+frequently recommended. Deep RL and neural network were
 recommended without being used by any group. PI-QT-Opt and
 NSGA-III were used by one group each without being recommended.
 
@@ -264,16 +264,18 @@ preferences set to fast training and explainable.
 The recommendations are shown in 
 Figure~\ref{fig:recommendations-example-1-rec}. Ten ranked 
 methods are returned. The top recommendations include common 
-classification methods such as Random Forest, Support Vector 
-Machine, and K-Nearest Neighbors, as well as Neural Network, 
+classification methods such as random forest, support vector 
+machine, and k-nearest neighbours, as well as neural network, 
 which has the highest article count of the recommended methods. 
-Three methods are flagged as not suited for the task: Gaussian 
-Mixture Model, Linear Regression, and Principal Component 
-Analysis. Two methods are flagged as not suited for the dataset 
-type: Principal Component Analysis and Convolutional Neural 
-Network. Four methods carry additional conditions in the 
-Note column, such as being possible if numerical features are 
-available or not recommended for many features.
+Gaussian mixture model is ranked second, even though it is 
+flagged as not suited for the task. Two further methods are 
+flagged as not suited for the task: linear regression and 
+principal component analysis. Two methods are flagged as not 
+suited for the dataset type: principal component analysis and 
+convolutional neural network. Four methods carry additional 
+conditions in the Note column, such as being possible if 
+numerical features are available or not recommended for many 
+features.
 Several methods match the performance preference of fast 
 training, fewer match the explainable preference, and several 
 have no performance preference match at all.
@@ -285,7 +287,7 @@ have no performance preference match at all.
     \label{fig:recommendations-example-1-rec}
 \end{figure}
 
-The top recommendation, Random Forest, is mentioned in 3598 
+The top recommendation, random forest, is mentioned in 3598 
 articles within the ML area supervised learning. The top-ranked
 articles retrieved for this method are shown in 
 Figure~\ref{fig:articles-example-1-rec}. Several of them 
@@ -296,7 +298,7 @@ scrolled to the model configuration and training steps.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/07-results/example-based/ex-1-articles-rf.pdf}
-    \caption[Example 1 articles]{Top-ranked articles retrieved for Random Forest in Example 1.}
+    \caption[Example 1 articles]{Top-ranked articles retrieved for random forest in Example 1.}
     \label{fig:articles-example-1-rec}
 \end{figure}
 
@@ -316,17 +318,17 @@ filters.
 \end{figure}
 
 The recommendations are shown in 
-Figure~\ref{fig:recommendations-example-2-rec}. Neural Network 
+Figure~\ref{fig:recommendations-example-2-rec}. Neural network 
 appears at the top, again with the highest article count. 
-Several reinforcement learning methods are included: Q-Learning, 
-Deep Reinforcement Learning, Proximal Policy Optimization, and 
-Deep Q-Network. Two metaheuristic methods also appear, Genetic 
-Algorithm at third place and Particle Swarm Optimization further 
+Several reinforcement learning methods are included: Q-learning, 
+deep reinforcement learning, proximal policy optimization, and 
+deep Q-network. Two metaheuristic methods also appear, genetic 
+algorithm at third place and particle swarm optimization further 
 down. The list also includes more general supervised methods 
-such as Decision Tree, Random Forest, and Gradient Boosting.
+such as decision tree, random forest, and gradient boosting.
 Since no filters other than the ML area were applied, only the 
 article count and notes are shown for each method, and only 
-Neural Network carries a note.
+neural network carries a note.
 
 \begin{figure}[H]
     \centering
@@ -335,19 +337,19 @@ Neural Network carries a note.
     \label{fig:recommendations-example-2-rec}
 \end{figure}
 
-A cropped view of the details page for Q-Learning, one of the 
+A cropped view of the details page for Q-learning, one of the 
 top reinforcement learning recommendations, is shown in 
 Figure~\ref{fig:articles-example-2-rec}. The page lists the 
 top-ranked articles retrieved for this method, several of which 
 concern scheduling and production control in manufacturing 
 systems. The page also displays a message indicating that no starter notebook 
-is available for Q-Learning, because no template has been added 
+is available for Q-learning, because no template has been added 
 for this method yet.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/07-results/example-based/ex-2-details-q-learning.pdf}
-    \caption[Example 2 details page]{Cropped view of details page for Q-Learning in Example 2.}
+    \caption[Example 2 details page]{Cropped view of details page for Q-learning in Example 2.}
     \label{fig:articles-example-2-rec}
 \end{figure}
 
@@ -369,14 +371,14 @@ to anomaly detection and no ML area filter or other filters applied.
 The recommendations are shown in 
 Figure~\ref{fig:recommendations-example-3-rec}. 
 The top of the list includes common anomaly 
-detection methods such as Local Outlier Factor, Isolation Forest, 
-One-Class SVM, and Autoencoder. Standard Support Vector Machine also
+detection methods such as local outlier factor, isolation forest,
+one-class SVM, and autoencoder. Standard support vector machine also
 appears at the top, flagged as suited for the task, although it is
 commonly used for classification and regression. 
 Several general neural network 
-architectures are also returned: LSTM, Convolutional Neural 
-Network, Deep Neural Network, and Multi-Layer Perceptron. Random 
-Forest appears at the bottom, flagged as not suited for the task.
+architectures are also returned: LSTM, convolutional neural 
+network, deep neural network, and multi-layer perceptron. Random 
+forest appears at the bottom, flagged as not suited for the task.
 
 \begin{figure}[H]
     \centering
@@ -385,17 +387,17 @@ Forest appears at the bottom, flagged as not suited for the task.
     \label{fig:recommendations-example-3-rec}
 \end{figure}
 
-The top-ranked articles for Support Vector Machine are shown in 
+The top-ranked articles for support vector machine are shown in 
 Figure~\ref{fig:articles-example-3-rec}. The titles cover 
 anomaly detection in manufacturing and quality inspection. The 
 first article explicitly concerns a one-class model for anomaly 
 detection, which suggests that some of the supporting literature for 
-Support Vector Machine in this context refers to One-Class SVM 
+support vector machine in this context refers to one-class SVM 
 rather than the standard form.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/07-results/example-based/ex-3-articles-svm.pdf}
-    \caption[Example 3 articles]{Top-ranked articles for Support Vector Machine in Example 3.}
+    \caption[Example 3 articles]{Top-ranked articles for support vector machine in Example 3.}
 \label{fig:articles-example-3-rec}
 \end{figure}
