@@ -4,8 +4,8 @@ This chapter discusses the design, behaviour, and evaluation
 of MLguide in relation to the hypothesis and research questions 
 stated in Chapter~\ref{ch:introduction}. The discussion is 
 organised by topic, with limitations and future work addressed 
-under each one. The chapter then returns to the research 
-questions and ends with a summary of the main limitations and 
+under each one. The chapter then returns to the hypothesis and research 
+questions, and ends with a summary of the main limitations and 
 future work.
 
 % Liste temaene i stedet for å si "topic"? Fjerne design goals?
@@ -604,8 +604,8 @@ domain. The article base can be replaced with articles from
 another field, and the recommendations will reflect that 
 field through the semantic retrieval. This flexibility comes 
 from the same design choice that limits the domain-specific 
-precision. Adding deeper production domain knowledge would therefore be a trade-off: 
-it could improve precision within product development and production, 
+precision. Adding deeper production domain knowledge would therefore be a trade-off.
+It could improve precision within product development and production, 
 but would make the system less flexible and portable.
 
 
@@ -920,34 +920,94 @@ Tolkning av output er forfatterens egen, ikke uavhengig.
 \section{Answers to Research Questions}
 \label{sec:answers-to-research-questions}
 
-The three research questions correspond to the main design 
-goals of MLguide described in Section~\ref{sec:design-goals}: 
-supporting method selection, grounding recommendations in 
-literature, and providing implementation support. The 
-feedback mechanism, which was not one of the main design goals for MLguide, 
-was implemented but could not be 
-meaningfully evaluated within the scope of this thesis 
-(Section~\ref{sec:method-feedback}).
-
-This section returns to the research questions stated in 
-Section~\ref{sec:hypothesis-research-questions} and 
-summarises what the work has shown for each one.
+MLguide is the artifact developed in this thesis. Its 
+development was guided by the design goals in 
+Section~\ref{sec:design-goals}, and the system was built to 
+investigate the hypothesis and research questions stated in 
+Section~\ref{sec:hypothesis-research-questions}. This section 
+returns to each research question and answers it based on the 
+findings and reflections in this chapter.
 
 \subsection{RQ1: Ontology-Based Knowledge Representation}
 
-Restate RQ1. Summarise the answer from the discussion: 
-ontology gives structure, filters, transparency, but coverage 
-is limited and structural choices have trade-offs. References 
-to Section~\ref{sec:ontology-coverage-and-structure} and 
-Section~\ref{sec:production-domain-knowledge}.
+The first research question asks how ontology-based knowledge 
+representation can support the recommendation of machine 
+learning methods.
+
+In MLguide, the ontology gives structure to the method knowledge 
+that complements the unstructured knowledge in the article 
+database, provides the filters in the user interface, and makes 
+the basis for a recommendation explicit. Its main strength is 
+the link to the articles. Each article is classified by ML area 
+and linked to the methods it mentions, so the method knowledge 
+grows as the article base grows, without manual work for each 
+method.
+
+The support is limited by how completely the ontology is 
+populated, and filling the properties manually is time-consuming. 
+The ontology also represents general machine learning knowledge 
+rather than production domain knowledge, so the orientation 
+towards product development and production comes from the 
+article retrieval and not from the structured representation.
+
+Ontology-based representation can therefore support method 
+selection, mainly by giving structure, transparency, and a link 
+to the literature that reduces manual effort. In its current 
+form, the ontology works as the structural foundation of 
+MLguide, providing the filters and the article-method links that 
+the recommendations build on, with room to take on a larger role 
+in the ranking as its coverage grows.
 
 \subsection{RQ2: Semantic Retrieval from Scientific Literature}
 
-Restate RQ2. Summarise: literature retrieval drives ranking, 
-articles serve as visible support for recommendations, 
-methodological detail is captured less well than task and 
-dataset. References to 
-Section~\ref{sec:method-recommendations-and-role-of-articles}.
+The second research question asks how semantic retrieval from 
+scientific literature can support and justify the recommendation 
+of machine learning methods.
+
+Semantic retrieval ranks the articles by their relevance to 
+the problem description, and the method recommendations 
+are built from this ranking by aggregating the articles 
+up to the methods they mention. The recommendations are
+therefore derived from the literature rather than from 
+a fixed set of rules. Across the evaluation, this produced 
+recommendations that were largely relevant to the problems 
+submitted. The recommendations favour methods that appear 
+frequently in the literature, which tend to be general methods 
+that work across many problems, but more specific methods still 
+surface when their articles match the problem closely. A method 
+with few articles can rank high on a strong topical match, as 
+gaussian mixture model and local outlier factor did in the 
+examples, so the retrieval is not reduced to reproducing the 
+most common methods. The problem description alone is enough to 
+produce a reasonable result, as the anomaly detection example 
+showed without any filters applied. Because the recommendations 
+are carried by the articles, they can also be moved to a new 
+domain by collecting articles from that field, without changing 
+the structured knowledge.
+
+The articles also serve as the justification for a 
+recommendation. They are shown alongside each method, so the 
+user can see which articles a method appears in and judge the 
+support directly. This justification is only as strong as what 
+the articles actually say about the method, and the system does 
+not check this. A method is counted as supported whenever it is 
+mentioned in a matching article, regardless of whether the 
+article presents it as the best approach, a weak baseline, or 
+one step in a larger pipeline. Because retrieval is based on 
+titles and abstracts, which summarise a study rather than 
+describe its methods in detail, this distinction cannot be 
+recovered. The anomaly detection example shows the effect, where 
+articles concerning one-class SVM contributed to the score of 
+standard support vector machine, so the articles shown for it 
+partly justified a different method than the user would take 
+them to support.
+
+Semantic retrieval can therefore support the recommendations 
+well. It drives the ranking, returns mostly relevant methods, 
+and lets relevant articles outweigh raw article count. The 
+justification is weaker, since showing the retrieved articles 
+gives visible grounds for a method but does not guarantee that 
+those articles support it in the way the user would expect.
 
 \subsection{RQ3: Support for Users in Early Implementation}
 
