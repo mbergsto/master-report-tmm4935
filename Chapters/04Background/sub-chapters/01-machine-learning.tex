@@ -14,17 +14,19 @@ at some task through experience
 \parencite{mitchell1997machine_learning}. 
 Such algorithms can be broadly categorised according to the type of 
 supervision they receive during that experience, also called training. 
-There are three main paradigms commonly distinguished in the literature: 
+There are three learning paradigms commonly distinguished in the literature: 
 supervised learning, unsupervised learning, and reinforcement learning (RL)
 \parencites{bishop2006pattern_recognition_machine_learning}[Chapter~5]{Goodfellow-et-al-2016}{sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
 The following sections outline each paradigm and introduce some common
 tasks.
 
 In supervised learning, the training data consists of input vectors paired 
-with corresponding target values. The two most common supervised tasks are 
-classification, where the goal is to assign an input to one of a finite number 
-of discrete categories, and regression, where the goal is to predict a continuous 
-numerical value
+with corresponding target values, also called labels. The goal is to learn 
+a function that maps inputs to outputs based on these labelled examples 
+\parencite{sarker2021machine_learning_algorithms_real_world_applications_research_directions}. 
+The two most common supervised tasks are classification and regression. In 
+classification, an input is assigned to one of a finite number of discrete 
+categories, whereas in regression a continuous numerical value is predicted 
 \parencites{bishop2006pattern_recognition_machine_learning}[Chapter~5]{Goodfellow-et-al-2016}.
 
 In unsupervised learning, no target values are provided. The algorithm must 
