@@ -100,11 +100,7 @@ markdown cell gives short notes specific to the method.
 
 To avoid repeating the parts of the structure that are 
 shared by methods solving the same kind of task, a base 
-template is defined for each task family. Task families 
-are the task groupings defined in the ontology extension 
-(Section~\ref{sec:ml-ontology-extension}), and their role 
-in the template organisation is described in 
-Section~\ref{sec:template-structure-and-extensibility}. The base
+template is defined for each task family. The base
 template contains the fixed cells and marks the
 method-specific parts using Jinja2 blocks. A specific method template
 can then extend the base template and override only the blocks

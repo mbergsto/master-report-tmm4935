@@ -936,27 +936,33 @@ learning methods.
 
 In MLguide, the ontology gives structure to the method knowledge 
 that complements the unstructured knowledge in the article 
-database, provides the filters in the user interface, and makes 
-the basis for a recommendation explicit. Its main strength is 
-the link to the articles. Each article is classified by ML area 
-and linked to the methods it mentions, so the method knowledge 
-grows as the article base grows, without manual work for each 
-method.
+database. It provides the filters in the user interface, lets 
+related methods share properties through inheritance so that new 
+methods can be added without defining every property from 
+scratch, and makes the basis for a recommendation explicit by 
+showing the attributes a method is matched on. Its main strength 
+is the link to the articles. Each article is classified by ML 
+area and linked to the methods it mentions, so the method 
+knowledge grows as the article base grows, without manual work 
+for each method. This sets MLguide apart from method-selection 
+frameworks that rely on a fixed, manually built table of methods.
 
 The support is limited by how completely the ontology is 
-populated, and filling the properties manually is time-consuming. 
-The ontology also represents general machine learning knowledge 
-rather than production domain knowledge, so the orientation 
-towards product development and production comes from the 
-article retrieval and not from the structured representation.
-
-Ontology-based representation can therefore support method 
-selection, mainly by giving structure, transparency, and a link 
-to the literature that reduces manual effort. In its current 
-form, the ontology works as the structural foundation of 
-MLguide, providing the filters and the article-method links that 
-the recommendations build on, with room to take on a larger role 
-in the ranking as its coverage grows.
+populated. Several properties have low coverage, and filling 
+them by hand is slow, which the broad scope of MLguide makes 
+more visible than work that stays within a single domain. The 
+same article-method link that already fills part of the ontology 
+automatically could be extended to bring in more structured 
+knowledge from the literature, which would reduce this manual 
+effort and let the ontology take on a larger part of the 
+ranking. Some structural choices also affect the 
+recommendations, such as reaching dataset type through the task 
+rather than storing it on the method, which can cause valid 
+matches to be missed. The ontology represents general machine 
+learning knowledge rather than production domain knowledge, so 
+the orientation towards product development and production comes 
+from the article retrieval and not from the structured 
+representation.
 
 \subsection{RQ2: Semantic Retrieval from Scientific Literature}
 
@@ -987,37 +993,72 @@ the structured knowledge.
 
 The articles also serve as the justification for a 
 recommendation. They are shown alongside each method, so the 
-user can see which articles a method appears in and judge the 
-support directly. This justification is only as strong as what 
-the articles actually say about the method, and the system does 
-not check this. A method is counted as supported whenever it is 
-mentioned in a matching article, regardless of whether the 
-article presents it as the best approach, a weak baseline, or 
-one step in a larger pipeline. Because retrieval is based on 
-titles and abstracts, which summarise a study rather than 
-describe its methods in detail, this distinction cannot be 
-recovered. The anomaly detection example shows the effect, where 
-articles concerning one-class SVM contributed to the score of 
+user can see the basis for it directly. This justification is 
+only as strong as what the articles say about the method, which 
+the system does not check. A method counts as supported whenever 
+a matching article mentions it, even when the article uses it 
+only as a baseline or as one step in a pipeline. Principal 
+component analysis appears in the supervised classification 
+example for this reason, since it is picked up from articles 
+that use it as a preprocessing step rather than as the main 
+method. A second weakness is that the extraction does not 
+separate closely related method names. In the anomaly detection 
+example, articles about one-class SVM raised the score of 
 standard support vector machine, so the articles shown for it 
-partly justified a different method than the user would take 
-them to support.
-
-Semantic retrieval can therefore support the recommendations 
-well. It drives the ranking, returns mostly relevant methods, 
-and lets relevant articles outweigh raw article count. The 
-justification is weaker, since showing the retrieved articles 
-gives visible grounds for a method but does not guarantee that 
-those articles support it in the way the user would expect.
+in fact described a different method. Using more of each article 
+than the abstract, and recognising how a method is used rather 
+than only that it appears, would make the justification more 
+reliable.
 
 \subsection{RQ3: Support for Users in Early Implementation}
 
-Restate RQ3. Summarise: notebooks give concrete starting 
-points, target group reported them as useful, but coverage 
-is incomplete. Touches on design goal of implementation 
-support and free-text input. References to 
-Section~\ref{sec:starter-notebooks-and-implementation-support} 
-and parts of 
-Section~\ref{sec:production-domain-knowledge}.
+The third research question asks to what extent MLguide can 
+support users with limited machine learning expertise in the 
+early stages of implementation.
+
+The support takes the form of a starter notebook generated for 
+the recommended method. It gives the user a concrete starting 
+point, but only that: the implementation itself is left to the 
+user. This is a more direct link between method selection and 
+implementation than the reviewed frameworks offer, which stop at 
+the recommendation, but it is a modest form of support. Two 
+groups in Project 1 reported the code templates as useful, which 
+is some evidence that the output type has a place, though too 
+little to draw firm conclusions from.
+
+The support is also uneven. The templates are simple and cover 
+only part of the method set, and reinforcement learning methods 
+have no templates at all, as the missing notebook for Q-learning 
+in Example 2 showed. Adding templates is manual work, much like 
+populating the ontology, but the structure makes it easy to 
+extend, since a new template only has to be placed in the right 
+folder. The notebooks could also be developed beyond fixed 
+templates, for example by suggesting default parameters drawn 
+from the ontology or from the articles, so that users who do not 
+want to configure the method themselves still get a working 
+starting point. In its current form, MLguide supports early 
+implementation in a limited but concrete way, with clear room to 
+extend both the coverage and the depth of the notebooks.
+
+\subsection{Hypothesis}
+
+Taken together, the three research questions address the 
+hypothesis that a system combining ontology-based knowledge 
+representation, semantic similarity to scientific literature, 
+and structured implementation support can provide relevant and 
+justified method recommendations for users with limited machine 
+learning expertise. The findings support this in part. MLguide 
+combines all three elements in a working system, and the 
+recommendations were largely relevant to the problems submitted. 
+The weaker part is justification: the articles give visible 
+grounds for a recommendation, but the system does not check 
+whether they support a method in the way the user would expect, 
+so a recommendation is not always justified as well as it 
+appears. The implementation support is real but modest, limited 
+to a starting point for the user. The hypothesis therefore holds 
+for relevance and for the combination of the three elements, 
+with justification as the main reservation, and within the 
+limited scale of the evaluation.
 
 \section{Limitations and Future Work}
 

@@ -16,7 +16,7 @@ Such algorithms can be broadly categorised according to the type of
 supervision they receive during that experience, also called training. 
 There are three learning paradigms commonly distinguished in the literature: 
 supervised learning, unsupervised learning, and reinforcement learning (RL)
-\parencites{bishop2006pattern_recognition_machine_learning}[Chapter~5]{Goodfellow-et-al-2016}{sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
+\parencites[3]{bishop2006pattern_recognition_machine_learning}[Chapter~5]{Goodfellow-et-al-2016}.
 The following sections outline each paradigm and introduce some common
 tasks.
 
@@ -27,18 +27,18 @@ a function that maps inputs to outputs based on these labelled examples
 The two most common supervised tasks are classification and regression. In 
 classification, an input is assigned to one of a finite number of discrete 
 categories, whereas in regression a continuous numerical value is predicted 
-\parencites{bishop2006pattern_recognition_machine_learning}[Chapter~5]{Goodfellow-et-al-2016}.
+\parencites[3]{bishop2006pattern_recognition_machine_learning}[Chapter~5]{Goodfellow-et-al-2016}.
 
 In unsupervised learning, no target values are provided. The algorithm must 
 instead identify structure in the data directly 
-\parencite{bishop2006pattern_recognition_machine_learning}. 
+\parencite[3]{bishop2006pattern_recognition_machine_learning}. 
 Common tasks include clustering, dimensionality reduction, and anomaly detection
 \parencites{sarker2021machine_learning_algorithms_real_world_applications_research_directions}[Chapter~5]{Goodfellow-et-al-2016}.
 Clustering groups data points such that objects within the same group are more 
 similar to each other than to those in other groups 
 \parencite{sarker2021machine_learning_algorithms_real_world_applications_research_directions}. 
 Dimensionality reduction simplifies data by reducing the number of features, 
-which leads to better human interpretations and lower computational costs
+leading to better human interpretation and lower computational cost
 \parencite{sarker2021machine_learning_algorithms_real_world_applications_research_directions}. 
 Anomaly detection identifies observations that deviate significantly from the 
 expected distribution, and is used in applications such as 
@@ -51,7 +51,7 @@ of problems \parencite[Chapter~5]{Goodfellow-et-al-2016}.
 Reinforcement learning differs fundamentally from the other paradigms. Rather 
 than learning from a fixed dataset, an agent interacts with an environment and 
 learns through trial and error, receiving rewards or penalties based on its actions
-\parencite{bishop2006pattern_recognition_machine_learning, sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
+\parencites[3]{bishop2006pattern_recognition_machine_learning}{sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
 Within reinforcement learning, methods can be broadly divided according to what 
 they learn. In value-based methods, a value function is learned from which the 
 policy is derived either explicitly or implicitly, whereas in policy-based methods 
