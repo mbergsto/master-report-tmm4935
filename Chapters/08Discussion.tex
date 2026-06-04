@@ -75,8 +75,8 @@ example-based evaluation showed that most of the top-ranked
 methods were closely related to the problem in each case 
 (Section~\ref{sec:results-example-based-evaluation}). At the 
 same time, several observations point to systematic effects 
-in how the recommendations are shaped, which are discussed in 
-the rest of this section.
+in how the recommendations are shaped, which are discussed 
+further in this section.
 
 
 \begin{comment}
@@ -135,7 +135,7 @@ appear among the top retrieved articles that drive the method
 ranking, so a similar effect is present. At the same time, 
 methods with few articles are not excluded from the top of 
 the list. In the supervised classification example shown in 
-Figure~\ref{fig:recommendations-example-1-rec}, gaussian 
+Figure~\ref{fig:recommendations-example-1-rec}, Gaussian 
 mixture model appears relatively high despite having only 33 
 articles, against several thousand for random forest, support 
 vector machine, and neural network. The same effect is visible in the 
@@ -270,7 +270,7 @@ reflect the methods that appear in published research, which
 may differ from what is commonly used in practice or taught in 
 ML courses. In the user testing for the anomaly detection problem in 
 Project 1, several groups reported that neural network methods were 
-over-represented in the recommendations, and that gaussian 
+over-represented in the recommendations, and that Gaussian 
 mixture model and one-class SVM were missing 
 (Section~\ref{sec:project-1}). These are classical methods for 
 anomaly detection specifically, while neural network methods 
@@ -292,17 +292,20 @@ whole, but they can be under-represented within specific tasks
 or areas. 
 
 In the supervised classification example 
-(Section~\ref{sec:example-1}), gaussian mixture model is 
+(Section~\ref{sec:example-1}), Gaussian mixture model is 
 ranked second despite being flagged as not suited for the 
 classification task. A likely reason is that the wording of 
 the problem description, which includes terms such as 
 "faulty", resembles how an unsupervised anomaly detection 
-problem might be described. The article-based score for gaussian mixture model is 
+problem might be described, and Gaussian mixture model
+is suited for anomaly detection, as described in Section~\ref{sec:machine-learning-methods}. 
+The article-based score for Gaussian mixture model is 
 therefore high enough to rank it as the second recommendation. 
 This shows that placing strong 
 weight on the problem description, without filtering on attributes 
 such as selected task in the ranking itself, can lead to recommendations 
 that are clearly inconsistent with the user's stated intent.
+
 
 \begin{comment}
 
@@ -430,6 +433,14 @@ do not have tabular as a defined dataset type. A cleaner
 separation, where dataset type is its own property of the 
 method, would avoid such cases and make the ontology easier to 
 query and reason over.
+This also fits the principle that an ontology should be 
+designed so that it can be extended without changing existing 
+definitions (Section~\ref{sec:ontology-description}) 
+\parencite{gruber1995toward_principles_design_ontologies_used_knowledge_sharing}. 
+Storing dataset type as its own property on the method would 
+follow this principle, since dataset type could then be adjusted 
+or extended on its own, without changing how methods and tasks 
+are already linked.
 
 The structure is more flexible in how methods relate to ML 
 areas. As shown in 
@@ -463,7 +474,13 @@ to support the article-method links and the filters that
 MLguide depends on. Building on an existing ontology gives 
 MLguide a stable foundation and aligns it with a broader effort 
 in the field, but it also means that the structure was not 
-designed for the exact purpose at hand. The design nevertheless leaves room for MLguide to be 
+designed for the exact purpose at hand.
+This reflects the trade-off in ontology design described in 
+Section~\ref{sec:ontology-description}, where a more reusable and 
+general ontology tends to be less directly usable for a specific 
+task and requires refinement before it fits 
+\parencite{studer1998knowledge_engineering_principles_methods}. 
+The design nevertheless leaves room for MLguide to be 
 extended with AutoML knowledge in the future, similar to 
 how OMA-ML 
 \parencite{zender2022ontology_based_meta_automl} builds on 
@@ -775,6 +792,48 @@ would reduce some of the manual-effort limitations discussed
 in earlier sections by drawing on user input rather than only 
 on updates to the data sources. This is left as future work.
 
+\section{Presentation of the Recommendations}
+\label{sec:presentation-of-the-recommendations}
+
+How the recommendations are presented affects how they are read.
+This was not a main focus of the thesis, but the results suggest 
+it matters more than expected. Groups in both Project 1 and 
+Project 2 reported that the ranking was unclear and that it was 
+hard to tell which method to choose 
+(Section~\ref{sec:project-1}, Section~\ref{sec:project-2}). The 
+methods are in fact listed in ranked order in the recommendation 
+table (Figure~\ref{fig:user-interface-recommendation-table}), 
+but the table is not numbered and gives poor visual cue that the 
+order carries meaning.
+
+The number of methods shown adds to this. Ten methods are 
+returned, which is a lot for a user who 
+wants a clear starting point. A long list without a visible 
+ranking gives little guidance on where to begin and can make 
+the output harder to act on, which works against the goal of 
+supporting users who are new to machine learning. Presenting 
+fewer methods, numbering them, or otherwise making the ranking 
+visible would likely make the recommendations clearer. 
+The reviewed frameworks present fewer methods as recommended. 
+They work from small, manually curated sets, from two methods in 
+the pattern language of 
+\textcite{sonntag2023pattern_ml_product_development} to eleven 
+in \textcite{riesener2020} and sixteen in the MCDA framework of 
+\textcite{sonntag2024_mcda_framework}, and they narrow the user 
+towards a single method through best match, elimination, or a 
+ranking with a clear winner. MLguide instead draws on the full 
+set of 187 methods in the ontology and returns ten,
+a natural consequence of its broader approach. MLguide also labels 
+the output as "Possible ML methods", which 
+is technically correct but does not tell the user how to read 
+the list. 
+Showing several candidates rather than pointing to a 
+single method is a reasonable choice when no single recommendation is certain,
+but as the feedback suggests, 
+the presentation should make it clearer that the list is a set of 
+ranked candidate methods.
+
+
 \begin{comment}
 
 Feedback-mekanismen ble ikke testet / lite brukt (få responser),
@@ -824,11 +883,12 @@ comparable. Neither project tested the final version C, which
 was the version used in the example-based evaluation. 
 The number of groups using MLguide was also lower in Project 
 2 than in Project 1 (Figure~\ref{fig:participation-count-p2}). 
-Project 2 had a more open-ended task brief, while Project 1 
+Project 2 had a more open-ended and research-oriented 
+task brief, while Project 1 
 asked the groups to explore a more defined problem. The 
 defined-problem setup matches better with the recommendation 
 process MLguide is designed around, where the user has a 
-specific problem and looks for a method. This may explain 
+specific problem and looks for a method to use. This may explain 
 why Project 1 generated more direct feedback on the method 
 recommendations, while Project 2 generated more feedback on 
 the article retrieval.
@@ -882,12 +942,18 @@ read. The number of examples is also small and covers only a
 limited part of the range of problems MLguide could be 
 applied to.
 
-The two evaluations together give a reasonable basis for 
-discussing how the system behaves and where its limitations 
-lie, but the findings should be understood within the scope 
-of this evaluation. A larger and more independent 
-evaluation, including industry users and a broader set of 
-examples, would give stronger conclusions.
+The two evaluations together give a reasonable basis for discussing how the 
+system behaves and where its limitations lie, but the findings should be 
+understood within the scope of this evaluation. A larger and more independent 
+evaluation would give stronger conclusions. Because MLguide is an open web 
+application, there is in principle no restriction on who can use it. This makes 
+it possible to evaluate the system far more broadly than was done here. The 
+course-based setting could be extended to several machine learning courses, of 
+different types and at different universities, and the evaluation could reach 
+beyond students towards the other part of the intended user group, engineers in 
+industry who are not machine learning experts. The feedback form built into the 
+home page makes it possible to collect feedback data continuously, from anyone who 
+uses the system.
 
 \begin{comment}
 To evalueringsmetoder: user testing og example-based. De utfyller hverandre 
@@ -982,7 +1048,7 @@ frequently in the literature, which tend to be general methods
 that work across many problems, but more specific methods still 
 surface when their articles match the problem closely. A method 
 with few articles can rank high on a strong topical match, as 
-gaussian mixture model and local outlier factor did in the 
+Gaussian mixture model and local outlier factor did in the 
 examples, so the retrieval is not reduced to reproducing the 
 most common methods. The problem description alone is enough to 
 produce a reasonable result, as the anomaly detection example 
@@ -1061,8 +1127,102 @@ with justification as the main reservation, and within the
 limited scale of the evaluation.
 
 \section{Limitations and Future Work}
+\label{sec:limitations-and-future-work}
 
-Samle begrensninger som er nevnt gjennom kapittelet.
+The limitations discussed throughout this chapter are drawn together
+here, followed by the directions for future work that follow from them.
 
-Og oppsummere potensiell og mest lovende future work-muligheter.
+\subsection{Limitations}
 
+The recommendations are shaped by how often a method appears in the
+literature, so general methods that are used across many problems,
+such as random forest, support vector machine, and neural network, are
+favoured over more specific methods. This effect is moderated but not
+removed. The retrieval is based on article titles and abstracts rather
+than full texts, which captures the task and the data of a problem
+well but the method poorly. A method is treated as relevant whenever a
+matching article mentions it, even when the article uses it only as a
+baseline or as a preprocessing step, and closely related method names
+are not always separated, as seen when articles on one-class SVM
+raised the score of standard support vector machine. Because the
+ranking places strong weight on the problem description without hard
+filters on attributes such as the selected task, a recommendation can
+also conflict with the user's stated intent.
+
+The ontology is not fully populated. Task and dataset type relations
+are defined for most methods, but the note properties remain sparse,
+and populating them by hand is slow. The broad scope of MLguide, which
+spans the full product lifecycle, makes this more visible than work
+that stays within a single domain. A structural choice in the
+ontology, where the dataset type of a method is reached through its
+task rather than stored on the method itself, can also cause valid
+matches to be missed. The ontology represents general machine learning
+knowledge and does not represent production domain knowledge, so the
+orientation towards product development and production comes only from
+the article retrieval and is not guaranteed for a given application
+area.
+
+The implementation support and the feedback mechanism are limited in
+their current form. The starter notebook templates are simple, cover
+only part of the method set, and are absent for reinforcement learning
+methods. The method feedback was introduced in version C and received
+too few ratings to be evaluated as a data source. The presentation of
+the recommendations was also found to be unclear, since the ranked
+list is neither numbered nor visibly ordered and returns ten methods
+under a label that does not explain how the list should be read.
+
+The evaluation has a limited scope. The two course projects used
+different system versions, and neither tested version C, which was the
+version used in the example-based evaluation. The number of
+participating groups was small, particularly in Project 2, and the
+feedback was given as free text in the project reports, which was
+interpreted by the author. The example-based evaluation used a small
+number of problems that were both constructed and interpreted by the
+author. The findings should therefore be read as indicative rather
+than conclusive.
+
+\subsection{Future Work}
+
+The most promising direction for future work is to extend the article
+retrieval pipeline so that it brings more structured knowledge into
+the ontology automatically. The pipeline already classifies each
+article by ML area and links it to the methods it mentions, and the
+same approach could be used to extract benchmark results, application
+area information, and combinations of methods used together. This
+would reduce the manual effort that currently limits the ontology
+coverage and would let the ontology take on a larger part of the
+ranking. Extracting method combinations would also turn a current
+limitation into a feature, by treating pipelines and hybrid
+architectures as recommendable units rather than discarding the
+methods that make them up.
+
+Several smaller changes would improve the recommendations directly.
+Storing the dataset type as its own property on the method, rather
+than reaching it through the task, would avoid missed matches and make
+the ontology easier to query. Adding production domain knowledge, by
+linking methods to domain-specific problems and weighting or filtering
+articles by application area, would improve precision within product
+development and production, although at the cost of the portability
+that the current design provides. The starter notebooks could be
+extended with templates for reinforcement learning and with adjustable
+or default parameters drawn from the ontology or from the articles, so
+that users who do not want to configure a method themselves still
+receive a working starting point.
+
+The feedback mechanism could be developed into a further knowledge
+source once enough ratings have been collected. Since each rating is
+stored together with the problem description it was given for, the
+ratings could feed into the ranking through content-based filtering,
+giving more weight to methods that have been rated highly for similar
+problems. The presentation of the recommendations could also be made
+clearer by numbering the methods, showing fewer of them, and using a
+label that explains the list as a set of ranked candidates.
+
+A broader and more independent evaluation would give stronger
+conclusions. Because MLguide is an open web application, it can be
+evaluated well beyond the setting used here. The course-based testing
+could be extended to several machine learning courses at different
+universities, and the evaluation could reach the other part of the
+intended user group, engineers in industry who are not machine
+learning experts. The feedback form built into the system makes it
+possible to collect such data continuously.

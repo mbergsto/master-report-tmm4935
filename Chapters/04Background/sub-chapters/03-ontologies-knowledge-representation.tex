@@ -13,61 +13,61 @@ a starting point for the work in this thesis.
 \subsection{Ontology Description}
 \label{sec:ontology-description}
 
-An ontology is an explicit specification of a conceptualization,
-where a conceptualization is an abstract model of a domain that
-identifies its relevant concepts and the relationships between them
-\parencite{gruber1995toward_principles_design_ontologies_used_knowledge_sharing}.
-\textcite{studer1998knowledge_engineering_principles_methods} refine
-this by describing an ontology as a
-\textit{formal, explicit specification of a shared conceptualization}.
+\textcite[1]{gruber1995toward_principles_design_ontologies_used_knowledge_sharing}
+define an ontology as
+\enquote{an explicit specification of a conceptualization},
+where a conceptualisation is a simplified abstraction of the part of the
+world being modelled, describing which entities are taken to exist in it
+and how they are related.
+\textcite[184]{studer1998knowledge_engineering_principles_methods} refine
+this, describing an ontology as a
+\enquote{formal, explicit specification of a shared conceptualisation}.
 Each term in this definition carries a distinct meaning.
-\textit{Formal} means the ontology is machine-readable and expressed
-in a language with precise semantics.
-\textit{Explicit} means that all concepts and the constraints on
-their use are clearly defined, rather than left implicit in code or
-documentation.
-\textit{Shared} means the ontology captures knowledge that is
-accepted by a group, rather than reflecting the perspective of
-a single individual
+\textit{Formal} means that the ontology is machine-readable rather than
+expressed in natural language.
+\textit{Explicit} means that the concepts used and the constraints on their
+use are defined explicitly.
+\textit{Shared} means that the ontology captures knowledge accepted by a
+group rather than knowledge private to a single individual
 \parencite{studer1998knowledge_engineering_principles_methods}.
-In practical terms, an ontology defines a common vocabulary for a
-domain, including machine-interpretable definitions of its basic
-concepts and the relations among them
+In practical terms, an ontology defines a common vocabulary for a domain,
+including machine-interpretable definitions of its basic concepts and the
+relations among them
 \parencite{noy2001ontology_development_101_guide_creating_first_ontology}.
 
 An ontology consists of classes, which represent concepts in the
-domain, properties that describe features of those concepts, and
-relations that link concepts to one another
+domain. It also has properties, or slots, that describe the features
+of those concepts, and restrictions on those properties that
+constrain their allowed values
 \parencite{noy2001ontology_development_101_guide_creating_first_ontology}.
 Classes are typically organised in a hierarchy where subclasses
-inherit the properties of their parent classes.
-Taken together, these elements allow a domain to be described in a
-way that both humans and software can interpret and reason over
-\parencite{gruber1995toward_principles_design_ontologies_used_knowledge_sharing}.
+inherit the properties of their parent classes. Taken together, these
+elements allow a domain to be described in a way that both humans and
+software can interpret and reason over
+\parencite{noy2001ontology_development_101_guide_creating_first_ontology}.
 
 The design of an ontology involves several practical constraints.
 \textcite{gruber1995toward_principles_design_ontologies_used_knowledge_sharing}
 argues that an ontology should require only the minimal ontological
-commitment needed for its intended purpose, meaning it should make
-as few claims about the world as necessary.
-This principle reflects a trade-off identified by
-\textcite{studer1998knowledge_engineering_principles_methods}:
-the more reusable an ontology is, the less directly applicable it
-tends to be in practice, since a more general representation
-provides less operational guidance for a specific task.
+commitment needed for its intended purpose, meaning it should make as
+few claims about the world as necessary. This connects to a
+well-known trade-off in ontology design. The more reusable an
+ontology is, the less directly usable it tends to be for a specific
+task, because a more general representation requires more refinement
+before it can be applied
+\parencite{studer1998knowledge_engineering_principles_methods}.
 \textcite{noy2001ontology_development_101_guide_creating_first_ontology}
-point to a related constraint on scope.
-An ontology should not attempt to capture everything that could be
-said about a domain, but only what is needed for the application at
-hand.
-Expanding scope beyond what the application requires adds complexity
-without benefit, and may introduce inconsistencies that are difficult
-to resolve.
-Ontology development is also not a one-time activity.
-As domain knowledge evolves and new requirements emerge, the
-ontology must be revised, which means the initial design should
-anticipate extension and allow the vocabulary to be specialised
-without requiring changes to existing definitions
+point to a related constraint on scope. An ontology should not attempt
+to capture everything that could be said about a domain, but only what
+is needed for the application at hand. Expanding scope beyond what the
+application requires adds complexity without benefit, attaching
+properties to concepts that are irrelevant for the intended use
+\parencite{noy2001ontology_development_101_guide_creating_first_ontology}.
+Ontology development is also not a one-time activity. As domain
+knowledge evolves and new requirements emerge, the ontology must be
+revised, which means the initial design should anticipate extension
+and allow the vocabulary to be specialised without requiring changes
+to existing definitions
 \parencite{gruber1995toward_principles_design_ontologies_used_knowledge_sharing,
 noy2001ontology_development_101_guide_creating_first_ontology}.
 

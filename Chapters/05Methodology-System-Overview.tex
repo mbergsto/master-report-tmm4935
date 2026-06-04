@@ -42,10 +42,6 @@ of this thesis.
     \label{fig:dsr-methodology-overview}
 \end{figure}
 
-The process in this thesis followed a design-centered initiation, where
-development of the system started before the research questions were fully formalised
-\parencite{peffers2007design_science_research_methodology}.
-
 \section{System Overview}
 \label{sec:system-overview}
 
@@ -118,13 +114,15 @@ a secondary feature of the system rather than a main goal.
 
 The system is primarily aimed at engineers and students who are 
 new to machine learning and need structured guidance in choosing 
-a suitable method. A web-based interface was chosen to lower the 
+a suitable method. A web-based interface is chosen to lower the 
 threshold for use, making it easy for others to access and test 
 the system without installation.
 
 \section{Incremental and Iterative Development}
 \label{sec:incremental-and-iterative-development}
 
+Incremental and iterative development suits a system of this kind, 
+where features can be built and deployed one at a time and refined through repeated evaluation. 
 MLguide was developed incrementally over the course of the master's project. 
 New features and components were built and deployed one at a time, each adding 
 to the working system. This approach is consistent with incremental software 
@@ -132,10 +130,8 @@ development, where the system grows through a series of versions rather than
 being built all at once \parencite[33]{sommerville2011software_engineering}.
 
 Figure~\ref{fig:incremental-development} illustrates this process. 
-Planning, development, and self-evaluation were carried out as concurrent 
+Planning, development, and self-evaluation are carried out as concurrent 
 activities, producing successive versions of the system. 
-Throughout development, individual features and the overall system output 
-were continuously tested to check that behaviour was correct and results were useful.
 
 \begin{figure}[H]
     \centering
@@ -145,39 +141,36 @@ were continuously tested to check that behaviour was correct and results were us
     \label{fig:incremental-development}
 \end{figure}
 
-The development also had an iterative character. Feedback from the thesis 
-supervisor informed adjustments to the system design and priorities throughout 
-the development period. 
-In addition, two rounds of user testing were conducted, 
-and the findings were used to evaluate and adjust the system. 
-This iterative cycle is consistent with the DSR process described by 
-\textcite{peffers2007design_science_research_methodology}, where evaluation 
-results inform a return to design and development. 
-The user testing and evaluation method is described in the following section.
+The development approach is also iterative. After a version is evaluated, the findings 
+inform a return to design and development before the next version is built, 
+consistent with the DSR process described by 
+\textcite{peffers2007design_science_research_methodology}. 
+In this work, the iterations are driven by two forms of evaluation: ongoing 
+self-evaluation, in which the system is tested on example cases to check 
+that the output is reasonable, and two rounds of user testing.
 
 \section{Evaluation}
 \label{sec:evaluation}
 
-MLguide was evaluated in two ways. The first is user testing,
-which shows how the system is
-received in real use. The second is an example-based evaluation,
-where the output of the system is examined for a set of
-constructed problem cases. The two parts have different strengths.
-User testing gives independent use of the system, but the problems
-and the way the system is used cannot be controlled. The
-example-based evaluation allows the input to be controlled, so the
-output can be examined more systematically. The two parts
-therefore complement each other.
+User testing and example-based evaluation offer two complementary ways of 
+evaluating a system like MLguide. User testing shows how the system is received 
+in real use, but the problems and the way the system is used cannot be 
+controlled. Example-based evaluation examines the output for a set of 
+constructed problem cases, where the input is controlled, so the output can be 
+examined more systematically. The two approaches have different strengths and 
+therefore complement each other. Both were used to evaluate MLguide.
 
 \subsection{User Testing}
 \label{sec:user-testing}
 
-User testing was conducted in collaboration with the course TMM4128 Machine
-Learning for Engineers at the Norwegian University of Science and Technology
-(NTNU). The course provided a natural opportunity to test the system with
-its intended user group, since the participants were engineering students with limited prior
-experience with machine learning. Student groups used MLguide for two of their course
-projects. The two course projects are summarised in Table~\ref{tab:user-testing}.
+Machine learning courses at universities provide a natural setting for user testing. 
+They bring together the intended user group, students who are 
+learning to apply machine learning but have limited prior experience, and give 
+them realistic problems to work on. The course TMM4128 Machine Learning for 
+Engineers at the Norwegian University of Science and Technology (NTNU) offers 
+one such opportunity. In collaboration with the course, student groups used 
+MLguide for two of their course projects. The two projects are summarised in 
+Table~\ref{tab:user-testing}.
 
 \begin{table}[H]
 \centering
@@ -191,7 +184,7 @@ projects. The two course projects are summarised in Table~\ref{tab:user-testing}
 \addlinespace
 \textbf{ML area} & Unsupervised learning & Reinforcement learning \\
 \addlinespace
-\textbf{Task} & Detect anomalies using unsupervised learning techniques and compare performance & Analyse RL applications across lifecycle phases and implement a sustainability agent \\
+\textbf{Task} & Detect anomalies using minimum three unsupervised learning methods and compare performance & Analyse RL applications across lifecycle phases and implement a sustainability agent \\
 \addlinespace
 \textbf{MLguide task} & Test MLguide on their problem and report on relevance and usefulness of results & Assess the applicability of MLguide to their problem \\
 \addlinespace
@@ -200,69 +193,66 @@ projects. The two course projects are summarised in Table~\ref{tab:user-testing}
 \end{tabular}
 \end{table}
 
-The two projects differed in scope and focus. The first project
-had a well-defined problem: detecting anomalies in time series
-data using unsupervised learning. The groups were asked to compare
-at least three ML methods.
+The two projects differ in scope and focus. The first project has a 
+well-defined problem, detecting anomalies in time series data using 
+unsupervised learning. The groups are asked to compare at least three 
+ML methods.
 
-The second project was more open-ended. The groups were asked to
-analyse applications of reinforcement learning across four product
-lifecycle phases, product design, manufacturing, product use, and
-recycling, and to implement a simulated RL environment and a
-sustainability agent.
+The second project is more open-ended. The groups are asked to analyse 
+applications of reinforcement learning across four product lifecycle phases, 
+product design, manufacturing, product use, and recycling, and to implement 
+a simulated RL environment and a sustainability agent.
 
-MLguide provides two channels for user feedback. 
-The first is the students' project reports. As part of
-these course deliverables, the students reported on how MLguide was used
-and its applicability to the project work. The second is a
-feedback form, available on the home page, where
-users can rate their overall satisfaction, report any technical
-problems, and note what worked well and what should be improved.
+The user testing provides feedback on the system through 
+the students' project reports. MLguide also has a feedback form available on 
+the home page, where users can rate their overall satisfaction, 
+report any technical problems, and note what worked well and what should be improved.
+All users of MLguide, including students during user testing, therefore have the opportunity 
+to provide feedback through the form.
+This gives MLguide two channels for user feedback when conducting user testing.
 
-% \textbf{Endre tense her til past?}
+% Kutt denne fordi den er etterpåklok og ikke så relevant
+% Kan vel presentere resultatene av user testing uten å si grundig
+% hvordan de ble analysert.
 
-The analysis of feedback has two distinct parts, one quantitative and
-one qualitative. The quantitative part looks at numbers regarding
-the use of the system, such as how many groups used MLguide and at
-what stage of the project. For this, each group response is coded into a
-structured form that records whether it used the system, how it
-was used, and how the recommended methods compare to the methods
-the group used. The qualitative part examines the feedback from
-the form text answers and the report free text. Comments about the usefulness
-of the system, and about any problems or criticism, are sorted
-into themes, so that points raised by one or more groups can be collected and
-compared systematically.
+% The analysis of feedback has two distinct parts, one quantitative and
+% one qualitative. The quantitative part records how the system was used, 
+% such as how many groups used MLguide and at
+% what stage of the project. For this, each group response is coded into a
+% structured form that records whether it used the system, how it
+% was used, and how the recommended methods compare to the methods
+% the group used. The qualitative part examines the feedback from
+% the form text answers and the report free text. Comments about the usefulness
+% of the system, and about any problems or criticism, are sorted
+% into themes, so that points raised by one or more groups can be collected and
+% compared systematically.
 
 \subsection{Example-Based Evaluation}
 \label{sec:example-based-evaluation}
 
-In addition to the user testing, the system was evaluated using a
-set of constructed examples. Each example is a problem description
-created to represent a typical use case for machine learning in
-product development and production. The examples were chosen to
-cover different ML areas and task types.
+Example-based evaluation is also a natural part of iterative development, since 
+the same constructed examples can be run on each version to check that behaviour 
+is correct as the system changes. A set of examples is submitted to the system, 
+and the output is examined to check whether it is reasonable and relevant for 
+the given problem.
 
-Each example was submitted to MLguide, and the output was
-examined, including the ranked methods, the supporting articles,
-and the generated notebook. The aim was to check whether the
-output is reasonable and relevant for the given problem. Because
-the examples were both written and assessed as part of this work,
-this evaluation is a structured review of the system's behaviour
-rather than an independent test, and it is used to complement the user
-testing.
+For this work, each example was written as a problem description representing a 
+typical use case for machine learning in product development and production, and 
+the examples were chosen to cover different ML areas and task types. Each example 
+was submitted to MLguide, and the output was examined, including the ranked 
+methods, the supporting articles, and the generated notebook. Because the 
+examples were both written and assessed as part of this work, this evaluation is 
+a structured review of the system's behaviour rather than an independent test.
 
 \section{Development Timeline}
 \label{sec:development-timeline}
 
 Figure~\ref{fig:development-timeline} summarises the development timeline of
-MLguide. It marks the two user tests and the example-based
-evaluation, and divides the development into three main system versions.
+MLguide. It marks the two user tests, as well as the latest and documented example-based
+evaluation. It divides the development into three main system versions.
 Version A is the version used in the first user test, version B the
 version used in the second, and version C the current and latest version 
-used in the example-based evaluation. 
-The main technical differences between the versions are described in
-Section~\ref{sec:changes-across-system-versions} 
-in the Implementation chapter.
+used in the final example-based evaluation. 
 
 \begin{figure}[H]
     \centering

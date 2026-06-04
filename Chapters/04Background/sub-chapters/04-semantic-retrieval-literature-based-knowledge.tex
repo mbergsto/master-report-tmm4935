@@ -68,26 +68,29 @@ approaches that assigned a fixed vector to each word regardless
 of context, transformer models produce representations that 
 reflect the meaning of a word given its surrounding text.
 
-However, standard transformer models such as Bidirectional Encoder Representations from Transformers (BERT) are not
-directly suited for computing sentence-level similarity. As 
-noted by \textcite{reimers2019sentence_bert_sentence_embeddings_using_siamese_bert_networks}, 
-comparing two sentences with BERT requires feeding both into 
-the network simultaneously, which becomes computationally 
-infeasible at scale. Finding the most similar pair in a 
-collection of 10,000 sentences would require approximately 50 
-million inference computations.
+However, standard transformer models such as Bidirectional Encoder 
+Representations from Transformers (BERT) are not directly suited for 
+computing sentence-level similarity. As noted by 
+\textcite{reimers2019sentence_bert_sentence_embeddings_using_siamese_bert_networks}, 
+comparing two sentences with BERT requires feeding both into the 
+network simultaneously, which becomes computationally infeasible at 
+scale. Because every candidate pair must be processed jointly, the 
+cost grows with the size of the collection. For 10,000 sentences, 
+identifying the closest pair takes on the order of 50 million 
+forward passes through BERT.
 
 Sentence-BERT (SBERT) addresses this by fine-tuning BERT 
 using a siamese network structure, producing fixed-size sentence 
-embeddings that can be compared efficiently using cosine 
-similarity \parencite{reimers2019sentence_bert_sentence_embeddings_using_siamese_bert_networks}. 
+embeddings that can be compared using cosine similarity 
+\parencite{reimers2019sentence_bert_sentence_embeddings_using_siamese_bert_networks}. 
 Figure~\ref{fig:sbert-architecture} shows this architecture at
 inference time.
 The key property is that semantically similar sentences are 
-placed close together in the resulting embedding space, making 
-SBERT suitable for tasks where embeddings for a large corpus 
-can be precomputed and a new query compared against all of 
-them in milliseconds.
+placed close together in the resulting embedding space. This 
+makes SBERT suitable for tasks where embeddings for a large 
+corpus can be precomputed, so that a new query can be matched 
+against them without the cost of running the full model for 
+every comparison.
 
 \begin{figure}[H]
     \centering

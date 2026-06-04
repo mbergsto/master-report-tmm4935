@@ -1,0 +1,46 @@
+This thesis investigated whether a decision-support system combining
+ontology-based knowledge representation, semantic retrieval from
+scientific literature, and structured implementation support can
+provide relevant and justified machine learning method recommendations
+for users with limited machine learning expertise. The question was
+examined through the design and evaluation of MLguide, a web-based
+system built within a Design Science Research framework. MLguide draws
+on an ontology of machine learning methods and tasks and a database of
+research articles, and produces a ranked list of methods, a set of
+supporting articles, and a starter notebook. The system was evaluated
+through user testing in two course projects and through an
+example-based evaluation on constructed problems.
+
+The evaluation showed that the recommendations were largely relevant
+to the problems submitted, and that the three elements function
+together in a working system. The recommendations are grounded in the
+literature rather than in fixed rules, and the articles shown for each
+method make the basis for a recommendation visible to the user. The
+hypothesis is therefore supported for relevance and for the
+combination of the three elements, with the justification of
+individual recommendations as the main reservation.
+
+The main contribution of this thesis is MLguide itself, a working
+system that brings together three capabilities that earlier work has
+kept apart. The method-selection frameworks reviewed in this thesis
+stop at recommending a method, code generators assume that a method
+has already been chosen, and AutoML systems produce a model without
+making the selection transparent. MLguide combines structured method
+knowledge, literature-based recommendation, and a starting point for
+implementation in a single system, and presents the articles behind
+each recommendation so that the user can judge it. A further
+contribution is the link between the ontology and the articles, where
+each article is classified and connected to the methods it mentions as
+part of the retrieval pipeline. This lets the method knowledge grow as
+the article base grows, rather than depending on a manually built
+table of methods, and keeps the system open to a different domain by
+replacing the article base. In Design Science Research terms, the
+artifact also yields design knowledge that can inform similar systems,
+in particular the value of pairing structured method knowledge with
+retrieval from the literature, and the trade-offs this involves.
+
+MLguide shows that an ontology of machine learning methods and
+semantic retrieval from scientific literature can be combined into a
+working system that recommends relevant methods and supports the first
+steps of implementation, for a user group that often lacks structured
+guidance for method selection.

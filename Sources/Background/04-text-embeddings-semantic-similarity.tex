@@ -129,3 +129,15 @@ From \parencite{thakur2021beir_heterogenous_benchmark_zero_shot_evaluation_ir_mo
 "Neural re-ranking approaches use the output of a first-stage retrieval system, often BM25, and re-ranks the documents to create a better comparison of the retrieved documents. Significant improvement in performance was achieved with the cross-attention mechanism of BERT. However, at a disadvantage of a high computational overhead."
 "Re-ranking and Late-Interaction models generalize well to out-of-distribution data. The cross-attentional re-ranking model (BM25+CE) performs the best and is able to outperform BM25 on almost all (16/18) datasets."
 "computationally expensive models, like re-ranking models and late interaction model perform the best. More efficient approaches e.g. based on dense or sparse embeddings can substantially underperform traditional lexical models like BM25."
+
+From \parencite{cormack2009reciprocal_rank_fusion}:
+
+Om selve formelen og valg av k:
+"RRF simply sorts the documents according to a naive scoring formula."
+"The constant k mitigates the impact of high rankings by outlier systems."
+
+Om hvorfor reciprocal rank og ikke eksponentiell:
+"while highly-ranked documents are more important, the importance of lower-ranked documents does not vanish as it would were, say, an exponential function used."
+
+Om å kombinere rangeringer uten å ta hensyn til de underliggende scorene:
+"RRF is simpler and more effective than Condorcet Fuse, while sharing the valuable property that it combines ranks without regard to the arbitrary scores returned by particular ranking methods."

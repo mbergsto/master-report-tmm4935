@@ -53,9 +53,9 @@ than learning from a fixed dataset, an agent interacts with an environment and
 learns through trial and error, receiving rewards or penalties based on its actions
 \parencites[3]{bishop2006pattern_recognition_machine_learning}{sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
 Within reinforcement learning, methods can be broadly divided according to what 
-they learn. In value-based methods, a value function is learned from which the 
-policy is derived either explicitly or implicitly, whereas in policy-based methods 
-the policy is learned directly without the need for a value function
+they learn. Value-based methods learn a value function first and obtain the policy 
+from it, either directly or as an implicit consequence. Policy-based methods skip 
+the value function and optimise the policy on its own
 \parencites{sewak2019policy_based_reinforcement_learning_approaches}[Chapter~11]{sutton2018reinforcement_learning}.
 A third class, actor-critic methods, combines both approaches by maintaining 
 a separate policy structure and value function simultaneously 
@@ -172,6 +172,16 @@ the number of clusters to be specified in advance
 \parencite{ester1996dbscan,
 sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
 
+A Gaussian mixture model (GMM) is a probabilistic clustering model. 
+It treats the data as coming from a combination of Gaussian 
+distributions whose number and parameters are estimated during 
+training. Each distribution corresponds to a cluster, and a point is 
+assigned based on the probability that it belongs to each one. Since 
+the model estimates a density over the data, points that fall in 
+low-density regions can be treated as anomalies, which makes GMMs 
+applicable to anomaly detection as well as clustering 
+\parencite[Chapter~9]{geron2019hands_on_machine_learning}.
+
 For dimensionality reduction, principal component analysis (PCA) 
 identifies the axes of greatest variance in the data and projects 
 it onto a lower-dimensional space defined by these axes, called 
@@ -200,7 +210,7 @@ Value-based methods such as Q-learning estimate the expected return
 for each action in a given state, and the policy is derived by 
 selecting the action with the highest value 
 \parencites{watkins1992q_learning}{zhang2020taxonomy_reinforcement_learning_algorithms}. 
-This approach is oriented towards deterministic policies, and small 
+This approach is geared towards deterministic policies, and small 
 changes in the estimated values can cause sudden changes in the 
 selected action 
 \parencite{sutton1999policy_gradient_methods_reinforcement_learning}. 
