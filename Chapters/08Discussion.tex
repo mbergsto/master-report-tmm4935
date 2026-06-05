@@ -103,16 +103,16 @@ artikler vektes mest ?
 \end{comment}
 
 The recommendations across the evaluation show a tendency to 
-favour methods with a high article count, in particular random 
-forest, support vector machine, and neural network. These three 
-methods are described in 
-Section~\ref{sec:machine-learning-methods} as applicable to 
-several tasks, including tasks in supervised learning, which 
-Section~\ref{sec:ml-in-product-development-and-production} 
-reports as the most frequently used ML area in product 
-development and production, with random forest, support vector machine, 
-and neural network among the most frequently used 
-methods. This is also reflected in the article database, where 
+favour methods with a high article count, where article count 
+is the number of articles that mention the method. This tendency 
+is clearest for random forest, support vector machine, and neural 
+network. These three methods are described in 
+Section~\ref{sec:machine-learning-methods} as applicable to several 
+tasks, including tasks in supervised learning. Supervised learning 
+is reported in Section~\ref{sec:ml-in-product-development-and-production} 
+as the most frequently used ML area in product development and 
+production, and the same three methods are among the most frequently 
+used there. This is also reflected in the article database, where 
 supervised learning is the dominant area, as shown in 
 Section~\ref{sec:resulting-database}. The dominance of these 
 methods in the recommendations is therefore not surprising. The 
@@ -130,7 +130,7 @@ by \textcite{riesener2020}, who note that determining method
 relevance from the number of articles in the literature can put 
 newer or less frequently reported methods at a disadvantage. 
 MLguide does not rank methods strictly by article count, but 
-methods that are mentioned in many articles are more likely to 
+methods that are mentioned in many articles are naturally more likely to 
 appear among the top retrieved articles that drive the method 
 ranking, so a similar effect is present. At the same time, 
 methods with few articles are not excluded from the top of 
@@ -180,11 +180,11 @@ embeddings of titles and abstracts capture the task and dataset of a
 paper well but its method poorly, because methodological detail 
 is mentioned only marginally in titles and abstracts.
 
-The summary character of abstracts has visible consequences for 
-MLguide. An abstract can list several methods used in a study, 
-for example mentioning that one was the best while others were 
-tested as baselines, but the method retrieval does not 
-distinguish between them. All mentioned methods are treated as 
+The summarising nature of abstracts has direct consequences for 
+MLguide. A single abstract can mention several methods from one 
+study, for example one that performed best and others that were 
+tested as baselines. These different roles are not reflected in 
+the ranking produced by MLguide. All mentioned methods are treated as 
 relevant to the problem the article addresses. The same applies 
 when a method is used as part of a pipeline rather than as the 
 main contribution, such as a dimensionality reduction step 
@@ -216,6 +216,7 @@ leter etter svar på.
 
 
 The findings in this thesis are in line with the observation 
+made by \textcite{ostendorff2022_aspect_based_embeddings}
 that task and dataset are captured better than method details in abstracts. 
 Across the three example-based evaluations in 
 Section~\ref{sec:results-example-based-evaluation}, the 
@@ -223,10 +224,10 @@ top-ranked articles for the recommended methods are generally
 relevant to the problem at hand. In the user testing, three 
 groups in Project 2 also reported that MLguide was useful for 
 finding or confirming relevant articles 
-(Section~\ref{sec:project-2}). This reflects that a user's 
-problem description tends to describe the task and the data 
-more than the method, since the method is what the user is 
-looking for. The retrieval therefore appears to work well on 
+(Section~\ref{sec:project-2}). A user's problem description can also
+be expected to describe the task and the data more than the method, 
+since the method is what the user is looking for. 
+The retrieval therefore appears to work well on 
 the topical side of the problem, while methodological match 
 is harder to assess from the matching alone.
 
@@ -265,46 +266,45 @@ one-class SVM contribute to the article count of both methods,
 but support vector machine benefits from its much larger 
 overall article count and ranks higher as a result.
 
-A related point is that literature-based recommendations 
-reflect the methods that appear in published research, which 
-may differ from what is commonly used in practice or taught in 
-ML courses. In the user testing for the anomaly detection problem in 
-Project 1, several groups reported that neural network methods were 
-over-represented in the recommendations, and that Gaussian 
-mixture model and one-class SVM were missing 
-(Section~\ref{sec:project-1}). These are classical methods for 
-anomaly detection specifically, while neural network methods 
-have a broader range of applications, as described in 
-Section~\ref{sec:neural-networks-and-deep-learning}. This 
-helps explain why neural network methods have higher article 
-counts in the database overall. 
-Another possible factor is that research literature tends to use more 
-advanced models than those that are typical starting points 
-for users new to machine learning, so recommendations grounded 
-in research can differ from what students or beginners would 
-expect based on their course material.
-The supervised classification 
-example in Section~\ref{sec:example-1} shows a different 
-balance, where classical methods such as linear regression 
-and k-nearest neighbours also have high article counts. 
-Classical methods are therefore not under-represented as a 
-whole, but they can be under-represented within specific tasks 
-or areas. 
+A related point is that literature-based recommendations reflect 
+the methods that appear in published research, which may differ from 
+what is commonly used in practice or taught in ML courses. In the 
+user testing for the anomaly detection problem in Project 1, several 
+groups reported that neural network methods were over-represented in 
+the recommendations and that Gaussian mixture model and one-class 
+SVM were missing (Section~\ref{sec:project-1}). Gaussian mixture model 
+and one-class SVM are classical methods for 
+anomaly detection, whereas neural network methods have a broader 
+range of applications 
+(Sections~\ref{sec:machine-learning-methods} 
+and~\ref{sec:neural-networks-and-deep-learning}). This broad 
+applicability is part of why neural network methods have a high 
+article count, which, as noted above, favours them across many 
+problems. It is also reasonable to assume that research literature tends to 
+use more advanced models than the typical starting points for users 
+new to machine learning, so recommendations grounded in research can 
+differ from what students or beginners expect from their course 
+material.
+
+The supervised classification example in 
+Section~\ref{sec:example-1} shows a different balance, where 
+classical methods such as linear regression and k-nearest neighbours 
+also have high article counts. Simpler classical methods are therefore not 
+under-represented as a whole, but they can be under-represented 
+within specific tasks or areas.
 
 In the supervised classification example 
-(Section~\ref{sec:example-1}), Gaussian mixture model is 
-ranked second despite being flagged as not suited for the 
-classification task. A likely reason is that the wording of 
-the problem description, which includes terms such as 
-"faulty", resembles how an unsupervised anomaly detection 
-problem might be described, and Gaussian mixture model
-is suited for anomaly detection, as described in Section~\ref{sec:machine-learning-methods}. 
-The article-based score for Gaussian mixture model is 
-therefore high enough to rank it as the second recommendation. 
-This shows that placing strong 
-weight on the problem description, without filtering on attributes 
-such as selected task in the ranking itself, can lead to recommendations 
-that are clearly inconsistent with the user's stated intent.
+(Section~\ref{sec:example-1}), Gaussian mixture model is ranked 
+second despite being flagged as not suited for the classification 
+task. A likely reason is that the wording of the problem 
+description, which includes terms such as "faulty", resembles how an 
+unsupervised anomaly detection problem might be described. This 
+wording matches articles in which Gaussian mixture model is used for 
+anomaly detection, and the resulting article-based score is high 
+enough to place it as the second recommendation. The case shows that 
+relying on the problem description alone, without using the ontology 
+to filter on attributes such as the selected task, can rank a method 
+that the system has itself flagged as unsuited for that task.
 
 
 \begin{comment}
@@ -376,13 +376,13 @@ This makes the ontology more flexible than a flat matrix as used
 by \textcite{riesener2020} and 
 \textcite{lickert2021_ml_selection_reverse_logistics}, and more 
 formal than the semantic wiki of 
-\textcite{gerschutz2021semantic_web_approach}. It also gives 
-the kind of transparency that AutoML systems are often 
+\textcite{gerschutz2021semantic_web_approach}. It also supports 
+the kind of transparency that AutoML approaches are often 
 criticised for lacking 
 \parencite{barbudo2023eight_years_automl_categorisation_review_trends}. 
 The ontology-based approach is comparable to AI4PD 
-\parencite{gerschutz2023_AI4PD}, which also uses an
-ontology to support method selection.
+\parencite{gerschutz2023_AI4PD}, which also uses an ontology, 
+there to link data-driven methods to product development processes.
 
 The usefulness of the ontology depends on how completely its 
 properties are populated. In Project 1, several groups reported 
@@ -414,33 +414,30 @@ cover a broader range of methods across the full product
 lifecycle, which is more ambitious in scope but exposes the 
 manual-effort limitation more clearly.
 
-Some structural choices in the ontology are also worth 
-discussing. The dataset type of a method is not stored as a 
-property on the method itself, but is reached through the 
-\texttt{used\_for} relation to a task, as explained in 
-Section~\ref{sec:ml-ontology-structure-and-content}. This means 
-a method only matches a dataset type if it is connected to a 
-task that has that dataset type defined. One result is that the 
-same information can be expressed in two ways. A task such as 
-"tabular regression" overlaps with the combination of the task
-"regression" and a tabular dataset type. Another result is that 
-some matches can be missing in unexpected places. In the 
-supervised classification example 
-(Section~\ref{sec:example-1}), principal component analysis is 
-not marked as matching the tabular dataset type. This follows 
-from the fact that the tasks PCA is linked to in the ontology 
-do not have tabular as a defined dataset type. A cleaner 
-separation, where dataset type is its own property of the 
-method, would avoid such cases and make the ontology easier to 
-query and reason over.
-This also fits the principle that an ontology should be 
-designed so that it can be extended without changing existing 
-definitions (Section~\ref{sec:ontology-description}) 
-\parencite{gruber1995toward_principles_design_ontologies_used_knowledge_sharing}. 
-Storing dataset type as its own property on the method would 
-follow this principle, since dataset type could then be adjusted 
-or extended on its own, without changing how methods and tasks 
-are already linked.
+Some structural choices in the ontology are also worth discussing. 
+The dataset type of a method is not stored as a property on the 
+method itself, but is reached through the \texttt{used\_for} relation 
+to a task, as explained in 
+Section~\ref{sec:ml-ontology-structure-and-content}. A method 
+therefore matches a dataset type only if it is connected to a task 
+that has that dataset type defined. One result is that the same 
+information can be expressed in two ways, a task such as "tabular 
+regression" overlaps with the combination of the task "regression" 
+and a tabular dataset type. Another result is that whether a method 
+matches a dataset type depends entirely on the tasks it happens to be 
+linked to. In the 
+supervised classification example (Section~\ref{sec:example-1}), 
+principal component analysis is not marked as matching the tabular 
+dataset type, because the tasks PCA is linked to in the ontology do 
+not have tabular defined as a dataset type. Storing dataset type as 
+its own property on the method would avoid such cases and make the 
+ontology easier to query and reason over. It would also follow the 
+principle that an ontology should be designed so that it can be 
+extended without changing existing definitions, as described in 
+Section~\ref{sec:ontology-description} 
+\parencite{gruber1995toward_principles_design_ontologies_used_knowledge_sharing}, 
+since dataset type could then be adjusted or extended on its own, 
+without changing how methods and tasks are already linked.
 
 The structure is more flexible in how methods relate to ML 
 areas. As shown in 
@@ -543,7 +540,7 @@ the recommendations, which is the focus of this section.
 The ontology in MLguide represents general machine learning 
 knowledge, organised around ML areas, tasks, dataset types, 
 and performance preferences. It does not represent production domain knowledge, 
-that is, the kinds of problems found in product development and 
+which is the kinds of problems found in product development and 
 production, such as predictive maintenance, quality 
 prediction, or fault diagnosis 
 (Section~\ref{sec:applications-of-machine-learning}). The two 
@@ -565,21 +562,22 @@ representation links methods to production domains. This works
 in part, but the system has no way of guaranteeing that a 
 recommendation is appropriate for a specific application area.
 
-The frameworks reviewed in 
-Section~\ref{sec:approaches-to-method-selection} take the 
-opposite approach to scope. 
+Some of the frameworks reviewed in 
+Section~\ref{sec:approaches-to-method-selection} take a narrower 
+approach to scope.
 \textcite{lickert2021_ml_selection_reverse_logistics} works 
 within reverse logistics, and 
-\textcite{sonntag2023pattern_ml_product_development} focuses 
-on early product development. The narrow scope makes it 
+\textcite{sonntag2023pattern_ml_product_development} and \textcite{sonntag2024_mcda_framework} 
+focuses on early product development. The scope makes it 
 feasible to characterise methods against a relevant set of 
 problems for that domain, but limits how widely the framework 
-can be applied. MLguide makes the opposite trade-off: broad 
+can be applied. MLguide makes the opposite trade-off, broad 
 coverage across the full product lifecycle, but no domain 
-knowledge built into the ontology yet. Ideally, the ontology 
-would link methods to domain-specific problems and the 
-articles would be filtered or weighted by application area, 
-combining the strengths of both approaches.
+knowledge built into the ontology yet. A possible improvement is 
+therefore to link methods to 
+domain-specific problems in the ontology and to filter or weight the 
+articles by application area. This would keep the broad coverage of 
+MLguide while adding the domain grounding of the narrower frameworks.
 
 The reason this is left as future work is again the manual 
 effort. Characterising every method against a set of 
@@ -590,7 +588,7 @@ incomplete, partial coverage may give worse results than no
 filter at all, because methods that should match a domain 
 would appear unmarked.
 
-Without explicit filters for the application context, the way 
+Without explicit filters for the production domain, the way 
 the user describes the problem becomes the main signal for what 
 the system should retrieve. MLguide uses free-text problem 
 descriptions as the main input, supported by an optional filter 
@@ -614,16 +612,19 @@ were still relevant anomaly detection methods. This indicates
 that the system is feasible without multiple filters
 for scoping the problem.
 
-An interesting and potentially positive effect of not having production 
-domain knowledge in the ontology 
-is that MLguide is relatively easy to adapt to a different 
-domain. The article base can be replaced with articles from 
-another field, and the recommendations will reflect that 
-field through the semantic retrieval. This flexibility comes 
-from the same design choice that limits the domain-specific 
-precision. Adding deeper production domain knowledge would therefore be a trade-off.
-It could improve precision within product development and production, 
-but would make the system less flexible and portable.
+An interesting and potentially positive effect of not having 
+production domain knowledge in the ontology is that MLguide is 
+relatively easy to adapt to a different domain. The article base can 
+be replaced with articles from another field, and the recommendations 
+will reflect that field through the semantic retrieval. This 
+flexibility comes from the same design choice that limits the 
+domain-specific precision. Adding deeper production domain knowledge 
+would therefore be a trade-off. It could improve precision within 
+product development and production, but would make the system less 
+flexible and portable. This reflects the same trade-off in ontology 
+design as discussed in the previous Section~\ref{sec:ontology-coverage-and-structure}, where 
+a more general ontology is more reusable but less directly suited to a 
+specific task.
 
 
 \begin{comment}
@@ -672,7 +673,7 @@ AutoML systems, which produce a trained model directly and are often
 described as treating the selection and configuration process as a black box
 (Section~\ref{sec:approaches-to-method-selection}). MLguide 
 leaves the implementation to the user but provides a 
-structured starting point that lowers the barrier to begin. 
+structured starting point that tries to lower the barrier to begin. 
 This is also a more direct combination of method selection and 
 implementation support than what the reviewed work offers. The 
 frameworks for method selection in 
@@ -680,7 +681,7 @@ Section~\ref{sec:approaches-to-method-selection} stop at the
 method recommendation. Traingenerator 
 \parencite{rieke2021traingenerator} generates code templates 
 but assumes that the method has already been chosen. MLguide 
-combines the two: a recommended method and a notebook that 
+combines the two, a recommended method and a notebook that 
 gives a starting point for implementing it.
 
 The current templates are simple, and the coverage is 
@@ -723,7 +724,7 @@ structure for storing parameters and their values. Filling
 this with reasonable defaults, possibly extracted from 
 articles where parameter choices are reported, would let 
 the system suggest defaults that go beyond a fixed template 
-while remaining useful to users who do not want to choose 
+while remaining useful to users that do not want to choose 
 themselves.
 
 \begin{comment}
@@ -762,8 +763,8 @@ in Project 1 or Project 2
 (Section~\ref{sec:changes-across-system-versions}). Few 
 ratings have been submitted so far, and the mechanism could 
 not be evaluated as a data source. This is the cold start 
-problem discussed in 
-Section~\ref{sec:rating-based-user-feedback}: 
+problem presented in 
+Section~\ref{sec:rating-based-user-feedback},
 ratings only become useful when enough of them have been 
 collected. The Bayesian smoothing in the feedback boost 
 (Section~\ref{sec:feedback-boost}) is designed to handle a 
@@ -790,7 +791,7 @@ collect knowledge from
 its users and use it directly in the recommendations, which 
 would reduce some of the manual-effort limitations discussed 
 in earlier sections by drawing on user input rather than only 
-on updates to the data sources. This is left as future work.
+on updates to the data sources. 
 
 \section{Presentation of the Recommendations}
 \label{sec:presentation-of-the-recommendations}
@@ -809,7 +810,7 @@ order carries meaning.
 The number of methods shown adds to this. Ten methods are 
 returned, which is a lot for a user who 
 wants a clear starting point. A long list without a visible 
-ranking gives little guidance on where to begin and can make 
+ranking may give little guidance on where to begin and can make 
 the output harder to act on, which works against the goal of 
 supporting users who are new to machine learning. Presenting 
 fewer methods, numbering them, or otherwise making the ranking 
@@ -888,7 +889,7 @@ task brief, while Project 1
 asked the groups to explore a more defined problem. The 
 defined-problem setup matches better with the recommendation 
 process MLguide is designed around, where the user has a 
-specific problem and looks for a method to use. This may explain 
+specific problem and looks for a method to use. This explains 
 why Project 1 generated more direct feedback on the method 
 recommendations, while Project 2 generated more feedback on 
 the article retrieval.
@@ -906,7 +907,7 @@ their project. In Project 1, about half the groups used the
 system early, before choosing methods, and about half used 
 it after the methods had already been chosen 
 (Figure~\ref{fig:timing-p1}). The overlap between 
-recommendations and used methods was similar for both groups 
+recommendations and used methods was similar for both early and late groups 
 (Figure~\ref{fig:overlap-by-timing-p1}), but the overlap 
 means different things in the two cases. For groups that 
 used MLguide early, the overlap indicates whether the system 
@@ -925,9 +926,7 @@ that they used it to confirm or validate methods they had
 already chosen (Figure~\ref{fig:benefits-p1}). MLguide 
 therefore appears to serve two roles, helping users choose 
 methods when used early, and providing a check on methods 
-chosen elsewhere when used late. The second was not an 
-intended function of the system, but it was reported as 
-useful by several groups.
+chosen elsewhere when used late.
 
 The example-based evaluation complements the user testing by 
 offering controlled input. This made it possible to examine 
@@ -949,7 +948,7 @@ evaluation would give stronger conclusions. Because MLguide is an open web
 application, there is in principle no restriction on who can use it. This makes 
 it possible to evaluate the system far more broadly than was done here. The 
 course-based setting could be extended to several machine learning courses, of 
-different types and at different universities, and the evaluation could reach 
+different types and at different universities. The evaluation could also reach 
 beyond students towards the other part of the intended user group, engineers in 
 industry who are not machine learning experts. The feedback form built into the 
 home page makes it possible to collect feedback data continuously, from anyone who 
