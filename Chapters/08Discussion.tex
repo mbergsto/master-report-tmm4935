@@ -1,55 +1,21 @@
 \label{ch:discussion}
 
-This chapter discusses the design, behaviour, and evaluation 
-of MLguide in relation to the hypothesis and research questions 
-stated in Chapter~\ref{ch:introduction}. The discussion is 
-organised by topic, with limitations and future work addressed 
-under each one. The chapter then returns to the hypothesis and research 
-questions, and ends with a summary of the main limitations and 
-future work.
-
-% Liste temaene i stedet for å si "topic"? Fjerne design goals?
-
-% Ta med overview of findings eller ikke?
-% Kan oppsummere key benefits og issues og tolke de? 
-
-% \section{Overview of Findings}
-% \label{sec:overview-of-findings}
-
-% The evaluation of MLguide combined user testing across two 
-% course projects with an example-based evaluation on three 
-% constructed problems. In the first project, 13 of 17 groups 
-% used MLguide, and the recommended methods overlapped with the 
-% methods the groups used at a high or medium level for most of 
-% them. Groups raised both benefits, such as method shortlisting 
-% and validation of method choices, and issues, such as missing 
-% methods and recommendations that were used too late to 
-% influence decisions. In the second project, 9 of 19 groups 
-% used the system. The reports highlighted overviews of 
-% reinforcement learning methods and confirmation of method 
-% choices as benefits, and unclear method ranking and an input 
-% form unable to express more complex configurations as issues.
-
-% The example-based evaluation showed that the system returned 
-% relevant methods for clearly specified problems, but also 
-% methods that were less directly tied to the task. The 
-% recommendations were shaped both by the ontology filters and 
-% by the literature-based retrieval, and the balance between 
-% these two knowledge sources had visible effects on what was 
-% returned. The same patterns appeared across the user tests and 
-% the examples: well-known methods such as random forest, Support 
-% Vector Machine, and neural network were recommended frequently, 
-% while more specialised methods relevant to the task were 
-% sometimes missing or ranked lower than expected.
-
-% The following sections discuss the main themes that follow from 
-% these observations: how literature-based retrieval shapes the 
-% recommendations, how the ontology coverage and structure affect 
-% the results, the role of filters and application context, the 
-% balance between the two knowledge sources, the starter notebook 
-% output, and the feedback mechanism. The chapter closes by 
-% returning to the research questions and the design goals, and 
-% by summarising limitations and directions for future work.
+This chapter discusses the design, behaviour, and evaluation of 
+MLguide in relation to the hypothesis and research questions stated in 
+Section~\ref{sec:hypothesis-research-questions}. 
+MLguide combines several components, an 
+ontology of method knowledge, a semantic retrieval pipeline over 
+articles, and generated starter notebooks. 
+The discussion is therefore organised by topic 
+and covers the method recommendations and the role of the articles, 
+the coverage and structure of the ontology, 
+the absence of production domain knowledge, the starter notebooks, the 
+method feedback mechanism, the presentation of the recommendations, 
+and the evaluation approach. Limitations are discussed under each 
+topic. The chapter then returns to the hypothesis 
+and research questions and answers each one based on the discussion. 
+It ends with a section that draws the main limitations together and 
+sets out the future work that follows from them.
 
 \section{Method Recommendations and the Role of Articles}
 \label{sec:method-recommendations-and-role-of-articles}
@@ -77,30 +43,6 @@ methods were closely related to the problem in each case
 same time, several observations point to systematic effects 
 in how the recommendations are shaped, which are discussed 
 further in this section.
-
-
-\begin{comment}
-    
-Metodeanbefalinger i resultatene viser flere tendenser til at 
-"vanlige" metoder blir prioritert.  Altså metoder med høy "article count" som NN, SVM og RF.
-Vanlige metoder referer til høy article count, og at de kan brukes på flere tasks.
-ALle disse 3 metodene er nevnt i \ref{sec:machine-learning-methods} som brukt til classification og regression i supervised learning. 
-Og supervised learning er som nevnt i \ref{sec:ml-in-product-development-and-production} vanligst rapporterte ml area.
-Som også stemmer med fordelingen av artikler innenfor areas i \ref{sec:resulting-database}.
-
-I begge user testing prosjektene er neural network anbefalt en del men kun rapportert brukt en gang.
-Vi ser også at disse metodene dukker opp en del i anbefalinger i example based evaluation.
-RF, SVM og NN har gjennomgående høye article count. Og er tilstede en del. Det er ikke nødvendigvis feil, når de rapportert mye brukt.
-Men de kan dukke opp litt mye og mulig gjøre det vanskelig for andre nye eller mindre rapporterte og mer spesifike metoder. Ref \parencite{riesener2020} i
-\ref{sec:related-work-and-existing-tools}. Dette ser vi gjennom eksemplene i \ref{sec:example-based-evaluation}
-når neural netowrk topper RL problemet med høyest article count.
-RF er tilstede på anomaly detection problemet, uten task match. Alle 3 er mer naturlig høyt representert på
-supervised classification problem. Men de er rangert helt på topp og heller ikke slavisk etter article count. Så det 
-tyder på at de ikke dominerer helt. GMM har sneket seg inn høyt der, til tross for bare 33 artikler, og 
-det brukes 50 artikler i rangeringen. Og de 3 populære jeg har nevnt har flere tusen. Som indikerer det som er i ranking prosessen med at top 
-artikler vektes mest ?
-
-\end{comment}
 
 The recommendations across the evaluation show a tendency to 
 favour methods with a high article count, where article count 
@@ -144,20 +86,6 @@ Figure~\ref{fig:recommendations-example-3-rec}, where local
 outlier factor is ranked second despite having only 48 articles. 
 This shows that a method with few articles can still rank high 
 if those articles match the problem description closely.
-
-\begin{comment}
-
-En anne case med artiklene er at vi bruker abstracts, kontra full tekst. 
-Det er praktisk naturligvis når man skal lagre ca. 17000 artikler, og 
-sammenligne de fortløpende med problemstilling. I tillegg er problemstilling mer 
-sammenlignbar i størrelse med en abstract enn full tekst. Og kan bruke samme sentence 
-embedding modeller. Men som flere kilder peker på i \ref{sec:semantic-retrieval-from-scientific-literature}.
-Det nevnes der at abstract er en oppsummering. Noe som kan føre til oppramsing av metoder brukt, 
-og så nevne at en var best f.eks.. Om en metode blir nevnt som dårligst til en task merkes ikke av 
-retrieval systemet her. Siden metoder bare hentes hvis den nevnes. Lignende problem kan gjelde i 
-klassifisering av ml area basert på keywords. Og en abstract kan presentere
-at en approach har blitt gjort unsupervised men vi skal teste supervised. Da vil begge ml areas få treff.
-\end{comment}
 
 Another aspect of the article-based recommendation is that 
 MLguide uses article titles and abstracts as the text input for 
@@ -203,18 +131,6 @@ that belong to a different ML area than the article's main
 contribution, can still appear in the recommendations.
 
 
-\begin{comment}
-
-Videre kan jeg si at mine funn matcher på et vis på at "task and dataset" er bedre dekket.
-Siden resultatene alle 3 evaluation based examples (ref) viser at listen over top-articles 
-(relevant articles i UI) viser for det meste artikler som er god match til problemstillingen. I tillegg nevner P2 user test
-at MLguide var relevant for å finne artikler. 
-Og problemstillingen inneholder jo gjerne forsøk på å beskrive task og dataset, mer enn metode, siden metode er det man
-leter etter svar på. 
-
-\end{comment}
-
-
 The findings in this thesis are in line with the observation 
 made by \textcite{ostendorff2022_aspect_based_embeddings}
 that task and dataset are captured better than method details in abstracts. 
@@ -231,42 +147,33 @@ The retrieval therefore appears to work well on
 the topical side of the problem, while methodological match 
 is harder to assess from the matching alone.
 
+A further challenge in extracting method names from text is handling 
+cases where one method name is contained in another, such as neural 
+network within recurrent neural network. Each such case has to be 
+handled explicitly. The article retrieval pipeline described in 
+Section~\ref{sec:article-retrieval-and-knowledge-extraction} handles 
+this for neural network, but the results suggest that not all relevant 
+cases are covered. In the anomaly detection example, support vector 
+machine is at the top of the recommendations, while one-class SVM 
+appears further down. One-class SVM is described in 
+Section~\ref{sec:machine-learning-methods} as an anomaly detection 
+method, and the top-ranked articles for support vector machine in this 
+example include an article that explicitly concerns a one-class model. 
+This indicates that articles about one-class SVM contribute to the 
+article count of both methods, but support vector machine benefits 
+from its much larger overall article count and ranks higher as a 
+result.
 
-\begin{comment}
+The effect is not only on the ranking. The articles shown as the basis 
+for support vector machine then include work that in fact concerns 
+one-class SVM, so the justification presented to the user is 
+misleading. The explicit handling could be extended to more such 
+cases, but each case has to be identified and added by hand, which 
+scales poorly as the method set grows. A more general approach would 
+be to recognise method names in a way that accounts for one name being 
+contained in another, rather than treating each overlap separately.
 
-Neste avsnitt kan ta opp en utfordring med å basere seg på uthenting av metodenavn, 
-er at man må håndtere caser som neural network er tilstede i ordet recurrent neural network f.eks. 
-Slike spesifike caser må håndteres spesifikt i dette systemet. Og i nåværende recommendation prosess
-er det tatt hensyn til med neural network som beskrevet i sec:article-retrieval-knowledge-extraction
-men dette er ikke tatt hensyn til for alle relevante caser tyder det på. Når SVM topper listen for
-anbefalte metoder i anomaly detection eksempelet, og første artikkel nevnt i top articles nevner spesifikt
-"one-class". Og one-class svm er som nevnt i \ref{sec:machine-learning-methods} en anomaly detection metode.
-One class svm er litt lenger ned på anbefalingene med kun 34 artikler. Som tyder på at denne får bidrag fra
-noen relevante artikler, men svm får det fra de samme som oc-svm men havner høyere grunnet den generelt høye
-antall artikler den har, som diskutert tidligere i seksjonen. 
-
-\end{comment}
-
-A further challenge in extracting method names from text is 
-handling cases where one method name is contained in another, 
-such as neural network within recurrent neural network. Each 
-such case has to be handled explicitly. The article retrieval 
-pipeline described in 
-Section~\ref{sec:article-retrieval-and-knowledge-extraction} 
-handles this for neural network, but the results suggest that 
-not all relevant cases are covered. In the anomaly detection 
-example, support vector machine is at the top of the 
-recommendations, while one-class SVM appears further down. 
-One-class SVM is described in 
-Section~\ref{sec:machine-learning-methods} as an anomaly 
-detection method, and the top-ranked articles for support 
-vector machine in this example include an article that explicitly 
-concerns a one-class model. This indicates that articles about 
-one-class SVM contribute to the article count of both methods, 
-but support vector machine benefits from its much larger 
-overall article count and ranks higher as a result.
-
-A related point is that literature-based recommendations reflect 
+Another point is that literature-based recommendations reflect 
 the methods that appear in published research, which may differ from 
 what is commonly used in practice or taught in ML courses. In the 
 user testing for the anomaly detection problem in Project 1, several 
@@ -306,63 +213,8 @@ relying on the problem description alone, without using the ontology
 to filter on attributes such as the selected task, can rank a method 
 that the system has itself flagged as unsuited for that task.
 
-
-\begin{comment}
-
-GMM som metode nummer 2 på et supervised classification problem tyder på at 
-det å vekte problemstillingen teksten for mye, og ikke ha harde filtere
-på task f.eks., kan føre til grove feil. GMM er kanskje der pga "faulty"
-i problemstillingen og ordlyden generelt kan minne om en unsupervised anomaly 
-detection problem. 
-
-\end{comment}
-
 \section{Ontology Coverage and Structure}
 \label{sec:ontology-coverage-and-structure}
-
-\begin{comment}
-
-Ontologien strukturerer metode kunnskapen som et tillegg til den ustrukturerte kunnskapen
-spredt i artikkel databasen. Hierarkiet bidrar til at relaterte ML metoder kan dele kunnskap 
-som forklart i sec:ml-and-ontology. Dette gjør det lettere å utvide. 
-Hovedpoenget er at ontologien gir struktur, transparens og utvidbarhet.
-
-Mot Riesener/Lickert: ontologien er mer fleksibel og utvidbar enn en flat matrise. Egenskaper kan legges til uten å bygge om.
-Mot AutoML: ontologien gir transparens og forklarbarhet, det AutoML ofte mangler.
-Mot Gerschütz 2021 (Semantic MediaWiki): ontologien er en formell representasjon med inheritance og SPARQL-spørringer, mer kraftig enn semantiske lenker i wiki.
-
-Hva ontologiens coverage og struktur betyr for 'recommendations'.
-
-Hvordan kan den utvides?
-
-Manuelle oppdateringer er tidkrevende (related work).
-
-Dataset type gjennom used\_for.
-
-Tabular + regression = tabular regression.
-
-Brukere i P1 rapporterte at performance preferences ikke var useful og task match var incorrect. 
-Dette var versjon A og bidro til at versjon B ble gjort uten filtere som task og performance preferences.
-Fordi de skulle bli utvidet kunnskapsmessig. I versjon C er det dermed mye høyere property coverage. Som forklart i
-sec:changes-across-system-versions.
-C er versjonen vi ser i example based evalutation. Vi ser mange metoder som har info rundt task, dataset type, performance preferences.
-Men spesielt få på note (possible_if, not_recommended_if), coverage er heller ikke full på de andre, ref tab:ml-approach-coverage-extended.
-Her kan jeg videre peke på tidkrevende manuelt arbeid. Som related work nevner.
-Også sammenligne med de som har mindre domener. 
-
-Mulig sammenligning: Blagec2022 (ITO) bruker automatisk import + manuell 
-kuratering. MLguide kunne utvidet på lignende måte med benchmark-data, 
-ikke bare attributter.
-
-ML Ontology er egentlig laget for AutoML, ikke for metodevalg, og dette 
-betyr at det er mange klasser jeg ikke benytter meg av. Kan referere til oversikten over de jeg la til, 
-sammenlignet med oversikten over alle klassene som er der.
-Det betyr også at mlguide kan utvides til å inkludere automl kunnskap. 
-Måtte gjøre mange extensions som har bidratt til å få et fungerende system med artikkel-metode links. 
-Og mulighet for utvidelse av dette automatisk i en article-retrieval pipeline, men med
-en del extensions og kunnskapsoppdatering kan man argumentere for at jeg burde laget den selv. 
-
-\end{comment}
 
 The ontology in MLguide structures the method knowledge that 
 complements the unstructured knowledge spread across the article 
@@ -539,7 +391,7 @@ the recommendations, which is the focus of this section.
 
 The ontology in MLguide represents general machine learning 
 knowledge, organised around ML areas, tasks, dataset types, 
-and performance preferences. It does not represent production domain knowledge, 
+and performance preferences. The ontology does not represent production domain knowledge, 
 which is the kinds of problems found in product development and 
 production, such as predictive maintenance, quality 
 prediction, or fault diagnosis 
@@ -551,10 +403,17 @@ Section~\ref{sec:adaptations-for-mlguide}, both were dropped
 because the classification of articles along these dimensions 
 was not reliable enough to support filtering without risking 
 the exclusion of relevant articles.
+Bringing such knowledge back into the 
+system is the kind of extension discussed in the previous section, 
+where more structured knowledge would be drawn from the articles 
+automatically. This would require a more reliable classification than 
+the one used in the pre-master project, built on clearer categories 
+that articles can be assigned to with greater confidence.
 
-The consequence is that the production-domain orientation of 
-the recommendations comes only from the article retrieval, 
-not from structured knowledge. The semantic similarity between 
+The consequence of not having production domain knowledge in the ontology
+is that the production-domain orientation of 
+the recommendations comes only from the article retrieval. 
+The semantic similarity between 
 the user's problem description and the article abstracts 
 pulls in articles that are topically related to the problem, 
 including its application context, even though no explicit 
@@ -622,39 +481,9 @@ domain-specific precision. Adding deeper production domain knowledge
 would therefore be a trade-off. It could improve precision within 
 product development and production, but would make the system less 
 flexible and portable. This reflects the same trade-off in ontology 
-design as discussed in the previous Section~\ref{sec:ontology-coverage-and-structure}, where 
+design as discussed in the previous section, where 
 a more general ontology is more reusable but less directly suited to a 
 specific task.
-
-
-\begin{comment}
-    
-Mangler domenespesifike filtre, belager seg for mye på artikler. 
-Akkurat nå kan MLguide bytte artikkeldatabase og være tilpasset et annet 
-domene.
-
-Application area og PLC-fase fungerer ikke som filtre, fordi 
-klassifiseringen av artikler var for svak (forklart i implementasjon).
-
-Ideelt sett: artikler filtrert på application area, og ontologien skulle 
-hatt metode -> used\_for -> domenerettede problemer (predictive 
-maintenance, quality control, etc.).
-
-Krever stor manuell gjennomgang per metode, og hvis kunnskapen ikke er 
-komplett, kan det være bedre å droppe enn å ha halvferdig.
-
-Konsekvens: domene-orientering er nå kun gjennom artiklene, ikke gjennom 
-strukturert kunnskap. Det fungerer delvis fordi artikkelgjenfinning 
-fanger topisk relevans, jf. Ostendorff.
-
-Sammenligne med Lickert (reverse logistics) og Sonntag (early product 
-development) som er smalere i scope og derfor lettere å bygge dyp 
-domenekunnskap for. MLguide dekker hele PLC, mer ambisiøst.
-
-Hvis dette hadde vært på plass, kunne ontologien i prinsippet gjort mer 
-av rangeringen alene.
-
-\end{comment}
 
 \section{Starter Notebooks and Implementation Support}
 \label{sec:starter-notebooks-and-implementation-support}
@@ -727,31 +556,6 @@ the system suggest defaults that go beyond a fixed template
 while remaining useful to users that do not want to choose 
 themselves.
 
-\begin{comment}
-    
-Notebooks adresserer en av design goals: implementeringsstøtte.
-
-To grupper i P1 nevnte code templates som en fordel, men evidensgrunnlaget 
-er begrenset.
-
-Q-learning manglet template i Example 2. Tegn på at notebook-dekning er 
-ufullstendig, samme manuelle-arbeid-problem som ontologien. 
-
-Hvordan utvide til å inkludere RL?
-
-Sammenligne med Traingenerator: kodegenerering uten metodevalg. MLguide 
-kombinerer de to, men templates er enkle nå. Kunne vært mer metode-spesifikke 
-eller mer avanserte (data loading, evaluering osv.).
-
-Hva dette betyr for RQ3: notebooks er konkret støtte til tidlig 
-implementering, men formen kan utvikles videre.
-
-Kan utvide til valg av parametere i sidebar, eller forslag til parametere.
-
-Og lett å skalere, trenger bare template i riktig mappe.
-
-\end{comment}
-
 \section{Method Feedback}
 \label{sec:method-feedback}
 
@@ -804,15 +608,14 @@ hard to tell which method to choose
 (Section~\ref{sec:project-1}, Section~\ref{sec:project-2}). The 
 methods are in fact listed in ranked order in the recommendation 
 table (Figure~\ref{fig:user-interface-recommendation-table}), 
-but the table is not numbered and gives poor visual cue that the 
-order carries meaning.
+but the table is not numbered and gives only a weak visual 
+cue that the order carries meaning.
 
-The number of methods shown adds to this. Ten methods are 
-returned, which is a lot for a user who 
-wants a clear starting point. A long list without a visible 
-ranking may give little guidance on where to begin and can make 
-the output harder to act on, which works against the goal of 
-supporting users who are new to machine learning. Presenting 
+The number of methods shown adds to this. Ten methods are returned, 
+which is a high number for a user who wants a clear starting point. A 
+long list without a visible ranking gives weak guidance on where to 
+begin and makes the output harder to act on, which works against the 
+goal of supporting users who are new to machine learning. Presenting 
 fewer methods, numbering them, or otherwise making the ranking 
 visible would likely make the recommendations clearer. 
 The reviewed frameworks present fewer methods as recommended. 
@@ -833,28 +636,6 @@ single method is a reasonable choice when no single recommendation is certain,
 but as the feedback suggests, 
 the presentation should make it clearer that the list is a set of 
 ranked candidate methods.
-
-
-\begin{comment}
-
-Feedback-mekanismen ble ikke testet / lite brukt (få responser),
-siden den kom i versjon C, altså ikke med i bruktertesting. 
-Så den kunne ikke 
-evalueres som datakilde (cold start diskutert background).
-Den er utviklet mtp lav brukermengde ref implementasjon og smoothing. 
-
-Avhengig av brukermengde for å være nyttig: før systemet har mange brukere, 
-gir tilbakemeldinger lite signal.
-
-Lagrer info som kan brukes til content-based filtering (jf. Recommender 
-Systems Handbook). Kombinasjon ontologi + content-based er nevnt i 
-litteraturen som lovende, men ikke utforsket her.
-
-Future work: differensiere mellom ekspert og andre tilbakemeldinger, slik 
-at ekspertinnspill kan oppdatere kunnskapsbasen direkte. Vanlige brukere 
-kan påvirke rangeringen mer indirekte.
-
-\end{comment}
 
 \section{Evaluation Approach}
 \label{sec:evaluation-approach}
@@ -954,34 +735,6 @@ industry who are not machine learning experts. The feedback form built into the
 home page makes it possible to collect feedback data continuously, from anyone who 
 uses the system.
 
-\begin{comment}
-To evalueringsmetoder: user testing og example-based. De utfyller hverandre 
-ved at den ene gir uavhengig bruk, den andre gir kontrollert input.
-Testet på en del av brukergruppen. De hadde et prosjekt som passet til systemet. 
-De sto fritt til å benytte seg av annen funksjonalitet enn å bare se på anbefalingene.
-
-Begrensninger ved user testing:
-
-Ingen brukte det strukturerte feedback-skjemaet, så tilbakemeldingene var alle i form av fritekst i rapportene.
-
-Tolkning av rapportene var subjektiv siden de ikke fulgte fast struktur.
-
-Få grupper, særlig P2. 
-P2 litt annerledes oppgavetekst. Og kanskje mindre egnet til en brukertest, men passende til å finne artikler kanskje.
-
-Ulike versjoner testet. Som er naturlig i en iterativ utviklingsprosess
-
-Brukertesting feedback litt sent utviklingsperioden som vist i sec:development-timeline. 
-Men det gjorde det mulig å være ferdig med mye før den tid, som beskrevet i 
-sec:changes-across-system-versions. 
-
-Begrensninger ved example-based:
-
-Eksempler konstruert av forfatteren, mulig bias.
-
-Tolkning av output er forfatterens egen, ikke uavhengig.
-\end{comment}
-
 \section{Answers to Research Questions}
 \label{sec:answers-to-research-questions}
 
@@ -999,35 +752,40 @@ The first research question asks how ontology-based knowledge
 representation can support the recommendation of machine 
 learning methods.
 
-In MLguide, the ontology gives structure to the method knowledge 
-that complements the unstructured knowledge in the article 
-database. It provides the filters in the user interface, lets 
-related methods share properties through inheritance so that new 
-methods can be added without defining every property from 
-scratch, and makes the basis for a recommendation explicit by 
-showing the attributes a method is matched on. Its main strength 
-is the link to the articles. Each article is classified by ML 
-area and linked to the methods it mentions, so the method 
-knowledge grows as the article base grows, without manual work 
-for each method. This sets MLguide apart from method-selection 
-frameworks that rely on a fixed, manually built table of methods.
+In MLguide, the ontology gives structure to the method knowledge that 
+complements the unstructured knowledge in the article database. It 
+grounds the recommendation by supplying the candidate methods, 
+retrieved from the knowledge graph for the selected ML area, where a 
+method is only included if at least one article mentions it. The main 
+strength of the ontology is therefore this link to the articles. Each 
+article is classified by ML area and linked to the methods it 
+mentions, so the method knowledge grows as the article base grows, 
+without manual work for each method. This sets MLguide apart from 
+method-selection frameworks that rely on a fixed, manually built table 
+of methods. The ontology also provides the filters in the user 
+interface and presents structured information about each method, such 
+as its task and dataset type, alongside the recommendation. Related 
+methods share properties through inheritance, so new methods can be 
+added without defining every property from scratch.
 
-The support is limited by how completely the ontology is 
-populated. Several properties have low coverage, and filling 
-them by hand is slow, which the broad scope of MLguide makes 
-more visible than work that stays within a single domain. The 
-same article-method link that already fills part of the ontology 
-automatically could be extended to bring in more structured 
-knowledge from the literature, which would reduce this manual 
-effort and let the ontology take on a larger part of the 
-ranking. Some structural choices also affect the 
-recommendations, such as reaching dataset type through the task 
-rather than storing it on the method, which can cause valid 
-matches to be missed. The ontology represents general machine 
-learning knowledge rather than production domain knowledge, so 
-the orientation towards product development and production comes 
-from the article retrieval and not from the structured 
-representation.
+The support is limited by how completely the ontology is populated. 
+Several properties have low coverage, and filling them by hand is 
+slow, which the broad scope of MLguide makes more visible than work 
+that stays within a smaller domain. The low coverage is also the main 
+reason the ontology contributes little to the ranking itself at 
+present, since attributes that are only partly populated cannot be 
+used to filter or rank without risking the exclusion of valid 
+candidates. The ontology represents general machine learning knowledge and does not 
+capture the kinds of problems found in product development and 
+production, so the orientation towards that domain comes from the 
+article retrieval rather than from the structured representation. The 
+article-method link that already fills part of the ontology 
+automatically could be extended to bring in more structured knowledge 
+from the literature, including domain information, which would reduce 
+the manual effort and let the ontology take on a larger part of the 
+ranking. One structural choice also affects the recommendations, 
+reaching dataset type through the task rather than storing it on the 
+method, which can cause valid matches to be missed.
 
 \subsection{RQ2: Semantic Retrieval from Scientific Literature}
 
@@ -1035,30 +793,28 @@ The second research question asks how semantic retrieval from
 scientific literature can support and justify the recommendation 
 of machine learning methods.
 
-Semantic retrieval ranks the articles by their relevance to 
-the problem description, and the method recommendations 
-are built from this ranking by aggregating the articles 
-up to the methods they mention. The recommendations are
-therefore derived from the literature rather than from 
-a fixed set of rules. Across the evaluation, this produced 
+Semantic retrieval ranks the articles by their relevance to the 
+problem description, and the method recommendations are built by 
+aggregating the article ranks into a score for each method they 
+mention. Across the evaluation and user testing, this produced 
 recommendations that were largely relevant to the problems 
 submitted. The recommendations favour methods that appear 
 frequently in the literature, which tend to be general methods 
 that work across many problems, but more specific methods still 
 surface when their articles match the problem closely. A method 
 with few articles can rank high on a strong topical match, as 
-Gaussian mixture model and local outlier factor did in the 
-examples, so the retrieval is not reduced to reproducing the 
-most common methods. The problem description alone is enough to 
-produce a reasonable result, as the anomaly detection example 
-showed without any filters applied. Because the recommendations 
+Gaussian mixture model and local outlier factor did in the examples, 
+so the retrieval does not simply reproduce the most common methods. 
+The problem description alone is enough to produce a reasonable 
+result, as the anomaly detection example showed without the ML area 
+filter applied. Because the recommendations 
 are carried by the articles, they can also be moved to a new 
 domain by collecting articles from that field, without changing 
 the structured knowledge.
 
 The articles also serve as the justification for a 
 recommendation. They are shown alongside each method, so the 
-user can see the basis for it directly. This justification is 
+user can see the basis for the method directly. This justification is 
 only as strong as what the articles say about the method, which 
 the system does not check. A method counts as supported whenever 
 a matching article mentions it, even when the article uses it 
@@ -1066,14 +822,11 @@ only as a baseline or as one step in a pipeline. Principal
 component analysis appears in the supervised classification 
 example for this reason, since it is picked up from articles 
 that use it as a preprocessing step rather than as the main 
-method. A second weakness is that the extraction does not 
-separate closely related method names. In the anomaly detection 
-example, articles about one-class SVM raised the score of 
-standard support vector machine, so the articles shown for it 
-in fact described a different method. Using more of each article 
-than the abstract, and recognising how a method is used rather 
-than only that it appears, would make the justification more 
-reliable.
+method. A second weakness is that the extraction does not separate closely 
+related method names. In the anomaly detection example, articles about 
+one-class SVM raised the score of standard support vector machine, so 
+some of the articles shown for it in fact described a different 
+method. 
 
 \subsection{RQ3: Support for Users in Early Implementation}
 
@@ -1083,7 +836,7 @@ early stages of implementation.
 
 The support takes the form of a starter notebook generated for 
 the recommended method. It gives the user a concrete starting 
-point, but only that: the implementation itself is left to the 
+point, but only that, the implementation itself is left to the 
 user. This is a more direct link between method selection and 
 implementation than the reviewed frameworks offer, which stop at 
 the recommendation, but it is a modest form of support. Two 
@@ -1097,131 +850,88 @@ have no templates at all, as the missing notebook for Q-learning
 in Example 2 showed. Adding templates is manual work, much like 
 populating the ontology, but the structure makes it easy to 
 extend, since a new template only has to be placed in the right 
-folder. The notebooks could also be developed beyond fixed 
-templates, for example by suggesting default parameters drawn 
-from the ontology or from the articles, so that users who do not 
-want to configure the method themselves still get a working 
-starting point. In its current form, MLguide supports early 
+folder. In its current form, MLguide supports early 
 implementation in a limited but concrete way, with clear room to 
 extend both the coverage and the depth of the notebooks.
 
 \subsection{Hypothesis}
 
-Taken together, the three research questions address the 
-hypothesis that a system combining ontology-based knowledge 
-representation, semantic similarity to scientific literature, 
-and structured implementation support can provide relevant and 
-justified method recommendations for users with limited machine 
-learning expertise. The findings support this in part. MLguide 
-combines all three elements in a working system, and the 
-recommendations were largely relevant to the problems submitted. 
-The weaker part is justification: the articles give visible 
-grounds for a recommendation, but the system does not check 
-whether they support a method in the way the user would expect, 
-so a recommendation is not always justified as well as it 
-appears. The implementation support is real but modest, limited 
-to a starting point for the user. The hypothesis therefore holds 
-for relevance and for the combination of the three elements, 
-with justification as the main reservation, and within the 
-limited scale of the evaluation.
+Taken together, the three research questions address the hypothesis 
+that a system combining ontology-based knowledge representation, 
+semantic similarity to scientific literature, and structured 
+implementation support can provide relevant and justified method 
+recommendations for users with limited machine learning expertise. The 
+findings support this in part. MLguide combines all three elements in 
+a working system, and the recommendations were largely relevant to the 
+problems submitted. The ontology contributes less than it could, 
+because several of its properties have low coverage and cannot yet be 
+used to shape the ranking. Most of the work is therefore carried by 
+the semantic retrieval, which ranks methods through the articles that 
+mention them. The weaker part is justification. A method counts as 
+supported whenever a matching article mentions it, even when the 
+article uses it only as a baseline or as one step in a pipeline, so a 
+recommendation is not always justified as well as it appears. The 
+implementation support is real but modest, limited to a starting point 
+for the user. The hypothesis therefore holds for relevance and for the 
+combination of the three elements, with justification as the main 
+reservation, and within the limited scale of the evaluation.
 
 \section{Limitations and Future Work}
 \label{sec:limitations-and-future-work}
 
-The limitations discussed throughout this chapter are drawn together
-here, followed by the directions for future work that follow from them.
+The main limitations identified across this chapter are summarised 
+below, together with the directions for future work that follows from each.
 
-\subsection{Limitations}
+\begin{itemize}
+    \item Several properties in the ontology have low coverage, and 
+    populating them by hand is slow, which the broad scope of MLguide 
+    makes more visible 
+    (Section~\ref{sec:ontology-coverage-and-structure}). Production 
+    domain knowledge is not represented, so the orientation towards 
+    product development and production is provided only by the article 
+    retrieval (Section~\ref{sec:production-domain-knowledge}). In 
+    addition to populating the ontology manually, or as an alternative 
+    to it, the article-method link that already fills part of the 
+    ontology automatically could be extended to draw more structured 
+    knowledge from the literature, including domain information, 
+    benchmark results, and method combinations, which would reduce the 
+    manual effort and allow the ontology to contribute more to the 
+    ranking.
 
-The recommendations are shaped by how often a method appears in the
-literature, so general methods that are used across many problems,
-such as random forest, support vector machine, and neural network, are
-favoured over more specific methods. This effect is moderated but not
-removed. The retrieval is based on article titles and abstracts rather
-than full texts, which captures the task and the data of a problem
-well but the method poorly. A method is treated as relevant whenever a
-matching article mentions it, even when the article uses it only as a
-baseline or as a preprocessing step, and closely related method names
-are not always separated, as seen when articles on one-class SVM
-raised the score of standard support vector machine. Because the
-ranking places strong weight on the problem description without hard
-filters on attributes such as the selected task, a recommendation can
-also conflict with the user's stated intent.
+    \item A method is counted as supported whenever a matching article 
+    mentions it, even when the article uses it as a baseline or as a 
+    step in a pipeline, and the extraction does not separate method 
+    names that are contained in other names
+    (Section~\ref{sec:method-recommendations-and-role-of-articles}). 
+    The extraction could be extended to account for the role a method 
+    plays in an article and to recognise names contained in other 
+    names, so that the articles shown as justification describe the 
+    recommended method more accurately.
 
-The ontology is not fully populated. Task and dataset type relations
-are defined for most methods, but the note properties remain sparse,
-and populating them by hand is slow. The broad scope of MLguide, which
-spans the full product lifecycle, makes this more visible than work
-that stays within a single domain. A structural choice in the
-ontology, where the dataset type of a method is reached through its
-task rather than stored on the method itself, can also cause valid
-matches to be missed. The ontology represents general machine learning
-knowledge and does not represent production domain knowledge, so the
-orientation towards product development and production comes only from
-the article retrieval and is not guaranteed for a given application
-area.
+    \item The notebook templates are simple and cover only part of the 
+    method set, and reinforcement learning methods have no templates at 
+    all, as the missing notebook for Q-learning in Example~2 showed 
+    (Section~\ref{sec:starter-notebooks-and-implementation-support}). 
+    More templates could be added, a separate approach could be 
+    developed for reinforcement learning, and configurable parameters 
+    with sensible defaults could be offered through the 
+    \texttt{configuration\_item} structure already present in the 
+    ontology.
 
-The implementation support and the feedback mechanism are limited in
-their current form. The starter notebook templates are simple, cover
-only part of the method set, and are absent for reinforcement learning
-methods. The method feedback was introduced in version C and received
-too few ratings to be evaluated as a data source. The presentation of
-the recommendations was also found to be unclear, since the ranked
-list is neither numbered nor visibly ordered and returns ten methods
-under a label that does not explain how the list should be read.
+    \item Few ratings have been submitted, so the feedback mechanism 
+    could not be evaluated and contributes little to the ranking at 
+    present (Section~\ref{sec:method-feedback}). Once enough ratings 
+    have been collected, the problem description stored with each 
+    rating could feed into the ranking through content-based 
+    filtering, giving more weight to methods rated highly for similar 
+    problems.
 
-The evaluation has a limited scope. The two course projects used
-different system versions, and neither tested version C, which was the
-version used in the example-based evaluation. The number of
-participating groups was small, particularly in Project 2, and the
-feedback was given as free text in the project reports, which was
-interpreted by the author. The example-based evaluation used a small
-number of problems that were both constructed and interpreted by the
-author. The findings should therefore be read as indicative rather
-than conclusive.
-
-\subsection{Future Work}
-
-The most promising direction for future work is to extend the article
-retrieval pipeline so that it brings more structured knowledge into
-the ontology automatically. The pipeline already classifies each
-article by ML area and links it to the methods it mentions, and the
-same approach could be used to extract benchmark results, application
-area information, and combinations of methods used together. This
-would reduce the manual effort that currently limits the ontology
-coverage and would let the ontology take on a larger part of the
-ranking. Extracting method combinations would also turn a current
-limitation into a feature, by treating pipelines and hybrid
-architectures as recommendable units rather than discarding the
-methods that make them up.
-
-Several smaller changes would improve the recommendations directly.
-Storing the dataset type as its own property on the method, rather
-than reaching it through the task, would avoid missed matches and make
-the ontology easier to query. Adding production domain knowledge, by
-linking methods to domain-specific problems and weighting or filtering
-articles by application area, would improve precision within product
-development and production, although at the cost of the portability
-that the current design provides. The starter notebooks could be
-extended with templates for reinforcement learning and with adjustable
-or default parameters drawn from the ontology or from the articles, so
-that users who do not want to configure a method themselves still
-receive a working starting point.
-
-The feedback mechanism could be developed into a further knowledge
-source once enough ratings have been collected. Since each rating is
-stored together with the problem description it was given for, the
-ratings could feed into the ranking through content-based filtering,
-giving more weight to methods that have been rated highly for similar
-problems. The presentation of the recommendations could also be made
-clearer by numbering the methods, showing fewer of them, and using a
-label that explains the list as a set of ranked candidates.
-
-A broader and more independent evaluation would give stronger
-conclusions. Because MLguide is an open web application, it can be
-evaluated well beyond the setting used here. The course-based testing
-could be extended to several machine learning courses at different
-universities, and the evaluation could reach the other part of the
-intended user group, engineers in industry who are not machine
-learning experts. The feedback form built into the system makes it
-possible to collect such data continuously.
+    \item Two system versions were used across the two course projects, 
+    neither of which tested the final version, and the example-based 
+    evaluation was small and interpreted by the author, which limits 
+    how far the findings can be generalised 
+    (Section~\ref{sec:evaluation-approach}). A larger and more 
+    independent evaluation, extended across several machine learning 
+    courses and towards engineers in industry, would give stronger 
+    conclusions.
+\end{itemize}
