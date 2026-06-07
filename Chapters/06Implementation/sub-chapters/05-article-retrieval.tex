@@ -7,18 +7,20 @@ through semantic retrieval. This article base is built and
 maintained by a separate article retrieval pipeline, which is the 
 subject of this section.
 
-Article abstracts are used as the textual basis for each article.
-Text mining of scientific literature has mostly been carried out on
-abstracts, partly because they are widely available and partly
-because each one states a study's main points in a few concise
-sentences
+Article abstracts and titles are used as the textual basis for each article.
+Text mining of scientific literature has largely relied on abstracts
+because they are widely available
 \parencite{westergaard2018comprehensive_quantitative_comparison_text_mining_15_million_full_text_articles_versus_corresponding_abstracts}.
-Full-text articles contain richer information, but they also include
-tables, references, and discussion sections, and the discussion in
-particular is more speculative than the abstract
-\parencite{westergaard2018comprehensive_quantitative_comparison_text_mining_15_million_full_text_articles_versus_corresponding_abstracts}.
-For comparison across a large corpus, abstracts therefore provide a
-more uniform representation of each article's core content.
+Methods for embedding scientific documents commonly build the
+representation from the abstract and title, on the grounds that these
+two fields already condense a paper's main content into a short summary
+\parencite{cohan2020specterdocumentlevelrepresentationlearning}.
+Abstracts and titles therefore provide a compact and consistently available
+representation of each article's core content. Using the full text
+could add further detail, but full text is often not openly available
+and exceeds the input limits of common embedding models, so the
+abstract is used instead
+\parencite{cohan2020specterdocumentlevelrepresentationlearning}.
 
 Scopus was selected as the source of research articles. Scopus and 
 Web of Science are the two main databases for citation data, and of the two, 
