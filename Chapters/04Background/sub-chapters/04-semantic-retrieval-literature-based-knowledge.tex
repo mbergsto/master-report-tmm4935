@@ -45,9 +45,9 @@ measures the angle between two vectors, normalised for their length:
     \label{eq:cosine-similarity}
 \end{equation}
 
-The result ranges from 1, indicating identical direction and 
-maximum similarity, through 0 for orthogonal vectors with no 
-similarity, to $-1$ for vectors pointing in opposite directions 
+The result is 1 when the vectors point in the same direction, indicating
+maximum similarity, falls to 0 when they are orthogonal and share no
+similarity, and reaches $-1$ when they point in opposite directions
 \parencite[Chapter~5.4]{jurafsky_martin2026speech_language_processing}.
 Normalising for vector length ensures that the similarity score 
 reflects semantic content rather than vector magnitude. 
@@ -117,20 +117,20 @@ vectors \parencite{sbert_docs}.
 Information retrieval (IR) is the task of identifying and ranking 
 documents from a collection according to their relevance to a 
 user query \parencite[Chapter~11.1]{jurafsky_martin2026speech_language_processing}. 
-Traditional approaches represent both documents and queries as 
-sparse vectors of word counts, weighted by schemes such as term frequency-inverse document frequency (tf-idf)
-or Best Match 25 (BM25), and compute similarity based on shared terms
-\parencite[Chapter~11.1]{jurafsky_martin2026speech_language_processing}. While 
-effective for many tasks, this approach treats documents as bags 
+Traditional sparse approaches encode each document and query as a vector
+with one weighted entry per vocabulary term, using a scheme such as term
+frequency-inverse document frequency (tf-idf) or Best Match 25 (BM25), and
+estimate relevance from the terms the two share
+\parencite[Chapter~11.1]{jurafsky_martin2026speech_language_processing}. 
+While effective for many tasks, this approach treats documents as bags 
 of words, meaning that word order and meaning are ignored, and 
 only exact term matches contribute to the relevance score.
 
-Dense retrieval is a semantic retrieval mechanism that 
-addresses this limitation by representing 
-documents and queries as embeddings computed from language 
-models, rather than as word count vectors 
-\parencite[Chapter~11.1]{jurafsky_martin2026speech_language_processing}. Because 
-semantically similar texts are mapped to nearby points in the 
+Dense retrieval is a semantic retrieval mechanism that addresses this
+limitation by mapping documents and queries to embeddings produced by a
+language model, instead of vectors of word counts
+\parencite[Chapter~11.1]{jurafsky_martin2026speech_language_processing}. 
+Because semantically similar texts are mapped to nearby points in the 
 embedding space, a query can retrieve relevant documents even 
 when they do not share exact terms with the query. This makes 
 dense retrieval more flexible than keyword-based approaches for 

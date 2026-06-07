@@ -25,14 +25,13 @@ this, describing an ontology as a
 Each term in this definition carries a distinct meaning.
 \textit{Formal} means that the ontology is machine-readable rather than
 expressed in natural language.
-\textit{Explicit} means that the concepts used and the constraints on their
-use are defined explicitly.
+\textit{Explicit} means that the concepts and the constraints on how
+they may be used are defined directly rather than left implicit.
 \textit{Shared} means that the ontology captures knowledge accepted by a
 group rather than knowledge private to a single individual
 \parencite{studer1998knowledge_engineering_principles_methods}.
-In practical terms, an ontology defines a common vocabulary for a domain,
-including machine-interpretable definitions of its basic concepts and the
-relations among them
+In practical terms, an ontology gives a domain a shared set of terms,
+together with definitions of its basic concepts and their relations
 \parencite{noy2001ontology_development_101_guide_creating_first_ontology}.
 
 An ontology consists of classes, which represent concepts in the
@@ -48,9 +47,9 @@ software can interpret and reason over
 
 The design of an ontology involves several practical constraints.
 \textcite{gruber1995toward_principles_design_ontologies_used_knowledge_sharing}
-argues that an ontology should require only the minimal ontological
-commitment needed for its intended purpose, meaning it should make as
-few claims about the world as necessary. This connects to a
+argues that an ontology should make the minimal ontological commitment
+needed for its purpose, committing to as little
+about the modelled world as the task allows. This connects to a
 well-known trade-off in ontology design. The more reusable an
 ontology is, the less directly usable it tends to be for a specific
 task, because a more general representation requires more refinement
@@ -157,9 +156,10 @@ and purpose. The following is a selection of openly available
 ontologies identified within the ML domain.
 
 ML-Schema \parencite{publio2018ml_schema_exposing_semantics_machine_learning_schemas_ontologies},
-developed by the W3C Machine Learning Schema Community Group,
-is a top-level schema for representing and exchanging metadata
-about ML algorithms, datasets, models, and experiments.
+developed by the W3C Machine Learning Schema Community Group, is a
+top-level schema that defines shared classes and properties for
+describing and sharing metadata on ML algorithms, datasets, models,
+and experiments.
 Its primary goal is interoperability. It provides a shared
 reference vocabulary that other ML ontologies can be mapped to,
 reducing fragmentation across platforms.

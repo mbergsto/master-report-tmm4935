@@ -10,203 +10,155 @@ text matching those drafts is NOT flagged — only text tracking an actual quote
 excerpt. Implementation, Results, and Conclusion chapters are the author's own
 technical writing (citing only tools/libraries) and have no proximity problems.
 
-**Status legend:** ✅ resolved (re-checked after edits) · ⚠️ open · ◻️ borderline/low
+**Status legend:** ✅ resolved · ⚠️ open · ◻️ borderline/low
 
-Last updated after the author's first revision pass (Tier 1 + item 11 reworked).
+Last updated after the author's SECOND revision pass.
 
 ---
 
-## TIER 1 — Effectively unmarked quotes (long verbatim runs) — ALL RESOLVED ✅
+## Current status at a glance
 
-### 1. ✅ Cold start — `Chapters/04Background/sub-chapters/05-feedback.tex:29-31`
-- Source: `Sources/Background/05-feedback.tex` (bobadilla2013)
-- Source text: "The cold-start problem [...] occurs when it is not possible to make reliable recommendations due to an initial lack of ratings."
-- Original overlap: "occurs when it is not possible to make reliable recommendations due to an initial lack of ratings" (15 words verbatim)
-- Revised text: "The cold start problem arises when a system cannot yet recommend reliably because too few ratings have been gathered"
-- Result: Restructured; no shared run remains.
+- **Tier 1 (7 items):** all resolved. ✅
+- **Tier 2 (13 items):** 8, 9, 10, 11, 12, 14, 15, 17, 18, 22 resolved; **13, 16, 19, 20** still open/borderline.
+- **Tier 3 (4 items):** 21 resolved; **23, 24** still open; (item 24 fixed in related-work but still open in Discussion).
 
-### 2. ✅ Enough ratings — `05-feedback.tex:37-38`
-- Source: `Sources/Background/05-feedback.tex` (ricci2010, Ch.3)
-- Source text: "Enough ratings have to be collected before a content-based recommender system can really understand user preferences and provide accurate recommendations."
-- Original overlap: "Enough ratings have to be collected before … understand user preferences and provide … recommendations" (~14 words)
-- Revised text: "the system needs a baseline of ratings before it can model a user well enough to recommend reliably"
-- Result: Reworded; "model a user" replaces "understand user preferences", no shared run.
+### Remaining to address
+- **⚠️ 13** — refinement-over-time sentence (`05-feedback.tex:6-8`) — unchanged.
+- **⚠️ 20** — AutoML definition (`06-related-work-existing-tools.tex:79-80`) — unchanged.
+- **⚠️ 23** — cosine value range (`04-semantic-...:48-51`) — now mirrors the full enumeration; got closer.
+- **⚠️ 24** — "sparse, high-level summaries of a paper" (`08Discussion.tex:104-105`) — fixed in related-work, still present in Discussion.
+- **◻️ 16** — LSTM "stored, read, and …" triplet (`01-machine-learning.tex:329-331`) — one word swapped (written→updated).
+- **◻️ 19** — "a point in a high-dimensional space" (`04-semantic-...:17-18`) — opener removed, phrase still echoes.
 
-### 3. ✅ Sparse data problem — `05-feedback.tex:14-16`
-- Source: `Sources/Background/05-feedback.tex` (murphy2012, Ch.3.3)
-- Source text: "the zero count problem or the sparse data problem, and frequently occurs when estimating counts from small amounts of data"
-- Original overlap: "frequently occurs when estimating counts from small amounts of data" (9 words verbatim)
-- Revised text: "This is a form of the sparse data problem, which arises whenever an estimate must be drawn from only a handful of observations"
-- Result: Reworded; "sparse data problem" remains as a defined term (acceptable).
+---
 
-### 4. ✅ Posterior compromise — `05-feedback.tex:20-22`
-- Source: `Sources/Background/05-feedback.tex` (murphy2012, Ch.3.3)
-- Source text: "the posterior is a compromise between what we previously believed and what the data is telling us"
-- Original overlap: "the posterior is a compromise between what … previously believed and what the data" (~12 words)
-- Revised text: "The resulting estimate balances the prior assumption against the evidence in the observed ratings"
-- Result: Fully reworded.
+## TIER 1 — Effectively unmarked quotes — ALL RESOLVED ✅
+
+### 1. ✅ Cold start — `05-feedback.tex:28-31`
+- Source: bobadilla2013. Was: "occurs when it is not possible to make reliable recommendations due to an initial lack of ratings" (15-word verbatim).
+- Now: "arises when a system cannot yet recommend reliably because too few ratings have been gathered". Resolved.
+
+### 2. ✅ Enough ratings — `05-feedback.tex:36-38`
+- Source: ricci2010 (Ch.3). Was: "Enough ratings have to be collected before … understand user preferences and provide … recommendations".
+- Now: "the system needs a baseline of ratings before it can model a user well enough to recommend reliably". Resolved.
+
+### 3. ✅ Sparse data problem — `05-feedback.tex:13-16`
+- Source: murphy2012 (Ch.3.3). Was: "frequently occurs when estimating counts from small amounts of data" (9-word verbatim).
+- Now: "which arises whenever an estimate must be drawn from only a handful of observations". Resolved.
+
+### 4. ✅ Posterior compromise — `05-feedback.tex:19-21`
+- Source: murphy2012. Was: "the posterior is a compromise between what … previously believed and what the data".
+- Now: "The resulting estimate balances the prior assumption against the evidence in the observed ratings". Resolved.
 
 ### 5. ✅ 10,000 sentences — `04-semantic-retrieval-literature-based-knowledge.tex:77-80`
-- Source: `Sources/Background/04-text-embeddings-semantic-similarity.tex` (reimers2019)
-- Source text: "Finding the most similar pair in a collection of 10,000 sentences requires about 50 million inference computations (~65 hours) with BERT."
-- Original overlap: "Finding the most similar pair in a collection of 10,000 sentences … 50 million inference computations" (~11 words)
-- Revised text: "Because every candidate pair must be processed jointly, the cost grows with the size of the collection. For 10,000 sentences, identifying the closest pair takes on the order of 50 million forward passes through BERT."
-- Result: Restructured; only the bare facts (10,000; 50 million) remain, which are unavoidable.
+- Source: reimers2019. Was: "Finding the most similar pair in a collection of 10,000 sentences … 50 million inference computations".
+- Now: "For 10,000 sentences, identifying the closest pair takes on the order of 50 million forward passes through BERT". Resolved (only bare facts remain).
 
-### 6. ✅ Overwhelmed prior — `05-feedback.tex:23-25`
-- Source: `Sources/Background/05-feedback.tex` (murphy2012, Ch.3.3)
-- Source text: "since the data has overwhelmed the prior"
-- Original overlap: "since the data has overwhelmed the prior" (7 words verbatim)
-- Revised text: "because the volume of observations now outweighs the prior"
-- Result: Reworded (overwhelmed→outweighs, data→volume of observations).
+### 6. ✅ Overwhelmed prior — `05-feedback.tex:22-24`
+- Source: murphy2012. Was: "since the data has overwhelmed the prior" (7-word verbatim).
+- Now: "because the volume of observations now outweighs the prior". Resolved.
 
 ### 7. ✅ Value function / policy — `01-machine-learning.tex:56-58`
-- Source: `Sources/Background/01-machine-learning/machine-learning.tex` (sewak2019)
-- Source text: "we learn a 'value function' from which the 'policy' is derived either explicitly or implicitly. Whereas in the policy-based approaches there is no need to learn or derive the value function, and we learn the 'policy' directly."
-- Original overlap: "from which the policy is derived either explicitly or implicitly" (9 words verbatim)
-- Revised text: "Value-based methods learn a value function first and obtain the policy from it, either directly or as an implicit consequence. Policy-based methods skip the value function and optimise the policy on its own"
-- Result: Reworded; verbatim clause gone.
+- Source: sewak2019. Was: "from which the policy is derived either explicitly or implicitly" (9-word verbatim).
+- Now: "learn a value function first and obtain the policy from it, either directly or as an implicit consequence …". Resolved.
 
 ---
 
-## TIER 2 — Distinctive phrase reused / structure closely followed
+## TIER 2 — Distinctive phrase / structure
 
-### 8. ⚠️ Neural networks definition — `01-machine-learning.tex:253-255`
-- Source: `Sources/Background/01-machine-learning/ml-methods.tex` (shrestha2019)
-- My text: "Neural networks are machine learning models inspired by the structure of the human brain, consisting of processing units organised in input, hidden, and output layers"
-- Source text: "Neural Network is a machine learning technique that is inspired by … the structure of the brain. It consists of processing units organized in input, hidden and output layers."
-- Overlap: "processing units organi[s]ed in input, hidden … output layers" (8 words) + "machine learning … inspired by … the structure of the … brain"
-- Note: Two consecutive source clauses reproduced with near-identical wording.
+### 8. ✅ Neural networks definition — `01-machine-learning.tex:264-266`
+- Source: shrestha2019. Was: "consisting of processing units organised in input, hidden, and output layers" (8-word verbatim) + "inspired by … the structure of the … brain".
+- Now: "whose design takes after the way the human brain is built, with processing units arranged across an input layer, one or more hidden layers, and an output layer". Resolved.
 
-### 9. ⚠️ Classification definition — `01-machine-learning.tex:27-30`
-- Source: `Sources/Background/01-machine-learning/machine-learning.tex` (bishop2006)
-- My text: "an input is assigned to one of a finite number of discrete categories, whereas in regression a continuous numerical value is predicted"
-- Source text: "assign each input vector to one of a finite number of discrete categories, are called classification problems. If the desired output consists of one or more continuous variables, then the task is called regression."
-- Overlap: "one of a finite number of discrete categories" (7 words verbatim)
-- Note: Borderline (near-canonical definition), but the 7-word run is exact.
+### 9. ✅ Classification definition — `01-machine-learning.tex:28-29`
+- Source: bishop2006. Was: "one of a finite number of discrete categories" (7-word verbatim).
+- Now: "assigns an input to one of a fixed set of discrete classes". Resolved.
 
-### 10. ⚠️ Ontology common vocabulary — `03-ontologies-knowledge-representation.tex:33-36`
-- Source: `Sources/Background/03-ontologies.tex` (noy2001)
-- My text: "an ontology defines a common vocabulary for a domain, including machine-interpretable definitions of its basic concepts and the relations among them"
-- Source text: "An ontology defines a common vocabulary for researchers who need to share information in a domain. It includes machine-interpretable definitions of basic concepts in the domain and relations among them."
-- Overlap: "an ontology defines a common vocabulary for … domain … machine-interpretable definitions of … basic concepts … and … relations among them"
-- Note: Two source clauses spliced; almost every content word is the source's.
+### 10. ✅ Ontology common vocabulary — `03-ontologies-knowledge-representation.tex:33-35`
+- Source: noy2001. Was: "an ontology defines a common vocabulary for … machine-interpretable definitions of … basic concepts … and … relations among them".
+- Now: "an ontology gives a domain a shared set of terms, together with definitions of its basic concepts and their relations". Resolved (remaining "definitions of basic concepts and relations" is generic).
 
-### 11. ✅ New community problem — `05-feedback.tex:33-35`  (FIXED in revision pass)
-- Source: `Sources/Background/05-feedback.tex` (bobadilla2013)
-- Source text: "The new community problem [...] refers to the difficulty, when starting up a RS, in obtaining, a sufficient amount of data (ratings) for making reliable recommendations."
-- Original overlap: "refers to the difficulty … obtaining, a sufficient amount of … data"
-- Revised text: "the new community problem, which refers to the trouble a freshly launched system has in accumulating enough rating data to recommend well"
-- Result: Reworded; "difficulty … obtaining a sufficient amount of data" no longer present.
+### 11. ✅ New community problem — `05-feedback.tex:32-35`
+- Source: bobadilla2013. Was: "refers to the difficulty … obtaining, a sufficient amount of … data".
+- Now: "refers to the trouble a freshly launched system has in accumulating enough rating data to recommend well". Resolved.
 
-### 12. ⚠️ Explicit/implicit feedback — `05-feedback.tex:3-4`
-- Source: `Sources/Background/05-feedback.tex` (bobadilla2013)
-- My text: "User preferences can be captured explicitly through numerical ratings, or implicitly by monitoring user behaviour"
-- Source text: "The information can be acquired explicitly (typically by collecting users' ratings) or implicitly [...] (typically by monitoring users' behavior)"
-- Overlap: "explicitly … ratings, or implicitly by monitoring users' behavio[u]r"
-- Note: The "explicitly … or implicitly by monitoring users' behaviour" frame is the source's, with only "users'→user". Still open.
+### 12. ✅ Explicit/implicit feedback — `05-feedback.tex:3-4`
+- Source: bobadilla2013. Was: "explicitly … ratings, or implicitly by monitoring users' behaviour".
+- Now: "Feedback from users can be captured explicitly through numerical ratings" — the "implicitly by monitoring user behaviour" clause was removed. Resolved.
 
-### 13. ⚠️ Refinement over time — `05-feedback.tex:7-9`
-- Source: `Sources/Background/05-feedback.tex` (ricci2010, Ch.1)
-- My text: "the longer users engage with the system, the more the output can be refined to match their preferences"
+### 13. ⚠️ Refinement over time — `05-feedback.tex:6-8`  (UNCHANGED — still open)
+- Source: ricci2010 (Ch.1).
+- My text: "so that the longer users engage with the system, the more the output can be refined to match their preferences"
 - Source text: "the longer the user interacts with the site, the more refined her user model becomes [...] the more the recommender output can be effectively customized to match the user's preferences."
-- Overlap: "the longer … the more … output can be … to match … preferences"
-- Note: "the longer X … the more … to match … preferences" construction copied; verbs swapped but the shape is the source's. Still open.
+- Overlap: "the longer … the more … output … to match … preferences"
+- Note: The "the longer X … the more … output … to match … preferences" construction still mirrors the source. Consider recasting, e.g. "ratings collected over repeated use let the system tailor results to each user."
 
-### 14. ⚠️ Dimensionality reduction — `01-machine-learning.tex:40-42`
-- Source: `Sources/Background/01-machine-learning/machine-learning.tex` (sarker2021)
-- My text: "Dimensionality reduction simplifies data by reducing the number of features, leading to better human interpretation and lower computational cost"
-- Source text: "Dimensionality reduction … leads to better human interpretations, lower computational costs, and avoids overfitting … by simplifying models."
-- Overlap: "better human interpretation[s] … lower computational cost[s]"
-- Note: Distinctive paired phrase reused with only plural→singular changes.
+### 14. ✅ Dimensionality reduction — `01-machine-learning.tex:40-42`
+- Source: sarker2021. Was: "better human interpretation[s] … lower computational cost[s]".
+- Now: "so the data becomes easier for people to interpret and cheaper to process". Resolved.
 
-### 15. ⚠️ Clustering definition — `01-machine-learning.tex:37-39`
-- Source: `Sources/Background/01-machine-learning/machine-learning.tex` (sarker2021)
-- My text: "Clustering groups data points such that objects within the same group are more similar to each other than to those in other groups"
-- Source text: "objects in the same category, called a cluster, are in some sense more similar to each other than objects in other groups."
-- Overlap: "more similar to each other than … in other groups"
-- Note: Defining phrase reproduced almost intact.
+### 15. ✅ Clustering definition — `01-machine-learning.tex:37-38`
+- Source: sarker2021. Was: "more similar to each other than … in other groups".
+- Now: "the members of one group resemble each other more closely than they resemble the members of other groups". Resolved.
 
-### 16. ⚠️ LSTM gates — `01-machine-learning.tex:320-322`
-- Source: `Sources/Background/01-machine-learning/ml-methods.tex` (shrestha2019)
-- My text: "introducing memory cells and gating mechanisms that control what information is stored, read, and written"
-- Source text: "regulated by input, forget and output gates. These gates control what is stored, read and written on the cell."
-- Overlap: "control what … is stored, read … and written"
-- Note: "stored, read and written" reproduced verbatim.
+### 16. ◻️ LSTM gates — `01-machine-learning.tex:329-331`  (improved, borderline)
+- Source: shrestha2019.
+- My text: "memory cells together with gates that decide which information is stored, read, and updated"
+- Source text: "These gates control what is stored, read and written on the cell."
+- Overlap: "stored, read, and …" (the gate-operation triplet, with "written→updated")
+- Note: Only the final word was swapped (written→updated). The "is stored, read, and …" list still echoes the source. Low severity (near-standard gate description), but technically the "trivial swap" pattern.
 
-### 17. ⚠️ CNN local connections — `01-machine-learning.tex:291-294`
-- Source: `Sources/Background/01-machine-learning/ml-methods.tex` (pouyanfar2018)
-- My text: "CNNs use local connections and shared weights, which reduces the number of parameters and makes the network faster to train"
-- Source text: "local connections and shared weights in the network are utilized … This process results in very fewer parameters, which makes the network faster and easier to train."
-- Overlap: "local connections and shared weights" (5 words) + "which makes the network faster … to train"
-- Note: Two source phrases reused; second is near-verbatim.
+### 17. ✅ CNN local connections — `01-machine-learning.tex:300-302`
+- Source: pouyanfar2018. Was: "local connections and shared weights" + "which makes the network faster … to train".
+- Now: "CNNs rely on local connections and weight sharing, which keeps the parameter count low and shortens training time". Resolved (remaining "local connections" is standard terminology).
 
-### 18. ⚠️ Dense retrieval — `04-semantic-retrieval-literature-based-knowledge.tex:124-128`
-- Source: `Sources/Background/04-text-embeddings-semantic-similarity.tex` (jurafsky_martin2026, 11.1)
-- My text: "representing documents and queries as embeddings computed from language models, rather than as word count vectors"
-- Source text: "In dense retrieval, we represent documents and queries with embeddings, computed from language models."
-- Overlap: "documents and queries … embeddings, computed from language models" (~7 words)
-- Note: Core clause lifted with "with→as".
+### 18. ✅ Dense retrieval — `04-semantic-retrieval-literature-based-knowledge.tex:129-131`
+- Source: jurafsky_martin2026 (11.1). Was: "documents and queries … embeddings, computed from language models".
+- Now: "mapping documents and queries to embeddings produced by a language model, instead of vectors of word counts". Resolved (verbs changed; remaining overlap is generic).
 
-### 19. ⚠️ Vector semantics — `04-semantic-retrieval-literature-based-knowledge.tex:17-19`
-- Source: `Sources/Background/04-text-embeddings-semantic-similarity.tex` (jurafsky_martin2026, p.116)
-- My text: "In vector semantics, text is represented as a numerical vector, a point in a high-dimensional space referred to as the embedding space"
+### 19. ◻️ Vector semantics / embedding — `04-semantic-retrieval-literature-based-knowledge.tex:17-18`  (improved, borderline)
+- Source: jurafsky_martin2026 (p.116).
+- My text: "Text can be represented as a numerical vector, a point in a high-dimensional space referred to as the embedding space"
 - Source text: "In vector semantics, a word is modeled as a vector—a point in high-dimensional space, also called an embedding."
-- Overlap: "In vector semantics, … a point in … high-dimensional space … embedding"
-- Note: Opening and the "a point in [a] high-dimensional space" phrase track the source closely.
+- Overlap: "a point in a high-dimensional space … embedding"
+- Note: The "In vector semantics" opener was removed (good), but "a point in a high-dimensional space" still echoes the source. Fairly standard description; low severity.
 
-### 20. ⚠️ AutoML definition — `06-related-work-existing-tools.tex:79-80`
-- Source: `Sources/Background/01-machine-learning/selecting-ml-method-and-frameworks.tex` (waring2020)
+### 20. ⚠️ AutoML definition — `06-related-work-existing-tools.tex:79-80`  (UNCHANGED — still open)
+- Source: waring2020.
 - My text: "AutoML, which automatically selects, composes, and parametrises models for a given task or dataset"
 - Source text: "Automated machine learning (AutoML) … automatically select, compose, and parametrize machine learning models, so as to achieve optimal performance on a given task and/or dataset."
-- Overlap: "automatically select[s], compose[s], and parametri[s]e … models … on a given task … dataset"
-- Note: The triplet verb list and "on/for a given task … dataset" are the source's, only conjugated.
+- Overlap: "automatically select[s], compose[s], and parametri[s]e … models … on/for a given task … dataset"
+- Note: The triplet verb list and "on/for a given task … dataset" are the source's, only conjugated. Recast, e.g. "AutoML automates model choice, assembly, and configuration for a dataset."
+
+### 21. ✅ Explicit (definition gloss) — `03-ontologies-knowledge-representation.tex:28-29`
+- Source: studer1998. Was: "the concepts used … and the constraints on their use are … defined" (near-verbatim gloss).
+- Now: "the concepts and the constraints on how they may be used are defined directly rather than left implicit". Resolved.
+
+### 22. ✅ Minimal commitment — `03-ontologies-knowledge-representation.tex:50-52`
+- Source: gruber1995. Was: "make as few claims … about the world".
+- Now: "committing to as little about the modelled world as the task allows". Resolved (the "few claims about the world" phrase is gone; "minimal ontological commitment" is a defined term).
 
 ---
 
 ## TIER 3 — Borderline / lower severity
 
-### 21. ◻️ Explicit (definition gloss) — `03-ontologies-knowledge-representation.tex:26-31`
-- Source: `Sources/Background/03-ontologies.tex` (studer1998)
-- My text: "Explicit means that the concepts used and the constraints on their use are defined explicitly."
-- Source text: "'Explicit' means that the type of concepts used, and the constraints on their use are explicitly defined."
-- Overlap: "the concepts used … and the constraints on their use are … defined"
-- Note: Unpacks a quoted definition (partly unavoidable), but the gloss is near-verbatim ("explicitly defined→defined explicitly").
+### 23. ⚠️ Cosine value range — `04-semantic-retrieval-literature-based-knowledge.tex:48-51`  (GOT CLOSER)
+- Source: jurafsky_martin2026 (5.4).
+- My text: "The result is 1 when the vectors point in the same direction, indicating maximum similarity, falls to 0 when they are orthogonal and share no similarity, and reaches −1 when they point in opposite directions"
+- Source text: "The cosine value ranges from 1 for vectors pointing in the same direction, through 0 for orthogonal vectors, to -1 for vectors pointing in opposite directions."
+- Overlap: "vectors point in the same direction" / "0 … orthogonal" / "point in opposite directions" — and the same 1→0→−1 enumeration order.
+- Note: Now mirrors the full source enumeration (it added the −1 case). "point(ing) in the same/opposite direction" is near-verbatim. Standard math description, but the structure tracks the source closely. Consider reordering or stating it as a range.
 
-### 22. ◻️ Minimal commitment — `03-ontologies-knowledge-representation.tex:50-53`
-- Source: `Sources/Background/03-ontologies.tex` (gruber1995)
-- My text: "it should make as few claims about the world as necessary"
-- Source text: "An ontology should make as few claims as possible about the world being modeled."
-- Overlap: "make as few claims … about the world"
-- Note: "minimal ontological commitment" is a defined term (fine); the "make as few claims … about the world" phrase is the borrowed bit.
-
-### 23. ◻️ Cosine range — `04-semantic-retrieval-literature-based-knowledge.tex:48-50`
-- Source: `Sources/Background/04-text-embeddings-semantic-similarity.tex` (jurafsky_martin2026, 5.4)
-- My text: "The result ranges from 1, indicating identical direction and maximum similarity, to 0 for orthogonal vectors with no similarity"
-- Source text: "The cosine value ranges from 1 for vectors pointing in the same direction, through 0 for orthogonal vectors, to -1 …"
-- Overlap: "ranges from 1 … 0 for orthogonal vectors"
-- Note: Mostly reworded; "0 for orthogonal vectors" is the only shared run (largely unavoidable technical phrasing).
-
-### 24. ◻️ Abstracts are sparse summaries — `06-related-work-existing-tools.tex:180` AND `08Discussion.tex:176`
-- Source: `Sources/Discussion/discussion.tex` (park2026)
-- My text: "abstracts offer only sparse, high-level summaries of a paper"
+### 24. ⚠️ Abstracts as sparse summaries — `08Discussion.tex:104-105`  (fixed in related-work, STILL OPEN here)
+- Source: park2026 (`Sources/Discussion/discussion.tex`).
+- My text (Discussion): "abstracts offer only sparse, high-level summaries of a paper"
 - Source text: "abstracts offer only sparse and highlevel summaries"
 - Overlap: "abstracts offer only sparse … high-level summaries" (6 words)
-- Note: Short but distinctive verbatim phrase; appears in two chapters. Quote it or reword (e.g. "give only brief, surface-level overviews").
+- Note: The related-work occurrence was reworded ("an abstract captures only a brief, surface-level view of a paper" — resolved). The Discussion occurrence still uses the source phrase verbatim. Reword to match, or quote it.
 
 ---
 
 ## Chapters with no problems
-- `03Introduction.tex` — genuinely reworded.
-- `04Background/sub-chapters/02-ml-in-production-product-development.tex` — clean synthesis.
-- `05Methodology-System-Overview.tex` — DSR passages reworded.
-- All `06Implementation/` sub-chapters — own technical writing; model/tool citations paraphrased at a safe distance.
-- `07Results.tex`, `09Conclusion.tex` (empty), `00Abstract.tex` — own writing.
-- `08Discussion.tex` — own writing except item 24.
-
----
-
-## Summary of remaining work
-- **Tier 1:** all 7 resolved. ✅
-- **Tier 2:** item 11 resolved; items 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20 still open. ⚠️
-- **Tier 3:** items 21, 22, 23, 24 — low priority. ◻️
+- `03Introduction.tex`, `02-ml-in-production-product-development.tex`, `05Methodology-System-Overview.tex`,
+  all `06Implementation/` sub-chapters, `07Results.tex`, `09Conclusion.tex` (empty),
+  `00Abstract.tex`, and `08Discussion.tex` (except item 24).

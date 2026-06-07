@@ -24,9 +24,9 @@ In supervised learning, the training data consists of input vectors paired
 with corresponding target values, also called labels. The goal is to learn 
 a function that maps inputs to outputs based on these labelled examples 
 \parencite{sarker2021machine_learning_algorithms_real_world_applications_research_directions}. 
-The two most common supervised tasks are classification and regression. In 
-classification, an input is assigned to one of a finite number of discrete 
-categories, whereas in regression a continuous numerical value is predicted 
+The two most common supervised tasks are classification and regression. 
+Classification assigns an input to one of a fixed set of discrete 
+classes, whereas regression predicts a continuous numerical value
 \parencites[3]{bishop2006pattern_recognition_machine_learning}[Chapter~5]{Goodfellow-et-al-2016}.
 
 In unsupervised learning, no target values are provided. The algorithm must 
@@ -34,16 +34,16 @@ instead identify structure in the data directly
 \parencite[3]{bishop2006pattern_recognition_machine_learning}. 
 Common tasks include clustering, dimensionality reduction, and anomaly detection
 \parencites{sarker2021machine_learning_algorithms_real_world_applications_research_directions}[Chapter~5]{Goodfellow-et-al-2016}.
-Clustering groups data points such that objects within the same group are more 
-similar to each other than to those in other groups 
+Clustering groups data points so that the members 
+of one group resemble each other more closely than they resemble the members of other groups
 \parencite{sarker2021machine_learning_algorithms_real_world_applications_research_directions}. 
-Dimensionality reduction simplifies data by reducing the number of features, 
-leading to better human interpretation and lower computational cost
+Dimensionality reduction lowers the number of features, 
+so the data becomes easier for people to interpret and cheaper to process
 \parencite{sarker2021machine_learning_algorithms_real_world_applications_research_directions}. 
-Anomaly detection identifies observations that deviate significantly from the 
-expected distribution, and is used in applications such as 
-fault monitoring 
-\parencite[Chapter~5]{Goodfellow-et-al-2016}.
+Anomaly detection identifies data points that depart from the 
+normal or expected pattern, and is used in applications such as 
+fault detection 
+\parencite{chandola2009_anomaly_detection_survey}.
 It is also worth noting that the boundary between supervised and unsupervised learning 
 is not always well-defined, and many methods can be applied across both types 
 of problems \parencite[Chapter~5]{Goodfellow-et-al-2016}.
@@ -193,15 +193,15 @@ This reduces computational cost and can aid visualisation while
 preserving as much of the original variance as possible 
 \parencites[Chapter~8]{geron2019hands_on_machine_learning}{sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
 
-Anomaly detection methods identify observations that deviate 
-significantly from the expected distribution. Isolation forest 
-isolates anomalies by randomly partitioning the data, exploiting 
-the fact that anomalies are few and structurally different from 
-normal observations 
+For anomaly detection, isolation forest builds 
+on the idea that abnormal data points are rare 
+and easy to separate from the rest, so it splits the data at random 
+until each point is isolated and treats those separated in few steps 
+as anomalies 
 \parencite{liu2008isolation_forest}. 
-One-class SVM, a variant of the support vector machine, learns a 
-boundary around normal data and flags observations outside this 
-boundary as anomalies 
+One-class SVM, a variant of the support vector machine, fits a 
+boundary around the normal points, and anything that falls outside 
+it is marked as an anomaly 
 \parencite[Chapter~9]{geron2019hands_on_machine_learning}.
 
 \subsubsection*{Reinforcement learning methods}
@@ -261,23 +261,21 @@ in the machine learning literature.
 The following sections give a brief introduction to some of the most 
 common neural network architectures and their typical use cases.
 
-Neural networks are machine learning models inspired by the structure of the 
-human brain, consisting of processing units organised in input, hidden, and 
-output layers 
+Neural networks are machine learning models whose design takes after the way the 
+human brain is built, with processing units arranged across an input 
+layer, one or more hidden layers, and an output layer
 \parencite{shrestha2019review_deep_learning_algorithms_architectures}. 
-They can be applied to a wide range of problems, including 
-classification, regression, clustering, dimensionality 
-reduction, computer vision, and natural language processing 
+They are used across many problem types, from classification and 
+regression to clustering, dimensionality reduction, computer vision, 
+and natural language processing
 \parencite{shrestha2019review_deep_learning_algorithms_architectures}.
 Deep learning refers to neural networks with many layers. By stacking 
 multiple layers, the network learns increasingly abstract representations 
 of the input data, where lower layers detect simple patterns and higher 
-layers combine these into more complex concepts 
+layers combine these into more complex concepts.
+This makes deep learning particularly well suited for complex 
+data such as images, text, and audio
 \parencite{lecun2015deep_learning}. 
-This makes deep learning particularly well suited for complex, 
-high-dimensional data such as images, audio, and text.
-\parencite{lecun2015deep_learning, 
-alzubaidi2021review_deep_learning_concepts}. 
 A practical limitation is that deep learning models generally require 
 large amounts of training data to perform well 
 \parencite{alzubaidi2021review_deep_learning_concepts}.
@@ -299,9 +297,9 @@ the network is trained using backpropagation to adjust the weights
 Convolutional neural networks (CNNs) were originally developed 
 for image recognition, where the spatial structure of the input 
 is important \parencite{lecun2015deep_learning, lecun1998cnn}. 
-Rather than connecting every neuron to all neurons in the previous layer, 
-CNNs use local connections and shared weights, which reduces the number of 
-parameters and makes the network faster to train 
+Rather than connecting every neuron to all neurons in the previous 
+layer, CNNs rely on local connections and weight sharing, which keeps 
+the parameter count low and shortens training time 
 \parencite{shrestha2019review_deep_learning_algorithms_architectures}. 
 A typical CNN consists of convolutional layers, pooling layers, and fully 
 connected layers. The convolutional layers progressively extract higher-level 
@@ -328,14 +326,14 @@ processes longer sequences
 \parencite{pouyanfar2018survey_deep_learning_algorithms, 
 shrestha2019review_deep_learning_algorithms_architectures}.
 
-Long short-term memory networks (LSTMs) address this by introducing memory 
-cells and gating mechanisms that control what information is stored, read, 
-and written 
+Long short-term memory networks (LSTMs) address this through memory 
+cells together with gates that decide which information is stored, 
+read, and updated 
 \parencite{hochreiter1997lstm, 
 shrestha2019review_deep_learning_algorithms_architectures}. 
-This allows LSTMs to learn from sequences with long-term dependencies, 
-which makes them commonly used for time series analysis, speech recognition, 
-and natural language processing 
+This lets LSTMs capture long-term dependencies in sequences, which 
+is why they are widely applied to time series analysis, speech 
+recognition, and natural language processing 
 \parencite{lecun2015deep_learning, 
 sarker2021machine_learning_algorithms_real_world_applications_research_directions}.
 
