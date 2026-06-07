@@ -224,12 +224,19 @@ where $\bar{r}_m$ is the observed mean rating, $n$ is the
 number of ratings, $s = 5$ is the prior strength, and 
 $\mu_0 = 3$ is the prior mean on a 1--5 scale. When $n$ is 
 small, the estimate is pulled towards $\mu_0$. As $n$ grows, 
-the observed mean dominates. The smoothed rating is normalised 
-to $[-1, 1]$ relative to the neutral rating of 3. The prior strength of 5 means that approximately five ratings 
-are needed before feedback has a meaningful effect on the score. 
+the observed mean dominates.
+The prior strength of 5 means that the observed ratings and the 
+prior carry equal weight at around five ratings, below this the 
+prior dominates, and above it the observed mean does. 
 This is a low threshold, set with the expectation that the 
 system will initially have a small user base. The value is a 
 default and can be adjusted.
+The smoothed rating is then mapped to $[-1, 1]$ relative to the 
+neutral rating of 3 to give the feedback score:
+\begin{equation}
+    \text{feedback\_score}(m) = \frac{\hat{r}_m - 3}{2}
+\label{eq:feedback-score}
+\end{equation}
 
 The feedback score is combined with the similarity-based 
 ranking using a rank-based score, so that the two signals are 

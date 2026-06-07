@@ -14,7 +14,7 @@ and how these techniques support ranking and matching against a corpus of scient
 \subsection{Text Embeddings and Semantic Similarity}
 \label{sec:text-embeddings-and-semantic-similarity}
 
-In vector semantics, text is represented as a numerical vector, 
+Text can be represented as a numerical vector,  
 a point in a high-dimensional space referred to as the embedding 
 space \parencite[116]{jurafsky_martin2026speech_language_processing}. 
 The position of a vector in this space reflects the semantic 
@@ -46,8 +46,9 @@ measures the angle between two vectors, normalised for their length:
 \end{equation}
 
 The result ranges from 1, indicating identical direction and 
-maximum similarity, to 0 for orthogonal vectors with no similarity 
-\parencite[Chapter~5.4]{jurafsky_martin2026speech_language_processing}. 
+maximum similarity, through 0 for orthogonal vectors with no 
+similarity, to $-1$ for vectors pointing in opposite directions 
+\parencite[Chapter~5.4]{jurafsky_martin2026speech_language_processing}.
 Normalising for vector length ensures that the similarity score 
 reflects semantic content rather than vector magnitude. 
 % In practice, cosine distance, defined as $1 - \cos(\mathbf{u}, 

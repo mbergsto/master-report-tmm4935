@@ -427,7 +427,7 @@ approach to scope.
 \textcite{lickert2021_ml_selection_reverse_logistics} works 
 within reverse logistics, and 
 \textcite{sonntag2023pattern_ml_product_development} and \textcite{sonntag2024_mcda_framework} 
-focuses on early product development. The scope makes it 
+focus on early product development. The scope makes it 
 feasible to characterise methods against a relevant set of 
 problems for that domain, but limits how widely the framework 
 can be applied. MLguide makes the opposite trade-off, broad 
@@ -468,7 +468,7 @@ Section~\ref{sec:example-3} shows that this can work without
 the ML area filter applied. With only a free-text problem 
 description and a task selection, the top recommendations 
 were still relevant anomaly detection methods. This indicates 
-that the system is feasible without multiple filters
+that the system is usable without multiple filters
 for scoping the problem.
 
 An interesting and potentially positive effect of not having 
@@ -860,7 +860,8 @@ Taken together, the three research questions address the hypothesis
 that a system combining ontology-based knowledge representation, 
 semantic similarity to scientific literature, and structured 
 implementation support can provide relevant and justified method 
-recommendations for users with limited machine learning expertise. The 
+recommendations for users with limited machine learning expertise, 
+and support the first steps of implementing the chosen recommended method. The 
 findings support this in part. MLguide combines all three elements in 
 a working system, and the recommendations were largely relevant to the 
 problems submitted. The ontology contributes less than it could, 
@@ -870,11 +871,13 @@ the semantic retrieval, which ranks methods through the articles that
 mention them. The weaker part is justification. A method counts as 
 supported whenever a matching article mentions it, even when the 
 article uses it only as a baseline or as one step in a pipeline, so a 
-recommendation is not always justified as well as it appears. The 
-implementation support is real but modest, limited to a starting point 
-for the user. The hypothesis therefore holds for relevance and for the 
-combination of the three elements, with justification as the main 
-reservation, and within the limited scale of the evaluation.
+recommendation is not always justified as well as it appears. 
+The implementation support is real but limited, since the notebooks 
+remain simple and do not yet cover the full method set. 
+The hypothesis therefore holds on three counts: relevance, the first 
+steps of implementation, and the combination of the three elements, 
+with justification as the main reservation and the scale of the 
+evaluation as a further limit.
 
 \section{Limitations and Future Work}
 \label{sec:limitations-and-future-work}

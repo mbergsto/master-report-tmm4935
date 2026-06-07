@@ -79,10 +79,11 @@ developing solutions for their own problems
 Identifying a suitable algorithm from the large number of
 available options requires a certain amount of experience, and
 the procedure is often based on trial and error, which is
-laborious \parencite{sonntag2023pattern_ml_product_development}.
-Many practitioners lack this experience, and no existing solution 
-supports an informed selection of 
-methods from a well-defined problem in the product development process.
+laborious \parencite{lickert2021_ml_selection_reverse_logistics}.
+Many practitioners lack this experience, and within product 
+development no method-selection support currently lets a 
+non-expert move from a clearly stated problem to a suitable 
+choice
 \parencite{sonntag2023pattern_ml_product_development}.
 
 Existing frameworks tend to use accuracy or prediction speed as
@@ -121,9 +122,10 @@ given problem to the research relevant to it is needed, without
 the manual search that the fragmented literature makes
 impractical.
 
-This thesis investigates whether these two needs can be met by 
+This thesis investigates whether these needs can be met by 
 combining an ontology-based representation of machine learning 
-knowledge with semantic retrieval from scientific literature.
+knowledge with semantic retrieval from scientific literature and 
+structured implementation support.
 
 \section{Hypothesis and Research Questions}
 \label{sec:hypothesis-research-questions}
@@ -139,15 +141,15 @@ A decision-support system that combines ontology-based knowledge
 representation, semantic similarity between problem descriptions 
 and scientific literature, and structured implementation support 
 can provide relevant and justified machine learning method 
-recommendations for users with limited machine learning expertise.
+recommendations for users with limited machine learning expertise,
+and support the first steps of implementing the chosen method.
 \end{quote}
 
 To investigate this hypothesis, a web-based decision-support
 system, called MLguide, was developed. MLguide combines an
 ontology-based representation of machine learning knowledge with
 semantic retrieval from scientific literature, and provides
-support for the first steps of implementation once a method has
-been chosen. 
+support for the first steps of implementation through generated notebooks. 
 
 The hypothesis is examined through the following research questions:
 
