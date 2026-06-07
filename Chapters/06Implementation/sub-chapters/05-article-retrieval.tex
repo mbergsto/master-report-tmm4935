@@ -7,21 +7,21 @@ through semantic retrieval. This article base is built and
 maintained by a separate article retrieval pipeline, which is the 
 subject of this section.
 
-Article abstracts are used as the textual basis for each article. 
-Text mining of scientific literature has mostly been carried out on 
-abstracts, both because they are widely available and because they 
-consist of short sentences presenting only the main findings of a 
-study \parencite{westergaard2018comprehensive_quantitative_comparison_text_mining_15_million_full_text_articles_versus_corresponding_abstracts}. 
-Full-text articles contain richer information, but also include 
-tables, references, and discussion sections that make them less 
-consistent as a basis for comparison across a large corpus 
-\parencite{westergaard2018comprehensive_quantitative_comparison_text_mining_15_million_full_text_articles_versus_corresponding_abstracts}. 
-Abstracts therefore provide a consistently available representation 
-of each article's core content.
+Article abstracts are used as the textual basis for each article.
+Text mining of scientific literature has mostly been carried out on
+abstracts, partly because they are widely available and partly
+because each one states a study's main points in a few concise
+sentences
+\parencite{westergaard2018comprehensive_quantitative_comparison_text_mining_15_million_full_text_articles_versus_corresponding_abstracts}.
+Full-text articles contain richer information, but they also include
+tables, references, and discussion sections, and the discussion in
+particular is more speculative than the abstract
+\parencite{westergaard2018comprehensive_quantitative_comparison_text_mining_15_million_full_text_articles_versus_corresponding_abstracts}.
+For comparison across a large corpus, abstracts therefore provide a
+more uniform representation of each article's core content.
 
 Scopus was selected as the source of research articles. Scopus and 
-Web of Science are the two main databases for citation data 
-\parencite{mongeon2016journal_coverage_web_science_scopus}, and of the two, 
+Web of Science are the two main databases for citation data, and of the two, 
 Scopus has the broader journal coverage 
 \parencite{mongeon2016journal_coverage_web_science_scopus}. Scopus also 
 provides an API \parencite{scopus_api}, which allows article metadata and abstracts to be 
