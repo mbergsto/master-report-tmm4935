@@ -896,12 +896,12 @@ below, together with the directions for future work that follows from each.
     knowledge from the literature, including domain information, 
     benchmark results, and method combinations, which would reduce the 
     manual effort and allow the ontology to contribute more to the 
-    ranking.
+    ranking of methods.
 
     \item A method is counted as supported whenever a matching article 
     mentions it, even when the article uses it as a baseline or as a 
-    step in a pipeline, and the extraction does not separate method 
-    names that are contained in other names
+    step in a pipeline, and the extraction does not separate all cases of 
+    method names that are contained in other names
     (Section~\ref{sec:method-recommendations-and-role-of-articles}). 
     The extraction could be extended to account for the role a method 
     plays in an article and to recognise names contained in other 
@@ -909,10 +909,9 @@ below, together with the directions for future work that follows from each.
     recommended method more accurately.
 
     \item The notebook templates are simple and cover only part of the 
-    method set, and reinforcement learning methods have no templates at 
-    all, as the missing notebook for Q-learning in Example~2 showed 
+    method set, and reinforcement learning methods have no templates at all
     (Section~\ref{sec:starter-notebooks-and-implementation-support}). 
-    More templates could be added, a separate approach could be 
+    More templates should be added, a separate approach could be 
     developed for reinforcement learning, and configurable parameters 
     with sensible defaults could be offered through the 
     \texttt{configuration\_item} structure already present in the 

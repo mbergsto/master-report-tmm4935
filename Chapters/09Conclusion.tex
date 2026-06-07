@@ -5,10 +5,11 @@ provide relevant and justified machine learning method recommendations
 for users with limited machine learning expertise. The question was
 examined through the design and evaluation of MLguide, a web-based
 system built within a Design Science Research framework. MLguide draws
-on an ontology of machine learning methods and tasks and a database of
+on an ontology of machine learning knowledge,
+and a database of
 research articles, and produces a ranked list of methods, a set of
 supporting articles, and a starter notebook. The system was evaluated
-through user testing in two course projects and through an
+through user testing in two machine learning course projects and through an
 example-based evaluation on constructed problems.
 
 The evaluation showed that the recommendations were largely relevant
@@ -32,8 +33,7 @@ each recommendation so that the user can judge it. A further
 contribution is the link between the ontology and the articles, where
 each article is classified and connected to the methods it mentions as
 part of the retrieval pipeline. This lets the method knowledge grow as
-the article base grows, rather than depending on a manually built
-table of methods, and keeps the system open to a different domain by
+the article base grows, and keeps the system open to a different domain by
 replacing the article base. In Design Science Research terms, the
 artifact also yields design knowledge that can inform similar systems,
 in particular the value of pairing structured method knowledge with
@@ -43,4 +43,11 @@ MLguide shows that an ontology of machine learning methods and
 semantic retrieval from scientific literature can be combined into a
 working system that recommends relevant methods and supports the first
 steps of implementation, for a user group that often lacks structured
-guidance for method selection.
+guidance for method selection. The clearest path forward builds on the
+link between the articles and the ontology that already drives the
+recommendations. Extending this link to draw more structured knowledge
+from the literature automatically would reduce the manual effort behind
+the ontology and let it take on a larger part of the ranking. The
+system would also benefit from a broader evaluation, across several
+machine learning courses and towards engineers in industry, which would
+give firmer conclusions than were possible here.
