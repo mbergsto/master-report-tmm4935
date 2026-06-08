@@ -185,12 +185,11 @@ difference between the two approaches.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{Figures/02-background/bi-vs-cross-encoder.png}
-    \caption[Bi-encoder vs.\ cross-encoder]{Bi-encoder and cross-encoder architectures. The
-    bi-encoder encodes query and document independently, producing
-    vectors that are compared using cosine similarity. The
-    cross-encoder concatenates both inputs and processes them
-    jointly, enabling full attention between query and document
-    inputs and producing a direct relevance score. Inspired by \textcite{kumar2024crossencoders}.}
+    \caption[Bi-encoder vs.\ cross-encoder]{The bi-encoder encodes the
+    query and the document separately and compares the two vectors with
+    cosine similarity, while the cross-encoder processes them together and
+    outputs a relevance score directly. Inspired by
+    \textcite{kumar2024crossencoders}.}
     \label{fig:bi-vs-cross-encoder}
 \end{figure}
 
