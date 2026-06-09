@@ -3,14 +3,14 @@
 This chapter presents the results of the evaluation of MLguide.
 As described in Section~\ref{sec:evaluation}, MLguide was
 evaluated in two ways, through user testing with students from
-the course TMM4128 Machine Learning for Engineers, referred to as Project 1 and Project 2,
+the course TMM4128 Machine Learning for Engineers, referred to as Project 1 (P1) and Project 2 (P2),
 and through an
 example-based evaluation using a set of constructed problem
 cases.
 
 Because MLguide was developed iteratively, the three evaluations
 were carried out on different versions of the system, as shown in Section~\ref{sec:development-timeline}.
-Project 1 (P1) used version A, Project 2 (P2) used version B, and the example-based
+Project 1 used version A, Project 2 used version B, and the example-based
 evaluation used version C, the final version. The differences
 between the versions are summarised in
 Section~\ref{sec:changes-across-system-versions}.
@@ -213,11 +213,10 @@ single-algorithm reinforcement learning.
 \end{figure}
 
 The reports also raised a small number of issues. First, the 
-method ranking was unclear: it was not obvious which 
+method ranking was unclear, it was not obvious which 
 recommendation to prioritise, and the top-ranked method was not 
 always the best fit. Second, the input form did not capture 
-hybrid architectures, non-standard states, or deployment 
-constraints, which limited the system to standard 
+hybrid architectures, which limited the system to standard 
 single-algorithm reinforcement learning.
 
 Figure~\ref{fig:methods-used-vs-recommended-p2} compares, for each
@@ -225,8 +224,7 @@ method, the number of groups that were recommended the method with
 the number of groups that used it. DQN, proximal policy optimization (PPO), and Q-learning were
 the most frequently used methods, and were also among the most
 frequently recommended. Deep RL and neural network were
-recommended without being used by any group. PI-QT-Opt and
-NSGA-III were used by one group each without being recommended.
+recommended without being used by any group. 
 
 \begin{figure}[H]
     \centering
