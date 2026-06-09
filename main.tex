@@ -28,11 +28,16 @@
 \usepackage[backend = biber,
             style = authoryear,
             date = long,     % Long: 24th Mar. 1997 | Short: 24/03/1997
+            urldate = long,
             sorting = nyt,     % Sort by name, year, title
             maxcitenames = 3,   % max names to include before et. al.
             sortcites = true,   % sort multiple citations in the same \cite{} command
             ]{biblatex} %customize the look of your citations and bibliography
 \addbibresource{bibliography.bib} %declare the bibliography resource
+\setcounter{biburlnumpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+\setcounter{biburllcpenalty}{9000}
+\usepackage[british]{babel}
 \usepackage{comment} %to be able to comment out sections in the .tex files
 \usepackage{afterpage} %to customize page commands such as below
 \usepackage{booktabs} %to make better tables
@@ -64,7 +69,7 @@
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{comment}
+\begin{comment}
 % The title page:
 % For NTNU students this page will be generated automatically when submitting your paper, and should not be included in the final file from Latex. Delete or comment out the title page setup. The final report should then start with the first page being the abstract. I have included a title page here so it is possible to see how it may look like, and for those who does not get an automatically generated title page. Of course you will need to change the names and titles etc. to your case.
 
@@ -103,7 +108,7 @@ Department of Mechanical and Industrial Engineering \\
 \end{titlepage}
 \restoregeometry
 \myemptypage %empty page such that the abstract starts at the first right hand side after the title page
-%\end{comment}
+\end{comment}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \singlespacing  % set line spacing to single
@@ -114,6 +119,10 @@ Department of Mechanical and Industrial Engineering \\
 \setcounter{page}{1}
 \addcontentsline{toc}{chapter}{\protect\numberline{}Abstract} %add the chapter to the table of contents, this is not automatically added when creating unnumbered chapters (*). Add it in a chapter style, and keep all chapters on the same numberline indent regardless of number or not on the chapter
 \input{Chapters/00Abstract} %insert the chapter text from the files
+
+\chapter*{Sammendrag}
+\addcontentsline{toc}{chapter}{\protect\numberline{}Sammendrag}
+\input{Chapters/00Sammendrag}
 
 \chapter*{Preface}
 \addcontentsline{toc}{chapter}{\protect\numberline{}Preface} 
@@ -198,6 +207,7 @@ Department of Mechanical and Industrial Engineering \\
 \cleardoublepage
 
 \chapter*{Declaration of AI Use}
+\markboth{Declaration of AI Use}{Declaration of AI Use}
 \addcontentsline{toc}{chapter}{\protect\numberline{}Declaration of AI Use}
 \input{Chapters/10Declaration-AI-Use.tex}
 \cleardoublepage

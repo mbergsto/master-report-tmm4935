@@ -47,7 +47,7 @@ further in this section.
 The recommendations across the evaluation show a tendency to 
 favour methods with a high article count, where article count 
 is the number of articles that mention the method. This tendency 
-is clearest for random forest, support vector machine, and neural 
+is clearest for random forest, support vector machine (SVM), and neural 
 network. These three methods are described in 
 Section~\ref{sec:machine-learning-methods} as applicable to several 
 tasks, including tasks in supervised learning. Supervised learning 
@@ -78,9 +78,8 @@ ranking, so a similar effect is present. At the same time,
 methods with few articles are not excluded from the top of 
 the list. In the supervised classification example shown in 
 Figure~\ref{fig:recommendations-example-1-rec}, Gaussian 
-mixture model appears relatively high despite having only 33 
-articles, against several thousand for random forest, support 
-vector machine, and neural network. The same effect is visible in the 
+mixture model (GMM) appears relatively high despite having only 33 
+articles, against several thousand for random forest, SVM, and neural network. The same effect is visible in the 
 anomaly detection example shown in 
 Figure~\ref{fig:recommendations-example-3-rec}, where local 
 outlier factor is ranked second despite having only 48 articles. 
@@ -105,8 +104,8 @@ alone is limiting, since an abstract gives only a brief, surface-level
 view of a paper, and 
 \textcite{ostendorff2022_aspect_based_embeddings} find that 
 embeddings of titles and abstracts capture the task and dataset of a 
-paper well but its method poorly, because methodological detail 
-is mentioned only marginally in titles and abstracts.
+paper well, but are less effective at representing methodological details, 
+which are often only briefly mentioned in these sections.
 
 The summarising nature of abstracts has direct consequences for 
 MLguide. A single abstract can mention several methods from one 
@@ -114,13 +113,13 @@ study, for example one that performed best and others that were
 tested as baselines. These different roles are not reflected in 
 the ranking produced by MLguide. All mentioned methods are treated as 
 relevant to the problem the article addresses. The same applies 
-when a method is used as part of a pipeline rather than as the 
-main contribution, such as a dimensionality reduction step 
-applied before the main method. Principal component analysis, 
-described in Section~\ref{sec:machine-learning-methods} as a 
-dimensionality reduction method, appears among the 
-recommendations in the supervised classification example 
-(Section~\ref{sec:example-1}), likely for this reason. The same 
+when a method is used as part of a pipeline 
+rather than as the main contribution, such as a dimensionality 
+reduction step applied before the main method. Principal component 
+analysis (PCA) appears among the recommendations in the supervised 
+classification example (Section~\ref{sec:example-1}), likely 
+because it is picked up from articles where it is used as a 
+preprocessing step. The same 
 issue applies to the classification of articles into ML areas, 
 which is based on keywords in titles and abstracts. An article 
 that presents an unsupervised approach while contrasting it 
@@ -129,7 +128,6 @@ result, methods that are mentioned but not recommended by the
 original authors, that are used as preprocessing steps, or 
 that belong to a different ML area than the article's main 
 contribution, can still appear in the recommendations.
-
 
 The findings in this thesis are in line with the observation 
 made by \textcite{ostendorff2022_aspect_based_embeddings}
@@ -153,19 +151,18 @@ network within recurrent neural network. Each such case has to be
 handled explicitly. The article retrieval pipeline described in 
 Section~\ref{sec:article-retrieval-and-knowledge-extraction} handles 
 this for neural network, but the results suggest that not all relevant 
-cases are covered. In the anomaly detection example, support vector 
-machine is at the top of the recommendations, while one-class SVM 
+cases are covered. In the anomaly detection example, SVM is at the top of the recommendations, while one-class SVM 
 appears further down. One-class SVM is described in 
 Section~\ref{sec:machine-learning-methods} as an anomaly detection 
-method, and the top-ranked articles for support vector machine in this 
+method, and the top-ranked articles for SVM in this 
 example include an article that explicitly concerns a one-class model. 
 This indicates that articles about one-class SVM contribute to the 
-article count of both methods, but support vector machine benefits 
+article count of both methods, but SVM benefits 
 from its much larger overall article count and ranks higher as a 
 result.
 
 The effect is not only on the ranking. The articles shown as the basis 
-for support vector machine then include work that in fact concerns 
+for SVM then include work that in fact concerns 
 one-class SVM, so the justification presented to the user is 
 misleading. The explicit handling could be extended to more such 
 cases, but each case has to be identified and added by hand, which 
@@ -178,8 +175,8 @@ the methods that appear in published research, which may differ from
 what is commonly used in practice or taught in ML courses. In the 
 user testing for the anomaly detection problem in Project 1, several 
 groups reported that neural network methods were over-represented in 
-the recommendations and that Gaussian mixture model and one-class 
-SVM were missing (Section~\ref{sec:project-1}). Gaussian mixture model 
+the recommendations and that GMM and one-class 
+SVM were missing (Section~\ref{sec:project-1}). GMM
 and one-class SVM are classical methods for 
 anomaly detection, whereas neural network methods have a broader 
 range of applications 
@@ -201,12 +198,12 @@ under-represented as a whole, but they can be under-represented
 within specific tasks or areas.
 
 In the supervised classification example 
-(Section~\ref{sec:example-1}), Gaussian mixture model is ranked 
+(Section~\ref{sec:example-1}), GMM is ranked 
 second despite being flagged as not suited for the classification 
 task. A likely reason is that the wording of the problem 
 description, which includes terms such as "faulty", resembles how an 
 unsupervised anomaly detection problem might be described. This 
-wording matches articles in which Gaussian mixture model is used for 
+wording matches articles in which GMM is used for 
 anomaly detection, and the resulting article-based score is high 
 enough to place it as the second recommendation. The case shows that 
 relying on the problem description alone, without using the ontology 
@@ -279,7 +276,7 @@ and a tabular dataset type. Another result is that whether a method
 matches a dataset type depends entirely on the tasks it happens to be 
 linked to. In the 
 supervised classification example (Section~\ref{sec:example-1}), 
-principal component analysis is not marked as matching the tabular 
+PCA is not marked as matching the tabular 
 dataset type, because the tasks PCA is linked to in the ontology do 
 not have tabular defined as a dataset type. Storing dataset type as 
 its own property on the method would avoid such cases and make the 
@@ -803,7 +800,7 @@ frequently in the literature, which tend to be general methods
 that work across many problems, but more specific methods still 
 surface when their articles match the problem closely. A method 
 with few articles can rank high on a strong topical match, as 
-Gaussian mixture model and local outlier factor did in the examples, 
+GMM and local outlier factor did in the examples, 
 so the retrieval does not simply reproduce the most common methods. 
 The problem description alone is enough to produce a reasonable 
 result, as the anomaly detection example showed without the ML area 
@@ -818,13 +815,13 @@ user can see the basis for the method directly. This justification is
 only as strong as what the articles say about the method, which 
 the system does not check. A method counts as supported whenever 
 a matching article mentions it, even when the article uses it 
-only as a baseline or as one step in a pipeline. Principal 
-component analysis appears in the supervised classification 
+only as a baseline or as one step in a pipeline. PCA appears 
+in the supervised classification 
 example for this reason, since it is picked up from articles 
 that use it as a preprocessing step rather than as the main 
 method. A second weakness is that the extraction does not separate closely 
 related method names. In the anomaly detection example, articles about 
-one-class SVM raised the score of standard support vector machine, so 
+one-class SVM raised the score of standard SVM, so 
 some of the articles shown for it in fact described a different 
 method. 
 

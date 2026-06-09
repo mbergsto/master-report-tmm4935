@@ -46,6 +46,23 @@ has no further configuration step. The generated notebook is
 a fixed starting point that the user can then modify in 
 Google Colab or locally.
 
+Figure~\ref{fig:notebook-generation-sequence} shows the full 
+sequence, from when the user opens a method details page to 
+when the notebook is rendered in Google Colab. The upper part 
+of the diagram covers template resolution and rendering, 
+described in Section~\ref{sec:template-resolution}. The lower 
+part covers the Colab export, described in 
+Section~\ref{sec:colab-export}.
+
+\begin{landscape}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth, height=\textheight, keepaspectratio]{Figures/06-implementation/notebook-generation-sequence.png}
+    \caption[Notebook generation sequence]{Sequence diagram of the notebook generation process in MLguide.}
+    \label{fig:notebook-generation-sequence}  
+\end{figure}
+\end{landscape}
+
 \subsection{Template Resolution and Rendering}
 \label{sec:template-resolution}
 
@@ -75,18 +92,6 @@ GitHub repository via the GitHub API, and a Colab URL
 is constructed from the repository name, branch, and 
 file path. The browser opens this URL in a new tab, 
 where Colab loads the notebook directly from GitHub.
-
-The whole process of generating the notebook and opening it in Colab is 
-described in the sequence diagram in Figure~\ref{fig:notebook-generation-sequence}.
-
-\begin{landscape}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth, height=\textheight, keepaspectratio]{Figures/06-implementation/notebook-generation-sequence.png}
-    \caption[Notebook generation sequence]{Sequence diagram of the notebook generation process in MLguide.}
-    \label{fig:notebook-generation-sequence}  
-\end{figure}
-\end{landscape}
 
 \subsection{Template Content and Inheritance}
 \label{sec:template-content}

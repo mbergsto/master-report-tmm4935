@@ -10,7 +10,7 @@ literature, which is central to how method selection is
 approached in this thesis. The third is existing tools and 
 platforms that provide access to machine learning methods or 
 automate parts of the workflow. The three groups are reviewed in 
-turn, followed by a summary of the gaps that motivate the work.
+turn, followed by a summary of the research gaps.
 
 \subsection{Approaches to Method Selection}
 \label{sec:approaches-to-method-selection}
@@ -27,9 +27,9 @@ not consider factors such as interpretability, data
 characteristics, or domain context 
 \parencite{sala2018selecting_ml_algorithm}.
 
-More structured frameworks characterise methods against a set 
+More structured frameworks characterise ML methods against a set 
 of criteria and match a described problem to them. 
-\textcite{riesener2020} present an evaluation method for 
+\textcite{riesener2020} present an evaluation approach for 
 selecting a method in product development. From a large set of 
 methods found in the literature, the eleven most frequently 
 described were selected and each rated on nine criteria 
@@ -97,7 +97,7 @@ structured, queryable form.
 semantic knowledge base for data-driven methods in product 
 development. Each method is described by properties such as 
 its potentials, limits, algorithm, product development use 
-cases, and the tool that implements it, and the knowledge is 
+cases, and the tool that implements it. The knowledge is 
 realised as a demonstrator in Semantic MediaWiki, where it can 
 be retrieved through queries. The method properties are 
 populated manually from literature review and industrial use 
@@ -149,19 +149,18 @@ the abstract and the indexed tables is computed from text
 embeddings to return a ranked list of relevant tables. The 
 authors argue that a rich natural-language formulation of a 
 research problem gives better retrieval than isolated 
-keywords. A comparison of nine language models finds that 
-contextual models, and in particular models pre-trained on 
-scientific text, clearly outperform non-contextual ones, and 
-that surrounding context is important for good results.
+keywords.
 
 \textcite{schopf2024nlp} present NLP-KG, a system for 
 exploratory search of natural language processing literature. 
 It is built around a knowledge graph that links fields of 
-study, publications, authors, and venues. The structural 
-knowledge graph and the publication embeddings are stored 
-separately, the former in a graph database and the latter in a 
-vector database, so that the graph handles relations and the 
-vector database handles semantic similarity search. The user 
+study, publications, authors, and venues. 
+The structural knowledge graph and the publication 
+embeddings are stored separately. The graph is maintained 
+in a graph database, while the embeddings are stored in 
+a vector database. This allows the graph database to handle 
+relationships and the vector database to support semantic 
+similarity search. The user 
 submits a text query, which is matched against the publications 
 through a retrieval pipeline that combines sparse and dense 
 representations, merged using Reciprocal Rank Fusion and then 
@@ -172,8 +171,8 @@ intended to help researchers explore an unfamiliar field.
 finding related research papers given a query paper, evaluated 
 on a benchmark of articles from the major machine learning and 
 NLP venues. They decompose the query paper into aspect-specific 
-subqueries covering its motivation, method, and experiments, 
-use each subquery to retrieve candidate papers, and expand the 
+subqueries covering its motivation, method, and experiments.
+Then use each subquery to retrieve candidate papers, and expand the 
 search iteratively. They argue that working from abstracts alone 
 is limiting, since an abstract captures only a brief, surface-level 
 view of a paper, and that drawing on the full text produces better 
@@ -194,6 +193,8 @@ detail is mentioned only marginally in titles and abstracts.
 
 \subsection{Tools and Platforms}
 \label{sec:tools-and-platforms}
+
+The last group of related work concerns two existing tools.
 
 Ontology-Based Meta AutoML (OMA-ML) \parencite{zender2022ontology_based_meta_automl} combines
 multiple AutoML solutions through the ML Ontology, described in
@@ -225,15 +226,6 @@ the development period of this thesis. The tool can still be
 inspected through the GitHub repository 
 \parencite{rieke2021traingenerator}.
 
-The European AI-on-Demand Platform (AIoDP) and its DeployAI 
-implementation offer a marketplace of pre-trained models, 
-reusable AI modules, and domain-specific applications, 
-supported by cloud and high-performance computing infrastructure 
-\parencite{troumpoukis2025deployai_ai_on_demand_platform}. 
-The platform targets Small and Medium-sized Enterprises (SMEs), researchers, and public sector 
-organisations, and provides tools for building, training, and 
-deploying AI solutions at scale. Available solutions can be 
-browsed and filtered by domain or use case.
 
 \subsection{Research Gap}
 \label{sec:research-gap}
@@ -243,10 +235,10 @@ knowledge representations for method selection depend on
 method knowledge populated manually and require the user to 
 formalise the problem in a fixed structure. Semantic retrieval from 
 scientific literature can match a free-text problem 
-description against a large body of methods without such 
+description against a large body of literature without such 
 formalisation, but existing systems apply it to other tasks 
-than method selection. None of the reviewed approaches 
-combine an ontology of methods with semantic retrieval from 
+than ML method selection. None of the reviewed approaches 
+combine an ontology of ML knowledge with semantic retrieval from 
 scientific literature to support method selection, and none 
 extend the selection into support for implementing the chosen 
 method. This thesis addresses these gaps together, and the 

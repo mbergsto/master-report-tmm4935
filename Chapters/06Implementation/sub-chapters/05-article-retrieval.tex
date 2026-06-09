@@ -17,17 +17,18 @@ two fields already condense a paper's main content into a short summary
 \parencite{cohan2020specterdocumentlevelrepresentationlearning}.
 Abstracts and titles therefore provide a compact and consistently available
 representation of each article's core content. Using the full text
-could add further detail, but full text is often not openly available
+could add further detail. However, full text is not always openly available
 and exceeds the input limits of common embedding models, so the
 abstract is used instead
 \parencite{cohan2020specterdocumentlevelrepresentationlearning}.
 
 Scopus was selected as the source of research articles. Scopus and 
-Web of Science are the two main databases for citation data, and of the two, 
-Scopus has the broader journal coverage 
+Web of Science are the two main databases for citation data, with 
+Scopus providing broader journal coverage 
 \parencite{mongeon2016journal_coverage_web_science_scopus}. Scopus also 
-provides an API \parencite{scopus_api}, which allows article metadata and abstracts to be 
-retrieved automatically. This makes it possible to collect articles 
+provides an API \parencite{scopus_api}, which allows article 
+metadata and abstracts to be retrieved automatically. 
+This makes it possible to collect articles 
 in a repeatable way and to expand the article database over time.
 
 
@@ -42,7 +43,7 @@ articles can be added to the MLguide databases over time.
  
 Articles are collected from Scopus through a set of queries, each
 targeting machine learning applications in a specific domain or
-application area. Each query is defined in a YAML Ain't Markup Language (YAML) configuration
+application area. Each query is defined in a configuration
 file with an identifier and a Scopus search string. The full set
 of queries is listed in Appendix~\ref{app:queries}, and the search
 strategy behind them is described in detail in the pre-master project
@@ -60,7 +61,8 @@ that are already present in the database, to avoid duplicates.
 
 The pre-master project classified each article along four
 dimensions: ML area, product lifecycle phase,
-application area, and the ML methods mentioned in the abstract,
+application area, and the ML methods mentioned in the 
+article abstract,
 as described in Section~\ref{sec:pre-master-findings}.
 In MLguide, 
 only ML area and ML methods are retained, as these are 
@@ -175,7 +177,7 @@ For MLguide to stay up to date with current research, the article
 retrieval pipeline should run periodically to add new articles to the
 database. The numbered marks in Figure~\ref{fig:article-retrieval-flow}
 indicate steps that were added to the pipeline after the first run, 
-to support these updates:
+to support adding new articles:
 
 \begin{itemize}
 \item \textbf{(1)} When fetching articles from Scopus, the process

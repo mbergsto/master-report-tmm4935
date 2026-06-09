@@ -2,9 +2,9 @@
 \label{sec:machine-learning}
 
 This section introduces the machine learning concepts that the rest of 
-the thesis builds on. It first describes the main learning paradigms and 
+the thesis builds on. It first describes the main machine learning paradigms and 
 tasks associated with them, then presents a selection of common 
-methods with emphasis on attributes that distinguish them. 
+machine learning methods with emphasis on attributes that distinguish them. 
 
 \subsection{Machine Learning Paradigms and Tasks}
 \label{sec:machine-learning-paradigms-and-tasks}
@@ -78,11 +78,11 @@ between supervised and unsupervised learning is not always
 well-defined. Semi-supervised learning, for example, is situated 
 between the two, as it uses both data with and without target values 
 \parencite{engelen2020semi_supervised}. Other methods do not fit this pattern. 
-Evolutionary algorithms such 
-as genetic algorithms are population-based metaheuristics used for 
-optimisation \parencite{corne2025_ea}. They are not learning 
-paradigms based on the type of supervision received during training, 
-so they do not fit naturally into this division. Instead, they are 
+Evolutionary algorithms such as genetic algorithms are
+population-based metaheuristics used for optimisation
+\parencite{corne2025_ea}. They are not defined by the type of
+supervision received during training, so they do not fit naturally
+into this division. Instead, they are 
 often combined with the machine learning paradigms described above 
 \parencite{zhang2025_mh_ml}, for example as an approach to policy 
 search in reinforcement learning \parencite{moriarty1999_ea_rl}.
@@ -257,7 +257,10 @@ paradigms and tasks, based on
 \label{sec:neural-networks-and-deep-learning}
 
 Neural networks and deep learning are often treated as a separate category 
-in the machine learning literature.
+in the machine learning literature. They are not a distinct learning paradigm, 
+as they can be applied to supervised, unsupervised, and reinforcement learning tasks. 
+Rather, they are a family of methods that differ from the more traditional 
+methods described above in their architecture and learning approach. 
 The following sections give a brief introduction to some of the most 
 common neural network architectures and their typical use cases.
 
@@ -352,7 +355,8 @@ where observations that are difficult to reconstruct may indicate anomalies
 shrestha2019review_deep_learning_algorithms_architectures}.
 
 Figure~\ref{fig:neural_networks_table} summarises the architectures
-described above.
+described above, with a short description of their structure, their most common training type, 
+and some common application areas. 
 
 \begin{figure}[H]
     \centering

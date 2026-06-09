@@ -105,7 +105,7 @@ with the number of groups that used it. Some methods were
 recommended more often than they were used, such as neural
 network, PCA, and LSTM. Others were used more often than they were
 recommended, most clearly isolation forest. 
-Gaussian mixture model, one-class
+GMM, one-class
 SVM, and DBSCAN were used by several groups without being
 recommended to any of them.
 
@@ -270,10 +270,10 @@ methods are returned. The top recommendations include common
 classification methods such as random forest, support vector 
 machine, and k-nearest neighbours, as well as neural network, 
 which has the highest article count of the recommended methods. 
-Gaussian mixture model is ranked second, even though it is 
+Gaussian mixture model (GMM) is ranked second, even though it is 
 flagged as not suited for the task. Two further methods are 
 flagged as not suited for the task: linear regression and 
-principal component analysis. Two methods are flagged as not 
+principal component analysis (PCA). Two methods are flagged as not 
 suited for the dataset type: principal component analysis and 
 convolutional neural network. Four methods carry additional 
 conditions in the Note column, such as being possible if 
@@ -375,7 +375,7 @@ The recommendations are shown in
 Figure~\ref{fig:recommendations-example-3-rec}. 
 The top of the list includes common anomaly 
 detection methods such as local outlier factor, isolation forest,
-one-class SVM, and autoencoder. Standard support vector machine also
+one-class SVM, and autoencoder. Standard support vector machine (SVM) also
 appears at the top, flagged as suited for the task, although it is
 commonly used for classification and regression. 
 Several general neural network 

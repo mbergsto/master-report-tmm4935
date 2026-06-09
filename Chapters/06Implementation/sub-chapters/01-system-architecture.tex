@@ -9,8 +9,25 @@ system easy to run across different environments without managing
 dependencies manually, which is important for a research artefact that 
 needs to be shared and tested by others.
 
-Figure~\ref{fig:system-diagram-components} shows the main components and 
-how they communicate. The frontend is implemented in Streamlit 
+Figure~\ref{fig:system-diagram-components} shows the system architecture of MLguide,
+with the main components as different
+services, and how they communicate. 
+The components are grouped
+into application services, data services, and external services. The
+application and data services run in Docker containers, while the
+external services are accessed over the network. The application
+services consist of the frontend and the backend. 
+The data services consist of the ontology-based knowledge graph and the article database.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/06-implementation/system-diagram-components.pdf}
+    \caption[MLguide system architecture]{Overview of the MLguide system architecture, showing the application, data, 
+    and external services and how they communicate.}
+    \label{fig:system-diagram-components}
+\end{figure}
+
+The frontend is implemented in Streamlit 
 \parencite{streamlit}, which was chosen because it allows interactive 
 web applications to be built directly in Python, without writing HTML or 
 JavaScript. This made it well suited for rapid development of a 
@@ -19,22 +36,15 @@ an Application Programming Interface (API) over the Hypertext Transfer Protocol 
 which provides automatic API documentation and built-in data validation,
 and contains the core application logic.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{Figures/06-implementation/system-diagram-components.pdf}
-    \caption[MLguide system architecture]{Overview of the MLguide system architecture.}
-    \label{fig:system-diagram-components}
-\end{figure}
-
-The backend reads from two data stores. GraphDB \parencite{graphdb} stores 
-the ML ontology and article links, and is queried using SPARQL. 
+The backend connects to two data stores. GraphDB \parencite{graphdb} stores 
+the ontology-based knowledge graph, and is queried using SPARQL. 
 It was chosen because it is designed specifically for RDF data and 
 supports SPARQL, making it a natural fit for an RDF-based knowledge graph. 
 PostgreSQL \parencite{postgresql} stores article abstracts 
 and vector embeddings using the pgvector extension \parencite{pgvector}. 
 This allows embeddings and relational data to be stored and queried in the 
-same database, avoiding the need for a separate vector database. The 
-system also integrates with two external services: the GitHub API and 
+same database, avoiding the need for a separate vector database. 
+The system also integrates with two external services: the GitHub API and 
 Google Colab, which are used to upload and open generated notebooks.
 
 MLguide follows a layered architecture, in which each layer only depends 
@@ -48,19 +58,17 @@ be built \parencite[157--158]{sommerville2011software_engineering}. This is
 consistent with the development process described in 
 Section~\ref{sec:incremental-and-iterative-development}.
 
-Figure~\ref{fig:mlguide-layered-architecture} shows the internal layer 
-structure of the frontend and backend. Both are organised into distinct 
-layers with clear responsibilities. In the backend, the router layer 
-handles incoming API requests and passes them to the service layer, which 
-contains the application logic. The persistence layer is responsible for 
-all database access and isolates data retrieval from the rest of the 
-application. In the frontend, the presentation layer handles rendering 
-and user interaction. The application logic layer coordinates calls to 
-the backend and external services. Because the frontend is a Streamlit 
-application that delegates most logic to the backend, the majority of 
-modules in this layer are thin wrappers around the integrations layer. 
-The clearest exceptions are the notebook template services, which contain local 
-logic for selecting and rendering starter notebooks.
+Figure~\ref{fig:mlguide-layered-architecture} shows the layered architecture
+of MLguide including the internal layer
+structure of the frontend and backend. Both are organised as a
+stack of layers with clear responsibilities.
+
+The frontend and backend also have shared definitions used across several layers. In
+the frontend, the data models define the request and response shapes
+exchanged with the backend. The templates hold the starter notebook 
+templates used in notebook generation. 
+In the backend, the schemas define the
+request and response formats used across the layers.
 
 \begin{figure}[H]
     \centering
@@ -69,19 +77,23 @@ logic for selecting and rendering starter notebooks.
     \label{fig:mlguide-layered-architecture}
 \end{figure}
 
-Figure~\ref{fig:package-diagram-full} shows the full package structure 
-of both the frontend and backend, including the main modules within each 
-layer. In addition to the recommendation logic, the system handles two 
-other concerns that run through most layers. User services is a 
-lightweight feature covering authentication and saved searches, allowing 
-users to store and reload previous searches with problem descriptions. 
-Feedback handling allows users to rate recommended methods, with ratings 
-stored in PostgreSQL and used to adjust method ranking over time. Both 
-concerns follow the same layered structure as the recommendation logic, 
-with separate modules in the router, service, and persistence layers of 
-the backend, and corresponding wrappers in the frontend application logic 
-layer. The feedback logic is further described as part of the 
-recommendation process in Section~\ref{sec:recommendation-process}.
+In the backend, the router layer 
+handles incoming API requests and passes them to the service layer, which 
+contains the core application logic. The persistence layer is responsible for 
+all database access and isolates data retrieval from the rest of the 
+application. In the frontend, the presentation layer handles rendering 
+and user interaction. The application logic layer coordinates calls to 
+the backend and external services. The application logic layer delegates most logic
+to the backend, so the majority of 
+modules in this are only thin wrappers around the integrations layer.  
+The clearest exceptions are the notebook template services, which contain local 
+logic for selecting and rendering starter notebooks.
+The integration layer holds the clients that handle the actual
+communication with the backend and external services.
+
+Figure~\ref{fig:package-diagram-full} shows the package diagram for
+MLguide, including the main modules within each layer of the frontend
+and backend.
 
 \begin{figure}[H]
     \centering
@@ -89,3 +101,21 @@ recommendation process in Section~\ref{sec:recommendation-process}.
     \caption[MLguide package diagram]{Package diagram of MLguide.}
     \label{fig:package-diagram-full}
 \end{figure}
+
+The package diagram shows that the recommendation process is the core 
+of the system, with multiple services in the backend application logic layer.
+Alongside the recommendation flow, the system
+includes two supporting features that have not been introduced yet:
+user services and feedback handling. User services is a lightweight
+feature covering authentication and saved searches, allowing users to
+store and reload previous searches with problem descriptions. Feedback
+handling allows users to rate recommended methods. The ratings are stored
+in PostgreSQL and can be used to adjust the recommendation process over time.
+The feedback logic is further described as part of the 
+recommendation process in Section~\ref{sec:recommendation-process}. 
+Both user and feedback follow the same layered structure as the recommendation logic, 
+with separate modules in the router, service, and persistence layers of 
+the backend, and corresponding wrappers in the frontend application logic 
+layer.
+The modules marked as wrappers in the frontend contain little logic of
+their own, as described above.

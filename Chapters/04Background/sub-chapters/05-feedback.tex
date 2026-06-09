@@ -1,5 +1,9 @@
 \section{Rating-Based User Feedback}
 \label{sec:rating-based-user-feedback}
+When working with a system that recommends ML methods, it
+can be relevant to look into some techniques regarding feedback 
+from users.
+
 Feedback from users can be captured explicitly through numerical ratings
 \parencite[Chapter~3.1]{bobadilla2013recommender_systems_survey}. 
 This feedback can be stored and used to refine recommendations in
@@ -23,8 +27,9 @@ the estimate, because the volume of observations now outweighs
 the prior 
 \parencite[Chapter~3.3]{murphy2012machine_learning_probabilistic_perspective}.
 
-The effectiveness of explicit feedback depends on having 
-sufficient ratings. The cold start problem arises when a system 
+The problem of not having a sufficient amount of ratings 
+also relates to the cold start problem. 
+The cold start problem arises when a system 
 cannot yet recommend reliably because too few ratings have been 
 gathered 
 \parencite[Chapter~3.2]{bobadilla2013recommender_systems_survey}. 
@@ -32,6 +37,3 @@ A particular variant is the new community problem, which refers
 to the trouble a freshly launched system has in accumulating 
 enough rating data to recommend well 
 \parencite[Chapter~3.2]{bobadilla2013recommender_systems_survey}. 
-Under these conditions, the system needs a baseline of ratings 
-before it can model a user well enough to recommend reliably 
-\parencite[Chapter~3]{ricci2010recommender_systems_handbook}.

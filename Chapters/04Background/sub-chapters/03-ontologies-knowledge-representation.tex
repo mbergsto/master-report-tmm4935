@@ -98,18 +98,18 @@ learning paradigms, and have different performance characteristics
 \parencite{humm2026industry_ready_machine_learning_ontology}.
 Making these associations explicit allows methods to be compared and 
 chosen in a structured way. 
-\textcite{keet2015data_mining_optimization_ontology} motivate their 
-ontology for data mining on these grounds. Traditional meta-learning 
-treated learning algorithms as black boxes, correlating observed 
-performance with data characteristics alone, while an ontology allows 
-the internal characteristics of algorithms to be represented 
-explicitly and reasoned over.
+\textcite{keet2015data_mining_optimization_ontology} motivate their
+ontology for data mining on these grounds. In traditional
+meta-learning, learning algorithms were treated as black boxes, and
+only the characteristics of the data were linked to observed
+performance. An ontology instead allows the internal workings of an
+algorithm to be described explicitly.
 
 \subsection{Semantic Web Standards}
 \label{sec:semantic-web-standards}
 
 Ontologies, both in the ML domain and in general, are commonly implemented using
-standardised languages from the Semantic Web, a set of
+standardised languages from the Semantic Web. This is a set of
 specifications developed by the World Wide Web Consortium
 (W3C) to make information machine-readable and interoperable
 across systems \parencite{w3c}.
@@ -135,8 +135,7 @@ adds richer modelling constructs, including logical operators,
 quantifiers, and property characteristics such as transitivity
 \parencite{bechhofer2009owl_web_ontology_language}.
 This gives OWL well-defined semantics that support automated
-reasoning, making it suitable for ontologies where logical
-consistency and entailment are required
+reasoning
 \parencite{bechhofer2009owl_web_ontology_language}.
 
 The SPARQL Protocol and RDF Query Language (SPARQL) is used to
@@ -176,17 +175,12 @@ It is structured across three layers. A specification layer
 covers abstract definitions, an implementation layer covers
 algorithm implementations and parameters, and an application
 layer covers executions and workflows.
-OntoDM-core is aligned with established upper-level ontologies,
+OntoDM-core is aligned with established top-level ontologies,
 which enables its use across different application domains
 \parencite{panov2014ontology_core_data_mining_entities}.
-It has been applied in areas such as bioinformatics and drug
-discovery, and serves as a mid-level ontology for Exposé
-\parencite{vanschoren2012experiment_databases}, an ontology
-for ML experiments used in OpenML.
 With 856 classes and detailed taxonomies of tasks and
-algorithms, it provides high structural granularity, but
-contains few populated instances and does not cover named ML
-methods, metrics, or libraries.
+algorithms, it provides high structural granularity 
+for data mining concepts.
 
 The MEX Vocabulary \parencite{esteves2015mexvoc} is a
 lightweight format for exchanging provenance metadata about
@@ -204,32 +198,21 @@ ML Ontology \parencite{humm2026industry_ready_machine_learning_ontology}
 is an ontology for representing ML content. It covers ML areas,
 tasks, approaches, preprocessing methods, metrics, libraries,
 Automated Machine Learning (AutoML) solutions, and configuration parameters, with around 700
-individuals and 5000 RDF triples. Unlike the other ontologies, it
-is not designed for experiment annotation but for integrating
+instances and 5000 RDF triples. ML Ontology
+is designed for integrating
 different ML tools and frameworks through a shared vocabulary. It
 supports optional forward-chaining inference via SPARQL and
 includes built-in quality assurance checks.
 
-Figure~\ref{fig:ml_ontologies_table} compares the four
-ontologies across scope, size, and intended use.
-
-\begin{landscape}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{Figures/02-background/ml-ontologies-comparison.pdf}
-    \caption[ML ontologies comparison]{Comparison of existing ML ontologies, adapted from \textcite{humm2026industry_ready_machine_learning_ontology}.}
-    \label{fig:ml_ontologies_table}
-\end{figure}
-\end{landscape}
-
-As Figure~\ref{fig:ml_ontologies_table} shows, these ontologies
-have different aims. ML-Schema and MEX are built for annotating and
-exchanging experiment metadata. OntoDM-core is a broader reference
-ontology for data mining entities such as datasets, tasks, and
-algorithms. None of these ontologies provide support for reasoning about
-which methods fit a given ML problem. ML Ontology differs in this
-respect, since it links tasks, methods, and metrics in a form that
-can be queried and reasoned over.
+It is clear that these ontologies have different aims. ML-Schema and
+MEX are built for annotating and exchanging experiment metadata.
+OntoDM-core is a broader reference ontology for data mining
+entities such as datasets, tasks, and algorithms. OntoDM-core can be
+queried to find algorithms that suit a given task and data type, but
+its coverage is limited to the data mining domain. ML Ontology covers
+a wider range of ML areas, methods, metrics, and libraries, and is
+populated accordingly, which makes it a more suitable basis for
+reasoning about method selection across the ML domain.
 
 \subsection{ML Ontology Structure and Content}
 \label{sec:ml-ontology-structure-and-content}
@@ -255,6 +238,12 @@ structure.
     \label{fig:ml-ontology-schema}
 \end{figure}
 
+It is important to note the naming convention used in ML Ontology differs from this thesis.
+The class called \texttt{ML\_area} represents the same concept as the learning paradigm 
+described in Section~\ref{sec:machine-learning-paradigms-and-tasks}, with
+instances for \textit{supervised\_learning}, \textit{unsupervised\_learning}, and \textit{reinforcement\_learning}.
+The \texttt{ML\_approach} class represents ML methods, with instances for specific algorithms such as \textit{random\_forest} and \textit{support\_vector\_machine}.
+
 The classes are divided into two groups: ML concepts, which
 cover the domain vocabulary, and ML implementations, which
 cover libraries, AutoML solutions, and their configuration
@@ -273,9 +262,9 @@ and the relations between them.
 
 Some key relations are presented in Figure~\ref{fig:ml-ontology-classes}, 
 among them are \texttt{used\_for}, which links
-approaches and metrics to the tasks they apply to,
-\texttt{belongs\_to}, which links tasks to learning areas,
-and \texttt{can\_perform}, which links libraries and AutoML
+approaches to the tasks they apply to.
+Tasks are also linked to ML areas via \texttt{belongs\_to}.
+\texttt{can\_perform} links libraries and AutoML
 solutions to tasks. Instances are also linked to corresponding 
 entries in Wikidata \parencite{wikidata} via \texttt{rdfs:seeAlso}.
 
@@ -382,7 +371,8 @@ indirectly through this relation. This means that an approach
 applicable to \texttt{image\_classification} is implicitly 
 associated with image data through the task it is linked to. 
 Figure~\ref{fig:ml-ontology-task-hierarchy} illustrates 
-the task hierarchy for supervised and unsupervised learning.
+the task hierarchy for some tasks that belong to 
+supervised and unsupervised learning. 
 
 \begin{figure}[H]
     \centering
@@ -393,8 +383,16 @@ the task hierarchy for supervised and unsupervised learning.
     \label{fig:ml-ontology-task-hierarchy}
 \end{figure}
 
-Reinforcement learning is defined as an ML area in the
-ontology but does not appear in the hierarchy since no tasks
+Figure \ref{fig:ml-ontology-task-hierarchy} shows the task hierarchy for a set
+of classification, regression, clustering and feature reduction tasks. 
+We can see that many of the tasks are narrower versions of more general ones, 
+and differ in the data type they apply to. 
+For example, \texttt{tabular\_classification} is a specialisation of \texttt{classification}.
+
+There are some missing concepts in the ontology. 
+Reinforcement learning is defined as an ML area in the 
+ontology but does not appear in the hierarchy in Figure \ref{fig:ml-ontology-task-hierarchy}
+since no tasks
 and no methods have been assigned to it.
 Coverage of \texttt{ML\_approach} instances is also
 incomplete. \textcite{humm2026industry_ready_machine_learning_ontology}

@@ -41,10 +41,6 @@ interpretability \parencite{lee2020machine_learning_enterprises}.
 If the selection is not done carefully, the resulting model may
 fail to provide useful results
 \parencite{ali2017accurate_multi_criteria_decision_making_methodology_recommending_machine_learning_algorithm}.
-In practice, simpler and more interpretable models are often
-preferred, even when more complex models could offer higher
-accuracy \parencite{paleyes2022challenges_deploying_ml_survey_case_studies}.
-
 Method selection is further complicated by a lack of knowledge
 and experience when adopting machine learning
 \parencite{sonntag2023pattern_ml_product_development}.
@@ -55,14 +51,6 @@ These challenges highlight the need for more structured
 approaches that can support method selection and make machine
 learning more accessible.
 
-% \begin{itemize}
-%     \item Increasing use of machine learning in product development and production
-%     \item Difficulty in selecting suitable ML methods for specific problems
-%     \item Gap between research literature and practical implementation
-%     \item Need for structured decision support
-%     \item Potential value of combining ontology and literature-based retrieval
-%     \item Relevance for engineers and practitioners with limited ML expertise
-% \end{itemize}
 
 \section{Problem Description}
 \label{sec:problem-description}
@@ -95,37 +83,32 @@ models, while less attention is given to what conditions lead to
 selecting one method over another in a specific context
 \parencite{arena2024conceptual_framework_ml_algorithm_selection_predictive_maintenance}.
 
-% TO VELDIG ULIKE POENG I SAMME AVSNITT
-
-A further barrier is interpretability. Many machine learning
-models act as black boxes that do not make clear why they
-produce a given output, and this is a key obstacle to their
-adoption in practice
-\parencite{presciuttini2024ml_iot_manufacturing_operations}.
-The relevant knowledge is also distributed across a large and
+The relevant machine learning knowledge is also distributed across a large and
 fragmented body of literature, spread across many journals and
 research communities \parencite{adekoya2022applications_ai_em}.
 This breadth creates extensive knowledge on the topic, but can
 also cause disorientation when selecting an approach
 \parencite{sala2018selecting_ml_algorithm}.
 
-Two needs follow from the challenges described above.
+Multiple needs follow from the challenges described above.
 The first is a structured representation of machine learning
 methods and their characteristics, so that method selection can
 be guided by more than accuracy alone and the basis for a
 recommendation can be made explicit.
-The second is a way to draw on the knowledge held in the
-scientific literature, so that recommendations can be grounded in
+Another need is a way to draw on the knowledge held in the
+scientific literature, so that method selection can be grounded in
 prior research rather than in experience alone. Because this
 knowledge is spread across many sources, a way of connecting a
 given problem to the research relevant to it is needed, without
 the manual search that the fragmented literature makes
-impractical.
+impractical. The last need is a way to put the selected method into practice.
 
 This thesis investigates whether these needs can be met by 
 combining an ontology-based representation of machine learning 
 knowledge with semantic retrieval from scientific literature and 
 structured implementation support.
+
+% Skriv om siste setning over!
 
 \section{Hypothesis and Research Questions}
 \label{sec:hypothesis-research-questions}
@@ -146,7 +129,7 @@ and support the first steps of implementing the chosen method.
 \end{quote}
 
 To investigate this hypothesis, a web-based decision-support
-system, called MLguide, was developed. MLguide combines an
+system called MLguide, was developed. MLguide combines an
 ontology-based representation of machine learning knowledge with
 semantic retrieval from scientific literature, and provides
 support for the first steps of implementation through generated notebooks. 

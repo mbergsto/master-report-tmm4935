@@ -114,7 +114,7 @@ the \texttt{ML\_approach} instance \texttt{linear\_regression} via
 \texttt{regression}, which belongs to \\ 
 \texttt{supervised\_learning} 
 via \texttt{belongs\_to}, and \texttt{has\_family} links it to the 
-\texttt{mla:ML\_task\_family} instance \texttt{regression\_family}.
+\\ \texttt{mla:ML\_task\_family} instance \texttt{regression\_family}.
 
 New \texttt{ML\_approach} instances were added to address the 
 coverage gaps identified in Section~\ref{sec:ml-ontology-structure-and-content}. 
@@ -262,14 +262,19 @@ the shared nature of its tasks.
 Table~\ref{tab:ml-task-families} lists the task families and their 
 assigned tasks.
 
-\begin{table}[H]
-\centering
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{4cm}Xr}
 \caption[ML\_task\_family instances]{ML\_task\_family instances and their assigned ML\_task instances.}
-\label{tab:ml-task-families}
-\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4cm}Xr}
+\label{tab:ml-task-families}\\
 \toprule
 \textbf{ML\_task\_family} & \textbf{Assigned ML\_task instances} & \textbf{n} \\
 \midrule
+\endfirsthead
+\toprule
+\textbf{ML\_task\_family} & \textbf{Assigned ML\_task instances} & \textbf{n} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
 classification\_\allowbreak family
 & classification, binary\_classification, multiclass\_classification,
     tabular\_classification, text\_classification, image\_classification,
@@ -311,27 +316,15 @@ reinforcement\_\allowbreak learning\_\allowbreak family
 tracking\_\allowbreak family
 & video\_object\_tracking & 1 \\
 \bottomrule
-\end{tabularx}
-\end{table}
+\end{xltabular}
 
 \subsection{Database Structure}
 \label{sec:database-structure}
 
-Article data is stored across several tables in PostgreSQL, shown in 
-Figure~\ref{fig:psql-er-diagram}. The \texttt{article\_abstracts} 
-table stores the raw abstract text for each article, used during 
-reranking. The \texttt{abstract\_embeddings} and 
-\texttt{title\_embeddings} tables store 768-dimensional vector 
-embeddings of the abstract and title respectively, used for semantic 
-similarity search via pgvector \parencite{pgvector}. The 
-\texttt{users} table stores a minimal user record created on first 
-login. The \texttt{saved\_searches} table stores previously saved searches 
-with problem descriptions, allowing users to reload them without 
-re-entering their inputs. The \texttt{method\_feedback} table stores
-user feedback on recommended methods, capturing all context related to 
-the user's problem description and the specific method. The \texttt{skipped\_articles}
-table is used in the process retrieving new articles for the knowledge graph and article database. 
-It is further explained in Section~\ref{sec:article-retrieval-flowchart}.
+The PostgreSQL database stores article data as its primary function 
+but also contains tables that support other parts of MLguide, 
+shown in Figure~\ref{fig:psql-er-diagram}. The database is also referred to as 
+the article database when only the article tables are relevant.
 
 \begin{figure}[H]
     \centering
@@ -339,3 +332,21 @@ It is further explained in Section~\ref{sec:article-retrieval-flowchart}.
     \caption[PostgreSQL ER diagram]{Entity-relationship diagram of the PostgreSQL database used in MLguide.}
     \label{fig:psql-er-diagram}
 \end{figure}
+
+Article data is stored across several tables in PostgreSQL. 
+The \texttt{article\_abstracts} 
+table stores the raw abstract text for each article, used during 
+reranking of methods. The \\ \texttt{abstract\_embeddings} and 
+\texttt{title\_embeddings} tables store 768-dimensional vector 
+embeddings of the abstract and title respectively, used for semantic 
+similarity search via pgvector. The 
+\texttt{users} table stores a minimal user record created on first 
+login. The \texttt{saved\_searches} table stores previously saved searches 
+with problem descriptions, allowing users to reload them without 
+re-entering their inputs. The \texttt{method\_feedback} table stores
+user feedback on recommended methods, capturing all context related to 
+the user's problem description and the specific method. The \texttt{skipped\_articles} 
+table is used by the article 
+retrieval pipeline to record articles that were skipped in 
+earlier runs, so that they can be excluded without reprocessing 
+in subsequent runs. 

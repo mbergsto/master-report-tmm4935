@@ -11,8 +11,14 @@ boost is applied as a final adjustment to the ranking.
 
 Figure~\ref{fig:recommendation-sequence} shows the sequence of 
 steps in the recommendation process, covering ontology-based 
-candidate retrieval and semantic similarity ranking. Feedback is 
-not included in detail in the diagram. It is described separately in 
+candidate retrieval and semantic similarity ranking. The steps 
+before the conditional block correspond to candidate retrieval, 
+described in Section~\ref{sec:ontology-candidate-retrieval}, 
+while the steps inside it are the semantic similarity ranking 
+steps that run only when a problem description is provided, 
+described in Sections~\ref{sec:article-similarity-scoring} 
+and~\ref{sec:method-scoring}. Feedback is not included in detail 
+in the diagram. It is described separately in 
 Section~\ref{sec:feedback-boost}.
 
 \begin{landscape}
@@ -122,11 +128,10 @@ are ranked by their semantic similarity to a problem description query, using th
 two-stage retrieval pipeline combining a bi-encoder and a cross-encoder, as described in 
 Section~\ref{sec:cross-encoder-reranking}. Similarity is 
 measured using cosine similarity, which is described as the most common metric in
-Section~\ref{sec:text-embeddings-and-semantic-similarity}. It compares 
-the angle between two vectors regardless of their magnitude 
-\parencite[Chapter~5.4]{jurafsky_martin2026speech_language_processing}.
+Section~\ref{sec:text-embeddings-and-semantic-similarity}.
 
 In the first stage, the problem description is encoded using 
+the bi-encoder
 \texttt{all-mpnet-base-v2} \parencite{sbert_mpnet}, a 
 sentence-transformer model based on MPNet \parencite{song2020mpnet}. 
 The model applies the SBERT approach described in 
@@ -257,12 +262,13 @@ entirely.
 
 Figure~\ref{fig:ranking-flow} illustrates the full ranking 
 process, from initial retrieval of candidate methods, through 
-similarity scoring and feedback boost. 
+similarity scoring and feedback boost. Arrows are labeled with
+the default weight values.  
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Figures/06-implementation/ranking-flow.pdf}
+    \includegraphics[width=0.8\textwidth]{Figures/06-implementation/ranking-flow.pdf}
     \caption[Ranking flow]{Flowchart of the ranking process in 
-    MLguide, including similarity scoring and feedback boost.}
+    MLguide.}
     \label{fig:ranking-flow}
 \end{figure}

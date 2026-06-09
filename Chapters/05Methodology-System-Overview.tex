@@ -33,7 +33,7 @@ These activities are nominally sequential, but iteration is expected.
 After evaluation, the researcher may return to design and development to improve 
 the artifact before proceeding \parencite{peffers2007design_science_research_methodology}. 
 Figure~\ref{fig:dsr-methodology-overview} shows how these activities map to the structure 
-of this thesis.
+and work of this thesis.
 
 \begin{figure}[H]
     \centering
@@ -42,17 +42,18 @@ of this thesis.
     \label{fig:dsr-methodology-overview}
 \end{figure}
 
+
 \section{System Overview}
 \label{sec:system-overview}
 
 MLguide is a web-based decision-support system designed to help users select 
 machine learning methods for a given problem. 
 The user starts by describing their problem with text input, and can provide 
-filters to narrow the scope, such as ML area and task type. ML area refers to 
+filters to narrow the scope, such as ML area. ML area refers to 
 the machine learning paradigm concept introduced in 
 Section~\ref{sec:machine-learning-paradigms-and-tasks}. The term ML area is 
 used from here on, following the naming in the ML Ontology that MLguide builds 
-on. Figure~\ref{fig:mlguide-overview} gives a high-level overview of MLguide 
+on, described in Section~\ref{sec:ml-ontology-structure-and-content}. Figure~\ref{fig:mlguide-overview} gives a high-level overview of MLguide 
 and its main components.
 
 \begin{figure}[H]
@@ -80,7 +81,7 @@ on ML in product development and production. Each article in
 the dataset was categorised by ML area, product lifecycle phase,
 and application area, and ML methods were extracted from the 
 articles, as described in Section~\ref{sec:pre-master-findings}. 
-Based on this, a roadmap was developed that filtered 
+Based on this, a simple roadmap was developed that filtered 
 and ranked articles and methods according to the 
 user's selected ML area, PLC phase, and application area. 
 A simplified version of this 
@@ -94,13 +95,13 @@ roadmap is shown in Figure~\ref{fig:ml-roadmap-pre-master}.
 \end{figure}
 
 The pre-master project identified several directions for 
-further development of the literature-based roadmap, 
-including ontology-based ML knowledge representation, support 
-for translating recommendations into an ML implementation, and 
+further development of the literature-based roadmap.
+These directions include ontology-based ML knowledge representation, 
+support for translating recommendations into an ML implementation, and 
 user feedback to improve recommendations over time 
-\parencite{bergsto2026mlselection}. These correspond closely to 
+\parencite{bergsto2026mlselection}. The directions correspond closely to 
 the gaps identified in 
-Section~\ref{sec:related-work-and-existing-tools}, in particular 
+Section~\ref{sec:research-gap}, in particular 
 the need to combine structured method knowledge with 
 literature-based evidence and to extend method selection into 
 support for implementation. MLguide extends the original roadmap 
@@ -195,12 +196,13 @@ Table~\ref{tab:user-testing}.
 
 The two projects differ in scope and focus. The first project has a 
 well-defined problem, detecting anomalies in time series data using 
-unsupervised learning. The groups are asked to compare at least three 
+unsupervised learning. The groups are also asked to compare at least three 
 ML methods.
 
 The second project is more open-ended. The groups are asked to analyse 
-applications of reinforcement learning across four product lifecycle phases, 
-product design, manufacturing, product use, and recycling, and to implement 
+applications of reinforcement learning across four product lifecycle phases: 
+product design, manufacturing, product use, and recycling. 
+They are also asked to implement 
 a simulated RL environment and a sustainability agent.
 
 The user testing provides feedback on the system through 
@@ -230,18 +232,18 @@ This gives MLguide two channels for user feedback when conducting user testing.
 \subsection{Example-Based Evaluation}
 \label{sec:example-based-evaluation}
 
-Example-based evaluation is also a natural part of iterative development, since 
+Example-based evaluation is a natural part of iterative development, since 
 the same constructed examples can be run on each version to check that behaviour 
 is correct as the system changes. A set of examples is submitted to the system, 
 and the output is examined to check whether it is reasonable and relevant for 
 the given problem.
 
-For this work, each example was written as a problem description representing a 
+For the evaluation of MLguide, each example is written as a problem description representing a 
 typical use case for machine learning in product development and production, and 
-the examples were chosen to cover different ML areas and task types. Each example 
-was submitted to MLguide, and the output was examined, including the ranked 
+the examples are chosen to cover different ML areas and task types. Each example 
+is submitted to MLguide, and the output is examined, including the ranked 
 methods, the supporting articles, and the generated notebook. Because the 
-examples were both written and assessed as part of this work, this evaluation is 
+examples are both written and assessed as part of this work, this evaluation is 
 a structured review of the system's behaviour rather than an independent test.
 
 \section{Development Timeline}
@@ -252,7 +254,9 @@ MLguide. It marks the two user tests, as well as the latest and documented examp
 evaluation. It divides the development into three main system versions.
 Version A is the version used in the first user test, version B the
 version used in the second, and version C the current and latest version 
-used in the final example-based evaluation. 
+used in the final example-based evaluation. The system was developed
+iteratively throughout, with changes made continuously between these
+versions rather than only at the marked points.
 
 \begin{figure}[H]
     \centering

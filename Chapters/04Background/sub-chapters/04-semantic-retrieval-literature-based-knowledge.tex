@@ -14,14 +14,16 @@ and how these techniques support ranking and matching against a corpus of scient
 \subsection{Text Embeddings and Semantic Similarity}
 \label{sec:text-embeddings-and-semantic-similarity}
 
-Text can be represented as a numerical vector,  
+Text can be represented as a numerical vector, which is 
 a point in a high-dimensional space referred to as the embedding 
 space \parencite[116]{jurafsky_martin2026speech_language_processing}. 
-The position of a vector in this space reflects the semantic 
-content of the text it represents. A central property of this 
-representation is that semantically similar texts are mapped to 
-nearby points in the embedding space, while unrelated texts are 
-placed further apart. Figure~\ref{fig:embedding-space-example} illustrates 
+The
+position of a vector in this space reflects the semantic content of
+the text it represents, so that semantically similar texts are mapped
+to nearby points in the embedding space while unrelated texts are
+placed further apart
+\parencite{reimers2019sentence_bert_sentence_embeddings_using_siamese_bert_networks}. 
+Figure~\ref{fig:embedding-space-example} illustrates 
 this principle for a small set of example words.
 
 \begin{figure}[H]
@@ -46,7 +48,7 @@ measures the angle between two vectors, normalised for their length:
 \end{equation}
 
 The result is 1 when the vectors point in the same direction, indicating
-maximum similarity, falls to 0 when they are orthogonal and share no
+maximum similarity. It falls to 0 when they are orthogonal and share no
 similarity, and reaches $-1$ when they point in opposite directions
 \parencite[Chapter~5.4]{jurafsky_martin2026speech_language_processing}.
 Normalising for vector length ensures that the similarity score 
@@ -60,14 +62,16 @@ reflects semantic content rather than vector magnitude.
 \subsection{Transformer-Based Sentence Embedding Models}
 \label{sec:transformer-based-sentence-embedding-models}
 
-Transformer-based language models represent text by processing 
-input tokens through multiple layers of self-attention, producing 
-contextual representations that capture relationships between 
-words across the full input sequence 
-\parencite{vaswani2023attentionneed}. Unlike earlier embedding 
-approaches that assigned a fixed vector to each word regardless 
-of context, transformer models produce representations that 
-reflect the meaning of a word given its surrounding text.
+Transformer-based language models split the input text into a sequence
+of tokens and process them through multiple layers of self-attention,
+where each position attends to every other position in the sequence
+\parencite{vaswani2023attentionneed}. This lets the model relate
+tokens to each other regardless of how far apart they are in the input
+\parencite{vaswani2023attentionneed}.
+% Unlike earlier embedding 
+% approaches that assigned a fixed vector to each word regardless 
+% of context, transformer models produce representations that 
+% reflect the meaning of a word given its surrounding text.
 
 However, standard transformer models such as Bidirectional Encoder 
 Representations from Transformers (BERT) are not directly suited for 
@@ -105,10 +109,6 @@ every comparison.
     \label{fig:sbert-architecture}
 \end{figure}
 
-The sentence-transformers library provides pre-trained models 
-based on this approach for encoding text into fixed-size 
-vectors \parencite{sbert_docs}.
-
 \subsection{Dense Retrieval}
 \label{sec:dense-retrieval}
 
@@ -122,17 +122,20 @@ with one weighted entry per vocabulary term, using a scheme such as term
 frequency-inverse document frequency (tf-idf) or Best Match 25 (BM25), and
 estimate relevance from the terms the two share
 \parencite[Chapter~11.1]{jurafsky_martin2026speech_language_processing}. 
-While effective for many tasks, this approach treats documents as bags 
-of words, meaning that word order and meaning are ignored, and 
-only exact term matches contribute to the relevance score.
+While effective for many tasks, this approach treats documents as bags
+of words, meaning that word order is ignored and only exact term
+matches contribute to the relevance score
+\parencite[Chapter~11.1.1]{jurafsky_martin2026speech_language_processing}. Retrieval of
+this kind is therefore also referred to as keyword-based.
 
 Dense retrieval is a semantic retrieval mechanism that addresses this
 limitation by mapping documents and queries to embeddings produced by a
 language model, instead of vectors of word counts
 \parencite[Chapter~11.1]{jurafsky_martin2026speech_language_processing}. 
-Because semantically similar texts are mapped to nearby points in the 
-embedding space, a query can retrieve relevant documents even 
-when they do not share exact terms with the query. This makes 
+Because semantically similar texts are mapped to nearby points in the
+embedding space \parencite{reimers2019sentence_bert_sentence_embeddings_using_siamese_bert_networks},
+a query can retrieve relevant documents even when they do not share
+exact terms with the query. This makes 
 dense retrieval more flexible than keyword-based approaches for 
 tasks where the user's information need is expressed in natural 
 language rather than precise search terms.
@@ -188,7 +191,7 @@ difference between the two approaches.
     \caption[Bi-encoder vs.\ cross-encoder]{The bi-encoder encodes the
     query and the document separately and compares the two vectors with
     cosine similarity, while the cross-encoder processes them together and
-    outputs a relevance score directly. Inspired by
+    outputs a relevance score directly. Figure is inspired by
     \textcite{kumar2024crossencoders}.}
     \label{fig:bi-vs-cross-encoder}
 \end{figure}
@@ -227,8 +230,8 @@ verma2025beyond_retrieval_ensembling_cross_encoders}.
 \label{sec:rank-fusion}
 
 Retrieval can produce several rankings of the same documents, for example 
-one from a bi-encoder and one from a cross-encoder. Rank fusion combines 
-such rankings into a single ordering. Reciprocal Rank Fusion (RRF) does this 
+one from a bi-encoder and one from a cross-encoder. Rank fusion can be used 
+to combine such rankings into a single ordering. Reciprocal Rank Fusion (RRF) does this 
 by converting each document's rank position into a score and summing these 
 scores across the rankings, rather than using the score values returned by 
 the individual methods. Highly ranked documents receive higher scores, but 
