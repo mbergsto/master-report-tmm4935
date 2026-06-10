@@ -28,15 +28,20 @@ problem are ranked highest.
 Across the evaluation, MLguide produced recommendations that 
 were largely relevant to the problems submitted. In the user 
 testing, most groups in Project 1 had high or medium overlap 
-between the recommended methods and the methods they used, 
-and several groups raised method shortlisting and early 
-orientation as a benefit 
+between the recommended methods and the methods they used.
+Several groups found the recommendations useful for shortlisting
+methods and getting an early orientation
 (Section~\ref{sec:project-1}). Groups in Project 2 reported 
 that the recommended methods gave a useful overview of 
 relevant approaches (Section~\ref{sec:project-2}). The 
 example-based evaluation showed that most of the top-ranked 
 methods were closely related to the problem in each case 
-(Section~\ref{sec:results-example-based-evaluation}). At the 
+(Section~\ref{sec:results-example-based-evaluation}). 
+The relevance also held across the different ML areas covered by the
+evaluation, from anomaly detection and reinforcement learning in
+the user testing to the three different areas in the example-based
+evaluation.
+At the 
 same time, several observations point to systematic effects 
 in how the recommendations are shaped, which are discussed 
 further in this section.
@@ -73,7 +78,7 @@ methods that are mentioned in many articles are naturally more likely to
 appear among the top retrieved articles that drive the method 
 ranking, so a similar effect is present. At the same time, 
 methods with few articles are not excluded from the top of 
-the list. In the supervised classification example shown in 
+the recommended methods. In the supervised classification example shown in 
 Figure~\ref{fig:recommendations-example-1-rec}, Gaussian 
 mixture model (GMM) appears relatively high despite having only 33 
 articles, against several thousand for random forest, SVM, and neural network. The same effect is visible in the 
@@ -88,12 +93,11 @@ MLguide uses article titles and abstracts as the text input for
 retrieval, not full article content. The motivation for this 
 choice is described in 
 Section~\ref{sec:article-retrieval-and-knowledge-extraction}: 
-abstracts provide a consistent representation of each article's 
-core content, while full texts include sections that make them 
-less comparable across a corpus, and storing and matching around 
-17000 full texts would also be costly. Abstracts are also more 
-comparable in length to a problem description, which suits the 
-same sentence embedding model. However, several works reviewed in 
+Abstracts and titles are consistently available and condense each 
+article's core content into a short summary, which gives a compact 
+representation that suits the sentence embedding model. Full text is 
+not always openly available and can exceed the input limits of common 
+embedding models. However, several works reviewed in 
 Section~\ref{sec:semantic-retrieval-from-scientific-literature} 
 point to the limitations of this approach. 
 \textcite{park2026chain_of_retrieval} report that working from abstracts
@@ -124,7 +128,7 @@ with a supervised baseline can match both ML areas. As a
 result, methods that are mentioned but not recommended by the 
 original authors, that are used as preprocessing steps, or 
 that belong to a different ML area than the article's main 
-contribution, can still appear in the recommendations.
+contribution, can still appear in the recommendations of MLguide.
 
 The findings in this thesis are in line with the observation 
 made by \textcite{ostendorff2022_aspect_based_embeddings}
@@ -218,10 +222,11 @@ designed to be extended over time. The hierarchy lets related
 methods share properties through inheritance, as described in 
 Section~\ref{sec:ml-and-ontology}, which makes it easier to add 
 new methods without specifying every property from scratch. 
-This makes the ontology more flexible than a flat matrix as used 
-by \textcite{riesener2020} and 
+Compared with the work reviewed in
+Section~\ref{sec:related-work-and-existing-tools}, this makes the
+ontology more flexible than a flat matrix as used by \textcite{riesener2020} and 
 \textcite{lickert2021_ml_selection_reverse_logistics}, and more 
-formal than the semantic wiki of 
+structured than the semantic wiki of 
 \textcite{gerschutz2021semantic_web_approach}. It also supports 
 the kind of transparency that AutoML approaches are often 
 criticised for lacking 
@@ -264,14 +269,9 @@ Some structural choices in the ontology are also worth discussing.
 The dataset type of a method is not stored as a property on the 
 method itself, but is reached through the \texttt{used\_for} relation 
 to a task, as explained in 
-Section~\ref{sec:ml-ontology-structure-and-content}. A method 
-therefore matches a dataset type only if it is connected to a task 
-that has that dataset type defined. One result is that the same 
-information can be expressed in two ways: a task such as "tabular 
-regression" overlaps with the combination of the task "regression" 
-and a tabular dataset type. Another result is that whether a method 
-matches a dataset type depends entirely on the tasks it happens to be 
-linked to. In the 
+Section~\ref{sec:ml-ontology-structure-and-content}.
+A method therefore matches a dataset type only if it is connected to a task 
+that has that dataset type defined. In the 
 supervised classification example (Section~\ref{sec:example-1}), 
 PCA is not marked as matching the tabular 
 dataset type, because the tasks PCA is linked to in the ontology do 
@@ -304,8 +304,8 @@ place and particle swarm optimization further down. Neither
 is a reinforcement learning method, but the retrieved 
 articles connect them to similar scheduling problems. This is 
 consistent with the literature, where evolutionary algorithms 
-are often combined with the three common ML areas 
-(Section~\ref{sec:machine-learning-paradigms-and-tasks}). The 
+are often combined with the three common ML areas, as described in 
+Section~\ref{sec:machine-learning-paradigms-and-tasks}. The 
 ontology accommodates this without forcing a classification 
 that would not be a good fit.
 
@@ -347,10 +347,10 @@ publications to fields of study and uses the graph for
 exploratory search, while ITO 
 \parencite{blagec2022_benchmark_knowledge_graph} imports 
 articles automatically from Papers with Code and links them 
-to benchmark results for provenance. These approaches show 
-that more can be extracted from the literature than what 
-MLguide currently uses, and that automated import can reduce 
-the manual effort required to keep an ontology up to date.
+to benchmark results for provenance. These approaches show that more knowledge can be extracted from the literature 
+than what MLguide currently uses. 
+Automated import of this kind reduces the manual effort required 
+to keep an ontology up to date.
 
 A natural direction for further work is therefore to extend 
 the article retrieval pipeline to bring more structured 
@@ -829,21 +829,22 @@ support users with limited machine learning expertise in the
 early stages of implementation.
 
 The support takes the form of a starter notebook generated for 
-the recommended method. It gives the user a concrete starting 
-point, but only that, the implementation itself is left to the 
-user. This is a more direct link between method selection and 
-implementation than the reviewed frameworks offer, which stop at 
-the recommendation, but it is a modest form of support. Two 
-groups in Project 1 reported the code templates as useful, which 
+the recommended method. It gives the user a concrete starting point, 
+but the full implementation is 
+still left to the user. This is a more direct link between method selection and 
+implementation than the reviewed frameworks offer, which stop at the 
+recommendation. Two groups in Project 1 reported the code 
+templates as useful, which 
 is some evidence that the output type has a place, though too 
 little to draw firm conclusions from.
 
 The support is also uneven. The templates are simple and cover 
 only part of the method set, and reinforcement learning methods 
 have no templates at all, as the missing notebook for Q-learning 
-in Example 2 showed. Adding templates is manual work, much like 
-populating the ontology, but the structure makes it easy to 
-extend, since a new template only has to be placed in the right 
+in Example 2 showed. Adding templates is manual work, 
+much like populating the ontology, 
+but the template set is easy to extend, 
+since a new template only has to be placed in the right 
 folder. In its current form, MLguide supports early 
 implementation in a limited but concrete way, with clear room to 
 extend both the coverage and the depth of the notebooks.

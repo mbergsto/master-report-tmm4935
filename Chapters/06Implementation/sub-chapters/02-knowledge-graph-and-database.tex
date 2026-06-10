@@ -63,8 +63,8 @@ templates during notebook generation. \\
 concept but serve different roles. The reason for keeping them 
 separate is practical: \texttt{ML\_approach} instances carry 
 relations to other ML concepts in the ontology, such as which 
-tasks a method can be used for and which learning area it belongs 
-to. Adding article relations directly to these instances would mix 
+tasks a method can be used for. Adding article relations 
+directly to these instances would mix 
 two different kinds of knowledge on the same node, making the 
 ontology harder to navigate during development. Instead, article 
 relations are kept on \texttt{mla:Method}, and the two classes 
@@ -104,17 +104,18 @@ of how the extended ontology represents an article and its relations.
 \end{figure}
 
 The \texttt{mla:Article} instance represents a research article 
-identified by its Digital Object Identifier (DOI) and title. It is linked to 
+identified by its Digital Object Identifier (DOI) and title. 
+The article instance is linked to 
 \texttt{supervised\_learning} via \texttt{has\_ml\_area}, and to 
 \texttt{method\_linear\_regression}, an \texttt{mla:Method} instance, 
 via \texttt{mentionsMethod}. The method instance is in turn linked to 
 the \texttt{ML\_approach} instance \texttt{linear\_regression} via 
-\texttt{skos:exactMatch}, which carries the ontology relations: 
-\texttt{used\_for} links it to the \texttt{ML\_task} 
-\texttt{regression}, which belongs to \\ 
-\texttt{supervised\_learning} 
-via \texttt{belongs\_to}, and \texttt{has\_family} links it to the 
-\\ \texttt{mla:ML\_task\_family} instance \texttt{regression\_family}.
+\texttt{skos:exactMatch}.
+The \texttt{used\_for} relation links the approach instance to the \texttt{ML\_task} 
+instance for \texttt{regression}, which belongs to \texttt{supervised\_learning} 
+via \texttt{belongs\_to}. The \texttt{has\_family} relation links the task instance
+to the \\ 
+\texttt{mla:ML\_task\_family} instance \texttt{regression\_family}.
 
 New \texttt{ML\_approach} instances were added to address the 
 coverage gaps identified in Section~\ref{sec:ml-ontology-structure-and-content}. 
@@ -185,11 +186,10 @@ Section~\ref{sec:ml-ontology-structure-and-content} was applied to propagate
 instances through their \texttt{skos:broader} hierarchies.
 
 Where available, links to corresponding Wikidata entities were added 
-to new instances via \texttt{rdfs:seeAlso}, following the same 
-approach used in the original ontology 
-\parencite{humm2026industry_ready_machine_learning_ontology}. 
+to new instances via \texttt{rdfs:seeAlso}, as in the original ontology 
+\parencite{humm2026industry_ready_machine_learning_ontology}.  
 Candidates were retrieved using the Wikidata search API and scored 
-by string similarity between labels and whether the Wikidata 
+by similarity between labels and whether the Wikidata 
 description contained predefined ML-related terms. Results were 
 reviewed manually before being added.
 
