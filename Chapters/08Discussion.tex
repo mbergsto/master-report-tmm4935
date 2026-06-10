@@ -386,7 +386,7 @@ the recommendations, which is the focus of this section.
 The ontology in MLguide represents general machine learning 
 knowledge, organised around ML areas, tasks, dataset types, 
 and performance preferences. The ontology does not represent production domain knowledge, 
-which is the kinds of problems found in product development and 
+that is for example the kinds of problems found in product development and 
 production, such as predictive maintenance, quality 
 prediction, or fault diagnosis 
 (Section~\ref{sec:applications-of-machine-learning}). The two 
@@ -441,11 +441,12 @@ incomplete, partial coverage may give worse results than no
 filter at all, because methods that should match a domain 
 would appear unmarked.
 
-Without explicit filters for the production domain, the way 
-the user describes the problem becomes the main signal for what 
-the system should retrieve. MLguide uses free-text problem 
-descriptions as the main input, supported by an optional filter 
-for ML area.
+The absence of explicit production-domain filters contributes to 
+the user's problem description being the main signal 
+for what the system should retrieve. MLguide 
+uses free-text problem 
+descriptions as the main input, supported by an 
+optional filter for ML area.
 The pattern language of 
 \textcite{sonntag2023pattern_ml_product_development}, by 
 contrast, requires the user to formalise the entire problem 
@@ -465,7 +466,7 @@ were still relevant anomaly detection methods. This indicates
 that the system is usable without multiple filters
 for scoping the problem.
 
-An interesting and potentially positive effect of not having 
+An interesting and positive effect of not having 
 production domain knowledge in the ontology is that MLguide is 
 relatively easy to adapt to a different domain. The article base can 
 be replaced with articles from another field, and the recommendations 
@@ -537,18 +538,17 @@ sidebar interface in Traingenerator described in
 Section~\ref{sec:tools-and-platforms}. However, parameter selection 
 can be difficult for users new to machine learning, 
 which is part of the target group for MLguide. A default 
-configuration should therefore remain available so that the 
+configuration should therefore remain available, so the 
 notebook works as a starting point even without further 
 input from the user. The underlying ontology already supports 
 this kind of extension. The \texttt{configuration\_item} 
 class from the ML Ontology, shown in 
 Section~\ref{sec:ml-ontology-structure-and-content}, gives a 
 structure for storing parameters and their values. Filling 
-this with reasonable defaults, possibly extracted from 
-articles where parameter choices are reported, would let 
-the system suggest defaults that go beyond a fixed template 
-while remaining useful to users that do not want to choose 
-themselves.
+the \texttt{configuration\_item} with reasonable defaults would let 
+the system suggest defaults, and these 
+defaults could possibly be extracted from articles where parameter 
+choices are reported. 
 
 \section{Method Feedback}
 \label{sec:method-feedback}
@@ -573,23 +573,16 @@ a deliberate design choice for the current stage, but it
 also means that feedback is unlikely to influence the 
 recommendations meaningfully until the user base grows.
 
-Each rating is stored together with the full problem 
-description and the rated method, as described in 
-Section~\ref{sec:database-structure}. This structure 
-supports content-based filtering 
-\parencite[Chapter~4]{ricci2010recommender_systems_handbook}, 
-where recommendations are based on similarity between items 
-that the users have rated before. Since each rating 
-in MLguide is tied to the problem description it was given 
-for, the similarity between a user's current problem and 
-problems that have been rated before could feed into the 
-ranking, giving more weight to methods that have been rated 
-highly for similar problems. In this way the system would 
-collect knowledge from 
-its users and use it directly in the recommendations, which 
-would reduce some of the manual-effort limitations discussed 
-in earlier sections by drawing on user input rather than only 
-on updates to the data sources. 
+Each rating is stored together with the full problem description and
+the rated method, as described in Section~\ref{sec:database-structure}.
+This structure makes it possible to draw on the idea behind
+content-based filtering, presented in
+Section~\ref{sec:rating-based-user-feedback}, where items are matched
+on their features. In MLguide the problem
+description would play the role of the item features. The similarity
+between a new problem and earlier rated problems could then feed into
+the ranking, giving more weight to methods that were rated highly for
+similar problems, regardless of which user rated them.
 
 \section{Presentation of the Recommendations}
 \label{sec:presentation-of-the-recommendations}
@@ -617,7 +610,7 @@ They work from small, manually curated sets, from two methods in
 the pattern language of 
 \textcite{sonntag2023pattern_ml_product_development} to eleven 
 in \textcite{riesener2020} and sixteen in the MCDA framework of 
-\textcite{sonntag2024_mcda_framework}, and they narrow the user 
+\textcite{sonntag2024_mcda_framework}. They narrow the user 
 towards a single method through best match, elimination, or a 
 ranking with a clear winner. MLguide instead draws on the full 
 set of 187 methods in the ontology and returns ten,
@@ -700,7 +693,7 @@ use case. Several groups that used MLguide late reported
 that they used it to confirm or validate methods they had 
 already chosen (Figure~\ref{fig:benefits-p1}). MLguide 
 therefore appears to serve two roles, helping users choose 
-methods when used early, and providing a check on methods 
+methods when used early, and providing a validation on methods 
 chosen elsewhere when used late.
 
 The example-based evaluation complements the user testing by 
@@ -770,7 +763,7 @@ reason the ontology contributes little to the ranking itself at
 present, since attributes that are only partly populated cannot be 
 used to filter or rank without risking the exclusion of valid 
 candidates. The ontology represents general machine learning knowledge and does not 
-capture the kinds of problems found in product development and 
+include knowledge on product development and 
 production, so the orientation towards that domain comes from the 
 article retrieval rather than from the structured representation. The 
 article-method link that already fills part of the ontology 
@@ -790,15 +783,15 @@ of machine learning methods.
 Semantic retrieval ranks the articles by their relevance to the 
 problem description, and the method recommendations are built by 
 aggregating the article ranks into a score for each method they 
-mention. Across the evaluation and user testing, this produced 
-recommendations that were largely relevant to the problems 
-submitted. The recommendations favour methods that appear 
-frequently in the literature, which tend to be general methods 
-that work across many problems, but more specific methods still 
-surface when their articles match the problem closely. A method 
-with few articles can rank high on a strong topical match, as 
-GMM and local outlier factor did in the examples, 
-so the retrieval does not simply reproduce the most common methods. 
+mention. Across the evaluation and user testing, this produced
+recommendations that were largely relevant to the problems
+submitted, and the relevance held across the different ML areas
+covered. The recommendations favour methods that appear frequently in the
+literature, which tend to be general methods that work across many
+problems. Even so, a method with few articles can rank high on a
+strong topical match, as GMM and local outlier factor did in the
+examples, so the retrieval does not simply reproduce the most common
+methods.
 The problem description alone is enough to produce a reasonable 
 result, as the anomaly detection example showed without the ML area 
 filter applied. Because the recommendations 
@@ -810,7 +803,7 @@ The articles also serve as the justification for a
 recommendation. They are shown alongside each method, so the 
 user can see the basis for the method directly. This justification is 
 only as strong as what the articles say about the method, which 
-the system does not check. A method counts as supported whenever 
+the system does not check directly. A method counts as supported whenever 
 a matching article mentions it, even when the article uses it 
 only as a baseline or as one step in a pipeline. PCA appears 
 in the supervised classification 
@@ -862,11 +855,13 @@ a working system, and the recommendations were largely relevant to the
 problems submitted. The ontology contributes less than it could, 
 because several of its properties have low coverage and cannot yet be 
 used to shape the ranking. Most of the work is therefore carried by 
-the semantic retrieval, which ranks methods through the articles that 
-mention them. The weaker part is justification. A method counts as 
-supported whenever a matching article mentions it, even when the 
-article uses it only as a baseline or as one step in a pipeline, so a 
-recommendation is not always justified as well as it appears. 
+the semantic retrieval,
+which ranks methods through the articles that mention them. The same
+articles are meant to justify each recommendation, and this is the
+weaker part. A method counts as supported whenever a matching article
+mentions it, even when the article uses it only as a baseline or as
+one step in a pipeline, so a recommendation is not always justified as
+well as it appears.
 The implementation support is real but limited, since the notebooks 
 remain simple and do not yet cover the full method set. 
 The hypothesis therefore holds on three counts: relevance, the first 

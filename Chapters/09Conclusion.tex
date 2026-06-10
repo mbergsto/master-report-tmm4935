@@ -6,40 +6,30 @@ for users with limited machine learning expertise,
 and support the first steps of implementing the chosen method. 
 The question was
 examined through the design and evaluation of MLguide, a web-based
-system built within a Design Science Research framework. MLguide draws
-on an ontology of machine learning knowledge,
-and a database of
-research articles, and produces a ranked list of methods, a set of
-supporting articles, and a starter notebook. The system was evaluated
+system built within a Design Science Research framework. 
+MLguide draws on an ontology of machine learning knowledge and a database of 
+research articles. For output it produces a ranked list of machine learning 
+methods, a set of supporting articles, and a starter notebook. The system was evaluated
 through user testing in two machine learning course projects and through an
 example-based evaluation on constructed problems.
 
 The evaluation showed that the recommended methods matched the
-submitted problems well, and that the three elements function together
-in a working system. Several properties in the ontology have
-low coverage, so the ontology contributes little to the ranking and the
-justification, and instead supplies the candidate methods for
-recommendation and presents structured information about them. 
-The semantic retrieval therefore drives the ranking. The
+submitted problems well across different ML areas, and that the three
+elements function together in a working system. Several properties in
+the ontology have low coverage, so it contributes little to the
+ranking of methods, which is instead driven by the semantic retrieval. The
 recommendations are grounded in the literature rather than in fixed
 rules, and the articles shown for each method make the basis for a
-recommendation visible to the user. The weaker point is justification.
-The retrieval works from abstracts, which summarise a study rather than
-describe its methodology in detail, so a method counts as supported whenever
-a matching article mentions it, even when the method is not the main
-contribution of the article. The
-implementation support is real but limited, since the starter
-notebooks are simple and cover only part of the method set.
-The hypothesis is therefore supported for relevance and for the first
-steps of implementation, with the justification of individual
-recommendations as the main reservation.
+recommendation visible to the user. The weaker point is justification,
+since a method counts as supported whenever a matching article
+mentions it, even when the method is not the main contribution of the
+article. The implementation support is real but limited, since the starter
+notebooks are simple and cover only part of the method set, though
+the structure makes them easy to extend.
 
 The main contribution of this thesis is MLguide itself, a working
 system that brings together three capabilities that earlier work has
-kept apart. The method-selection frameworks reviewed in this thesis
-stop at recommending a method, code generators assume that a method
-has already been chosen, and AutoML systems produce a model without
-making the selection transparent. MLguide combines structured method
+kept apart. MLguide combines structured method
 knowledge, literature-based recommendation, and a starting point for
 implementation in a single system, and presents the articles behind
 each recommendation so that the user can judge it. A further
@@ -52,15 +42,11 @@ artifact also yields design knowledge that can inform similar systems,
 in particular the value of pairing structured method knowledge with
 retrieval from the literature, and the trade-offs this involves.
 
-MLguide shows that an ontology of machine learning methods and
-semantic retrieval from scientific literature can be combined into a
-working system that recommends relevant methods and supports the first
-steps of implementation, for a user group that often lacks structured
-guidance for method selection. The clearest path forward builds on the
+The clearest path forward builds on the
 link between the articles and the ontology that already drives the
-recommendations. Extending this link to draw more structured knowledge
-from the literature automatically would reduce the manual effort behind
-the ontology and let it take on a larger part of the ranking. 
+recommendations. Extending this link to draw more structured knowledge from the
+literature automatically would build up the knowledge in the ontology
+while reducing the manual effort behind it.
 The starter notebooks could also be developed further, both to cover more
 methods, including reinforcement learning, and to let the user configure
 the method directly, with suggested parameter values.

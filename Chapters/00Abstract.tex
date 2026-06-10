@@ -1,34 +1,39 @@
-Machine learning is widely used in product development and production, but the 
-large number of available methods makes it difficult to select a suitable one, 
-especially for users with limited machine learning expertise. The relevant 
-knowledge is also spread across a large and fragmented body of literature, which 
-makes manual search impractical. This thesis investigates whether a single 
-decision-support system can recommend suitable methods and support the first 
-steps of implementation for such users. Earlier work tends to address these 
-tasks separately. Method-selection frameworks stop at recommending a method, 
-code generators assume a method has already been chosen, and AutoML systems 
-produce a model without making the selection transparent. The approach proposed 
-here combines ontology-based knowledge representation, semantic retrieval from 
-scientific literature, and structured implementation support in one system.
+Machine learning is widely used in product development and production,
+but the many available methods make it difficult to select a suitable one,
+especially for users with limited machine learning expertise.
+Relevant knowledge is spread across a large and fragmented body of literature,
+which makes manual search impractical.
+This thesis investigates whether a single decision-support system can recommend
+suitable machine learning methods and support the first steps of implementation.
+Earlier work tends to treat these tasks separately
+rather than combining recommendation with implementation support.
+The approach proposed here combines ontology-based knowledge representation,
+semantic retrieval from scientific literature,
+and structured implementation support in one system.
 
-To investigate this, a web-based system called MLguide was developed and 
-evaluated within a Design Science Research framework. MLguide draws on an 
-ontology of machine learning knowledge and a database of research articles, and 
-produces a ranked list of methods, the articles that support each one, and a 
-starter notebook for the chosen method. The system was evaluated through user 
-testing in two machine learning course projects and through an example-based 
-evaluation on constructed problems. The recommended methods matched the 
-submitted problems well. Several properties in the ontology have low coverage, 
-so the ontology contributes little to the ranking and instead supplies the 
-candidate methods, while the semantic retrieval drives the ranking. The 
-recommendations are grounded in the literature rather than in fixed rules, and 
-the supporting articles make the basis for each recommendation visible. The 
-weaker point is justification, because a method counts as supported whenever a 
-matching article mentions it, even when the method is not the article's main 
-contribution.
+A web-based system called MLguide was developed
+within a Design Science Research framework.
+Candidate methods are supplied by an ontology of machine learning knowledge,
+while the ranking is based mainly on semantic retrieval
+that matches relevant research articles to the user's problem description.
+For each submitted problem, a ranked list of recommended methods is produced,
+together with the top-ranked supporting articles
+and a generated Jupyter notebook for the chosen method.
 
-The hypothesis is therefore supported for relevance and for the first steps of 
-implementation, with the justification of individual recommendations as the main 
-reservation. The main contribution is MLguide itself, together with the link 
-between the ontology and the articles, which lets the method knowledge grow as 
-the article base grows and keeps the system open to other domains.
+MLguide was evaluated through user testing in two machine learning course projects
+and an example-based evaluation on constructed problems.
+The recommended methods matched the submitted problems well.
+The supporting articles make the basis for each recommendation visible,
+but this provides only limited justification,
+because a method counts as supported whenever a matching article mentions it,
+even when it is not the article's main contribution.
+Several ontology properties have low coverage,
+which limits its role to supplying candidate methods
+rather than influencing the ranking.
+
+The results show that combining these three elements
+can produce relevant method recommendations
+and support the first steps of implementation
+for users without machine learning expertise.
+The main contribution of the thesis is MLguide itself,
+together with the link between the ontology and the research articles.

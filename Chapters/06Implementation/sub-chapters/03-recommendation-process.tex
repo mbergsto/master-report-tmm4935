@@ -65,8 +65,6 @@ not used as hard filters, since excluding methods on the basis of
 incomplete properties would risk removing valid candidates and 
 produce a misleading ranking.
 
-% \textbf{Referere til \ref{sec:machine-learning-methods} ? Og den manglende delen om attributter på metoder}
-
 \begin{table}[H]
 \centering
 \caption[Ontology properties used in candidate retrieval]
@@ -254,7 +252,7 @@ on a comparable scale:
 \end{equation}
 
 where $\text{rank}(m)$ is the zero-based position after 
-similarity ranking, and $w_f = 0.15$  is an adjustable weight value. 
+similarity ranking, and $w_f = 0.15$ is an adjustable weight value. 
 The low weight 
 means that feedback can adjust a method's position by a few 
 places, but cannot override the similarity-based ranking 
@@ -262,7 +260,7 @@ entirely.
 
 Figure~\ref{fig:ranking-flow} illustrates the full ranking 
 process, from initial retrieval of candidate methods, through 
-similarity scoring and feedback boost. Arrows are labeled with
+similarity scoring and feedback boost. Arrows are labelled with
 the default weight values.  
 
 \begin{figure}[H]
