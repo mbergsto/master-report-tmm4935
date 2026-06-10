@@ -17,7 +17,7 @@ into application services, data services, and external services. The
 application and data services run in Docker containers, while the
 external services are accessed over the network. The application
 services consist of the frontend and the backend. 
-The data services consist of the ontology-based knowledge graph and the article database.
+The data services consist of the ontology-based knowledge graph and the SQL database.
 
 \begin{figure}[H]
     \centering
@@ -62,7 +62,6 @@ Figure~\ref{fig:mlguide-layered-architecture} shows the layered architecture
 of MLguide including the internal layer
 structure of the frontend and backend. Both are organised as a
 stack of layers with clear responsibilities.
-
 The frontend and backend also have shared definitions used across several layers. In
 the frontend, the data models define the request and response shapes
 exchanged with the backend. The templates hold the starter notebook 
@@ -85,7 +84,7 @@ application. In the frontend, the presentation layer handles rendering
 and user interaction. The application logic layer coordinates calls to 
 the backend and external services. The application logic layer delegates most logic
 to the backend, so the majority of 
-modules in this are only thin wrappers around the integrations layer.  
+modules in this layer are only thin wrappers around the integrations layer.  
 The clearest exceptions are the notebook template services, which contain local 
 logic for selecting and rendering starter notebooks.
 The integration layer holds the clients that handle the actual
@@ -113,7 +112,7 @@ handling allows users to rate recommended methods. The ratings are stored
 in PostgreSQL and can be used to adjust the recommendation process over time.
 The feedback logic is further described as part of the 
 recommendation process in Section~\ref{sec:recommendation-process}. 
-Both user and feedback follow the same layered structure as the recommendation logic, 
+Both user and feedback concerns follow the same layered structure as the recommendation logic, 
 with separate modules in the router, service, and persistence layers of 
 the backend, and corresponding wrappers in the frontend application logic 
 layer.

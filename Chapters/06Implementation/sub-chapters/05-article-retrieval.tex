@@ -2,10 +2,10 @@
 \label{sec:article-retrieval-and-knowledge-extraction}
 
 The recommendation process in MLguide depends on a database of 
-research articles, where problem descriptions are matched 
-through semantic retrieval. This article base is built and 
-maintained by a separate article retrieval pipeline, which is the 
-subject of this section.
+research articles. This article base is built and maintained 
+by a dedicated article
+retrieval pipeline, which runs independently of the recommendation
+process and is the subject of this section.
 
 Article abstracts and titles are used as the textual basis for each article.
 Text mining of scientific literature has largely relied on abstracts
@@ -38,10 +38,7 @@ in a repeatable way and to expand the article database over time.
 The article retrieval pipeline builds on the data collection and
 classification work from the pre-master project
 \parencite{bergsto2026mlselection}. The same query-based search
-strategy is reused here, and the pipeline is adapted so that new
-articles can be added to the MLguide databases over time.
- 
-Articles are collected from Scopus through a set of queries, each
+strategy is reused here. Articles are collected from Scopus through a set of queries, each
 targeting machine learning applications in a specific domain or
 application area. Each query is defined in a configuration
 file with an identifier and a Scopus search string. The full set
@@ -78,8 +75,8 @@ several lifecycle phases, and the application areas, represented by clusters,
 showed only limited natural separation. Using either as a filter would risk excluding
 relevant articles on uncertain grounds. Instead, the system relies
 on semantic similarity between the problem description and the
-article abstracts, as described in
-Section~\ref{sec:recommendation-process}.
+article abstracts to provide the relevant context, as described in
+the recommendation process (Section~\ref{sec:recommendation-process}).
 
 \subsection{Knowledge Extraction}
 \label{sec:article-retrieval-knowledge-extraction}
@@ -131,8 +128,8 @@ results are transparent and easy to inspect.
 \subsection{Database Upload}
 \label{sec:article-retrieval-database-upload}
 
-The final step stores the processed articles in the two MLguide
-databases. Abstracts and embeddings are uploaded to PostgreSQL,
+The final step stores the processed articles in the two data sources
+of MLguide. Abstracts and embeddings are uploaded to PostgreSQL,
 and the links between articles and ML methods are uploaded to
 GraphDB.
 
@@ -146,7 +143,7 @@ that will not be added. The embeddings are produced with the
 \texttt{all-mpnet-base-v2} sentence-transformer model, which maps
 text to 768-dimensional vectors. The same model is used in the
 recommendation process, so that problem descriptions and stored
-articles are placed in the same embedding space, as described in
+article abstracts are placed in the same embedding space, as described in
 Section~\ref{sec:article-similarity-scoring}.
 
 For GraphDB, the extracted methods and areas are converted to
@@ -155,16 +152,16 @@ Each article is linked to the ML methods it mentions, and, where an
 area was identified, to the ML area it belongs to.
 These links allow the recommendation process to
 move from articles to methods when retrieving candidates, as
-described in Section~\ref{sec:recommendation-process}.
+described in Section~\ref{sec:ontology-candidate-retrieval}.
 
 \subsection{Flowchart and Database Updates}
 \label{sec:article-retrieval-flowchart}
 
 Figure~\ref{fig:article-retrieval-flow} shows the flow of the
 article retrieval process described in the previous sections.
-Intermediate results are stored as artifacts along the way, so that each step
-has the data it needs from the previous step, and so that the
-output can be inspected manually when needed.
+Intermediate results are stored as artifacts along the way, so that
+each step has the data it needs from the previous step and the
+output can be inspected manually.
 
 \begin{figure}[H]
     \centering
@@ -227,8 +224,7 @@ Added in the update run of 25 March 2026 & +2\,269 \\
 Table~\ref{tab:ml-area-distribution} shows how the ML area labels
 are distributed across the database. An article can be assigned
 more than one ML area, so the labelled counts overlap and sum to
-more than the number of labelled articles. Articles where no area
-keyword was matched have no ML area link in the knowledge graph.
+more than the number of labelled articles.
 
 \begin{table}[H]
 \centering

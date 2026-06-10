@@ -7,7 +7,7 @@ describes what an ontology is and how one is structured, then
 explains why the ML domain is suited to ontological
 representation. It then introduces the Semantic Web standards used
 to implement ontologies, and reviews existing ML ontologies. The
-last part examines ML Ontology in more detail, since it is used as
+last part examines a specific ontology, called ML Ontology, in more detail, since it is used as
 a starting point for the work in this thesis.
 
 \subsection{Ontology Description}
@@ -58,10 +58,10 @@ before it can be applied
 \textcite{noy2001ontology_development_101_guide_creating_first_ontology}
 point to a related constraint on scope. An ontology should not attempt
 to capture everything that could be said about a domain, but only what
-is needed for the application at hand. Expanding scope beyond what the
-application requires adds complexity without benefit, attaching
-properties to concepts that are irrelevant for the intended use
+is needed for the application at hand
 \parencite{noy2001ontology_development_101_guide_creating_first_ontology}.
+Expanding scope beyond what the
+application requires adds complexity without benefit.
 Ontology development is also not a one-time activity. As domain
 knowledge evolves and new requirements emerge, the ontology must be
 revised, which means the initial design should anticipate extension
@@ -86,18 +86,15 @@ can be used for classification and regression, the former inherits
 that applicability without needing it to be stated separately.
 This kind of reasoning over hierarchical structure is something an 
 ontology supports naturally through inheritance 
-\parencite{noy2001ontology_development_101_guide_creating_first_ontology}, 
-but is difficult to achieve in non-semantic representations that lack 
-a formally shared, machine-interpretable vocabulary 
-\parencite{humm2026industry_ready_machine_learning_ontology}.
+\parencite{noy2001ontology_development_101_guide_creating_first_ontology}.
 
 Beyond hierarchical structure, ML concepts are connected through 
 typed semantic relations.
 Methods are suited to certain tasks and data types, belong to certain 
 learning paradigms, and have different performance characteristics 
 \parencite{humm2026industry_ready_machine_learning_ontology}.
-Making these associations explicit allows methods to be compared and 
-chosen in a structured way. 
+Making these associations explicit allows methods to be compared
+in a structured way. 
 \textcite{keet2015data_mining_optimization_ontology} motivate their
 ontology for data mining on these grounds. In traditional
 meta-learning, learning algorithms were treated as black boxes, and
@@ -126,8 +123,7 @@ defining classes, properties, and constraints
 \parencite{gibbins2009resource_description_framework_rdf}.
 Building on RDF, the Simple Knowledge Organization System (SKOS)
 provides a lightweight standard for representing taxonomies
-and controlled vocabularies, without the formal reasoning
-capabilities of a full ontology language
+and controlled vocabularies
 \parencite{humm2026industry_ready_machine_learning_ontology}.
 
 The Web Ontology Language (OWL) builds on RDF and RDFS and
@@ -190,9 +186,7 @@ configuration and execution, MEX-Algorithm covers algorithm
 class and learning method, and MEX-Performance covers
 evaluation measures.
 MEX is designed for basic ML iterations only and does not aim
-to cover the full data mining domain.
-Preprocessing semantics, model internals, and named ML methods
-are outside its scope.
+to cover the full ML domain.
 
 ML Ontology \parencite{humm2026industry_ready_machine_learning_ontology}
 is an ontology for representing ML content. It covers ML areas,
@@ -201,7 +195,7 @@ Automated Machine Learning (AutoML) solutions, and configuration parameters, wit
 instances and 5000 RDF triples. ML Ontology
 is designed for integrating
 different ML tools and frameworks through a shared vocabulary. It
-supports optional forward-chaining inference via SPARQL and
+supports forward-chaining inference via SPARQL and
 includes built-in quality assurance checks.
 
 It is clear that these ontologies have different aims. ML-Schema and
@@ -210,7 +204,7 @@ OntoDM-core is a broader reference ontology for data mining
 entities such as datasets, tasks, and algorithms. OntoDM-core can be
 queried to find algorithms that suit a given task and data type, but
 its coverage is limited to the data mining domain. ML Ontology covers
-a wider range of ML areas, methods, metrics, and libraries, and is
+a wider range of ML areas, methods, tasks, and metrics, and is
 populated accordingly, which makes it a more suitable basis for
 reasoning about method selection across the ML domain.
 
@@ -238,7 +232,7 @@ structure.
     \label{fig:ml-ontology-schema}
 \end{figure}
 
-It is important to note the naming convention used in ML Ontology differs from this thesis.
+A few naming conventions in ML Ontology are worth noting.
 The class called \texttt{ML\_area} represents the same concept as the learning paradigm 
 described in Section~\ref{sec:machine-learning-paradigms-and-tasks}, with
 instances for \textit{supervised\_learning}, \textit{unsupervised\_learning}, and \textit{reinforcement\_learning}.
