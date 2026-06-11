@@ -5,35 +5,39 @@ Relevant knowledge is spread across a large and fragmented body of literature,
 which makes manual search impractical.
 This thesis investigates whether a single decision-support system can recommend
 suitable machine learning methods and support the first steps of implementation.
-Earlier work tends to treat these tasks separately
-rather than combining recommendation with implementation support.
+Earlier work tends to treat these tasks separately.
 The approach proposed here combines ontology-based knowledge representation,
 semantic retrieval from scientific literature,
 and structured implementation support in one system.
 
 A web-based system called MLguide was developed
 within a Design Science Research framework.
-Candidate methods are supplied by an ontology of machine learning knowledge,
-while the ranking is based mainly on semantic retrieval
-that matches relevant research articles to the user's problem description.
+An ontology of machine learning knowledge provides a set of possible methods,
+where each method is linked to the research articles that mention it.
+These methods are then ranked using semantic retrieval.
+Articles similar to the user's problem description are retrieved,
+and a method ranks highly when it is mentioned in these articles.
 For each submitted problem, a ranked list of recommended methods is produced,
 together with the top-ranked supporting articles
-and a generated Jupyter notebook for the chosen method.
+and a generated notebook with starter code for the chosen method.
 
 MLguide was evaluated through user testing in two machine learning course projects
 and an example-based evaluation on constructed problems.
-The recommended methods matched the submitted problems well.
-The supporting articles make the basis for each recommendation visible,
-but this provides only limited justification,
-because a method counts as supported whenever a matching article mentions it,
-even when it is not the article's main contribution.
+The recommended methods were largely relevant to the submitted problems,
+and this held across the machine learning areas covered.
+The supporting articles show the basis for each recommendation,
+but this support can be weak,
+because a method counts as supported whenever it is mentioned
+in a retrieved article, even when it is not the article's main contribution.
 Several ontology properties have low coverage,
-which limits its role to supplying candidate methods
-rather than influencing the ranking.
+which limits the contribution of the ontology.
+Extending the property coverage would let it play 
+a larger part in the recommendations.
 
-The results show that combining these three elements
+The results show that combining these three elements in
+one system
 can produce relevant method recommendations
 and support the first steps of implementation
-for users without machine learning expertise.
+for users with limited machine learning expertise.
 The main contribution of the thesis is MLguide itself,
 together with the link between the ontology and the research articles.

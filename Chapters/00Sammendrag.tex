@@ -5,35 +5,37 @@ Relevant kunnskap er spredt over en stor og fragmentert mengde litteratur,
 noe som gjør manuelt søk upraktisk.
 Denne oppgaven undersøker om ett samlet beslutningsstøttesystem kan anbefale
 passende maskinlæringsmetoder og støtte de første stegene i implementeringen.
-Tidligere arbeider har en tendens til å behandle disse oppgavene hver for seg
-i stedet for å kombinere anbefaling med implementeringsstøtte.
+Tidligere arbeider har en tendens til å behandle disse oppgavene hver for seg.
 Tilnærmingen som foreslås her kombinerer ontologibasert kunnskapsrepresentasjon,
 semantisk gjenfinning fra vitenskapelig litteratur
 og strukturert implementeringsstøtte i ett system.
 
 Et nettbasert system kalt MLguide ble utviklet
 innenfor et Design Science Research-rammeverk.
-Kandidatmetodene leveres av en ontologi over maskinlæringskunnskap,
-mens rangeringen i hovedsak er basert på semantisk gjenfinning
-som matcher relevante forskningsartikler mot brukerens problembeskrivelse.
+En ontologi over maskinlæringskunnskap leverer et sett med mulige metoder,
+der hver metode er koblet til forskningsartiklene som nevner den.
+Disse metodene rangeres deretter ved hjelp av semantisk gjenfinning.
+Det hentes frem artikler som ligner på brukerens problembeskrivelse,
+og en metode rangeres høyt når den nevnes i disse artiklene.
 For hvert innsendt problem produseres en rangert liste over anbefalte metoder,
 sammen med de høyest rangerte støttende artiklene
-og en generert Jupyter-notatbok for den valgte metoden.
+og en generert notatbok med startkode for den valgte metoden.
 
 MLguide ble evaluert gjennom brukertesting i to prosjekter i et maskinlæringskurs
 og gjennom en eksempelbasert evaluering på konstruerte problemer.
-De anbefalte metodene samsvarte godt med de innsendte problemene.
-De støttende artiklene gjør grunnlaget for hver anbefaling synlig,
-men gir bare en begrenset begrunnelse,
-fordi en metode regnes som støttet så lenge en matchende artikkel nevner den,
+De anbefalte metodene var stort sett relevante for de innsendte problemene,
+og dette gjaldt på tvers av maskinlæringsområdene som var dekket.
+De støttende artiklene viser grunnlaget for hver anbefaling,
+men denne støtten kan være svak,
+fordi en metode regnes som støttet så lenge den nevnes i en artikkel,
 selv når metoden ikke er artikkelens hovedbidrag.
 Flere egenskaper i ontologien har lav dekning,
-noe som begrenser dens rolle til å levere kandidatmetoder
-i stedet for å påvirke rangeringen.
+noe som begrenser ontologiens bidrag.
+Å utvide egenskapsdekningen ville gi den en større rolle i anbefalingene.
 
-Resultatene viser at kombinasjonen av disse tre elementene
+Resultatene viser at kombinasjonen av disse tre elementene i ett system
 kan gi relevante metodeanbefalinger
-og støtte de første implementeringsstegene
+og støtte de første stegene i implementeringen
 for brukere med begrenset maskinlæringskompetanse.
 Oppgavens hovedbidrag er selve MLguide,
 sammen med koblingen mellom ontologien og forskningsartiklene.
